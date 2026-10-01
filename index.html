@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>FLEET DASHBOARD · 舰队监控</title>
+<style>
+:root { --bg:#050708; --panel:#0a0e12; --line:#232c34; --green:#2ecc71; --cyan:#22d3ee; --text:#d7dde3; --dim:#6b7a86; }
+* { box-sizing:border-box; margin:0; padding:0; }
+body { background:var(--bg); color:var(--text); font-family:ui-monospace,'JetBrains Mono','Courier New',monospace; min-height:100vh; padding:40px 20px; }
+.wrap { max-width:860px; margin:0 auto; }
+h1 { font-size:20px; letter-spacing:4px; font-weight:400; margin-bottom:6px; }
+.sub { color:var(--dim); font-size:12px; margin-bottom:28px; letter-spacing:1px; }
+.sub .live { color:var(--green); }
+.sub .live::before { content:'● '; }
+.grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(380px,1fr)); gap:14px; }
+a.card {
+  display:block; background:var(--panel); border:1px solid var(--line);
+  padding:18px 20px; text-decoration:none; color:var(--text); transition:border-color .15s;
+}
+a.card:hover { border-color:var(--green); }
+a.card .name { font-size:15px; letter-spacing:2px; margin-bottom:4px; }
+a.card .name::before { content:'▸ '; color:var(--cyan); }
+a.card .desc { font-size:11px; color:var(--dim); line-height:1.6; }
+.tag { display:inline-block; font-size:10px; padding:1px 8px; border:1px solid var(--line); color:var(--dim); margin-top:8px; margin-right:6px; letter-spacing:1px; }
+.tag.new { color:var(--green); border-color:var(--green); }
+.foot { margin-top:30px; font-size:11px; color:var(--dim); letter-spacing:1px; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>FLEET DASHBOARD</h1>
+  <div class="sub">舰队监控 · 公网快照版 · <span class="live">live</span> 数据 2026-10-01T05:31Z</div>
+  <div class="grid">
+    <a class="card" href="px5b/">
+      <div class="name">HUB — btop 式 + 分屏 drill-down</div>
+      <div class="desc">label|bar|value 三栏行 · section 细线标题 · 点 bot 行进「上整体/下细节」专注视图 · 最贴参考图</div>
+      <span class="tag new">RECOMMENDED</span><span class="tag">DRILL-DOWN</span>
+    </a>
+    <a class="card" href="px5b/">
+      <div class="name">AMBER — 琥珀 CRT</div>
+      <div class="desc">暖黑底 + 琥珀语义条 + 微光晕扫描线</div>
+      <span class="tag">CRT</span>
+    </a>
+    <a class="card" href="px5c/">
+      <div class="name">OCEAN — 冷海</div>
+      <div class="desc">深蓝底 + 青调 + 条顶亮帽</div>
+      <span class="tag">COOL</span>
+    </a>
+    <a class="card" href="px5d/">
+      <div class="name">MONO — 黑白极简</div>
+      <div class="desc">白条灰阶，唯一红留给危险，最高级感</div>
+      <span class="tag">MINIMAL</span>
+    </a>
+    <a class="card" href="px5e/">
+      <div class="name">GAME — RPG 血条</div>
+      <div class="desc">每 10% 一格的分段血条 + Pixeloid 大数字 + 扫描线</div>
+      <span class="tag">8-BIT</span>
+    </a>
+    <a class="card" href="p5/">
+      <div class="name">PIXEL v6 — 像素指挥台（初代）</div>
+      <div class="desc">Pixeloid 字体 + RPG 角标 + 三色像素装饰</div>
+      <span class="tag">CLASSIC</span>
+    </a>
+    <a class="card" href="p1/"><div class="name">P1 TERMINAL</div><div class="desc">绿荧光 CRT 终端</div></a>
+    <a class="card" href="p2/"><div class="name">P2 BLUEPRINT</div><div class="desc">工程蓝图网格</div></a>
+    <a class="card" href="p3/"><div class="name">P3 PAPER</div><div class="desc">纸墨报刊印刷</div></a>
+    <a class="card" href="p4/"><div class="name">P4 NEON</div><div class="desc">赛博霓虹之夜</div></a>
+  </div>
+  <div class="foot">LAN 实时版: http://192.168.178.69:8710/ · snapshot pipeline: .69:8710 → api_status.json → gh-pages</div>
+</div>
+</body>
+</html>

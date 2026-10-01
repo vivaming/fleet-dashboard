@@ -1,0 +1,101 @@
+/* PX5-HUB — btop 式 fleet monitor（参考图逐项复刻）
+   状态行 + section(标题—细线) + 行式三栏(label|bar|value) + drill-down 分屏 */
+body.px-hub {
+  --hub-bg: #050708;
+  --hub-panel: #0a0e12;
+  --hub-track: #16202b;
+  --hub-green: #2ecc71;
+  --hub-yellow: #eab308;
+  --hub-red: #ef4444;
+  --hub-cyan: #22d3ee;
+  --hub-text: #d7dde3;
+  --hub-dim: #6b7a86;
+  --hub-line: #232c34;
+  background: var(--hub-bg) !important;
+  color: var(--hub-text);
+  font-family: ui-monospace, 'JetBrains Mono', 'Courier New', monospace !important;
+}
+body.px-hub .scanlines { display: none; }
+body.px-hub header .title-row,
+body.px-hub header .stats-row,
+body.px-hub #stale-banner,
+body.px-hub #agent-bar,
+body.px-hub #alert-marquee,
+body.px-hub #free-quota,
+body.px-hub main#main,
+body.px-hub footer { display: none !important; }
+
+/* 自渲染容器 */
+#hub-root { padding: 20px 26px; max-width: 860px; margin: 0 auto; }
+.hub-status {
+  font-family: 'Pixeloid Sans', ui-monospace, monospace;
+  font-size: 13px; color: var(--hub-text); letter-spacing: 1px;
+  padding: 6px 0 14px;
+}
+.hub-status .live { color: var(--hub-green); }
+.hub-status .live::before { content: '● '; }
+.hub-status .dim { color: var(--hub-dim); }
+
+.hub-section { margin-bottom: 22px; }
+.hub-sec-head {
+  display: flex; align-items: baseline; gap: 10px;
+  border-bottom: 1px solid var(--hub-line);
+  padding-bottom: 4px; margin-bottom: 10px;
+}
+.hub-sec-title {
+  font-family: 'Pixeloid Sans', ui-monospace, monospace;
+  font-size: 13px; letter-spacing: 3px; color: var(--hub-text);
+}
+.hub-sec-note { font-size: 11px; color: var(--hub-dim); }
+.hub-sec-val { margin-left: auto; font-size: 11px; color: var(--hub-dim); }
+
+/* 行式三栏：label | bar | value */
+.hub-row {
+  display: grid;
+  grid-template-columns: 110px 1fr auto;
+  gap: 12px; align-items: center;
+  padding: 3px 0;
+  cursor: default;
+}
+.hub-row .hub-label { font-size: 12px; color: var(--hub-text); text-align: right; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.hub-row .hub-label small { color: var(--hub-dim); font-size: 10px; }
+.hub-row .hub-val { font-size: 11px; color: var(--hub-dim); text-align: right; white-space: nowrap; font-variant-numeric: tabular-nums; }
+.hub-row .hub-val b { color: var(--hub-text); font-weight: 400; }
+
+/* btop 式条：暗轨道 + 实心直角色块（分段阶梯，每格 = 5%） */
+.hub-bar {
+  height: 16px; background: var(--hub-track);
+  display: flex; overflow: hidden;
+}
+.hub-bar .seg { height: 100%; }
+.hub-bar .seg.g { background: var(--hub-green); }
+.hub-bar .seg.y { background: var(--hub-yellow); }
+.hub-bar .seg.r { background: var(--hub-red); }
+.hub-bar .seg.c { background: var(--hub-cyan); }
+.hub-bar .seg.gap { width: 2px; background: var(--hub-track); }
+
+/* 可点击 bot 行 */
+.hub-row.clickable:hover { background: rgba(255,255,255,.04); }
+.hub-row.clickable:hover .hub-label { color: #fff; }
+
+/* drill-down 分屏 */
+.hub-back {
+  display: inline-block; font-size: 12px; color: var(--hub-cyan);
+  padding: 4px 10px; border: 1px solid var(--hub-line); margin-bottom: 10px;
+  cursor: pointer; letter-spacing: 1px;
+}
+.hub-back:hover { border-color: var(--hub-cyan); }
+.hub-detail-title {
+  font-family: 'Pixeloid Sans', ui-monospace, monospace;
+  font-size: 16px; letter-spacing: 2px; color: var(--hub-text);
+  padding: 8px 0 4px;
+}
+.hub-detail-sub { font-size: 11px; color: var(--hub-dim); margin-bottom: 14px; }
+body.px-hub.hub-drill .hub-overview { display: none; }
+body.px-hub .hub-detail { display: none; }
+body.px-hub.hub-drill .hub-detail { display: block; }
+
+/* 详情 KV 行 */
+.hub-kv { display: grid; grid-template-columns: 140px 1fr; gap: 10px; font-size: 12px; padding: 2px 0; }
+.hub-kv .k { color: var(--hub-dim); text-align: right; }
+.hub-kv .v { color: var(--hub-text); word-break: break-all; }

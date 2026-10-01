@@ -1,0 +1,708 @@
+/* ============================================================
+   fleet-monitor · P4 "NEON NOIR" skin — 赛博朋克霓虹之夜
+   lane: xpi
+   ------------------------------------------------------------
+   所有规则挂在 body.neon 之下，绝不泄漏进默认主题(style.css)
+   或 jevdesk 主题。JS 未改动：api-override.js / api_status.json
+   与 static/*.js 全部保持字节不变。
+
+   调色板（赛博霓虹）：
+     ground  #0d0716 -> #1a0f2e   深紫黑夜色渐变
+     text    #e0d5ff             淡紫白正文
+     pink    #ff2ec4             霓虹粉（主强调 / 告警）
+     cyan    #00e5ff             霓虹青（主结构 / 运行态）
+     purple  #9d4dff             霓虹紫（次强调 / 过渡态）
+     dim     #8b7cc0             次级信息（正文的暗态）
+     amber   #ffc857             等待态（沿用原义色，只提亮）
+   ============================================================ */
+
+/* ── 变量覆盖 ───────────────────────────────────────────────
+   style.css 的 @media(no-preference) 动画层用 var(--cyan)/
+   var(--purple)/var(--red)/var(--amber) 画能量条与脉冲框，
+   在这里改写变量 = 让那些现成动画自动换霓虹色，零 JS 改动。 */
+body.neon {
+  --bg: #0d0716;
+  --bg2: #1a0f2e;
+  --panel: rgba(20, 10, 40, .7);
+  --line: rgba(157, 77, 255, .26);
+  --cyan: #00e5ff;
+  --purple: #9d4dff;
+  --amber: #ffc857;
+  --red: #ff2ec4;
+  --green: #00e5ff;
+  --dim: #8b7cc0;
+  --text: #e0d5ff;
+
+  --nn-pink: #ff2ec4;
+  --nn-cyan: #00e5ff;
+  --nn-purple: #9d4dff;
+  --nn-glass: rgba(20, 10, 40, .7);
+  --nn-edge: rgba(157, 77, 255, .42);
+  --nn-glow-pink:   0 0 10px rgba(255, 46, 196, .55), 0 0 20px rgba(255, 46, 196, .28);
+  --nn-glow-cyan:   0 0 10px rgba(0, 229, 255, .55), 0 0 20px rgba(0, 229, 255, .28);
+  --nn-glow-purple: 0 0 10px rgba(157, 77, 255, .55), 0 0 20px rgba(157, 77, 255, .3);
+
+  /* 斜体几何字（无外网字体依赖，字体缺失时逐级降级） */
+  --nn-display: "Orbitron", "Michroma", "Audiowide", "Eurostile",
+                "Avenir Next", "Futura", "Century Gothic", "Trebuchet MS",
+                "PingFang SC", "Microsoft YaHei", system-ui, sans-serif;
+  --nn-mono: "JetBrains Mono", "IBM Plex Mono", ui-monospace, "Courier New", monospace;
+
+  margin: 0;
+  min-height: 100vh;
+  color: var(--text);
+  font-family: var(--nn-mono);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: geometricPrecision;
+
+  /* 夜色：深紫黑双向渐变 + 三团霓虹光晕（顶粉 / 左下青 / 右紫） */
+  background:
+    radial-gradient(900px 420px at 78% -12%, rgba(255, 46, 196, .16), transparent 65%),
+    radial-gradient(760px 420px at 6% 108%, rgba(0, 229, 255, .13), transparent 62%),
+    radial-gradient(620px 360px at 92% 78%, rgba(157, 77, 255, .12), transparent 60%),
+    linear-gradient(175deg, #0d0716 0%, #140b25 46%, #1a0f2e 100%);
+  background-attachment: fixed;
+}
+
+/* 内容抬一层，压在剪影之上 */
+body.neon > * { position: relative; z-index: 2; }
+
+/* ── 远景城市剪影（CSS clip-path 多边形画楼群）──────────────
+   body::before = 远景楼群（高、疏），body::after = 近景楼群（矮、密）。
+   两层都 opacity .15，只作夜色纵深，不抢卡片。 */
+body.neon::before,
+body.neon::after {
+  content: "";
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  pointer-events: none;
+  z-index: 0;
+}
+body.neon::before {
+  height: 58vh;
+  opacity: .15;
+  background: linear-gradient(180deg,
+    rgba(255, 46, 196, .55) 0%, rgba(157, 77, 255, .8) 55%, #2a1650 100%);
+  clip-path: polygon(0.0% 100.0%, 0.0% 64.5%, 3.0% 64.5%, 3.0% 68.7%, 7.3% 68.7%, 7.3% 58.0%, 9.7% 58.0%, 9.7% 54.3%, 11.5% 54.3%, 11.5% 58.0%, 13.8% 58.0%, 13.8% 59.8%, 19.8% 59.8%, 19.8% 57.4%, 21.4% 57.4%, 21.4% 53.0%, 22.6% 53.0%, 22.6% 57.4%, 24.2% 57.4%, 24.2% 78.8%, 27.2% 78.8%, 27.2% 66.9%, 33.3% 66.9%, 33.3% 65.0%, 35.1% 65.0%, 35.1% 60.7%, 36.5% 60.7%, 36.5% 65.0%, 38.3% 65.0%, 38.3% 55.7%, 40.4% 55.7%, 40.4% 52.0%, 42.0% 52.0%, 42.0% 55.7%, 44.1% 55.7%, 44.1% 66.1%, 47.4% 66.1%, 47.4% 62.2%, 53.1% 62.2%, 53.1% 54.2%, 58.9% 54.2%, 58.9% 60.0%, 61.2% 60.0%, 61.2% 54.4%, 63.0% 54.4%, 63.0% 60.0%, 65.3% 60.0%, 65.3% 56.5%, 70.6% 56.5%, 70.6% 57.9%, 76.0% 57.9%, 76.0% 81.0%, 79.8% 81.0%, 79.8% 68.5%, 83.0% 68.5%, 83.0% 79.5%, 86.9% 79.5%, 86.9% 54.7%, 92.3% 54.7%, 92.3% 56.1%, 95.8% 56.1%, 95.8% 75.2%, 99.1% 75.2%, 99.1% 74.5%, 100.0% 74.5%, 100.0% 100.0%);
+  filter: blur(.4px);
+}
+body.neon::after {
+  height: 42vh;
+  opacity: .15;
+  background: linear-gradient(180deg,
+    rgba(0, 229, 255, .5) 0%, rgba(157, 77, 255, .85) 60%, #1b0f38 100%);
+  clip-path: polygon(0.0% 100.0%, 0.0% 84.2%, 4.5% 84.2%, 4.5% 69.3%, 10.7% 69.3%, 10.7% 70.2%, 15.1% 70.2%, 15.1% 85.6%, 20.5% 85.6%, 20.5% 75.9%, 27.1% 75.9%, 27.1% 79.6%, 35.6% 79.6%, 35.6% 73.6%, 38.1% 73.6%, 38.1% 69.1%, 40.0% 69.1%, 40.0% 73.6%, 42.6% 73.6%, 42.6% 75.4%, 44.6% 75.4%, 44.6% 72.2%, 46.2% 72.2%, 46.2% 75.4%, 48.2% 75.4%, 48.2% 67.5%, 56.1% 67.5%, 56.1% 71.0%, 64.2% 71.0%, 64.2% 70.1%, 69.4% 70.1%, 69.4% 84.2%, 76.3% 84.2%, 76.3% 91.1%, 81.9% 91.1%, 81.9% 73.4%, 89.4% 73.4%, 89.4% 73.0%, 91.8% 73.0%, 91.8% 67.6%, 93.6% 67.6%, 93.6% 73.0%, 96.0% 73.0%, 96.0% 68.2%, 100.0% 68.2%, 100.0% 100.0%);
+}
+
+/* .scanlines：保留最淡横向扫描线（base 已定 z-index 9 / pointer-events none） */
+body.neon .scanlines {
+  background: repeating-linear-gradient(0deg, transparent 0 3px, rgba(233, 222, 255, .022) 3px 4px);
+}
+/* 楼群窗灯：极淡点阵，只落在城市高度范围（mask 淡出顶部） */
+body.neon .scanlines::after {
+  content: "";
+  position: fixed;
+  left: 0; right: 0; bottom: 0;
+  height: 42vh;
+  background-image:
+    repeating-linear-gradient(90deg, rgba(255, 46, 196, .3) 0 1px, transparent 1px 4px),
+    repeating-linear-gradient(0deg,  rgba(0, 229, 255, .28) 0 1px, transparent 1px 3px);
+  -webkit-mask-image: linear-gradient(180deg, transparent 0%, #000 45%, #000 100%);
+          mask-image: linear-gradient(180deg, transparent 0%, #000 45%, #000 100%);
+  opacity: .1;
+}
+
+/* ── Header ───────────────────────────────────────────────── */
+
+body.neon header {
+  padding: 22px 22px 10px;
+  border-bottom: 1px solid var(--nn-edge);
+  box-shadow: 0 1px 0 rgba(0, 229, 255, .12), 0 10px 40px -18px rgba(255, 46, 196, .35);
+  background: linear-gradient(180deg, rgba(13, 7, 22, .78), rgba(13, 7, 22, .1));
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+
+body.neon .title-row { align-items: baseline; gap: 16px; }
+
+/* 标题：斜体几何字 + 霓虹描边 + 微弱色差（粉 +1px / 青 -1px） */
+body.neon h1 {
+  position: relative;
+  margin: 0;
+  font-family: var(--nn-display);
+  font-style: italic;
+  font-weight: 900;
+  font-size: 30px;
+  letter-spacing: 5px;
+  line-height: 1.2;
+  color: #fff6ff;
+  -webkit-text-stroke: .6px rgba(255, 46, 196, .85);
+          text-stroke: .6px rgba(255, 46, 196, .85);
+  text-shadow:
+    0 0 4px  #ffffff,
+    0 0 12px rgba(255, 46, 196, .95),
+    0 0 24px rgba(255, 46, 196, .7),
+    0 0 44px rgba(157, 77, 255, .55);
+}
+body.neon h1::before,
+body.neon h1::after {
+  content: attr(data-text);
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  pointer-events: none;
+  -webkit-text-stroke: 0;
+          text-stroke: 0;
+  text-shadow: none;
+}
+body.neon h1::before { color: var(--nn-pink); transform: translate(1px, 0); }
+body.neon h1::after  { color: var(--nn-cyan); transform: translate(-1px, 0); }
+
+body.neon .subtitle {
+  font-family: var(--nn-mono);
+  font-size: 12px;
+  letter-spacing: 3px;
+  color: var(--nn-cyan);
+  text-shadow: 0 0 8px rgba(0, 229, 255, .7);
+}
+
+/* ── Badge（新鲜度） ──────────────────────────────────────── */
+
+body.neon .badge,
+body.neon #fresh-badge {
+  font-family: var(--nn-mono);
+  font-size: 11px;
+  letter-spacing: 1px;
+  padding: 3px 10px;
+  border-radius: 3px;
+  color: var(--dim);
+  background: rgba(20, 10, 40, .7);
+  border: 1px solid var(--nn-edge);
+  box-shadow: 0 0 8px rgba(157, 77, 255, .18), inset 0 0 8px rgba(157, 77, 255, .08);
+}
+
+body.neon .stale-banner {
+  border: 1px dashed var(--nn-pink);
+  color: #ffd9f4;
+  background: rgba(255, 46, 196, .1);
+  box-shadow: var(--nn-glow-pink);
+  text-shadow: 0 0 6px rgba(255, 46, 196, .6);
+}
+
+/* ── Stats row ────────────────────────────────────────────── */
+
+body.neon .stats-row { margin-top: 12px; color: var(--dim); font-family: var(--nn-mono); }
+body.neon .stats-row b {
+  color: var(--nn-cyan);
+  font-weight: 700;
+  text-shadow: 0 0 8px rgba(0, 229, 255, .55);
+}
+
+/* ── Agent bar / marquee ──────────────────────────────────── */
+
+body.neon .agent-bar { padding: 8px 22px 2px; }
+
+body.neon .agent-pill {
+  padding: 2px 9px;
+  border-radius: 11px;
+  border: 1px solid rgba(157, 77, 255, .5);
+  color: #c9b3ff;
+  background: rgba(157, 77, 255, .08);
+  font-family: var(--nn-mono);
+  font-size: 11px;
+  box-shadow: 0 0 6px rgba(157, 77, 255, .18);
+}
+body.neon .agent-pill.agent-stuck {
+  border-color: var(--nn-pink);
+  color: #ffd9f4;
+  box-shadow: var(--nn-glow-pink);
+}
+
+body.neon .alert-marquee {
+  color: var(--nn-pink);
+  text-shadow: 0 0 8px rgba(255, 46, 196, .8);
+  padding: 4px 22px 6px;
+}
+
+/* ── Host sections ────────────────────────────────────────── */
+
+body.neon main { padding: 12px 22px 30px; }
+
+body.neon .host-section { margin-bottom: 24px; }
+
+body.neon .host-head {
+  margin: 8px 0 12px;
+  padding-bottom: 6px;
+  border-bottom: 1px solid rgba(157, 77, 255, .3);
+  box-shadow: 0 1px 0 rgba(0, 229, 255, .1);
+}
+body.neon .host-name {
+  font-family: var(--nn-display);
+  font-style: italic;
+  font-size: 16px;
+  letter-spacing: 3px;
+  color: var(--nn-cyan);
+  text-shadow: 0 0 6px rgba(0, 229, 255, .75), 0 0 16px rgba(0, 229, 255, .35);
+}
+body.neon .host-meta {
+  color: var(--dim);
+  font-size: 11px;
+  letter-spacing: 1px;
+  text-shadow: none;
+}
+
+/* ── Cards：玻璃 + 霓虹渐变边框 ─────────────────────────────
+   渐变描边走 padding-box / border-box 双背景，保住 border-radius；
+   .bot-card::before / ::after 留给 style.css 的能量条动画，不占用。 */
+body.neon .cards { gap: 14px; }
+
+body.neon .bot-card {
+  position: relative;
+  padding: 14px 16px;
+  border: 1px solid transparent;
+  border-radius: 8px;
+  background:
+    linear-gradient(160deg, rgba(26, 14, 46, .82), rgba(15, 8, 30, .7)) padding-box,
+    linear-gradient(140deg, rgba(255, 46, 196, .8), rgba(157, 77, 255, .6) 42%, rgba(0, 229, 255, .8)) border-box;
+  box-shadow:
+    0 0 20px rgba(157, 77, 255, .16),
+    0 6px 22px rgba(0, 0, 0, .45),
+    inset 0 0 20px rgba(157, 77, 255, .05);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  transition: transform .2s ease, box-shadow .2s ease;
+}
+
+/* hover：抬升 + 光晕增强 */
+body.neon .bot-card:hover {
+  transform: translateY(-3px);
+  background:
+    linear-gradient(160deg, rgba(32, 17, 56, .86), rgba(17, 9, 34, .72)) padding-box,
+    linear-gradient(140deg, var(--nn-pink), var(--nn-purple) 42%, var(--nn-cyan)) border-box;
+  box-shadow:
+    0 0 30px rgba(255, 46, 196, .3),
+    0 0 14px rgba(0, 229, 255, .28),
+    0 14px 36px rgba(0, 0, 0, .55),
+    inset 0 0 26px rgba(255, 46, 196, .07);
+}
+
+body.neon .bot-card.sev-warn {
+  background:
+    linear-gradient(160deg, rgba(46, 34, 12, .78), rgba(24, 17, 8, .7)) padding-box,
+    linear-gradient(140deg, var(--amber), var(--nn-purple) 50%, var(--amber)) border-box;
+  box-shadow: 0 0 18px rgba(255, 200, 87, .2), 0 6px 22px rgba(0, 0, 0, .45);
+}
+body.neon .bot-card.sev-crit,
+body.neon .bot-card.problem-card {
+  background:
+    linear-gradient(160deg, rgba(46, 10, 34, .8), rgba(24, 8, 20, .72)) padding-box,
+    linear-gradient(140deg, var(--nn-pink), var(--nn-purple) 50%, var(--nn-pink)) border-box;
+  box-shadow:
+    0 0 22px rgba(255, 46, 196, .3),
+    0 6px 22px rgba(0, 0, 0, .45),
+    inset 0 0 22px rgba(255, 46, 196, .06);
+}
+body.neon .bot-card.offline-card { opacity: .5; }
+body.neon .bot-card.retired-card { opacity: .38; }
+body.neon .bot-card.retired-card:hover {
+  background:
+    linear-gradient(160deg, rgba(26, 14, 46, .7), rgba(15, 8, 30, .6)) padding-box,
+    linear-gradient(140deg, rgba(139, 124, 192, .7), rgba(139, 124, 192, .3)) border-box;
+}
+
+/* ── Card header row ──────────────────────────────────────── */
+
+body.neon .bot-top { align-items: center; gap: 12px; }
+
+body.neon .bot-hat {
+  width: 52px;
+  height: 52px;
+  filter: drop-shadow(0 0 5px rgba(0, 229, 255, .6)) drop-shadow(0 0 12px rgba(157, 77, 255, .35));
+}
+/* 像素帽重新上色到霓虹色域（按原始 fill 选区，保留层次） */
+body.neon .bot-hat rect[fill="#35e0e0"] { fill: #00e5ff; }
+body.neon .bot-hat rect[fill="#9d6bff"] { fill: #9d4dff; }
+body.neon .bot-hat rect[fill="#4ade80"] { fill: #00e5ff; }
+body.neon .bot-hat rect[fill="#ffc857"] { fill: #ffc857; }
+body.neon .bot-hat rect[fill="#ff5d73"] { fill: #ff2ec4; }
+body.neon .bot-hat rect[fill="#0b0f1e"],
+body.neon .bot-hat rect[fill="#1c2450"] { fill: #140b25; }
+
+body.neon .bot-name {
+  font-family: var(--nn-display);
+  font-style: italic;
+  font-weight: 800;
+  font-size: 18px;
+  letter-spacing: 2px;
+  color: #f4ecff;
+  text-shadow: 0 0 8px rgba(255, 46, 196, .6), 0 0 18px rgba(157, 77, 255, .35);
+  margin: 0;
+  line-height: 1.25;
+}
+body.neon .bot-host {
+  font-family: var(--nn-mono);
+  font-size: 11px;
+  color: var(--dim);
+  letter-spacing: 1px;
+  text-shadow: none;
+}
+
+/* ── 状态徽章：发光呼吸点 ────────────────────────────────── */
+
+body.neon .status-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 3px 9px;
+  font-family: var(--nn-mono);
+  font-size: 10px;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  border: 1px solid currentColor;
+  border-radius: 3px;
+  background: rgba(20, 10, 40, .72);
+  color: var(--dim);
+  box-shadow: 0 0 6px rgba(157, 77, 255, .15);
+}
+body.neon .status-badge::before {
+  content: "";
+  width: 6px;
+  height: 6px;
+  flex: 0 0 auto;
+  background: currentColor;
+  border-radius: 50%;
+  box-shadow: 0 0 5px currentColor, 0 0 12px currentColor;
+}
+
+/* 状态配色：青=运行/在跑，紫=进展/过渡，粉=告警/阻塞 */
+body.neon .status-badge.st-working,
+body.neon .status-badge.st-idle,
+body.neon .status-badge.ok,
+body.neon .status-badge.live,
+body.neon .status-badge.running,
+body.neon .status-badge.up {
+  color: var(--nn-cyan);
+  border-color: rgba(0, 229, 255, .55);
+  background: rgba(0, 229, 255, .07);
+  box-shadow: 0 0 8px rgba(0, 229, 255, .28);
+}
+body.neon .status-badge.st-recent,
+body.neon .status-badge.st-progress,
+body.neon .status-badge.st-done,
+body.neon .status-badge.info {
+  color: #c9b3ff;
+  border-color: rgba(157, 77, 255, .6);
+  background: rgba(157, 77, 255, .1);
+  box-shadow: 0 0 8px rgba(157, 77, 255, .3);
+}
+body.neon .status-badge.st-wait {
+  color: var(--amber);
+  border-color: rgba(255, 200, 87, .55);
+  background: rgba(255, 200, 87, .08);
+  box-shadow: 0 0 8px rgba(255, 200, 87, .3);
+}
+body.neon .status-badge.st-blocked,
+body.neon .status-badge.crit,
+body.neon .status-badge.down,
+body.neon .status-badge.error,
+body.neon .status-badge.st-lost {
+  color: #ff8ade;
+  border-color: rgba(255, 46, 196, .6);
+  background: rgba(255, 46, 196, .1);
+  box-shadow: 0 0 10px rgba(255, 46, 196, .35);
+}
+body.neon .status-badge.st-offline {
+  color: #6f6394;
+  border-color: rgba(139, 124, 192, .4);
+  border-style: dashed;
+  background: transparent;
+  box-shadow: none;
+}
+body.neon .status-badge.st-offline::before { animation: none; box-shadow: none; opacity: .55; }
+body.neon .status-badge.st-unknown {
+  color: #a99cc9;
+  border-color: rgba(139, 124, 192, .45);
+  background: rgba(157, 77, 255, .05);
+}
+body.neon .status-badge.st-retired,
+body.neon .status-badge.st-neutral {
+  color: #6f6394;
+  border-color: rgba(139, 124, 192, .3);
+  background: rgba(139, 124, 192, .06);
+  box-shadow: none;
+}
+body.neon .status-badge.st-retired::before { animation: none; box-shadow: none; opacity: .4; }
+body.neon .status-badge.st-neutral::before { animation: none; box-shadow: 0 0 4px currentColor; opacity: .6; }
+body.neon .status-badge.st-done::before { animation: none; }
+body.neon .status-badge.idle-warn,
+body.neon .idle-warn { color: var(--amber); }
+
+/* ── Card body text ───────────────────────────────────────── */
+
+body.neon .proc-signal { color: var(--dim); font-size: 10px; text-shadow: none; }
+
+body.neon .activity { color: #e6dcff; font-size: 13px; line-height: 1.55; }
+body.neon .activity .src { color: var(--dim); font-size: 10px; text-shadow: none; }
+
+body.neon .sub-row { color: var(--dim); font-size: 11px; text-shadow: none; }
+body.neon .sub-row b { color: var(--nn-cyan); text-shadow: 0 0 6px rgba(0, 229, 255, .45); }
+body.neon .xpi-row,
+body.neon .xpi-row b { color: #c9b3ff; }
+body.neon .xpi-row b { text-shadow: 0 0 6px rgba(157, 77, 255, .5); }
+body.neon .exit-row,
+body.neon .exit-row b { color: var(--amber); text-shadow: 0 0 6px rgba(255, 200, 87, .35); }
+
+body.neon .state-tag { border-radius: 3px; padding: 0 5px; }
+
+body.neon .problem-line {
+  color: #ffd9f4;
+  font-size: 11px;
+  text-shadow: 0 0 7px rgba(255, 46, 196, .55);
+}
+body.neon .chip-line-label { color: var(--dim); font-size: 10px; text-shadow: none; }
+
+/* ── Model chips ──────────────────────────────────────────── */
+
+body.neon .model-chips { display: block; }
+body.neon .model-label { color: var(--dim); font-size: 11px; margin-top: 6px; text-shadow: none; }
+
+body.neon .chip {
+  display: inline-block;
+  font-family: var(--nn-mono);
+  font-size: 10px;
+  padding: 1px 6px;
+  margin: 3px 5px 0 0;
+  border: 1px solid var(--nn-edge);
+  border-radius: 3px;
+  color: var(--dim);
+  background: rgba(157, 77, 255, .05);
+}
+body.neon .chip.free-ok      { border-color: rgba(0, 229, 255, .5); color: var(--nn-cyan); box-shadow: 0 0 6px rgba(0, 229, 255, .2); }
+body.neon .chip.free-limited { border-color: rgba(157, 77, 255, .5); color: #c9b3ff; box-shadow: 0 0 6px rgba(157, 77, 255, .2); }
+body.neon .chip.free-maybe   { border-color: rgba(255, 200, 87, .5); color: var(--amber); }
+body.neon .chip.free-unknown { border-color: rgba(139, 124, 192, .3); color: var(--dim); }
+
+body.neon .model-row { border-left: 2px solid rgba(157, 77, 255, .45); color: #ddd0ff; }
+body.neon .model-row .stat-nums,
+body.neon .stat-line .stat-nums { color: var(--dim); text-shadow: none; }
+
+/* ── Detail / agent rows ──────────────────────────────────── */
+
+body.neon .detail {
+  margin-top: 10px;
+  padding-top: 9px;
+  border-top: 1px dashed rgba(157, 77, 255, .3);
+  color: var(--dim);
+  font-size: 12px;
+  line-height: 1.6;
+}
+body.neon .bot-card.open .detail { display: block; }
+body.neon .detail b { color: var(--nn-cyan); text-shadow: 0 0 6px rgba(0, 229, 255, .4); }
+
+body.neon .agent-detail {
+  display: block;
+  margin-top: 6px;
+  padding: 6px 10px;
+  border: 1px solid rgba(157, 77, 255, .25);
+  border-radius: 5px;
+  background: rgba(13, 7, 22, .55);
+  font-size: 11px;
+  color: var(--dim);
+  line-height: 1.6;
+  max-height: 320px;
+  overflow-y: auto;
+}
+body.neon .live-agents { border-top: 1px dashed rgba(0, 229, 255, .25); }
+body.neon .live-agents:has(.live-agent-row) { display: block; }
+body.neon .live-agent-row { color: #e6dcff; font-size: 12px; }
+body.neon .live-agent-row .st-lost { color: #ff8ade; }
+body.neon .live-agent-more { color: var(--dim); font-size: 10.5px; }
+
+body.neon .unified-agent-row { font-size: 11px; }
+body.neon .unified-agent-row:has(.st-progress) { color: #e6dcff; }
+body.neon .agent-line { color: var(--dim); font-size: 11px; }
+body.neon .agent-active-head-txt { color: var(--nn-cyan); font-weight: 700; text-shadow: 0 0 8px rgba(0, 229, 255, .4); }
+
+body.neon .tag-hermes { color: var(--nn-cyan); border: 1px solid rgba(0, 229, 255, .5); border-radius: 3px; padding: 0 4px; font-size: 10px; }
+body.neon .tag-xpi    { color: #c9b3ff; border: 1px solid rgba(157, 77, 255, .55); border-radius: 3px; padding: 0 4px; font-size: 10px; }
+
+/* ── Free quota / breakdown ───────────────────────────────── */
+
+body.neon #free-quota { margin-bottom: 8px; }
+body.neon .free-quota-section {
+  padding: 10px 22px 6px;
+  border-top: 1px solid rgba(157, 77, 255, .28);
+  box-shadow: 0 -1px 0 rgba(0, 229, 255, .1);
+}
+body.neon .free-quota-head { color: var(--dim); font-size: 11px; margin-bottom: 6px; text-shadow: none; }
+body.neon .fq-row { color: #ddd0ff; }
+body.neon .fq-limit,
+body.neon .fq-nums { color: var(--dim); text-shadow: none; }
+body.neon .fq-track {
+  border-color: rgba(157, 77, 255, .3);
+  background: rgba(157, 77, 255, .06);
+  box-shadow: inset 0 0 6px rgba(13, 7, 22, .8);
+}
+/* .fq-fill 的底色是 JS 内联写入的数据色阶（比例编码），属于数据而非装饰——保持原色。 */
+
+body.neon .brk-head { color: var(--dim); font-size: 11px; text-shadow: none; }
+body.neon .brk-row { border-left: 2px solid rgba(157, 77, 255, .45); color: #ddd0ff; }
+body.neon .brk-model { color: var(--nn-cyan); text-shadow: 0 0 6px rgba(0, 229, 255, .4); }
+body.neon .brk-task { color: var(--dim); }
+body.neon .brk-nums { color: var(--dim); text-shadow: none; }
+body.neon .brk-hidden { color: rgba(139, 124, 192, .6); }
+
+/* ── Footer ───────────────────────────────────────────────── */
+
+body.neon footer {
+  padding: 10px 22px 22px;
+  font-family: var(--nn-mono);
+  font-size: 11px;
+  letter-spacing: 1px;
+  color: var(--dim);
+  border-top: 1px solid rgba(157, 77, 255, .22);
+  box-shadow: 0 -1px 0 rgba(0, 229, 255, .08);
+}
+
+/* ── flow-bg 注入层 ─────────────────────────────────────────
+   flow-bg.js 自己插入 <style> 定义 #flowBgCanvas / #flowBgToggle，
+   这里只重染，不改行为。 */
+body.neon #flowBgCanvas { opacity: .05; mix-blend-mode: screen; }
+body.neon #flowBgToggle {
+  border: 1px solid var(--nn-edge);
+  background: rgba(20, 10, 40, .8);
+  color: var(--dim);
+  box-shadow: 0 0 10px rgba(157, 77, 255, .2);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+}
+body.neon #flowBgToggle.on {
+  border-color: var(--nn-pink);
+  color: #ffd9f4;
+  box-shadow: var(--nn-glow-pink);
+  text-shadow: 0 0 8px rgba(255, 46, 196, .55);
+}
+
+/* ── 动画：发光呼吸（克制，仅此一层在动） ──────────────────── */
+
+@keyframes neon-breathe {
+  0%, 100% { opacity: 1;   box-shadow: 0 0 4px currentColor, 0 0 11px currentColor; }
+  50%      { opacity: .55; box-shadow: 0 0 2px currentColor, 0 0 5px  currentColor; }
+}
+body.neon .status-badge::before { animation: neon-breathe 2.4s ease-in-out infinite; }
+
+body.neon #fresh-badge { animation: neon-badge-breathe 2.4s ease-in-out infinite; }
+@keyframes neon-badge-breathe {
+  0%, 100% { box-shadow: 0 0 6px rgba(157, 77, 255, .25), inset 0 0 8px  rgba(157, 77, 255, .1); }
+  50%      { box-shadow: 0 0 14px rgba(255, 46, 196, .4),  inset 0 0 10px rgba(255, 46, 196, .14); }
+}
+
+/* ── 通用排版兜底 ─────────────────────────────────────────── */
+
+body.neon h2 {
+  font-family: var(--nn-display);
+  font-style: italic;
+  font-size: 17px;
+  letter-spacing: 2px;
+  color: var(--nn-purple);
+  text-shadow: 0 0 8px rgba(157, 77, 255, .5);
+}
+body.neon h3 { font-size: 14px; letter-spacing: 1px; color: var(--nn-cyan); }
+body.neon p,
+body.neon li { color: var(--text); line-height: 1.6; }
+
+body.neon a {
+  color: var(--nn-cyan);
+  text-decoration: none;
+  border-bottom: 1px dashed rgba(0, 229, 255, .4);
+  text-shadow: 0 0 6px rgba(0, 229, 255, .35);
+}
+body.neon a:hover { color: #fff; border-bottom-style: solid; }
+
+body.neon code {
+  font-family: var(--nn-mono);
+  font-size: 11.5px;
+  padding: 1px 5px;
+  border-radius: 3px;
+  color: #ffd9f4;
+  background: rgba(255, 46, 196, .1);
+  border: 1px solid rgba(255, 46, 196, .3);
+}
+body.neon pre {
+  padding: 10px 12px;
+  border-radius: 6px;
+  background: rgba(13, 7, 22, .8);
+  border: 1px solid rgba(157, 77, 255, .3);
+  overflow-x: auto;
+  color: var(--text);
+  font-size: 11.5px;
+  line-height: 1.55;
+}
+body.neon table { width: 100%; border-collapse: collapse; color: var(--text); }
+body.neon th {
+  font-family: var(--nn-mono);
+  font-size: 11px;
+  letter-spacing: 1px;
+  text-align: left;
+  color: var(--nn-cyan);
+  border-bottom: 1px solid rgba(0, 229, 255, .35);
+  padding: 6px 10px;
+}
+body.neon td { padding: 7px 10px; border-bottom: 1px solid rgba(157, 77, 255, .16); font-size: 12px; }
+body.neon tr:hover td { background: rgba(0, 229, 255, .05); }
+body.neon hr { border: 0; border-top: 1px dashed rgba(157, 77, 255, .35); margin: 14px 0; }
+
+body.neon .warn,  body.neon .warning { color: var(--amber); }
+body.neon .crit,  body.neon .critical,
+body.neon .error, body.neon .down     { color: #ff8ade; text-shadow: 0 0 6px rgba(255, 46, 196, .45); }
+body.neon .ok,    body.neon .up,
+body.neon .running, body.neon .live   { color: var(--nn-cyan); }
+body.neon .info   { color: #c9b3ff; }
+
+/* ── 滚动条 / 选中 / 焦点 ─────────────────────────────────── */
+
+body.neon { scrollbar-color: rgba(157, 77, 255, .55) rgba(13, 7, 22, .6); }
+body.neon ::-webkit-scrollbar { width: 8px; height: 8px; }
+body.neon ::-webkit-scrollbar-track { background: rgba(13, 7, 22, .7); }
+body.neon ::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, var(--nn-purple), var(--nn-pink));
+  border-radius: 4px;
+  border: 2px solid rgba(13, 7, 22, .7);
+}
+body.neon ::-webkit-scrollbar-thumb:hover { background: var(--nn-pink); }
+
+body.neon ::selection { background: rgba(255, 46, 196, .5); color: #fff; }
+
+body.neon :focus-visible {
+  outline: 1px dashed var(--nn-cyan);
+  outline-offset: 2px;
+  box-shadow: 0 0 10px rgba(0, 229, 255, .5);
+}
+
+/* ── 响应式 ───────────────────────────────────────────────── */
+
+@media (max-width: 720px) {
+  body.neon .cards { grid-template-columns: 1fr; }
+  body.neon h1 { font-size: 22px; letter-spacing: 3px; }
+  body.neon header,
+  body.neon main,
+  body.neon footer { padding-left: 14px; padding-right: 14px; }
+  body.neon::before { height: 46vh; }
+  body.neon::after  { height: 34vh; }
+}
+
+/* ── 减动效：关掉全部动画，剪影与静态光晕保留 ─────────────── */
+
+@media (prefers-reduced-motion: reduce) {
+  body.neon *,
+  body.neon *::before,
+  body.neon *::after {
+    animation: none !important;
+    transition: none !important;
+  }
+  body.neon .bot-card:hover { transform: none; }
+  body.neon .status-badge::before { opacity: 1; }
+}

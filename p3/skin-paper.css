@@ -1,0 +1,409 @@
+/* ============================================================
+   fleet-monitor · P3 "PAPER INK" (纸墨印刷 / 报刊) skin
+   lane: xpi
+   全部规则以 body.paper 为作用域前缀 —— 不污染基础皮肤。
+   红色仅用于警告/强调（印章红）。JS 侧注入「№」角标、
+   「第 N 版」页脚版权行、头版期号刊头小字。
+   ============================================================ */
+
+body.paper {
+  --ink: #1a1a1a;
+  --ink-2: #3a3a3a;
+  --ink-dim: #6b6a66;
+  --ink-faint: #a6a49e;
+  --paper: #f4f1ea;
+  --paper-2: #efeade;
+  --sheet: #fffdf8;
+  --rule: #c8c2b4;
+  --seal: #b3352c;
+  --seal-dim: #8a2b24;
+  margin: 0;
+  background-color: var(--paper);
+  color: var(--ink);
+  font-family: Georgia, "Songti SC", "Noto Serif SC", "SimSun", serif;
+  font-feature-settings: "kern" 1;
+  -webkit-font-smoothing: antialiased;
+  min-height: 100vh;
+}
+
+body.paper *,
+body.paper *::before,
+body.paper *::after { box-sizing: border-box; }
+
+/* 数字/技术串统一 tabular-nums */
+body.paper .stats-row,
+body.paper .host-meta,
+body.paper .proc-signal,
+body.paper .activity,
+body.paper .sub-row,
+body.paper .model-chips,
+body.paper .model-row .stat-nums,
+body.paper .live-agents,
+body.paper .agent-detail,
+body.paper .agent-session,
+body.paper .session-budget,
+body.paper .detail,
+body.paper .fq-nums,
+body.paper .brk-nums,
+body.paper #footer-info,
+body.paper .host-head {
+  font-variant-numeric: tabular-nums;
+}
+
+/* ---- 纸纹层：极淡颗粒 + 侧边页影 ---- */
+body.paper .scanlines {
+  background: repeating-linear-gradient(0deg, transparent 0 2px, rgba(26,26,26,.020) 2px 4px);
+}
+body.paper::before {
+  content: "";
+  position: fixed; inset: 0;
+  pointer-events: none; z-index: 0;
+  background: linear-gradient(to right, rgba(26,26,26,.05), transparent 8%, transparent 92%, rgba(26,26,26,.05));
+}
+body.paper > * { position: relative; z-index: 1; }
+
+/* ---- 刊头 masthead：特大衬线 + 双细线 ---- */
+body.paper header { padding: 30px 26px 10px; position: relative; }
+body.paper .title-row {
+  display: flex; align-items: baseline; gap: 18px; flex-wrap: wrap;
+  justify-content: space-between;
+}
+body.paper h1 {
+  margin: 0; font-size: 46px; line-height: 1.02; font-weight: 700;
+  letter-spacing: .04em; color: var(--ink);
+  text-shadow: 1px 1px 0 rgba(26,26,26,.10);
+}
+body.paper .subtitle {
+  font-size: 12px; letter-spacing: .22em; text-transform: uppercase; color: var(--ink-dim);
+}
+body.paper .subtitle::before { content: "— "; color: var(--seal); }
+body.paper .paper-masthead {
+  font-size: 11px; letter-spacing: .12em; color: var(--ink-dim); text-align: right; margin-top: 10px;
+}
+body.paper .paper-masthead .date-line { color: var(--ink); }
+body.paper .paper-masthead .volume {
+  display: block; letter-spacing: .18em; text-transform: uppercase;
+}
+/* 刊头双细线：2px + 5px 隔 + 2px */
+body.paper header::after {
+  content: ""; display: block; margin-top: 14px;
+  border-bottom: 2px solid var(--ink);
+  box-shadow: 0 5px 0 0 var(--ink);
+}
+
+/* 徽章 → 印章：常态墨印，紧急红印 */
+body.paper .badge {
+  font-family: inherit; font-size: 11px; letter-spacing: .18em; text-transform: uppercase;
+  color: var(--ink); border: 1.5px solid var(--ink); border-radius: 2px; padding: 3px 9px;
+}
+body.paper .badge::before { content: none; }
+
+/* ---- 顶部统计行（今日要闻栏）---- */
+body.paper .stats-row {
+  display: flex; flex-wrap: wrap; margin-top: 14px;
+  border-top: 1px solid var(--rule); border-bottom: 1px solid var(--rule);
+  font-size: 13px; color: var(--ink-2);
+}
+body.paper .stats-row > span {
+  padding: 8px 18px; display: flex; align-items: baseline; gap: 6px;
+  border-right: 1px solid var(--rule);
+}
+body.paper .stats-row > span:last-child { border-right: 0; }
+body.paper .stats-row b { color: var(--ink); font-size: 19px; font-weight: 700; }
+
+body.paper .stale-banner {
+  margin: 12px 26px 0; padding: 8px 12px;
+  border: 2px solid var(--seal); color: var(--seal); font-size: 13px;
+  background: rgba(179,53,44,.05);
+}
+
+/* ---- 代理条 / 滚动告警 ---- */
+body.paper .agent-bar { display: flex; flex-wrap: wrap; gap: 6px; padding: 8px 26px 2px; }
+body.paper .agent-pill {
+  font-size: 11px; padding: 2px 8px; border: 1px solid var(--rule); color: var(--ink-2);
+}
+body.paper .agent-pill.agent-stuck {
+  border-color: var(--seal); color: var(--seal); font-weight: 700;
+  background: rgba(179,53,44,.05);
+}
+body.paper .alert-marquee { padding: 6px 26px 10px; color: var(--seal); font-size: 13px; font-weight: 700; }
+
+/* ---- 主体 ---- */
+body.paper main { padding: 18px 26px 30px; }
+
+/* ---- 主机分区（版面）---- */
+body.paper .host-section { margin-bottom: 30px; }
+body.paper .host-head {
+  display: flex; align-items: baseline; gap: 16px;
+  border-bottom: 1px solid var(--rule); padding-bottom: 6px;
+}
+body.paper .host-name {
+  font-size: 20px; font-weight: 700; color: var(--ink);
+  letter-spacing: .08em;
+}
+body.paper .host-meta { font-size: 11px; color: var(--ink-dim); }
+/* 版面副线 */
+body.paper .host-head::after {
+  content: ""; flex: 1; align-self: center;
+  border-top: 1px solid var(--rule); margin-left: 4px;
+}
+
+/* ---- 卡片：白纸片 + 细黑边框 + 硬阴影 ---- */
+body.paper .cards {
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 18px; margin-top: 14px;
+}
+body.paper .bot-card {
+  position: relative;
+  background: var(--sheet);
+  border: 1px solid var(--ink); border-radius: 0;
+  padding: 14px 14px 12px;
+  cursor: pointer;
+  box-shadow: 4px 4px 0 rgba(26,26,26,.12);
+  image-rendering: pixelated;
+}
+body.paper .bot-card:hover { border-color: var(--seal); box-shadow: 5px 5px 0 rgba(26,26,26,.15); }
+body.paper .bot-card.open {
+  box-shadow: 6px 6px 0 rgba(26,26,26,.18);
+  border-color: var(--ink);
+}
+/* 左下小纸折角 */
+body.paper .bot-card::after {
+  content: ""; position: absolute; left: 0; bottom: 0;
+  width: 14px; height: 14px;
+  background: linear-gradient(135deg, transparent 50%, var(--paper) 50%);
+}
+/* 「№ 001」编号角标：右上角红字红框（tag JS 注入） */
+body.paper .bot-card .card-num {
+  position: absolute; top: -1px; right: -1px;
+  font-size: 10px; letter-spacing: .12em;
+  color: var(--seal);
+  background: var(--sheet);
+  border-left: 1px solid var(--seal);
+  border-bottom: 1px solid var(--seal);
+  padding: 3px 8px;
+  font-family: Georgia, serif;
+}
+/* 视觉不齐 = 手工盖章感 */
+body.paper .bot-card:nth-child(2n) .card-num { transform: rotate(-2deg); }
+body.paper .bot-card:nth-child(3n) .card-num { transform: rotate(2.6deg); }
+body.paper .bot-card:nth-child(4n) .card-num { transform: rotate(-1.4deg); }
+
+/* 严重度：红印只在问题/关键处 */
+body.paper .bot-card.sev-warn { border-color: var(--seal); }
+body.paper .bot-card.sev-crit { border-color: var(--seal-dim); box-shadow: 4px 4px 0 rgba(179,53,44,.2); }
+body.paper .bot-card.problem-card { border-color: var(--seal) !important; }
+body.paper .bot-card.problem-urgent-card { border-color: var(--seal-dim) !important; }
+body.paper .bot-card.offline-card { opacity: .6; }
+body.paper .bot-card.retired-card { opacity: .4; }
+body.paper .retired-row {
+  color: var(--ink-dim); font-size: 12px; padding: 3px 12px;
+  border-left: 2px solid var(--rule); margin: 4px 0;
+}
+
+/* ---- 卡片头 ---- */
+body.paper .bot-top {
+  display: flex; align-items: center; gap: 12px;
+  padding-right: 34px; /* 给 № 角标让位 */
+}
+body.paper .bot-hat { width: 52px; height: 52px; flex: 0 0 auto; }
+/* 像素帽去饱和 → 单色墨迹 */
+body.paper .bot-hat rect { opacity: .55; }
+body.paper .bot-hat rect[fill="#0b0f1e"] { fill: var(--ink); opacity: 1; }
+body.paper .bot-hat rect[fill="#35e0e0"] { fill: var(--ink); opacity: .5; }
+body.paper .bot-hat rect[fill="#9d6bff"] { fill: var(--ink); opacity: .38; }
+body.paper .bot-hat rect[fill="#ffc857"] { fill: var(--ink); opacity: .7; }
+body.paper .bot-hat rect[fill="#ff5d73"] { fill: var(--ink); opacity: .32; }
+body.paper .bot-hat rect[fill="#4ade80"] { fill: var(--ink); opacity: .8; }
+body.paper .bot-name { font-size: 18px; font-weight: 700; color: var(--ink); }
+body.paper .bot-host { font-size: 11px; color: var(--ink-dim); }
+
+/* ---- 状态徽章 → 印章式 ---- */
+body.paper .status-badge {
+  font-family: Georgia, serif;
+  font-size: 11px; font-weight: 700;
+  letter-spacing: .14em; text-transform: uppercase;
+  color: var(--ink); border: 1.5px solid var(--ink); border-radius: 2px;
+  padding: 3px 8px; background: transparent; white-space: nowrap;
+}
+/* 视觉不齐 = 手工盖章感 */
+body.paper .bot-card:nth-child(2n) .status-badge { transform: rotate(-0.8deg); }
+body.paper .bot-card:nth-child(3n) .status-badge { transform: rotate(0.9deg); }
+body.paper .status-badge::before { content: none; }
+/* 语义：正常态回墨，仅告警/失联/阻塞用红印 */
+body.paper .status-badge.st-working,
+body.paper .status-badge.st-recent,
+body.paper .status-badge.st-idle,
+body.paper .status-badge.st-progress,
+body.paper .status-badge.st-done,
+body.paper .status-badge.st-neutral,
+body.paper .status-badge.st-unknown { color: var(--ink); border-color: var(--ink); }
+body.paper .status-badge.st-wait,
+body.paper .status-badge.st-warning { color: var(--seal-dim); border-color: var(--seal-dim); }
+body.paper .status-badge.st-blocked,
+body.paper .status-badge.st-lost,
+body.paper .status-badge.st-offline { color: var(--seal); border-color: var(--seal); background: rgba(179,53,44,.06); }
+body.paper .status-badge.st-retired,
+body.paper .status-badge.st-offline { border-style: dashed; }
+
+/* ---- 卡片正文：墨印排印 ---- */
+body.paper .proc-signal { margin: 6px 0 2px; font-size: 11px; color: var(--ink-dim); }
+body.paper .activity { margin: 9px 0 4px; font-size: 13px; line-height: 1.5; color: var(--ink); }
+body.paper .activity .src {
+  display: block; margin-top: 2px; font-size: 10px; color: var(--ink-dim);
+}
+
+body.paper .sub-row { margin-top: 9px; font-size: 11px; color: var(--ink-2); }
+body.paper .sub-row b { color: var(--ink); }
+body.paper .xpi-row, body.paper .xpi-row b { color: var(--ink-2); }
+body.paper .exit-row { margin-top: 4px; color: var(--seal-dim); }
+body.paper .exit-row b { color: var(--seal-dim); }
+body.paper .state-tag {
+  display: inline-block; font-size: 10px; letter-spacing: .12em;
+  padding: 0 5px; margin-right: 6px; border: 1px solid currentColor; border-radius: 0;
+  color: var(--ink-dim);
+}
+body.paper .problem-line {
+  font-size: 11px; margin: 6px 0 0; color: var(--seal);
+  border-left: 2px solid var(--seal); padding-left: 8px;
+}
+body.paper .problem-line:empty { border-left: 0; padding-left: 0; }
+body.paper .chip-line-label { font-size: 10px; color: var(--ink-dim); }
+
+/* ---- 模型行 ---- */
+body.paper .model-chips { display: block; margin-top: 8px; }
+body.paper .model-label { font-size: 11px; color: var(--ink-dim); margin-top: 6px; letter-spacing: .06em; }
+body.paper .model-row {
+  display: flex; align-items: baseline; gap: 8px; padding: 1px 0 1px 8px;
+  border-left: 2px solid var(--ink); margin-top: 2px; font-size: 12px; color: var(--ink-2);
+}
+body.paper .model-row .stat-main { flex: 1 1 auto; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+body.paper .model-row .stat-nums { flex: 0 0 auto; margin-left: auto; font-size: 11px; color: var(--ink-dim); text-align: right; }
+body.paper .model-row.free-unknown { border-left-color: var(--rule); color: var(--ink-dim); }
+
+/* ---- 详情 / 代理明细 ---- */
+body.paper .detail { font-size: 11px; color: var(--ink-2); line-height: 1.6; }
+body.paper .detail b { color: var(--ink); }
+body.paper .unified-agent-row {
+  display: flex; gap: 6px; align-items: baseline; padding: 2px 0; flex-wrap: wrap;
+  font-size: 11px; color: var(--ink-2);
+}
+body.paper .unified-agent-row:has(.st-progress) { font-size: 12px; color: var(--ink); font-weight: 700; }
+body.paper .agent-active-head { margin-top: 4px; padding-top: 4px; border-top: 1px solid var(--rule); }
+body.paper .agent-active-head-txt { color: var(--seal); font-weight: 700; }
+body.paper .tag-hermes,
+body.paper .tag-xpi {
+  border: 1px solid var(--ink-dim); color: var(--ink-dim); border-radius: 0;
+  padding: 0 4px; font-size: 10px; letter-spacing: .1em;
+}
+body.paper .tag-xpi { color: var(--seal-dim); border-color: var(--seal-dim); }
+body.paper .st-progress { color: var(--ink); border-color: var(--ink); }
+body.paper .st-done { color: var(--ink-2); border-color: var(--ink-2); }
+body.paper .st-lost { color: var(--seal); border-color: var(--seal); }
+body.paper .idle-warn { color: var(--seal); font-weight: 600; }
+body.paper .st-neutral { color: var(--ink-dim); border-color: var(--ink-faint); border-style: dashed; }
+
+/* Live 代理行 */
+body.paper .live-agents {
+  margin-top: 4px; padding: 3px 8px; border-top: 1px solid var(--rule);
+}
+body.paper .live-agent-row { color: var(--ink); font-size: 12px; }
+body.paper .live-agent-more { color: var(--ink-dim); font-size: 10.5px; }
+body.paper .agent-detail { font-size: 11px; color: var(--ink-2); line-height: 1.6; }
+
+/* 会话 / 预算 */
+body.paper .agent-session,
+body.paper .session-budget { font-size: 11px; color: var(--ink-2); }
+body.paper .stat-line { display: flex; align-items: baseline; gap: 8px; }
+
+/* ---- 免费额度区块：墨条 ---- */
+body.paper #free-quota { margin-bottom: 12px; }
+body.paper .free-quota-section { padding: 8px 26px 4px; }
+body.paper .free-quota-head { font-size: 11px; color: var(--ink-dim); letter-spacing: .12em; }
+body.paper .fq-row { font-size: 12px; color: var(--ink-2); }
+body.paper .fq-row b { color: var(--ink); }
+body.paper .fq-limit { font-size: 11px; color: var(--ink-dim); }
+body.paper .fq-track { border: 1px solid var(--ink); border-radius: 0; background: #fff; height: 8px; }
+body.paper .fq-fill { background: var(--ink) !important; }
+body.paper .fq-nums { font-size: 11px; color: var(--ink); }
+
+body.paper .brk-head { font-size: 11px; color: var(--ink-dim); letter-spacing: .12em; }
+body.paper .brk-row { border-left: 2px solid var(--ink); color: var(--ink-2); font-size: 12px; }
+body.paper .brk-model { color: var(--ink); }
+body.paper .brk-task { color: var(--ink-dim); }
+body.paper .brk-nums { color: var(--ink); }
+body.paper .brk-hidden { color: var(--ink-faint); }
+
+/* ---- 页脚：第 N 版版权行 ---- */
+body.paper footer {
+  padding: 14px 26px 28px;
+  border-top: 2px solid var(--ink);
+  box-shadow: 0 -5px 0 0 var(--ink);
+  font-size: 11px; color: var(--ink-2); margin-top: 10px;
+}
+body.paper footer .edition-line {
+  color: var(--ink); letter-spacing: .1em; font-size: 12px;
+}
+body.paper footer .edition-line::after { content: " ·"; color: var(--ink-dim); }
+body.paper #footer-info { color: var(--ink-dim); }
+
+/* ---- Flow-bg 按钮 ---- */
+body.paper #flowBgToggle {
+  border: 1px solid var(--ink); color: var(--ink); background: var(--sheet); border-radius: 0;
+  font-family: inherit; font-size: 11px; letter-spacing: .08em;
+}
+body.paper #flowBgToggle.on { background: var(--ink); color: var(--sheet); }
+body.paper #flowBgCanvas { opacity: .05; mix-blend-mode: multiply; }
+
+/* ---- 滚动条 / 选区 ---- */
+body.paper::-webkit-scrollbar { width: 10px; height: 10px; }
+body.paper::-webkit-scrollbar-track { background: var(--paper); border-left: 1px solid var(--rule); }
+body.paper::-webkit-scrollbar-thumb { background: var(--ink-faint); border-radius: 0; border: 2px solid var(--paper); }
+body.paper::-webkit-scrollbar-thumb:hover { background: var(--ink-dim); }
+body.paper ::selection { background: var(--ink); color: var(--paper); }
+body.paper :focus-visible { outline: 2px solid var(--seal); outline-offset: 2px; }
+
+/* ---- 通用排版回落 ---- */
+body.paper h2, body.paper h3 { color: var(--ink); font-weight: 700; }
+body.paper a { color: var(--ink); text-decoration: underline 1px var(--rule); }
+body.paper a:hover { color: var(--seal); text-decoration-color: var(--seal); }
+body.paper p, body.paper li { color: var(--ink-2); line-height: 1.6; }
+body.paper table { width: 100%; border-collapse: collapse; color: var(--ink); }
+body.paper th {
+  font-size: 10px; letter-spacing: .1em; text-transform: uppercase; color: var(--ink-dim);
+  text-align: left; padding: 6px 10px; border-bottom: 1px solid var(--ink);
+}
+body.paper td { padding: 6px 10px; border-bottom: 1px solid var(--rule); font-size: 12px; }
+body.paper tr:hover td { background: var(--paper-2); }
+body.paper code, body.paper pre { font-family: "Courier New", monospace; font-size: 11px; color: var(--ink); }
+body.paper hr { border: 0; border-top: 1px solid var(--rule); }
+
+/* 语义色：仅告警/错误走红，其余墨黑 */
+body.paper .warn, body.paper .warning { color: var(--ink-2); font-weight: 700; }
+body.paper .crit, body.paper .critical, body.paper .error, body.paper .down,
+body.paper .st-lost { color: var(--seal); }
+body.paper .ok, body.paper .up, body.paper .running, body.paper .live { color: var(--ink); }
+body.paper .info { color: var(--ink-dim); }
+
+/* ---- 响应式 ---- */
+@media (max-width: 900px) {
+  body.paper h1 { font-size: 34px; }
+  body.paper header, body.paper main,
+  body.paper .agent-bar, body.paper .alert-marquee,
+  body.paper .free-quota-section, body.paper footer { padding-left: 16px; padding-right: 16px; }
+}
+@media (max-width: 720px) {
+  body.paper .cards { grid-template-columns: 1fr; }
+  body.paper h1 { font-size: 26px; }
+  body.paper .title-row { gap: 8px; }
+  body.paper .stats-row > span { padding: 6px 10px; }
+}
+
+/* ---- 减动效 ---- */
+@media (prefers-reduced-motion: reduce) {
+  body.paper * { animation: none !important; transition: none !important; }
+  body.paper .alert-marquee { animation: none !important; }
+}
+
+
+

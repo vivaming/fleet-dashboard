@@ -1,0 +1,961 @@
+/* ==========================================================================
+   P5E GAME — 游戏血条监控皮肤 (skin-game.css)
+   RPG 分段血条 · Pixeloid 大数字 · 双框面板 · 扫描线覆盖层
+   作用域：body.px-game（body 同时带 jevdesk，故全部选择器带 body.px-game 前缀）
+   ========================================================================== */
+
+/* ── 像素字体：Pixeloid Sans（base64 内嵌，无外链） ─────────────────────── */
+@font-face {
+  font-family: 'Pixeloid Sans';
+  font-style: normal;
+  font-weight: 700;
+  font-display: block;
+  src: url(data:font/ttf;base64,__FONT_B64__) format('truetype');
+}
+
+/* ── 调色板 ─────────────────────────────────────────────────────────────── */
+body.px-game {
+  --px-bg:        #08080d;
+  --px-bg2:       #0c0d15;
+  --px-panel:     #10111c;
+  --px-panel2:    #141627;
+  --px-track:     #1a2430;
+  --px-seam:      #04050a;
+  --px-frame:     #232a3d;
+  --px-frame2:    #333d5a;
+  --px-frame3:    #4b5a80;
+  --px-ok:        #22c55e;   /* 绿：健康 / 低占用 / HP */
+  --px-crit:      #ef4444;   /* 红：危险 / 失败 */
+  --px-proc:      #22d3ee;   /* 青：特殊 / 进程 / 工作中 */
+  --px-dim:       #6b7694;
+  --px-mute:      #3b4359;
+  --px-ink:       #eef1fb;
+  --px-dimtx:     #9aa5c4;
+
+  --px-pix: 'Pixeloid Sans','PingFang SC','Microsoft YaHei','Noto Sans SC',sans-serif;
+  --px-cjk: system-ui,'PingFang SC','Microsoft YaHei','Noto Sans SC','WenQuanYi Micro Hei',sans-serif;
+  --px-mono: 'JetBrains Mono','IBM Plex Mono',ui-monospace,Consolas,'PingFang SC','Microsoft YaHei',monospace;
+
+  /* 覆盖原主题语义色，保持旧类（.ok/.crit/.warn/.info）颜色一致 */
+  --jd-bg:      var(--px-bg);
+  --jd-bg-2:    var(--px-bg2);
+  --jd-panel:   var(--px-panel);
+  --jd-border:  var(--px-frame);
+  --jd-neon:    var(--px-ok);
+  --jd-blue:    var(--px-proc);
+  --jd-warn:    var(--px-warn);
+  --jd-danger:  var(--px-crit);
+  --jd-white:   var(--px-ink);
+  --jd-label:   var(--px-dim);
+  --jd-subnote: var(--px-mute);
+  --jd-pixel:   var(--px-pix);
+  --jd-mono:    var(--px-mono);
+
+  background: var(--px-bg);
+  color: var(--px-ink);
+  font-family: var(--px-cjk);
+  font-size: 13px;
+  min-height: 100vh;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* 原主题底纹 / 扫描线：清空，改用自己的 */
+body.px-game::before { content: none; background: none; }
+body.jevdesk .scanlines { display: none; }
+
+/* 扫描线覆盖层（最顶层，不拦截事件） */
+body.px-game::after {
+  content: '';
+  position: fixed; inset: 0;
+  z-index: 9990;
+  pointer-events: none;
+  background: repeating-linear-gradient(
+    0deg, rgba(0,0,0,.30) 0 1px, rgba(0,0,0,0) 1px 3px);
+}
+
+/* ── 全局语义色（原主题用了 !important，这里对齐并覆盖） ────────────────── */
+body.px-game .warn,
+body.px-game .warning { color: var(--px-warn) !important; }
+body.px-game .crit,
+body.px-game .critical,
+body.px-game .error,
+body.px-game .down { color: var(--px-crit) !important; }
+body.px-game .ok,
+body.px-game .up,
+body.px-game .running,
+body.px-game .live { color: var(--px-ok) !important; }
+body.px-game .info { color: var(--px-proc) !important; }
+
+/* ── 通用小件 ───────────────────────────────────────────────────────────── */
+body.px-game .px-c { font-family: var(--px-pix); letter-spacing: .08em; }
+
+body.px-game .px-chip {
+  display: inline-flex; align-items: center; gap: 4px;
+  height: 16px; padding: 0 6px;
+  border: 1px solid var(--px-frame2);
+  border-left: 3px solid var(--px-frame2);
+  background: #ffffff0a;
+  font-family: var(--px-pix);
+  font-size: 9px; letter-spacing: .1em;
+  color: var(--px-dimtx);
+  border-radius: 0;
+  line-height: 1;
+  white-space: nowrap;
+}
+body.px-game .px-chip.px-c-ok    { color: var(--px-ok);    border-color: var(--px-ok);    border-left-color: var(--px-ok); }
+body.px-game .px-chip.px-c-warn  { color: var(--px-warn);  border-color: var(--px-warn);  border-left-color: var(--px-warn); }
+body.px-game .px-chip.px-c-crit  { color: var(--px-crit);  border-color: var(--px-crit);  border-left-color: var(--px-crit); }
+body.px-game .px-chip.px-c-proc  { color: var(--px-proc);  border-color: var(--px-proc);  border-left-color: var(--px-proc); }
+body.px-game .px-chip.px-c-dim   { color: var(--px-dim);   border-color: var(--px-mute);  border-left-color: var(--px-mute); }
+
+/* ── 双框游戏面板（通用） ───────────────────────────────────────────────── */
+body.px-game .px-panel {
+  position: relative;
+  background: var(--px-panel);
+  border: 1px solid var(--px-frame);
+  border-radius: 0;
+  box-shadow: inset 0 0 0 1px rgba(255,255,255,.018);
+}
+body.px-game .px-panel > .px-br {
+  position: absolute; width: 9px; height: 9px; pointer-events: none;
+  border: 2px solid var(--px-frame3);
+}
+body.px-game .px-panel > .px-br.tl { top: -1px;    left: -1px;    border-right: 0; border-bottom: 0; }
+body.px-game .px-panel > .px-br.tr { top: -1px;    right: -1px;   border-left: 0;  border-bottom: 0; }
+body.px-game .px-panel > .px-br.bl { bottom: -1px; left: -1px;    border-right: 0; border-top: 0; }
+body.px-game .px-panel > .px-br.br { bottom: -1px; right: -1px;   border-left: 0;  border-top: 0; }
+
+/* ── 终端状态行 ─────────────────────────────────────────────────────────── */
+body.px-game .px-statusbar {
+  display: flex; align-items: center; flex-wrap: wrap;
+  gap: 8px 12px;
+  margin: 0 22px 16px;
+  padding: 8px 12px;
+  background: var(--px-panel);
+  border: 1px solid var(--px-frame);
+  border-left: 3px solid var(--px-proc);
+  font-family: var(--px-pix);
+  font-size: 10px; letter-spacing: .1em;
+  color: var(--px-dimtx);
+  line-height: 1;
+}
+body.px-game .px-statusbar .px-hub { color: var(--px-ink); font-size: 11px; }
+body.px-game .px-statusbar .px-dot { color: var(--px-mute); }
+body.px-game .px-statusbar .px-live {
+  margin-left: auto;
+  color: var(--px-ok);
+  animation: pxblink 1.6s steps(1) infinite;
+}
+body.px-game .px-statusbar .px-live.px-off { color: var(--px-crit); animation: none; }
+@keyframes pxblink { 0%,60% { opacity: 1; } 61%,100% { opacity: .28; } }
+
+/* ── HUD 概览面板 ──────────────────────────────────────────────────────── */
+body.px-game .px-hud {
+  padding: 18px 22px 16px;
+}
+body.px-game .px-hud-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 2fr) minmax(220px, 1fr);
+  gap: 22px;
+}
+body.px-game .px-bigstats {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 10px 18px;
+  padding: 12px 0 4px;
+}
+body.px-game .px-bigstat { min-width: 0; }
+body.px-game .px-bs-num {
+  display: block;
+  font-family: var(--px-pix);
+  font-size: 24px; line-height: 1.15;
+  color: var(--px-ink);
+  letter-spacing: .02em;
+  overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+}
+body.px-game .px-bigstat.px-c-ok   .px-bs-num { color: var(--px-ok); }
+body.px-game .px-bigstat.px-c-proc .px-bs-num { color: var(--px-proc); }
+body.px-game .px-bigstat.px-c-warn .px-bs-num { color: var(--px-warn); }
+body.px-game .px-bigstat.px-c-crit .px-bs-num { color: var(--px-crit); }
+body.px-game .px-bs-lab {
+  display: block;
+  margin-top: 5px;
+  font-family: var(--px-pix);
+  font-size: 8.5px; letter-spacing: .16em;
+  color: var(--px-dim);
+  text-transform: uppercase;
+}
+
+/* ── section 标题行：TITLE ───── 数值 ──────────────────────────────────── */
+body.px-game .px-sec-head {
+  display: flex; align-items: center; gap: 10px;
+  margin: 18px 0 12px;
+  min-height: 14px;
+}
+body.px-game .px-hud > .px-sec:first-of-type,
+body.px-game .px-hud .px-sec-head:first-child { margin-top: 4px; }
+body.px-game .px-sec-title {
+  flex: 0 0 auto;
+  font-family: var(--px-pix);
+  font-size: 10.5px; letter-spacing: .2em;
+  color: var(--px-proc);
+  text-transform: uppercase;
+  line-height: 1;
+}
+body.px-game .px-sec-dash {
+  flex: 1 1 auto; min-width: 12px; height: 0;
+  border-top: 1px dashed var(--px-frame2);
+}
+body.px-game .px-sec-val {
+  flex: 0 0 auto;
+  font-family: var(--px-pix);
+  font-size: 10px; letter-spacing: .1em;
+  color: var(--px-dimtx);
+  white-space: nowrap;
+  overflow: hidden; text-overflow: ellipsis;
+}
+
+/* ── 图例 ───────────────────────────────────────────────────────────────── */
+body.px-game .px-legend {
+  display: flex; align-items: center; flex-wrap: wrap;
+  gap: 6px 14px;
+  margin: 0 0 12px;
+  font-family: var(--px-pix);
+  font-size: 9px; letter-spacing: .1em;
+  color: var(--px-dim);
+}
+body.px-game .px-lg {
+  display: inline-flex; align-items: center; gap: 6px;
+  white-space: nowrap;
+}
+body.px-game .px-lg i {
+  width: 11px; height: 9px;
+  background: var(--c, var(--px-frame2));
+  display: inline-block;
+  border: 1px solid rgba(0,0,0,.55);
+}
+
+/* ── RPG 分段血条 ──────────────────────────────────────────────────────── */
+body.px-game .px-bar {
+  position: relative;
+  display: flex; align-items: stretch;
+  gap: 2px;
+  height: 16px;
+  padding: 0;
+  background: var(--px-seam);      /* 格间黑缝由 gap 露出 */
+  border: 1px solid var(--px-frame);
+  border-radius: 0;
+  min-width: 0;
+}
+body.px-game .px-bar.px-h-sm { height: 14px; }
+body.px-game .px-bar.px-h-xs { height: 11px; }
+body.px-game .px-cell {
+  position: relative;
+  flex: 1 1 0; min-width: 0;
+  display: flex;
+  overflow: hidden;
+  background: var(--px-track);
+}
+body.px-game .px-fill {
+  display: block; height: 100%;
+  width: 0;
+  background: var(--px-ok);
+  border-top: 1px solid rgba(255,255,255,.26);
+  border-bottom: 1px solid rgba(0,0,0,.42);
+}
+
+/* ── 血条行：标签 ─ 条 ─ 数值 ──────────────────────────────────────────── */
+body.px-game .px-barrows { display: flex; flex-direction: column; gap: 10px; }
+body.px-game .px-barrows.px-rows-tight { gap: 7px; }
+body.px-game .px-brow {
+  display: flex; align-items: center; gap: 12px;
+  min-width: 0;
+}
+body.px-game .px-brow .px-bl {
+  flex: 0 0 96px;
+  font-family: var(--px-pix);
+  font-size: 9px; letter-spacing: .1em;
+  color: var(--px-dimtx);
+  text-transform: uppercase;
+  white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+}
+body.px-game .px-brow .px-bs { flex: 1 1 auto; min-width: 0; }
+body.px-game .px-brow .px-bv {
+  flex: 0 0 auto;
+  font-family: var(--px-pix);
+  font-size: 9.5px; letter-spacing: .04em;
+  color: var(--px-dimtx);
+  white-space: nowrap;
+  text-align: right;
+}
+body.px-game .px-brow.px-wide .px-bl { flex-basis: 118px; }
+
+/* ── HOST 概览行 ────────────────────────────────────────────────────────── */
+body.px-game .px-hosts { display: flex; flex-direction: column; gap: 11px; }
+body.px-game .px-host-row {
+  display: flex; align-items: center; gap: 12px;
+  min-width: 0;
+}
+body.px-game .px-host-row .px-hl {
+  flex: 0 0 152px;
+  display: flex; align-items: baseline; gap: 7px;
+  min-width: 0;
+  font-family: var(--px-pix);
+  font-size: 10px; letter-spacing: .06em;
+  color: var(--px-ink);
+  overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+}
+body.px-game .px-host-row .px-hl .px-sh {
+  font-size: 8.5px; letter-spacing: .1em;
+  color: var(--px-dim);
+}
+body.px-game .px-host-row .px-bs { flex: 1 1 auto; min-width: 0; }
+body.px-game .px-host-row .px-hm {
+  flex: 0 0 168px;
+  font-family: var(--px-pix);
+  font-size: 9px; letter-spacing: .06em;
+  color: var(--px-dimtx);
+  white-space: nowrap;
+  text-align: right;
+}
+body.px-game .px-host-foot {
+  margin-top: 12px; padding-top: 10px;
+  border-top: 1px dashed var(--px-frame);
+  font-family: var(--px-pix);
+  font-size: 9.5px; letter-spacing: .08em;
+  color: var(--px-dim);
+}
+body.px-game .px-host-foot b { color: var(--px-dimtx); font-weight: 400; }
+
+/* ── HUD 失败提示 ──────────────────────────────────────────────────────── */
+body.px-game .px-fail {
+  margin-top: 12px; padding: 8px 10px;
+  border: 1px solid var(--px-crit);
+  border-left: 3px solid var(--px-crit);
+  background: rgba(239,68,68,.08);
+  font-family: var(--px-pix);
+  font-size: 9.5px; letter-spacing: .08em;
+  color: var(--px-crest);
+  color: var(--px-crit);
+  word-break: break-all;
+}
+
+/* ── 页头 ───────────────────────────────────────────────────────────────── */
+body.px-game header {
+  background: none;
+  border-bottom: 1px solid var(--px-frame);
+  padding: 22px 22px 16px;
+}
+body.px-game .title-row {
+  display: flex; align-items: baseline; gap: 14px;
+  flex-wrap: wrap;
+  margin: 0;
+}
+body.px-game .title-row h1 {
+  font-family: var(--px-cjk);
+  font-weight: 700;
+  font-size: clamp(22px, 2.6vw, 32px);
+  letter-spacing: .04em;
+  color: var(--px-ink);
+  margin: 0;
+  line-height: 1.1;
+}
+body.px-game .title-row h1::after { content: none; display: none; }
+body.px-game .title-row .subtitle {
+  font-size: 10px; letter-spacing: .22em;
+  color: var(--px-proc);
+  text-transform: uppercase;
+  border-left: 1px solid var(--px-frame2);
+  padding-left: 14px;
+}
+body.px-game .badge,
+body.px-game #fresh-badge {
+  margin-left: auto;
+  display: inline-flex; align-items: center; gap: 7px;
+  height: 19px; padding: 0 9px;
+  border: 1px solid var(--px-frame2);
+  border-left: 3px solid var(--px-frame2);
+  border-radius: 0;
+  background: #ffffff0a;
+  font-family: var(--px-pix);
+  font-size: 9.5px; letter-spacing: .12em;
+  color: var(--px-dimtx);
+  box-shadow: none;
+}
+body.px-game .badge::before,
+body.px-game #fresh-badge::before {
+  content: ''; width: 7px; height: 7px;
+  border-radius: 0;
+  background: var(--px-frame2);
+  box-shadow: none;
+}
+body.px-game .badge.badge-ok::before,
+body.px-game #fresh-badge::before { background: var(--px-ok); }
+body.px-game .badge.badge-warn::before { background: var(--px-warn); }
+body.px-game .badge.badge-crit::before,
+body.px-game .badge.badge-alert::before { background: var(--px-crit); }
+body.px-game .badge.live { color: var(--px-ok); border-color: var(--px-ok); border-left-color: var(--px-ok); }
+body.px-game .badge.stale { color: var(--px-warn); border-color: var(--px-warn); border-left-color: var(--px-warn); }
+
+/* ── 顶部统计条 ─────────────────────────────────────────────────────────── */
+body.px-game .stats-row {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 10px;
+  margin: 16px 0 0;
+  font-family: var(--px-cjk);
+  font-size: 12px;
+  color: var(--px-dimtx);
+}
+body.px-game .stats-row > * {
+  position: relative;
+  background: var(--px-panel);
+  border: 1px solid var(--px-frame);
+  border-radius: 0;
+  padding: 9px 12px;
+  box-shadow: none;
+  display: flex; align-items: baseline; gap: 8px;
+}
+body.px-game .stats-row > *::before { content: none; display: none; }
+body.px-game .stats-row > * b {
+  font-family: var(--px-pix);
+  font-weight: 700;
+  font-size: 21px; line-height: 1;
+  color: var(--px-ink);
+  letter-spacing: .02em;
+}
+body.px-game .stats-row .stat-value.warn,
+body.px-game .stats-row .value.warn,
+body.px-game .stats-row b.warn { color: var(--px-warn); text-shadow: none; }
+body.px-game .stats-row .stat-value.crit,
+body.px-game .stats-row .value.crit,
+body.px-game .stats-row b.crit { color: var(--px-crit); text-shadow: none; }
+body.px-game .stats-row .stat-value.ok,
+body.px-game .stats-row .value.ok,
+body.px-game .stats-row b.ok { color: var(--px-ok); text-shadow: none; }
+body.px-game .stats-row .stat-note,
+body.px-game .stats-row .sub,
+body.px-game .stats-row .note {
+  font-family: var(--px-pix);
+  font-size: 8.5px; letter-spacing: .14em;
+  color: var(--px-dim);
+  text-shadow: none;
+}
+
+/* ── 横幅 ───────────────────────────────────────────────────────────────── */
+body.px-game .stale-banner {
+  margin: 12px 0 0;
+  padding: 8px 12px;
+  border: 1px solid var(--px-frame);
+  border-left: 3px solid var(--px-warn);
+  background: rgba(234,179,8,.07);
+  border-radius: 0;
+  font-family: var(--px-pix);
+  font-size: 10px; letter-spacing: .08em;
+  color: var(--px-warn);
+}
+body.px-game .agent-bar {
+  display: flex; flex-wrap: wrap; gap: 6px;
+  padding: 8px 0 0;
+}
+body.px-game .agent-pill {
+  font-family: var(--px-pix);
+  font-size: 9px; letter-spacing: .06em;
+  padding: 2px 7px;
+  border: 1px solid var(--px-frame2);
+  border-radius: 0;
+  color: var(--px-dimtx);
+  background: #ffffff08;
+}
+body.px-game .agent-pill.agent-stuck {
+  color: var(--px-crit); border-color: var(--px-crit);
+  background: rgba(239,68,68,.08);
+}
+body.px-game .alert-marquee {
+  padding: 8px 0 0;
+  font-family: var(--px-pix);
+  font-size: 10px; letter-spacing: .1em;
+  color: var(--px-crit);
+  font-weight: 400;
+}
+
+/* ── 主机分组 ───────────────────────────────────────────────────────────── */
+body.px-game main { padding: 0 22px 30px; }
+body.px-game .host-section { margin-bottom: 26px; }
+body.px-game .host-head {
+  display: flex; align-items: center; gap: 10px;
+  margin: 0 0 12px;
+  padding-bottom: 8px;
+  border-bottom: 1px dashed var(--px-frame);
+  font-size: 12px; letter-spacing: .18em;
+  text-transform: uppercase;
+}
+body.px-game .host-head::before {
+  content: ''; width: 8px; height: 8px;
+  background: var(--px-proc);
+  border-radius: 0;
+}
+body.px-game .host-head .host-name {
+  font-family: var(--px-pix);
+  font-size: 12px; letter-spacing: .08em;
+  color: var(--px-ink);
+  font-weight: 700;
+  text-transform: none;
+  overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+  max-width: 44%;
+}
+body.px-game .host-head .host-meta {
+  flex: 1 1 auto; min-width: 0;
+  font-family: var(--px-cjk);
+  font-size: 11px; letter-spacing: 0;
+  color: var(--px-dim);
+  text-transform: none;
+  overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+}
+body.px-game .cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(330px, 1fr));
+  gap: 14px;
+}
+body.px-game .retired-row {
+  border-left: 3px solid var(--px-mute);
+  background: #ffffff06;
+  border-radius: 0;
+}
+
+/* ── bot 卡片 ───────────────────────────────────────────────────────────── */
+body.px-game .bot-card {
+  position: relative;
+  overflow: hidden;
+  background: var(--px-panel);
+  border: 1px solid var(--px-frame);
+  border-radius: 0;
+  padding: 12px 14px 14px;
+  box-shadow: none;
+  transition: border-color .14s ease;
+  cursor: pointer;
+}
+body.px-game .bot-card:hover {
+  border-color: var(--px-frame2);
+  box-shadow: none;
+  transform: none;
+}
+body.px-game .bot-card:hover::after { content: none; display: none; }
+body.px-game .bot-card.sev-warn  { border-color: var(--px-warn); }
+body.px-game .bot-card.sev-crit  { border-color: var(--px-crit); }
+body.px-game .bot-card.offline-card { opacity: .6; }
+body.px-game .bot-card.retired-card { opacity: .45; }
+body.px-game .problem-card { border-color: var(--px-warn) !important; }
+body.px-game .problem-urgent-card { border-color: var(--px-crit) !important; }
+body.px-game .bot-card > .px-br {
+  position: absolute; width: 8px; height: 8px; pointer-events: none;
+  border: 2px solid var(--px-frame3);
+  opacity: .9;
+}
+body.px-game .bot-card:hover > .px-br { border-color: var(--px-proc); }
+body.px-game .bot-card.sev-warn > .px-br { border-color: var(--px-warn); }
+body.px-game .bot-card.sev-crit > .px-br { border-color: var(--px-crit); }
+body.px-game .bot-card > .px-br.tl { top: 0;    left: 0;    border-right: 0; border-bottom: 0; }
+body.px-game .bot-card > .px-br.tr { top: 0;    right: 0;   border-left: 0;  border-bottom: 0; }
+body.px-game .bot-card > .px-br.bl { bottom: 0; left: 0;    border-right: 0; border-top: 0; }
+body.px-game .bot-card > .px-br.br { bottom: 0; right: 0;   border-left: 0;  border-top: 0; }
+
+body.px-game .bot-top { align-items: center; gap: 11px; }
+body.px-game .bot-hat { width: 40px; height: 40px; flex: 0 0 auto; }
+body.px-game .bot-name {
+  font-family: var(--px-pix);
+  font-weight: 700;
+  font-size: 15px;
+  letter-spacing: .05em;
+  color: var(--px-ink);
+  line-height: 1.2;
+}
+body.px-game .bot-name::after { content: none; display: none; }
+body.px-game .bot-host {
+  font-family: var(--px-pix);
+  font-size: 8.5px; letter-spacing: .12em;
+  color: var(--px-dim);
+  margin-top: 3px;
+}
+
+/* ── 状态徽章 ───────────────────────────────────────────────────────────── */
+body.px-game .status-badge {
+  display: inline-flex; align-items: center; gap: 6px;
+  height: 19px; padding: 0 8px;
+  border: 1px solid var(--px-frame2);
+  border-left: 3px solid var(--px-frame2);
+  border-radius: 0;
+  background: #ffffff0a;
+  font-family: var(--px-cjk);
+  font-size: 10.5px;
+  letter-spacing: .02em;
+  color: var(--px-dimtx);
+  box-shadow: none;
+  white-space: nowrap;
+}
+body.px-game .status-badge::before {
+  content: ''; width: 6px; height: 6px;
+  background: currentColor;
+  border-radius: 0;
+  box-shadow: none;
+}
+body.px-game .status-badge.st-working,
+body.px-game .status-badge.st-progress { color: var(--px-proc); border-color: var(--px-proc); border-left-color: var(--px-proc); }
+body.px-game .status-badge.st-recent { color: var(--px-warn); border-color: var(--px-warn); border-left-color: var(--px-warn); }
+body.px-game .status-badge.st-idle,
+body.px-game .status-badge.ok,
+body.px-game .status-badge.live,
+body.px-game .status-badge.up,
+body.px-game .status-badge.st-done { color: var(--px-ok); border-color: var(--px-ok); border-left-color: var(--px-ok); }
+body.px-game .status-badge.st-wait,
+body.px-game .status-badge.warn,
+body.px-game .status-badge.warning { color: var(--px-warn); border-color: var(--px-warn); border-left-color: var(--px-warn); }
+body.px-game .status-badge.st-blocked,
+body.px-game .status-badge.st-offline,
+body.px-game .status-badge.st-lost,
+body.px-game .status-badge.crit,
+body.px-game .status-badge.down,
+body.px-game .status-badge.error { color: var(--px-crit); border-color: var(--px-crit); border-left-color: var(--px-crit); }
+body.px-game .status-badge.st-unknown,
+body.px-game .status-badge.info { color: var(--px-dim); border-color: var(--px-mute); border-left-color: var(--px-mute); }
+body.px-game .status-badge.st-retired {
+  color: var(--px-mute); border-color: var(--px-mute); border-left-color: var(--px-mute);
+  background: none; border-style: dashed;
+}
+body.px-game .status-badge.st-neutral { color: var(--px-dimtx); border-color: var(--px-frame2); border-left-color: var(--px-frame2); }
+
+/* ── 卡内信息行 ─────────────────────────────────────────────────────────── */
+body.px-game .proc-signal {
+  margin: 9px 0 2px;
+  font-family: var(--px-pix);
+  font-size: 9px; letter-spacing: .06em;
+  color: var(--px-dimtx);
+}
+body.px-game .activity {
+  margin: 8px 0 3px;
+  font-size: 12.5px; line-height: 1.45;
+  color: var(--px-ink);
+}
+body.px-game .activity .src {
+  display: block;
+  margin-top: 3px;
+  font-family: var(--px-pix);
+  font-size: 8.5px; letter-spacing: .1em;
+  color: var(--px-dim);
+}
+body.px-game .problem-line {
+  color: var(--px-warn);
+  font-family: var(--px-cjk);
+  font-size: 11px;
+  margin: 7px 0 0;
+  line-height: 1.5;
+  animation: none;
+}
+body.px-game .problem-urgent-card .problem-line { color: var(--px-crit); }
+body.px-game .sub-row {
+  margin-top: 8px;
+  font-family: var(--px-cjk);
+  font-size: 11px;
+  color: var(--px-dimtx);
+}
+body.px-game .sub-row b { color: var(--px-proc); }
+body.px-game .exit-row { margin-top: 5px; color: var(--px-warn); }
+body.px-game .exit-row b { color: var(--px-warn); }
+body.px-game .xpi-row { color: var(--px-dimtx); }
+body.px-game .xpi-row b { color: var(--px-proc); }
+body.px-game .state-tag {
+  display: inline-block;
+  font-family: var(--px-pix);
+  font-size: 8.5px; letter-spacing: .1em;
+  padding: 1px 5px;
+  margin-right: 7px;
+  border: 1px solid currentColor;
+  border-radius: 0;
+  opacity: 1;
+  vertical-align: 1px;
+}
+body.px-game .idle-warn { color: var(--px-warn); font-weight: 400; }
+
+/* ── 模型 / 代理行 ──────────────────────────────────────────────────────── */
+body.px-game .model-chips { display: block; margin-top: 8px; }
+body.px-game .model-label {
+  font-family: var(--px-pix);
+  font-size: 9px; letter-spacing: .14em;
+  color: var(--px-dim);
+  margin: 7px 0 2px;
+}
+body.px-game .model-row {
+  display: flex; align-items: baseline; gap: 8px;
+  padding: 2px 0 2px 9px;
+  border-left: 2px solid var(--px-frame2);
+  margin-top: 3px;
+  font-family: var(--px-cjk);
+  font-size: 12px;
+  color: var(--px-dimtx);
+}
+body.px-game .model-row.free-ok    { border-left-color: var(--px-ok);    color: var(--px-ink); }
+body.px-game .model-row.free-limited { border-left-color: var(--px-proc);  color: var(--px-ink); }
+body.px-game .model-row.free-maybe { border-left-color: var(--px-warn); }
+body.px-game .model-row.free-unknown { border-left-color: var(--px-mute); }
+body.px-game .model-row .stat-main {
+  flex: 1 1 auto; min-width: 0;
+  overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+  font-family: var(--px-pix);
+  font-size: 10px; letter-spacing: .03em;
+}
+body.px-game .model-row .stat-nums {
+  flex: 0 0 auto; margin-left: auto;
+  font-family: var(--px-pix);
+  font-size: 9px; letter-spacing: .03em;
+  color: var(--px-dimtx);
+  text-align: right;
+  white-space: nowrap;
+}
+body.px-game .chip-line-label {
+  font-family: var(--px-pix);
+  font-size: 9px; letter-spacing: .1em;
+  color: var(--px-dim);
+  padding: 2px 4px 2px 0;
+}
+body.px-game .chip {
+  display: inline-flex; align-items: center;
+  font-family: var(--px-pix);
+  font-size: 8.5px; letter-spacing: .08em;
+  padding: 1px 6px;
+  border: 1px solid var(--px-frame2);
+  border-radius: 0;
+  background: #ffffff08;
+  color: var(--px-dimtx);
+}
+body.px-game .chip.free-ok      { border-color: var(--px-ok);    color: var(--px-ok); }
+body.px-game .chip.free-limited { border-color: var(--px-proc);  color: var(--px-proc); }
+body.px-game .chip.free-maybe   { border-color: var(--px-warn);  color: var(--px-warn); }
+body.px-game .chip.free-unknown { border-color: var(--px-mute);  color: var(--px-dim); }
+
+body.px-game .agent-active-head { margin-top: 6px; }
+body.px-game .agent-active-head-txt {
+  color: var(--px-proc); font-weight: 700; letter-spacing: .04em;
+  font-family: var(--px-pix); font-size: 10px;
+}
+body.px-game .unified-agent-row,
+body.px-game .agent-line,
+body.px-game .live-agents,
+body.px-game .agent-detail {
+  font-family: var(--px-cjk);
+  font-size: 11.5px;
+  color: var(--px-dimtx);
+}
+body.px-game .unified-agent-row {
+  display: flex; gap: 6px; align-items: baseline;
+  padding: 2px 0; flex-wrap: wrap;
+  border-left: 2px solid transparent;
+  padding-left: 8px;
+}
+body.px-game .unified-agent-row:has(.st-progress) {
+  color: var(--px-ink);
+  border-left-color: var(--px-proc);
+  font-size: 12px;
+}
+body.px-game .live-agents {
+  display: none; margin-top: 6px; padding: 4px 0 0;
+  border-top: 1px dashed var(--px-frame);
+}
+body.px-game .live-agents:has(.live-agent-row) { display: block; }
+body.px-game .live-agent-row { color: var(--px-ink); font-size: 12px; }
+body.px-game .live-agent-more { color: var(--px-dim); font-size: 10.5px; }
+body.px-game .agent-detail {
+  display: block; padding: 6px 0 2px 8px;
+  max-height: 340px; overflow-y: auto;
+  line-height: 1.6;
+  border-top: 1px dashed var(--px-frame);
+}
+body.px-game .session-budget { margin-top: 7px; }
+body.px-game .stat-line {
+  display: flex; align-items: baseline; gap: 8px;
+  font-family: var(--px-cjk);
+  font-size: 11.5px;
+  color: var(--px-dimtx);
+  margin-top: 3px;
+}
+body.px-game .stat-line .stat-main {
+  flex: 1 1 auto; min-width: 0;
+  overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+}
+body.px-game .stat-line .stat-nums {
+  flex: 0 0 auto; margin-left: auto;
+  font-family: var(--px-pix);
+  font-size: 9.5px; letter-spacing: .03em;
+  color: var(--px-dimtx);
+  text-align: right;
+  white-space: nowrap;
+}
+body.px-game .tag-hermes {
+  font-family: var(--px-pix);
+  font-size: 8.5px; letter-spacing: .06em;
+  color: var(--px-proc); border: 1px solid var(--px-proc);
+  border-radius: 0; padding: 0 4px;
+}
+body.px-game .tag-xpi {
+  font-family: var(--px-pix);
+  font-size: 8.5px; letter-spacing: .06em;
+  color: var(--px-dimtx); border: 1px solid var(--px-frame2);
+  border-radius: 0; padding: 0 4px;
+}
+body.px-game .live-agents .as-ago,
+body.px-game .as-ago { font-family: var(--px-pix); font-size: 9.5px; }
+
+/* ── 卡内 HUD（本皮肤注入的血条块） ─────────────────────────────────────── */
+body.px-game .bot-card .px-hud-bot {
+  margin: 11px 0 4px;
+  padding-top: 10px;
+  border-top: 1px dashed var(--px-frame);
+}
+body.px-game .bot-card .px-hud-bot .px-brow { margin-bottom: 8px; }
+body.px-game .bot-card .px-hud-bot .px-brow:last-child { margin-bottom: 0; }
+body.px-game .bot-card .px-hud-bot .px-brow.hp { margin-bottom: 10px; }
+body.px-game .bot-card .px-hud-bot .px-brow.hp .px-bl {
+  color: var(--px-crit);
+}
+body.px-game .bot-card .px-hud-bot .px-brow.mix .px-bl { color: var(--px-proc); }
+body.px-game .bot-card .px-hud-bot .px-brow.ags .px-bl { color: var(--px-ok); }
+body.px-game .bot-card .px-hud-bot .px-brow.err .px-bl { color: var(--px-crit); }
+body.px-game .bot-card .px-hud-bot .px-brow.empty .px-bl { color: var(--px-mute); }
+body.px-game .bot-card .px-hud-bot .px-brow.empty .px-bl::after {
+  content: ' · NO DATA';
+  color: var(--px-mute);
+  letter-spacing: .12em;
+}
+
+/* ── 免费额度区（统一成像素方块风） ─────────────────────────────────────── */
+body.px-game .free-quota-section,
+body.px-game #free-quota {
+  margin: 6px 22px 14px;
+  padding: 14px 16px 12px;
+  background: var(--px-panel);
+  border: 1px solid var(--px-frame);
+  border-radius: 0;
+}
+body.px-game .free-quota-head,
+body.px-game .brk-head {
+  font-family: var(--px-pix);
+  font-size: 9px; letter-spacing: .12em;
+  color: var(--px-dim);
+  margin: 0 0 10px;
+  text-transform: uppercase;
+}
+body.px-game .fq-row,
+body.px-game .brk-row {
+  display: flex; align-items: center; gap: 10px;
+  margin: 7px 0;
+  font-family: var(--px-cjk);
+  font-size: 11.5px;
+  color: var(--px-dimtx);
+}
+body.px-game .fq-row .fq-track,
+body.px-game .brk-row .brk-track {
+  flex: 1 1 auto; min-width: 0;
+  height: 12px;
+  background: var(--px-track);
+  border: 1px solid var(--px-frame);
+  border-radius: 0;
+  overflow: hidden;
+}
+body.px-game .fq-row .fq-fill,
+body.px-game .brk-fill {
+  display: block; height: 100%;
+  border-top: 1px solid rgba(255,255,255,.26);
+  border-bottom: 1px solid rgba(0,0,0,.42);
+  border-radius: 0;
+}
+body.px-game .fq-row > span,
+body.px-game .fq-row > div,
+body.px-game .brk-nums,
+body.px-game .brk-task {
+  font-family: var(--px-pix);
+  font-size: 9.5px; letter-spacing: .04em;
+  white-space: nowrap;
+}
+body.px-game .brk-hidden { display: none; }
+
+/* ── 页脚 ───────────────────────────────────────────────────────────────── */
+body.px-game .footer,
+body.px-game footer {
+  padding: 14px 22px 22px;
+  border-top: 1px solid var(--px-frame);
+  font-family: var(--px-pix);
+  font-size: 9px; letter-spacing: .1em;
+  color: var(--px-dim);
+}
+
+/* ── 其他原子 ───────────────────────────────────────────────────────────── */
+body.px-game h2 {
+  font-family: var(--px-pix);
+  letter-spacing: .2em; text-transform: uppercase;
+  font-size: 11px; color: var(--px-dimtx);
+}
+body.px-game h3 {
+  font-family: var(--px-pix);
+  letter-spacing: .12em; text-transform: uppercase;
+  font-size: 10px; color: var(--px-proc);
+}
+body.px-game p,
+body.px-game li { color: var(--px-ink); line-height: 1.55; font-family: var(--px-cjk); }
+body.px-game a { color: var(--px-proc); text-decoration: none; }
+body.px-game a:hover { color: var(--px-ink); text-decoration: underline; }
+body.px-game table { width: 100%; border-collapse: collapse; }
+body.px-game th {
+  font-family: var(--px-pix); font-size: 9px;
+  letter-spacing: .14em; text-transform: uppercase;
+  color: var(--px-dim); text-align: left;
+  padding: 7px 10px; border-bottom: 1px solid var(--px-frame);
+}
+body.px-game td {
+  padding: 7px 10px;
+  border-bottom: 1px solid var(--px-frame);
+  font-family: var(--px-cjk);
+  font-size: 11.5px;
+  color: var(--px-dimtx);
+}
+body.px-game code,
+body.px-game pre {
+  font-family: var(--px-pix);
+  font-size: 10px;
+  color: var(--px-proc);
+  background: rgba(34,211,238,.06);
+  border: 1px solid var(--px-frame);
+  border-radius: 0;
+  padding: 1px 5px;
+}
+body.px-game hr,
+body.px-game .divider,
+body.px-game section + section,
+body.px-game .section + .section { border-color: var(--px-frame) !important; border-style: dashed; }
+
+/* ── 滚动条 ─────────────────────────────────────────────────────────────── */
+body.px-game::-webkit-scrollbar,
+body.px-game .agent-detail::-webkit-scrollbar { width: 8px; height: 8px; }
+body.px-game::-webkit-scrollbar-track { background: var(--px-bg2); }
+body.px-game::-webkit-scrollbar-thumb { background: var(--px-frame2); border-radius: 0; }
+body.px-game::-webkit-scrollbar-thumb:hover { background: var(--px-dim); }
+
+/* ── 窄屏 ───────────────────────────────────────────────────────────────── */
+@media (max-width: 1040px) {
+  body.px-game .px-hud-grid { grid-template-columns: minmax(0, 1fr); }
+  body.px-game .stats-row { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  body.px-game .px-bigstats { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media (max-width: 640px) {
+  body.px-game .px-brow { flex-wrap: wrap; gap: 5px 10px; }
+  body.px-game .px-brow .px-bl { flex-basis: 100%; }
+  body.px-game .px-host-row { flex-wrap: wrap; gap: 5px 10px; }
+  body.px-game .px-host-row .px-hl { flex-basis: 100%; }
+  body.px-game .px-host-row .px-hm { flex-basis: 100%; text-align: left; }
+  body.px-game .px-hud { padding: 14px 12px; }
+  body.px-game header { padding: 16px 12px 12px; }
+  body.px-game .px-hud,
+  body.px-game .px-statusbar { margin-left: 12px; margin-right: 12px; }
+  body.px-game main { padding: 0 12px 26px; }
+  body.px-game .free-quota-section,
+  body.px-game #free-quota { margin: 6px 12px 12px; }
+  body.px-game .cards { grid-template-columns: 1fr; }
+}

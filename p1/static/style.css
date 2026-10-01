@@ -1,0 +1,260 @@
+/* 舰队监控站 · 暗色科幻 · 低亮霓虹青紫 · 像素边框 */
+:root {
+  --bg: #070912;
+  --bg2: #0b0f1e;
+  --panel: #0d1226;
+  --line: #1c2450;
+  --cyan: #35e0e0;
+  --purple: #9d6bff;
+  --amber: #ffc857;
+  --red: #ff5d73;
+  --green: #4ade80;
+  --dim: #7c86b8;
+  --text: #d8def5;
+  --font: "Vera Sans", "Noto Sans SC", system-ui, sans-serif;
+  --mono: "JetBrains Mono", "Courier New", monospace;
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0; background:
+    radial-gradient(1200px 500px at 70% -10%, #12173a 0%, transparent 60%),
+    radial-gradient(900px 400px at 10% 110%, #170f33 0%, transparent 55%),
+    var(--bg);
+  color: var(--text); font-family: var(--font); min-height: 100vh;
+}
+.scanlines {
+  pointer-events: none; position: fixed; inset: 0; z-index: 9;
+  background: repeating-linear-gradient(0deg, transparent 0 3px, rgba(255,255,255,.012) 3px 4px);
+}
+header { padding: 18px 22px 8px; }
+.title-row { display: flex; align-items: baseline; gap: 14px; flex-wrap: wrap; }
+h1 {
+  margin: 0; font-size: 26px; letter-spacing: 6px; color: var(--cyan);
+  text-shadow: 0 0 12px rgba(53,224,224,.45);
+}
+.subtitle { font-family: var(--mono); font-size: 12px; color: var(--purple); letter-spacing: 2px; }
+.badge {
+  font-family: var(--mono); font-size: 11px; padding: 3px 10px; border: 1px solid var(--line);
+  border-radius: 3px; color: var(--dim); background: var(--panel);
+}
+.stats-row { display: flex; gap: 18px; flex-wrap: wrap; margin-top: 10px;
+  font-family: var(--mono); font-size: 12px; color: var(--dim); }
+.stats-row b { color: var(--text); }
+.stale-banner {
+  margin-top: 10px; padding: 7px 12px; font-family: var(--mono); font-size: 12px;
+  border: 1px dashed var(--amber); color: var(--amber); border-radius: 4px; display: inline-block;
+}
+.hidden { display: none !important; }
+
+main { padding: 10px 22px 30px; }
+.host-section { margin-bottom: 26px; }
+.host-head {
+  display: flex; align-items: baseline; gap: 12px; margin: 6px 0 12px;
+  border-bottom: 1px solid var(--line); padding-bottom: 6px;
+}
+.host-name { font-size: 16px; color: var(--cyan); letter-spacing: 2px; }
+.host-meta { font-family: var(--mono); font-size: 11px; color: var(--dim); }
+.cards { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 14px; }
+.card { min-width: 0; }
+/* 右侧对齐列：模型/子代理行统一 数字靠右 */
+.stat-line { display: flex; align-items: baseline; gap: 8px; }
+.stat-line .stat-main { flex: 1 1 auto; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.stat-line .stat-nums { flex: 0 0 auto; margin-left: auto; font-family: var(--mono); font-size: 11px; color: var(--dim); text-align: right; }
+
+.bot-card {
+  background: linear-gradient(160deg, var(--panel) 0%, var(--bg2) 100%);
+  border: 1px solid var(--line); border-radius: 6px; padding: 14px;
+  position: relative; cursor: pointer; transition: border-color .15s;
+  image-rendering: pixelated;
+}
+.bot-card:hover { border-color: var(--cyan); }
+.bot-card.sev-warn { border-color: rgba(255,200,87,.55); }
+.bot-card.sev-crit { border-color: rgba(255,93,115,.6); }
+.bot-card.offline-card { opacity: .55; }
+
+.bot-top { display: flex; align-items: center; gap: 12px; }
+.bot-hat { width: 52px; height: 52px; flex: 0 0 auto; }
+.bot-name { font-size: 17px; font-weight: 700; letter-spacing: 1px; }
+.bot-host { font-family: var(--mono); font-size: 11px; color: var(--purple); }
+.status-badge {
+  margin-left: auto; font-family: var(--mono); font-size: 11px; padding: 4px 9px;
+  border-radius: 3px; border: 1px solid; white-space: nowrap;
+}
+.st-working { color: var(--green); border-color: var(--green); background: rgba(74,222,128,.08); }
+.st-recent { color: var(--cyan); border-color: var(--cyan); background: rgba(53,224,224,.07); }
+.st-idle { color: var(--green); border-color: var(--green); background: rgba(74,222,128,.07); }
+.st-wait { color: var(--amber); border-color: var(--amber); background: rgba(255,200,87,.08); }
+.st-blocked { color: var(--red); border-color: var(--red); background: rgba(255,93,115,.1); }
+.st-offline { color: var(--dim); border-color: var(--dim); border-style: dashed; }
+.st-unknown { color: var(--purple); border-color: var(--purple); }
+.st-retired { color: var(--dim); border-color: var(--line); background: rgba(120,130,150,.12); box-shadow: none; }
+.bot-card.retired-card { opacity: .4; }
+.bot-card.retired-card:hover { border-color: var(--line); }
+
+/* 进程存活信号（与业务活动行分离，防止"在线"被读成"在跑业务"） */
+.proc-signal { margin: 4px 0 2px; font-family: var(--mono); font-size: 10px; color: var(--dim); }
+.activity { margin: 11px 0 4px; font-size: 13px; line-height: 1.5; color: var(--text); }
+.activity .src { display: block; font-family: var(--mono); font-size: 10px; color: var(--dim); margin-top: 2px; }
+.sub-row { margin-top: 9px; font-family: var(--mono); font-size: 11px; color: var(--dim); }
+.sub-row b { color: var(--cyan); }
+.xpi-row { color: var(--purple); }
+.xpi-row b { color: var(--purple); }
+/* Lane V3 C3：进程退出第三态，与子代理完成态用颜色/前缀区分（ID 不同源不可混算） */
+.exit-row { margin-top: 4px; color: var(--amber); }
+.exit-row b { color: var(--amber); }
+.state-tag { display: inline-block; font-size: 10px; letter-spacing: 1px; padding: 0 5px;
+             margin-right: 6px; border: 1px solid currentColor; border-radius: 3px;
+             opacity: .85; }
+/* 问题卡：琥珀红描边（不吞原 energy-bar/帽动画，与"活着"动画叠加） */
+.problem-card { border-color: var(--amber) !important; }
+.problem-line { color: var(--amber); font-family: var(--mono); font-size: 11px; margin: 6px 0 0; }
+.problem-line { animation: badge-breathe 2.4s ease-in-out infinite; }
+.problem-card.open .problem-line { white-space: pre-line; }
+.chip-line-label { font-family: var(--mono); font-size: 10px; color: var(--dim); padding: 2px 4px 2px 0; }
+.model-chips { display: flex; flex-wrap: wrap; gap: 5px; margin-top: 8px; align-items: baseline; }
+.chip {
+  font-family: var(--mono); font-size: 10px; padding: 2px 7px; border-radius: 3px;
+  border: 1px solid var(--line); color: var(--text); background: rgba(28,36,80,.35);
+}
+.chip.free-ok { border-color: var(--green); color: var(--green); }
+.chip.free-limited { border-color: var(--cyan); color: var(--cyan); }
+.chip.free-maybe { border-color: var(--amber); color: var(--amber); }
+.chip.free-unknown { border-color: var(--dim); color: var(--dim); }
+
+.detail {
+  display: none; margin-top: 12px; border-top: 1px dashed var(--line); padding-top: 10px;
+  font-family: var(--mono); font-size: 11px; color: var(--dim); line-height: 1.8;
+}
+.bot-card.open .detail { display: block; }
+.detail b { color: var(--text); }
+footer { padding: 8px 22px 20px; font-family: var(--mono); font-size: 11px; color: var(--dim); }
+
+@media (max-width: 720px) { .cards { grid-template-columns: 1fr; } h1 { font-size: 20px; } }
+@media (prefers-reduced-motion: reduce) {
+  * { animation: none !important; transition: none !important; }
+}
+
+/* == 动画层 == */
+@property --spin {
+  syntax: "<angle>";
+  inherits: false;
+  initial-value: 0deg;
+}
+@media (prefers-reduced-motion: no-preference) {
+  /* 1. 工作中的卡片：像素帽浮动 + 霓虹描边 + 能量条 */
+  .bot-card:has(.st-working) .bot-hat,
+  .bot-card:has(.st-recent) .bot-hat {
+    animation: hat-float 3s ease-in-out infinite;
+  }
+  .bot-card:has(.st-working)::before,
+  .bot-card:has(.st-recent)::before {
+    content: "";
+    position: absolute; inset: -1px; border-radius: 6px; padding: 1px;
+    background: conic-gradient(from var(--spin, 0deg),
+      var(--cyan), var(--purple), transparent 60%);
+    -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+    -webkit-mask-composite: xor;
+            mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+            mask-composite: exclude;
+    opacity: .45; pointer-events: none; z-index: 0;
+    animation: hat-border 4s linear infinite;
+  }
+  .bot-card:has(.st-working)::after {
+    content: "";
+    position: absolute; left: 12%; right: 12%; bottom: 4px; height: 3px;
+    border-radius: 2px;
+    background: linear-gradient(90deg, var(--cyan), var(--purple));
+    filter: blur(0.3px); opacity: .6;
+    animation: energy-bar 5s ease-in-out infinite;
+  }
+
+  /* 2. 疑似阻塞/告警卡片：红色 box-shadow 小幅度脉冲 */
+  .bot-card:has(.st-blocked),
+  .bot-card:has(.sev-crit) {
+    animation: warn-pulse 1.8s ease-in-out infinite;
+  }
+
+  /* 3. 等待偏长卡片：琥珀色静态微光，不脉冲 */
+  .bot-card:has(.st-wait),
+  .bot-card:has(.sev-warn) {
+    box-shadow: 0 0 10px rgba(255,200,87,.12);
+  }
+
+  /* 4. 新鲜徽章：只呼吸透明度 */
+  #fresh-badge { animation: badge-breathe 2.4s ease-in-out infinite; }
+
+  @keyframes hat-float {
+    0%, 100% { transform: translateY(0); }
+    50%      { transform: translateY(-3px); }
+  }
+  @keyframes hat-border {
+    to { --spin: 360deg; }
+  }
+  @keyframes energy-bar {
+    0%, 100% { transform: translateX(-8%); opacity: .35; }
+    50%      { transform: translateX(8%);  opacity: .9;  }
+  }
+  @keyframes warn-pulse {
+    0%, 100% { box-shadow: 0 0 0 0 rgba(255,93,115,.15); }
+    50%      { box-shadow: 0 0 10px 2px rgba(255,93,115,.4); }
+  }
+  @keyframes badge-breathe {
+    0%, 100% { opacity: 1; }
+    50%      { opacity: .45; }
+  }
+}
+
+.problem-urgent-card { border-color: var(--red) !important; }
+
+/* 代理明细行：常显（不随展开）+ 统一代理列表 */
+.agent-active-head { margin-top: 2px; }
+.agent-active-head-txt { color: var(--accent, #7dd3fc); font-weight: 700; letter-spacing: .3px; }
+.unified-agent-row { font-size: 11px; }
+.unified-agent-row:has(.st-progress) { font-size: 12.5px; color: var(--fg, #e5e7eb); }
+.unified-agent-row:has(.st-progress) .status-badge { font-weight: 700; }
+.agent-detail { display: block; padding: 2px 12px 6px; font-size: 11px; color: var(--dim); line-height: 1.6; max-height: 320px; overflow-y: auto; }
+.card.open .agent-detail { display: block; }
+.agent-detail-row { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.unified-agent-row { display: flex; gap: 6px; align-items: baseline; padding: 2px 0; flex-wrap: wrap; }
+.tag-hermes { color: #22d3ee; border: 1px solid #22d3ee; border-radius: 3px; padding: 0 4px; font-size: 10px; }
+.tag-xpi { color: #a78bfa; border: 1px solid #a78bfa; border-radius: 3px; padding: 0 4px; font-size: 10px; }
+.st-progress { color: #a8d8f0; border-color: #a8d8f0; }
+.st-done { color: #7ecf8a; border-color: #7ecf8a; }
+.st-lost { color: #e07a7a; border-color: #e07a7a; }
+.idle-warn { color: var(--amber); font-weight: 600; }
+
+/* 代理常显行 / 全局代理条 / 卡住滚动字幕 */
+.agent-line { padding: 0 12px 4px; font-size: 11px; color: var(--purple); line-height: 1.5; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.agent-bar { display: flex; flex-wrap: wrap; gap: 6px; padding: 6px 22px 2px; }
+.agent-pill { font-size: 11px; padding: 2px 8px; border: 1px solid var(--purple); border-radius: 10px; color: var(--purple); font-family: var(--mono); }
+.agent-pill.agent-stuck { border-color: var(--red); color: var(--red); animation: badge-breathe 2s ease-in-out infinite; }
+.alert-marquee { overflow: hidden; white-space: nowrap; padding: 4px 22px 6px; color: var(--red); font-size: 12px; font-weight: bold; }
+.alert-marquee:not(.hidden) { animation: marquee-move 18s linear infinite; }
+@keyframes marquee-move { 0% { transform: translateX(100vw); } 100% { transform: translateX(-100%); } }
+
+/* 鸣哥 22:45 定版：等宽卡片 + 数字右列（覆盖 wrap 拉伸差异） */
+@media (min-width: 721px) {
+  .cards { grid-auto-rows: min-content; }
+  .card { width: 100%; }
+}
+
+/* 鸣哥 23:3x 定版：模型行竖排——标签独立行，每模型一行，数字右列 */
+.model-chips { display: block; }
+.model-label { font-size: 11px; color: var(--dim); margin-top: 6px; }
+.model-row { display: flex; align-items: baseline; gap: 8px; padding: 1px 0 1px 8px;
+             border-left: 2px solid #ffffff22; margin-top: 2px; font-size: 12px; }
+.model-row .stat-main { flex: 1 1 auto; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.model-row .stat-nums { flex: 0 0 auto; margin-left: auto; font-family: var(--mono); font-size: 11px; color: var(--dim); text-align: right; }
+
+/* 23:4x 鸣哥定版：免费额度区块在页面底部（卡片之后），与页脚留距 */
+#free-quota { margin-bottom: 8px; }
+
+/* Live 代理行（鸣哥 0925：活跃代理常显在卡片里面，不点开就在） */
+.live-agents { display: none; margin-top: 4px; padding: 3px 12px; border-top: 1px dashed #7dd3fc44; }
+.live-agents:has(.live-agent-row) { display: block; }
+.live-agent-row { color: var(--fg, #e5e7eb); font-size: 12px; }
+.live-agent-row .st-progress { font-weight: 700; }
+.live-agent-row .st-lost { color: #ef4444; }
+.live-agent-more { color: var(--dim); font-size: 10.5px; }
+
+.st-neutral { color: #94a3b8; border-color: #94a3b8; }

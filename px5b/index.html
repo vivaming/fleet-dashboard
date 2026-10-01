@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>舰队监控站 · FLEET MONITOR</title>
+<link rel="stylesheet" href="static/style.css">
+<link rel="stylesheet" href="static/style-jevdesk.css">
+<link rel="stylesheet" href="static/free-quota.css">
+<link rel="stylesheet" href="static/free-breakdown.css">
+<link rel="stylesheet" href="skin-hub.css">
+</head>
+<body class="px-hub">
+<div class="scanlines" aria-hidden="true"></div>
+<header>
+  <div class="title-row">
+    <h1>舰队监控站</h1>
+    <span class="subtitle">FLEET MONITOR // PHASE-2</span>
+    <span id="fresh-badge" class="badge">…</span>
+  </div>
+  <div class="stats-row" id="stats-row"></div>
+  <div id="stale-banner" class="stale-banner hidden"></div>
+  <div id="agent-bar" class="agent-bar" style="display:none"></div>
+  <div id="alert-marquee" class="alert-marquee hidden"></div>
+</header>
+<main id="main"></main>
+<div id="free-quota" class="free-quota-section"></div>
+<footer>
+  <span id="footer-info">loading…</span>
+</footer>
+<script src="api-override.js"></script>
+<script src="static/free-quota.js"></script>
+<script src="static/free-breakdown.js"></script>
+<script src="static/unified_agents.js"></script>
+<script src="static/flow-bg.js"></script>
+<script src="static/app.js"></script>
+<script src="skin-hub.js"></script>
+
+</body>
+</html>

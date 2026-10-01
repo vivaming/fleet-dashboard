@@ -1,0 +1,7 @@
+/* 免费模型工作 breakdown（鸣哥定版：竖排/数字右对齐/不占屏） */
+.brk-head { font-size: 11px; color: var(--dim); margin: 6px 0 3px; }
+.brk-row { display: flex; align-items: baseline; gap: 8px; font-size: 12px;
+           padding: 1px 0 1px 8px; border-left: 2px solid #22c55e44; margin-top: 2px; }
+.brk-model { flex: 0 1 auto; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.brk-task { flex: 1 1 auto; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font-size: 11px; color: var(--dim); }
+.brk-nums { flex: 0 0 auto; margin-left: auto; font-family: var(--mono); font-size: 11px; color: var(--dim); text-align: right; }

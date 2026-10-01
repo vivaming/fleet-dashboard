@@ -1,0 +1,665 @@
+/* ============================================================
+   fleet-monitor · P1 "TERMINAL GREEN" skin
+   lane: xpi
+   All rules namespaced under body.terminal — never leaks into
+   the default (style.css) or jevdesk theme.
+   JS untouched: api-override.js + api_status.json untouched.
+   ============================================================ */
+
+/* ── Palette (TERMINAL GREEN) ────────────────────────────────
+   phosphor     #00ff66  primary fluorescent green
+   phosphor-2   #33ff99  secondary green (body text)
+   faint        #1a7a44  weakened / dim green
+   frame        #14532d  border wire (between faint and black)
+   warn         #d4ff4d  phosphor yellow-green (warn / problem)
+   danger       #ff5252  red phosphor — crit / blocked only
+   00 black     #000000  pure black ground
+*/
+
+body.terminal {
+  --bg:     #000000;
+  --bg2:    #010603;
+  --panel:  #020a05;
+  --line:   #14532d;
+  --cyan:   #33ff99;
+  --purple: #1a7a44;
+  --amber:  #d4ff4d;
+  --red:    #ff5252;
+  --green:  #00ff66;
+  --dim:    #1a7a44;
+  --text:   #33ff99;
+  --font:   "Courier New", Courier, "Nimbus Mono PS", ui-monospace, monospace;
+  --mono:   "Courier New", Courier, "Nimbus Mono PS", ui-monospace, monospace;
+
+  background: #000000;
+  color: var(--text);
+  font-family: var(--mono);
+  letter-spacing: .4px;
+  line-height: 1.5;
+  min-height: 100vh;
+  -webkit-font-smoothing: none;
+  text-rendering: auto;
+  text-shadow: 0 0 3px rgba(0, 255, 102, .30);
+}
+
+body.terminal *,
+body.terminal *::before,
+body.terminal *::after { font-family: inherit; }
+
+/* ── CRT layer 1: vignette + phosphor bleed ───────────────── */
+
+body.terminal::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 41;
+  pointer-events: none;
+  background:
+    radial-gradient(ellipse 115% 95% at 50% 50%, transparent 55%, rgba(0, 0, 0, .55) 88%, rgba(0, 0, 0, .85) 100%),
+    radial-gradient(ellipse 70% 55% at 50% 8%, rgba(0, 255, 102, .055), transparent 70%);
+}
+
+/* ── CRT layer 2: scanlines + flicker ────────────────────── */
+
+body.terminal .scanlines {
+  z-index: 42;
+  background:
+    repeating-linear-gradient(0deg,
+      rgba(0, 0, 0, 0) 0px,
+      rgba(0, 0, 0, 0) 2px,
+      rgba(0, 0, 0, .46) 2px,
+      rgba(0, 0, 0, .46) 3px),
+    repeating-linear-gradient(90deg,
+      rgba(0, 255, 102, .035) 0 1px,
+      rgba(0, 255, 102, 0) 1px 3px);
+  animation: term-flicker 4.6s steps(1, end) infinite;
+}
+
+@keyframes term-flicker {
+  0%   { opacity: .78; }
+  7%   { opacity: .92; }
+  9%   { opacity: .74; }
+  22%  { opacity: .88; }
+  31%  { opacity: .80; }
+  48%  { opacity: .95; }
+  51%  { opacity: .68; }
+  63%  { opacity: .86; }
+  78%  { opacity: .91; }
+  83%  { opacity: .72; }
+  100% { opacity: .78; }
+}
+
+/* ── CRT layer 3: slow vertical roll band ─────────────────── */
+
+body.terminal::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 40;
+  pointer-events: none;
+  background-image: linear-gradient(180deg,
+      rgba(0, 255, 102, 0) 0%,
+      rgba(0, 255, 102, .055) 46%,
+      rgba(0, 255, 102, .095) 50%,
+      rgba(0, 255, 102, .055) 54%,
+      rgba(0, 255, 102, 0) 100%);
+  background-size: 100% 240px;
+  background-repeat: repeat-y;
+  animation: term-roll 10s linear infinite;
+}
+
+@keyframes term-roll {
+  from { background-position: 0 0; }
+  to   { background-position: 0 240px; }
+}
+
+/* ── Header ───────────────────────────────────────────────── */
+
+body.terminal header {
+  background: transparent;
+  border-bottom: 3px double #1a7a44;
+  padding: 14px 22px 12px;
+  margin-bottom: 16px;
+}
+
+body.terminal .title-row {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  flex-wrap: wrap;
+}
+
+/* 路径前缀装饰：[ FLEET://MONITOR v1.0 ] */
+body.terminal .path-prefix {
+  color: #1a7a44;
+  font-size: 12px;
+  letter-spacing: 1px;
+  text-shadow: none;
+}
+
+body.terminal h1 {
+  margin: 0;
+  font-family: var(--mono);
+  font-size: 22px;
+  font-weight: 700;
+  letter-spacing: 8px;
+  text-transform: uppercase;
+  color: #00ff66;
+  text-shadow: 0 0 8px rgba(0, 255, 102, .65), 0 0 22px rgba(0, 255, 102, .28);
+}
+
+body.terminal .subtitle {
+  color: #1a7a44;
+  font-size: 12px;
+  letter-spacing: 3px;
+  text-shadow: none;
+}
+
+/* ── Badges ───────────────────────────────────────────────── */
+
+body.terminal .badge {
+  border: 1px solid #1a7a44;
+  border-radius: 0;
+  background: rgba(0, 255, 102, .04);
+  color: #33ff99;
+  padding: 2px 9px;
+  font-size: 11px;
+  letter-spacing: 1px;
+}
+
+body.terminal .badge.badge-ok::before,
+body.terminal .badge.badge-live::before { background: #00ff66; box-shadow: 0 0 6px #00ff66; }
+body.terminal .badge.badge-warn::before { background: #d4ff4d; box-shadow: 0 0 6px #d4ff4d; }
+body.terminal .badge.badge-crit::before,
+body.terminal .badge.badge-alert::before { background: #ff5252; box-shadow: 0 0 6px #ff5252; }
+
+body.terminal .stale-banner {
+  border: 1px dashed #d4ff4d;
+  border-radius: 0;
+  color: #d4ff4d;
+  background: rgba(212, 255, 77, .05);
+  padding: 7px 12px;
+}
+
+/* ── Stats row ────────────────────────────────────────────── */
+
+body.terminal .stats-row {
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+  margin-top: 12px;
+  padding: 7px 0;
+  border-top: 1px solid #14532d;
+  border-bottom: 1px solid #14532d;
+  color: #1a7a44;
+  font-size: 12px;
+  letter-spacing: .5px;
+  text-shadow: none;
+}
+
+body.terminal .stats-row b { color: #00ff66; font-weight: 700; text-shadow: 0 0 6px rgba(0, 255, 102, .45); }
+
+/* ── Agent bar / marquee ──────────────────────────────────── */
+
+body.terminal .agent-bar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  padding: 8px 22px 4px;
+  margin-top: 8px;
+  border-top: 1px dashed #14532d;
+}
+
+body.terminal .agent-pill {
+  border: 1px solid #1a7a44;
+  border-radius: 0;
+  color: #33ff99;
+  background: rgba(0, 255, 102, .04);
+  font-size: 11px;
+  padding: 2px 8px;
+  letter-spacing: .3px;
+}
+
+body.terminal .agent-pill.agent-stuck {
+  border-color: #ff5252;
+  color: #ff5252;
+  background: rgba(255, 82, 82, .06);
+}
+
+body.terminal .alert-marquee {
+  color: #ff5252;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  padding: 5px 22px 8px;
+  border-top: 1px solid rgba(255, 82, 82, .5);
+  border-bottom: 1px solid rgba(255, 82, 82, .5);
+  text-shadow: 0 0 6px rgba(255, 82, 82, .35);
+}
+
+/* ── Host sections ────────────────────────────────────────── */
+
+body.terminal main { padding: 4px 22px 26px; }
+
+body.terminal .host-section { margin-bottom: 22px; }
+
+body.terminal .host-head {
+  display: flex;
+  align-items: baseline;
+  gap: 12px;
+  margin: 8px 0 12px;
+  padding-bottom: 6px;
+  border-bottom: 1px dashed #1a7a44;
+}
+
+/* ASCII 感分隔线：填充到行尾（flex:1 + overflow 裁切） */
+body.terminal .host-head::after {
+  content: "──────────────────────────────────────────────────────────────────────────────────";
+  flex: 1 1 auto;
+  color: #14532d;
+  font-size: 11px;
+  letter-spacing: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  align-self: center;
+  text-shadow: none;
+}
+
+body.terminal .host-name {
+  font-family: var(--mono);
+  font-size: 15px;
+  color: #00ff66;
+  letter-spacing: 2px;
+  text-shadow: 0 0 7px rgba(0, 255, 102, .5);
+}
+
+body.terminal .host-meta { color: #1a7a44; font-size: 11px; text-shadow: none; }
+
+/* ── Cards ────────────────────────────────────────────────── */
+
+body.terminal .cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(330px, 1fr));
+  gap: 12px;
+}
+
+body.terminal .bot-card {
+  background: rgba(0, 255, 102, .025);
+  border: 1px solid #1a7a44;
+  border-radius: 0;
+  padding: 12px;
+  box-shadow: none;
+  cursor: pointer;
+  transition: border-color .12s linear, box-shadow .12s linear;
+  image-rendering: pixelated;
+}
+
+/* hover：ASCII 双线边框（border-style: double，需 ≥3px） */
+body.terminal .bot-card:hover {
+  border: 3px double #00ff66;
+  padding: 10px;
+  box-shadow: 0 0 14px rgba(0, 255, 102, .18), inset 0 0 18px rgba(0, 255, 102, .05);
+}
+
+body.terminal .bot-card.sev-warn { border-color: #d4ff4d; }
+body.terminal .bot-card.sev-crit { border-color: #ff5252; }
+body.terminal .bot-card:hover.sev-crit { border: 3px double #ff5252; padding: 10px; }
+body.terminal .bot-card.problem-card { border-color: #d4ff4d; }
+body.terminal .bot-card:hover.problem-card { border: 3px double #d4ff4d; padding: 10px; }
+body.terminal .bot-card.offline-card { opacity: .5; }
+body.terminal .bot-card.retired-card { opacity: .38; }
+body.terminal .bot-card.retired-card:hover { border: 3px double #1a7a44; padding: 10px; }
+
+/* ── Card header row ──────────────────────────────────────── */
+
+body.terminal .bot-top { display: flex; align-items: center; gap: 12px; }
+
+body.terminal .bot-hat {
+  width: 52px;
+  height: 52px;
+  flex: 0 0 auto;
+  filter: drop-shadow(0 0 4px rgba(0, 255, 102, .45));
+}
+
+/* 像素帽 → 单色荧光（按原始 fill 属性选区，保留帽带/星徽层次） */
+body.terminal .bot-hat rect { fill: #00ff66; }
+body.terminal .bot-hat rect[fill="#0b0f1e"] { fill: #000000; }   /* 帽带：镂黑 */
+body.terminal .bot-hat rect[fill="#35e0e0"] { fill: #33ff99; }   /* 帽体：次绿 */
+body.terminal .bot-hat rect[fill="#9d6bff"] { fill: #1a7a44; }   /* 变体：暗绿 */
+body.terminal .bot-hat rect[fill="#ffc857"] { fill: #00ff66; }   /* 星徽：亮磷光 */
+body.terminal .bot-hat rect[fill="#ff5d73"] { fill: #1a7a44; }   /* 帽翼：暗绿 */
+body.terminal .bot-hat rect[fill="#4ade80"] { fill: #00ff66; }   /* 帽尖：亮磷光 */
+
+body.terminal .bot-name {
+  font-family: var(--mono);
+  font-size: 16px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  color: #00ff66;
+  text-shadow: 0 0 6px rgba(0, 255, 102, .55);
+}
+
+/* 方括号装饰 [BOT-NAME] */
+body.terminal .bot-name::before { content: "["; color: #1a7a44; margin-right: 3px; text-shadow: none; }
+body.terminal .bot-name::after  { content: "]"; color: #1a7a44; margin-left: 3px; text-shadow: none; }
+
+body.terminal .bot-host { color: #1a7a44; font-size: 11px; text-shadow: none; }
+
+/* ── Status badges + ▸ / ✓ / ✗ 符号 ───────────────────────── */
+
+body.terminal .status-badge {
+  border: 1px solid #1a7a44;
+  border-radius: 0;
+  font-size: 11px;
+  padding: 3px 8px;
+  letter-spacing: .5px;
+  background: transparent;
+  margin-left: auto;
+  white-space: nowrap;
+}
+
+body.terminal .status-badge::before { content: "✓ "; }
+
+/* ▸ = 在跑 / 有进展 / 等待 */
+body.terminal .status-badge.st-working::before,
+body.terminal .status-badge.st-recent::before,
+body.terminal .status-badge.st-wait::before,
+body.terminal .status-badge.st-progress::before,
+body.terminal .status-badge.ok::before,
+body.terminal .status-badge.live::before,
+body.terminal .status-badge.running::before { content: "▸ "; }
+
+/* ✓ = 在线空闲 / 完成 */
+body.terminal .status-badge.st-idle::before,
+body.terminal .status-badge.st-done::before,
+body.terminal .status-badge.up::before { content: "✓ "; }
+
+/* ✗ = 阻塞 / 离线 / 失联 / 退休 / 观测不可用 */
+body.terminal .status-badge.st-blocked::before,
+body.terminal .status-badge.st-offline::before,
+body.terminal .status-badge.st-unknown::before,
+body.terminal .status-badge.st-retired::before,
+body.terminal .status-badge.st-lost::before,
+body.terminal .status-badge.crit::before,
+body.terminal .status-badge.down::before,
+body.terminal .status-badge.error::before { content: "✗ "; }
+
+body.terminal .status-badge.st-neutral::before { content: "· "; }
+
+body.terminal .status-badge.st-working,
+body.terminal .status-badge.st-idle,
+body.terminal .status-badge.ok,
+body.terminal .status-badge.live,
+body.terminal .status-badge.running { color: #00ff66; border-color: #1a7a44; background: rgba(0, 255, 102, .07); }
+body.terminal .status-badge.st-recent,
+body.terminal .status-badge.st-progress,
+body.terminal .status-badge.st-done,
+body.terminal .status-badge.info { color: #33ff99; border-color: #1a7a44; background: rgba(51, 255, 153, .06); }
+body.terminal .status-badge.st-wait { color: #d4ff4d; border-color: rgba(212, 255, 77, .5); background: rgba(212, 255, 77, .06); }
+body.terminal .status-badge.st-blocked,
+body.terminal .status-badge.crit,
+body.terminal .status-badge.down,
+body.terminal .status-badge.error,
+body.terminal .status-badge.st-lost { color: #ff5252; border-color: rgba(255, 82, 82, .55); background: rgba(255, 82, 82, .07); }
+body.terminal .status-badge.st-offline { color: #1a7a44; border-color: #1a7a44; border-style: dashed; background: transparent; }
+body.terminal .status-badge.st-unknown { color: #1a7a44; border-color: #14532d; background: rgba(0, 255, 102, .03); }
+body.terminal .status-badge.st-retired,
+body.terminal .status-badge.st-neutral { color: #1a7a44; border-color: #14532d; background: transparent; box-shadow: none; }
+
+/* ── Card body text ───────────────────────────────────────── */
+
+body.terminal .proc-signal { color: #1a7a44; font-size: 10px; text-shadow: none; }
+body.terminal .activity { color: #33ff99; font-size: 13px; line-height: 1.55; }
+body.terminal .activity .src { color: #1a7a44; font-size: 10px; text-shadow: none; }
+
+body.terminal .sub-row { color: #1a7a44; font-size: 11px; text-shadow: none; }
+body.terminal .sub-row b { color: #33ff99; }
+body.terminal .xpi-row,
+body.terminal .xpi-row b { color: #26c473; }
+body.terminal .exit-row,
+body.terminal .exit-row b { color: #d4ff4d; }
+
+body.terminal .state-tag { border-radius: 0; padding: 0 5px; }
+
+body.terminal .problem-line { color: #d4ff4d; font-size: 11px; text-shadow: 0 0 5px rgba(212, 255, 77, .3); }
+body.terminal .chip-line-label { color: #1a7a44; font-size: 10px; text-shadow: none; }
+
+/* ── Model chips ──────────────────────────────────────────── */
+
+body.terminal .model-chips { display: block; }
+body.terminal .model-label { color: #1a7a44; font-size: 11px; margin-top: 6px; text-shadow: none; }
+
+body.terminal .chip {
+  border: 1px solid #14532d;
+  border-radius: 0;
+  background: rgba(0, 255, 102, .04);
+  color: #33ff99;
+  font-size: 10px;
+  padding: 2px 7px;
+  letter-spacing: .3px;
+}
+body.terminal .chip.free-ok      { border-color: #1a7a44; color: #00ff66; }
+body.terminal .chip.free-limited { border-color: #1a7a44; color: #33ff99; }
+body.terminal .chip.free-maybe   { border-color: rgba(212, 255, 77, .5); color: #d4ff4d; }
+body.terminal .chip.free-unknown { border-color: #14532d; color: #1a7a44; }
+
+body.terminal .model-row {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  padding: 1px 0 1px 8px;
+  border-left: 2px solid #1a7a44;
+  margin-top: 2px;
+  font-size: 12px;
+}
+body.terminal .model-row .stat-nums { color: #1a7a44; text-shadow: none; }
+body.terminal .stat-line .stat-nums { color: #1a7a44; text-shadow: none; }
+
+/* ── Detail / agent rows ──────────────────────────────────── */
+
+body.terminal .detail {
+  display: none;
+  margin-top: 12px;
+  border-top: 1px dashed #1a7a44;
+  padding-top: 10px;
+  font-size: 11px;
+  color: #1a7a44;
+  line-height: 1.8;
+  text-shadow: none;
+}
+body.terminal .bot-card.open .detail { display: block; }
+body.terminal .detail b { color: #33ff99; }
+
+body.terminal .agent-detail {
+  display: block;
+  padding: 2px 0 6px;
+  font-size: 11px;
+  color: #1a7a44;
+  line-height: 1.7;
+  max-height: 320px;
+  overflow-y: auto;
+  border-top: 1px dotted #14532d;
+  padding-top: 4px;
+  margin-top: 6px;
+}
+body.terminal .live-agents {
+  display: none;
+  margin-top: 4px;
+  padding: 3px 0;
+  border-top: 1px dashed #14532d;
+}
+body.terminal .live-agents:has(.live-agent-row) { display: block; }
+body.terminal .live-agent-row { color: #33ff99; font-size: 12px; }
+body.terminal .live-agent-row .st-lost { color: #ff5252; }
+body.terminal .live-agent-more { color: #1a7a44; font-size: 10.5px; }
+
+body.terminal .unified-agent-row { font-size: 11px; }
+body.terminal .unified-agent-row:has(.st-progress) { color: #00ff66; }
+body.terminal .agent-line { color: #1a7a44; font-size: 11px; }
+body.terminal .agent-active-head-txt { color: #00ff66; font-weight: 700; }
+body.terminal .tag-hermes,
+body.terminal .tag-xpi {
+  border-radius: 0;
+  border: 1px solid #1a7a44;
+  color: #1a7a44;
+  background: rgba(0, 255, 102, .04);
+  font-size: 10px;
+  padding: 0 4px;
+}
+body.terminal .st-neutral { color: #1a7a44; border-color: #14532d; }
+body.terminal .idle-warn { color: #d4ff4d; font-weight: 700; }
+
+/* ── Free quota / breakdown ───────────────────────────────── */
+
+body.terminal #free-quota { margin-bottom: 8px; }
+body.terminal .free-quota-section { padding: 8px 22px 4px; border-top: 1px dashed #14532d; }
+body.terminal .free-quota-head { color: #1a7a44; font-size: 11px; margin-bottom: 6px; text-shadow: none; }
+body.terminal .fq-row { font-size: 12px; color: #33ff99; }
+body.terminal .fq-limit,
+body.terminal .fq-nums { color: #1a7a44; text-shadow: none; }
+body.terminal .fq-track {
+  border: 1px solid #1a7a44;
+  border-radius: 0;
+  background: rgba(0, 255, 102, .05);
+  height: 8px;
+  overflow: hidden;
+}
+/* .fq-fill 的背景是 JS 内联写入的数据色阶（已用比例），
+   属于数据编码而非皮肤装饰——保持原色，不覆盖。 */
+
+body.terminal .brk-head { color: #1a7a44; font-size: 11px; text-shadow: none; }
+body.terminal .brk-row { border-left: 2px solid #1a7a44; color: #33ff99; }
+body.terminal .brk-model { color: #00ff66; }
+body.terminal .brk-task { color: #1a7a44; }
+body.terminal .brk-nums { color: #1a7a44; text-shadow: none; }
+body.terminal .brk-hidden { color: #14532d; }
+
+/* ── Footer ───────────────────────────────────────────────── */
+
+body.terminal footer {
+  padding: 8px 22px 20px;
+  font-size: 11px;
+  color: #1a7a44;
+  border-top: 3px double #14532d;
+  text-shadow: none;
+  letter-spacing: .5px;
+}
+
+/* 闪烁光标 */
+body.terminal #footer-info::after {
+  content: " ▌";
+  color: #00ff66;
+  animation: term-blink 1.1s steps(1, end) infinite;
+}
+@keyframes term-blink { 50% { opacity: 0; } }
+
+/* ── Typography fallbacks ─────────────────────────────────── */
+
+body.terminal h2 {
+  font-family: var(--mono);
+  font-size: 14px;
+  letter-spacing: .2em;
+  text-transform: uppercase;
+  color: #1a7a44;
+}
+body.terminal h3 {
+  font-family: var(--mono);
+  font-size: 12px;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: #33ff99;
+}
+body.terminal p,
+body.terminal li { color: var(--text); line-height: 1.55; }
+
+body.terminal a { color: #33ff99; text-decoration: none; border-bottom: 1px dashed #1a7a44; }
+body.terminal a:hover { color: #00ff66; }
+
+body.terminal table { width: 100%; border-collapse: collapse; color: var(--text); }
+body.terminal th {
+  font-size: 10px; letter-spacing: .16em; text-transform: uppercase;
+  color: #1a7a44; text-align: left; padding: 8px 10px;
+  border-bottom: 1px solid #1a7a44;
+}
+body.terminal td { padding: 8px 10px; border-bottom: 1px solid rgba(20, 83, 45, .6); font-size: 12px; }
+body.terminal tr:hover td { background: rgba(0, 255, 102, .05); }
+
+body.terminal hr {
+  border: 0;
+  border-top: 1px dashed #1a7a44;
+  margin: 12px 0;
+}
+
+body.terminal code,
+body.terminal pre {
+  font-family: var(--mono);
+  color: #00ff66;
+  background: rgba(0, 255, 102, .05);
+  border: 1px solid #14532d;
+  border-radius: 0;
+}
+
+body.terminal .warn,
+body.terminal .warning { color: #d4ff4d; }
+body.terminal .crit,
+body.terminal .critical,
+body.terminal .error,
+body.terminal .down { color: #ff5252; }
+body.terminal .ok,
+body.terminal .up,
+body.terminal .running,
+body.terminal .live { color: #00ff66; }
+body.terminal .info { color: #33ff99; }
+
+/* ── Flow-bg toggle button (styles injected by flow-bg.js) ── */
+
+body.terminal #flowBgToggle {
+  border: 1px solid #1a7a44;
+  border-radius: 0;
+  background: rgba(0, 0, 0, .88);
+  color: #1a7a44;
+  padding: 6px 12px;
+  letter-spacing: .12em;
+  backdrop-filter: none;
+  text-shadow: none;
+}
+body.terminal #flowBgToggle.on {
+  border-color: #00ff66;
+  color: #00ff66;
+  box-shadow: inset 0 0 0 1px #00ff66, 0 0 10px rgba(0, 255, 102, .25);
+  text-shadow: 0 0 8px rgba(0, 255, 102, .5);
+}
+
+body.terminal #flowBgCanvas { opacity: .05; mix-blend-mode: screen; }
+
+/* ── Scrollbar / selection ────────────────────────────────── */
+
+body.terminal::-webkit-scrollbar { width: 10px; height: 10px; }
+body.terminal::-webkit-scrollbar-track { background: #000000; border-left: 1px solid #14532d; }
+body.terminal::-webkit-scrollbar-thumb { background: #1a7a44; border-radius: 0; border: 2px solid #000000; }
+body.terminal::-webkit-scrollbar-thumb:hover { background: #00ff66; }
+
+body.terminal ::selection { background: #00ff66; color: #000000; }
+
+body.terminal :focus-visible { outline: 1px dashed #00ff66; outline-offset: 2px; }
+
+/* ── Responsive ───────────────────────────────────────────── */
+
+@media (max-width: 720px) {
+  body.terminal .cards { grid-template-columns: 1fr; }
+  body.terminal h1 { font-size: 18px; letter-spacing: 5px; }
+  body.terminal header { padding: 12px 14px 10px; }
+  body.terminal main { padding: 4px 14px 22px; }
+  body.terminal .stats-row { gap: 12px; }
+}
+
+/* ── 减动效：全部动画/闪烁/滚动带关闭 ─────────────────────── */
+
+@media (prefers-reduced-motion: reduce) {
+  body.terminal .scanlines,
+  body.terminal::after,
+  body.terminal #footer-info::after { animation: none !important; }
+  body.terminal .scanlines { opacity: .82; }
+  body.terminal * { animation-duration: .001ms !important; animation-iteration-count: 1 !important; transition: none !important; }
+  body.terminal #flowBgCanvas { display: none; }
+}
