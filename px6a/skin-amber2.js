@@ -13,7 +13,13 @@
   if (!document.body) document.addEventListener("DOMContentLoaded", boot);
   else boot();
 
-  function boot() {
+    function hUp(h) {
+    return !h.error && (h.bots || []).some(function (b) {
+      return b.process && b.process.state !== "dead";
+    });
+  }
+
+function boot() {
     document.body.classList.add("px6-amber");
 
     /* ---------- 状态 ---------- */
@@ -333,12 +339,12 @@
         var rate = hostRate(h);
         var row = el("div", "px-host");
         row.appendChild(el("div", "px-host-name", h.short));
-        row.appendChild(usageBar(rate, bs.length ? up / bs.length : (hUp(h) ? 1 : 0)));
+        row.appendChild(usageBar(rate, bs.length ? up / bs.length : (hostUp(h) ? 1 : 0)));
         row.appendChild(tailPct(rate, "px-tail"));
         var meta = el("div", "px-host-meta");
         meta.appendChild(el("b", null, up + "/" + bs.length + " bots"));
-        meta.appendChild(el("span", h.error ? "bad" : (hUp(h) ? "ok" : "warn"),
-          "  ·  " + (h.error ? "error" : (hUp(h) ? "reachable" : "partial"))));
+        meta.appendChild(el("span", h.error ? "bad" : (hostUp(h) ? "ok" : "warn"),
+          "  ·  " + (h.error ? "error" : (hostUp(h) ? "reachable" : "partial"))));
         row.appendChild(meta);
         box.appendChild(row);
       });
