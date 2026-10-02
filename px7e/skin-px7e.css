@@ -1,0 +1,408 @@
+/* ============================================================
+   PX7 · 变体 E「像素打印风 / 灰白纸感」 px7-e
+   骨架 = PX6-C「冰蓝」版式 1:1 复刻（FLEET 状态行 / HOSTS /
+         USAGE / BOTS 像素图标矩阵 / drilldown / 条尾百分比）
+   差异 = 在灰白纸感基础上叠加**针式打印半调网点**：
+         · 页面底 = 灰白 + 3×3 点阵（针式打印机纸纹）
+         · 条形条 = 轨道色 4×4 棋盘格蒙版覆盖 → 50% 半调网点
+         · 空轨道 = 极淡网点（打印质感）
+         · 全灰阶等宽字（针式打印机只有等宽点阵字）
+         · 面板 = 打印纸 #F7F7F5（比 --panel 暖一点）
+         · 状态行边框 = 虚线（打印边）
+         配色语义 = 菊黄 #FFB300（危险）→ 深灰 #3A3F46（健康）
+         5 档色阶离散取值：#FFB300 / #C2955C / #6E747C / #C9CDD2 / #3A3F46
+         轨道 #10151C（保持深，保深灰条的可辨识度）
+   ============================================================ */
+
+/* ---------- 原版皮肤 DOM 全部让位 ---------- */
+body.px7-e > header,
+body.px7-e > main,
+body.px7-e > footer,
+body.px7-e > #free-quota,
+body.px7-e > .scanlines,
+body.px7-e > #flowBgCanvas,
+body.px7-e > #flowBgToggle { display: none !important; }
+
+/* ---------- 皮肤级变量 ---------- */
+body.px7-e {
+  --bg:      #ECEDEF;          /* 浅灰白纸感底 */
+  --panel:   #F4F4F6;          /* 面板（CSS 契约；实际面板用 #F7F7F5 打印纸） */
+  --panel2:  #FFFFFF;          /* hover / 提亮 */
+  --track:   #10151C;          /* 条形暗轨道（保持深） */
+  --edge:    #D8DADD;          /* 1px 细线 */
+  --edge2:   #C6CACC;
+  --txt:     #26282B;          /* 深灰近黑 */
+  --dim:     #7A7F86;
+  --dim2:    #A0A4AA;
+  --accent:  #3A3F46;          /* 主 accent = 深灰（健康 / LIVE） */
+  --accent2: #6E747C;
+  --ok:      #3A3F46;
+  --warn:    #C2955C;          /* aging = 桔灰 */
+  --bad:     #FFB300;          /* stale / offline = 菊黄（危险端） */
+  --proc:    #3A3F46;
+  --mono: 'JetBrains Mono', ui-monospace, 'SF Mono', Consolas, monospace;
+  --pix:  'JetBrains Mono', ui-monospace, monospace; /* 变体 E：pixel 字体退化到等宽 */
+  --cjk:  system-ui, -apple-system, 'PingFang SC', 'Microsoft YaHei', sans-serif;
+
+  margin: 0;
+  background-color: var(--bg);
+  background-image: radial-gradient(rgba(38,40,43,.13) 0.6px, transparent 0.7px);
+  background-size: 3px 3px;
+  color: var(--txt);
+  font: 12px/1.55 var(--mono), var(--cjk);
+  min-height: 100vh;
+}
+
+/* 变体 E：删除 ::before / ::after 的光晕和扫描线 */
+body.px7-e::before { content: none; display: none; }
+body.px7-e::after  { content: none; display: none; }
+
+#px6-root,
+#px6-root * { box-sizing: border-box; }
+
+#px6-root {
+  position: relative; z-index: 2;
+  max-width: 880px; margin: 0 auto;
+  padding: 22px 18px 54px;
+}
+
+/* ============================================================
+   顶部状态行  FLEET · HH:MM:SS · 3 hosts · 9 bots · ● live
+   ● LIVE = 深灰 #3A3F46（健康语义，不再用绿/青）
+   变体 E：虚线边框（打印边）+ 打印纸色底
+   ============================================================ */
+.px6-top { display: flex; align-items: baseline; gap: 12px; flex-wrap: wrap; }
+.px6-status {
+  display: flex; align-items: center; gap: 9px;
+  font: 700 11px/1 var(--mono); letter-spacing: .18em;
+  color: var(--txt); text-transform: uppercase;
+  padding: 9px 12px;
+  background: #FAFAF8;
+  border: 1px dashed var(--edge2);
+  box-shadow: 0 1px 0 rgba(38, 40, 43, .04);
+}
+.px6-status i { font-style: normal; color: var(--dim2); }
+.px6-status b { font-weight: 700; color: var(--txt); }
+.px6-clock {
+  color: var(--accent); letter-spacing: .2em;
+}
+.px6-live { color: var(--accent); font-weight: 700; }
+.px6-live.warn { color: var(--warn); }
+.px6-live.bad  { color: var(--bad); }
+.px6-snap {
+  margin-left: auto;
+  font: 400 10px/1 var(--mono); letter-spacing: .1em; color: var(--dim2);
+}
+
+/* ============================================================
+   Section 骨架：标题 大写+宽字距 · 右侧细值 · 1px 细线
+   变体 E：--pix 已重定向到 var(--mono)，且去掉 -webkit-font-smoothing:none
+   ============================================================ */
+.px6-sec { margin-top: 26px; }
+.px6-sechead {
+  display: flex; align-items: baseline; gap: 11px;
+  padding-bottom: 7px; margin-bottom: 12px;
+  border-bottom: 1px solid var(--edge);
+}
+.px6-secname {
+  font: 700 10px/1 var(--mono);
+  letter-spacing: .34em; text-transform: uppercase; color: var(--txt);
+}
+.px6-secname::before {
+  content: ""; display: inline-block;
+  width: 4px; height: 4px; margin-right: 8px; vertical-align: 1px;
+  background: var(--accent);
+  border-radius: 50%;
+}
+.px6-secsub {
+  font: 400 9.5px/1 var(--mono); letter-spacing: .14em;
+  color: var(--dim); text-transform: uppercase;
+}
+.px6-secrval {
+  margin-left: auto;
+  font: 700 10px/1 var(--mono); letter-spacing: .12em; color: var(--dim);
+  text-align: right;
+}
+.px6-secrval em { font-style: normal; color: var(--txt); }
+.px6-secrval .ok  { color: var(--accent); }
+.px6-secrval .bad { color: var(--bad); }
+
+/* ============================================================
+   条：暗轨道 #10151C + 50% 半调网点填充 · 高 16px · 条尾 <b> 百分比
+   条色 = 成功率 5 档离散色阶；条尾粗体、字色跟条色一致（JS 内联）
+   变体 E：
+     · 轨道叠一层更淡的网点（打印质感）
+     · 条尾百分比重（800 12px）
+     · ::after 叠 4×4 棋盘格轨道色蒙版 → 视觉 50% 密度的 dithered 网点
+   ============================================================ */
+.px6-bar { display: flex; align-items: center; gap: 0; min-width: 0; flex: 1 1 auto; }
+.px6-track {
+  display: flex; align-items: center;
+  position: relative;
+  height: 16px; width: 100%;
+  background-color: var(--track);
+  background-image: radial-gradient(rgba(233,235,238,.16) 0.5px, transparent 0.6px);
+  background-size: 3px 3px;
+  border: 1px solid #05080C;
+}
+.px6-fill {
+  display: block; height: 100%;
+  min-width: 2px;
+  position: relative;
+}
+.px6-fill::after {
+  content: "";
+  position: absolute; inset: 0;
+  pointer-events: none;
+  background: repeating-conic-gradient(#10151C 0% 25%, transparent 0% 50%) 0 0 / 4px 4px;
+}
+.px6-pct {
+  flex: 0 0 auto;
+  margin-left: 7px;
+  font: 800 12px/1 var(--mono);
+  letter-spacing: .06em;
+}
+.px6-pct .ps { font-size: 9px; opacity: .7; }
+
+/* ============================================================
+   HOSTS section
+   ============================================================ */
+.px6-hosts { display: flex; flex-direction: column; gap: 10px; }
+.px6-host {
+  display: grid;
+  grid-template-columns: 74px 1fr 96px;
+  gap: 14px; align-items: center;
+}
+.px6-host .lbl {
+  font: 700 13px/1 var(--mono); letter-spacing: .06em; color: var(--txt);
+}
+.px6-host .lbl span { color: var(--dim2); font-size: 10px; letter-spacing: .1em; }
+.px6-host .meta {
+  font: 400 9.5px/1.3 var(--mono); color: var(--dim2); letter-spacing: .06em;
+  text-align: right; white-space: nowrap;
+}
+
+/* ============================================================
+   USAGE 总览
+   ============================================================ */
+.px6-usage { display: flex; flex-direction: column; gap: 9px; }
+.px6-usage .px6-row { cursor: pointer; }
+.px6-row {
+  display: grid;
+  grid-template-columns: 116px minmax(0, 1fr) 122px;
+  gap: 13px; align-items: center;
+  padding: 3px 4px;
+  transition: background .12s;
+}
+.px6-row:hover { background: rgba(38, 40, 43, .055); }
+.px6-rlbl {
+  font: 700 11px/1.25 var(--mono); color: var(--txt);
+  letter-spacing: .04em; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+}
+.px6-rlbl em { font-style: normal; color: var(--dim); font-weight: 400; }
+.px6-rval {
+  font: 400 9.5px/1.3 var(--mono); color: var(--dim);
+  text-align: right; letter-spacing: .04em; white-space: nowrap;
+}
+.px6-rval b { color: var(--dim); font-weight: 700; }
+
+.px6-legend {
+  margin-top: 11px; padding-top: 8px; border-top: 1px dashed var(--edge);
+  display: flex; align-items: center; gap: 14px; flex-wrap: wrap;
+  font: 400 9px/1 var(--mono); letter-spacing: .1em; color: var(--dim2);
+  text-transform: uppercase;
+}
+.px6-legend .sw {
+  display: inline-block; width: 16px; height: 7px; margin-right: 5px;
+  vertical-align: -1px;
+}
+
+/* ============================================================
+   BOTS 像素图标矩阵
+   菊黄只给低成功率 bot（.px6-cell.low）的边框 / 名字 / 角点
+   变体 E：面板 = 打印纸 #F7F7F5；hover = 纯白 + 只留 border
+   ============================================================ */
+.px6-matrix {
+  display: grid;
+  grid-template-columns: repeat(9, minmax(0, 1fr));
+  gap: 8px;
+}
+.px6-cell {
+  display: flex; flex-direction: column; align-items: center; gap: 6px;
+  padding: 10px 3px 9px;
+  background: #F7F7F5;
+  border: 1px solid var(--edge);
+  cursor: pointer;
+  transition: background .12s, border-color .12s, transform .06s, filter .12s;
+  position: relative;
+}
+.px6-cell:hover {
+  background: #FFFFFF;
+  border-color: var(--txt);
+}
+.px6-cell:active { transform: translateY(1px); }
+.px6-cell .dot {
+  position: absolute; top: 5px; right: 5px;
+  width: 4px; height: 4px; background: var(--dim2);
+}
+.px6-cell.dim .dot { background: #C9CDD2; }
+/* 低成功率（band 0/1）：边框 + 名字 + 角点 → 菊黄 */
+.px6-cell.low { border-color: #FFB300; box-shadow: inset 0 0 0 1px rgba(255, 179, 0, .35); }
+.px6-cell.low .dot { background: #FFB300; }
+.px6-cell.low .px6-cname { color: #C98900; }
+.px6-face {
+  width: 44px; height: 44px; display: block;
+  image-rendering: pixelated;
+  shape-rendering: crispEdges;
+}
+.px6-cname {
+  max-width: 100%;
+  font: 700 9px/1.2 var(--mono); letter-spacing: .05em;
+  color: var(--dim); text-align: center;
+  overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+}
+.px6-cell:hover .px6-cname { color: var(--txt); }
+.px6-crate { font: 800 10px/1 var(--mono); letter-spacing: .05em; }
+.px6-csub {
+  font: 400 8px/1 var(--mono); letter-spacing: .06em; color: var(--dim2);
+}
+
+/* ============================================================
+   Drilldown 详情页
+   变体 E：面板 = 打印纸 #F7F7F5；--pix → var(--mono)；--pix 字去掉 -webkit-font-smoothing
+   ============================================================ */
+.px6-detail { animation: px6in .14s ease-out; }
+@keyframes px6in { from { opacity: 0; transform: translateY(4px); } to { opacity: 1; transform: none; } }
+
+.px6-back {
+  display: inline-flex; align-items: center; gap: 5px;
+  background: #F7F7F5; border: 1px solid var(--edge2);
+  color: var(--dim); cursor: pointer;
+  font: 700 10px/1 var(--mono); letter-spacing: .18em;
+  padding: 6px 10px; margin-bottom: 12px;
+  transition: .12s;
+}
+.px6-back:hover { color: var(--accent); border-color: var(--accent); }
+.px6-back:focus-visible { outline: 1px solid var(--accent); outline-offset: 2px; }
+
+.px6-dhead {
+  display: flex; align-items: center; gap: 14px;
+  padding: 13px 14px;
+  background: #FAFAF8;
+  border: 1px solid var(--edge2);
+}
+.px6-dface { width: 52px; height: 52px; flex: 0 0 auto; image-rendering: pixelated; }
+.px6-detail .px6-row { grid-template-columns: 186px minmax(0, 1fr) 104px; }
+.px6-dmeta { min-width: 0; flex: 1 1 auto; }
+.px6-dname {
+  font: 700 15px/1.2 var(--mono); letter-spacing: .06em; color: var(--txt);
+  overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+}
+.px6-dsub {
+  margin-top: 4px;
+  font: 400 10px/1.4 var(--mono); letter-spacing: .08em; color: var(--dim);
+  overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+}
+.px6-dsub i { font-style: normal; color: var(--dim2); }
+.px6-drate {
+  flex: 0 0 auto;
+  font: 700 24px/1 var(--mono); letter-spacing: .02em;
+  padding: 8px 12px; border: 1px solid var(--edge2); background: #FFFFFF;
+}
+.px6-drate span { font-size: 13px; opacity: .7; }
+
+.px6-pg { margin-bottom: 14px; }
+.px6-pgname {
+  display: flex; align-items: center; gap: 8px;
+  margin: 11px 0 7px;
+  font: 700 9.5px/1 var(--mono); letter-spacing: .28em; text-transform: uppercase;
+  color: var(--accent);
+}
+.px6-pgname::before {
+  content: ""; width: 5px; height: 5px; background: currentColor;
+}
+.px6-pgname i {
+  font-style: normal; font-family: var(--mono); font-weight: 400;
+  letter-spacing: .08em; color: var(--dim2);
+}
+.px6-pgname em {
+  margin-left: auto; font-style: normal; font-family: var(--mono); font-weight: 400;
+  letter-spacing: .06em; color: var(--dim);
+}
+
+.px6-empty {
+  padding: 14px; border: 1px dashed var(--edge);
+  color: var(--dim2); font: 400 10px/1.6 var(--mono); letter-spacing: .06em;
+  text-align: center; background: #F7F7F5;
+}
+
+/* 历史 usage：三段并排，段间 2px 缝 */
+.px6-hist {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 2px;
+  background: transparent;
+}
+.px6-hseg {
+  display: flex; flex-direction: column; gap: 6px;
+  padding: 9px 10px;
+  background: #F7F7F5;
+  border: 1px solid var(--edge);
+}
+.px6-hlbl {
+  font: 700 9.5px/1 var(--mono); letter-spacing: .2em; color: var(--txt);
+}
+.px6-htrack {
+  display: flex; align-items: center;
+  height: 16px; width: 100%;
+  background-color: var(--track);
+  background-image: radial-gradient(rgba(233,235,238,.16) 0.5px, transparent 0.6px);
+  background-size: 3px 3px;
+  border: 1px solid #05080C;
+}
+.px6-hfill {
+  display: block; height: 100%; min-width: 2px;
+  position: relative;
+}
+.px6-hfill::after {
+  content: "";
+  position: absolute; inset: 0;
+  pointer-events: none;
+  background: repeating-conic-gradient(#10151C 0% 25%, transparent 0% 50%) 0 0 / 4px 4px;
+}
+.px6-hc {
+  display: flex; justify-content: space-between; gap: 6px;
+  font: 400 9px/1 var(--mono); letter-spacing: .05em; color: var(--dim);
+}
+.px6-hc b { color: var(--txt); font-weight: 700; }
+
+/* ============================================================
+   footer
+   ============================================================ */
+.px6-foot {
+  margin-top: 30px; padding-top: 10px;
+  border-top: 1px solid var(--edge);
+  display: flex; gap: 12px; flex-wrap: wrap;
+  font: 400 9px/1.5 var(--mono); letter-spacing: .08em; color: var(--dim2);
+}
+.px6-foot span { white-space: nowrap; }
+
+/* ============================================================
+   响应式
+   ============================================================ */
+@media (max-width: 780px) {
+  #px6-root { padding: 16px 12px 44px; }
+  .px6-matrix { grid-template-columns: repeat(5, minmax(0, 1fr)); }
+  .px6-row { grid-template-columns: 92px minmax(0, 1fr) 92px; gap: 9px; }
+  .px6-usage .px6-row { grid-template-columns: 80px minmax(0, 1fr) 86px; }
+  .px6-detail .px6-row { grid-template-columns: 122px minmax(0, 1fr) 92px; }
+  .px6-host { grid-template-columns: 60px 1fr 78px; gap: 10px; }
+  .px6-snap { display: none; }
+}
+@media (max-width: 480px) {
+  .px6-matrix { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .px6-row,
+  .px6-usage .px6-row,
+  .px6-detail .px6-row { grid-template-columns: 96px minmax(0, 1fr) 78px; }
+  .px6-dhead { flex-wrap: wrap; }
+}

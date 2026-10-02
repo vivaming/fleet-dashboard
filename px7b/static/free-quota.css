@@ -1,0 +1,8 @@
+.free-quota-section { padding: 8px 22px 4px; }
+.free-quota-head { font-size: 11px; color: var(--dim); margin-bottom: 6px; }
+.fq-row { display: flex; align-items: center; gap: 8px; margin-bottom: 3px; white-space: nowrap; font-size: 12px; }
+.fq-row b { flex: 0 0 auto; }
+.fq-limit { font-size: 11px; color: var(--dim); flex: 0 1 auto; overflow: hidden; text-overflow: ellipsis; }
+.fq-track { flex: 1 0 60px; max-width: 60px; height: 6px; border: 1px solid #ffffff22; border-radius: 3px; overflow: hidden; background: #ffffff08; }
+.fq-fill { height: 100%; }
+.fq-nums { flex: 0 0 auto; font-family: var(--mono); font-size: 11px; color: var(--dim); margin-left: auto; }
