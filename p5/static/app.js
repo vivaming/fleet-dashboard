@@ -37,10 +37,10 @@ const HATS = {
   ],
 };
 const HAT_COLORS = {
-  "#": "#3bd6c6", // 帽体：霓虹青
-  C: "#ffd23f",   // 帽体变体：霓虹紫
+  "#": "#35e0e0", // 帽体：霓虹青
+  C: "#9d6bff",   // 帽体变体：霓虹紫
   E: "#0b0f1e",   // 帽带（暗）
-  S: "#ffd23f",   // 星徽：琥珀
+  S: "#ffc857",   // 星徽：琥珀
   P: "#ff5d73",   // 帽翼：品红红
   A: "#4ade80",   // 帽尖/装饰：绿
 };
@@ -52,7 +52,7 @@ function hatSVG(kind) {
     for (let x = 0; x < row.length; x++) {
       const ch = row[x];
       if (ch === ".") continue;
-      const color = HAT_COLORS[ch] || "#3bd6c6";
+      const color = HAT_COLORS[ch] || "#35e0e0";
       rects += `<rect x="${x}" y="${y}" width="1.02" height="1.02" fill="${color}"/>`;
     }
   });
@@ -645,7 +645,7 @@ function agentSessionSig(host, bot) {
 function renderAgentSession(host, bot, row, card) {
   row.style.display = "";
   row.textContent = "";
-  const colors = {normal: "var(--accent, #3bd6c6)", failed: "#ef4444", timeout: "#ef4444", unknown: "#94a3b8"};
+  const colors = {normal: "var(--accent, #53cbbb)", failed: "#ef4444", timeout: "#ef4444", unknown: "#94a3b8"};
   const cov = bot.agents_completed_coverage || {};
   row.appendChild(el("div", "stat-line", `退出/结束记录 · 近4h · ${bot.agents_completed_4h?.length ?? "未知"} 条（非精确任务数）`));
   if (Object.values(cov).some(v => v !== "observed" && v !== "complete")) {
