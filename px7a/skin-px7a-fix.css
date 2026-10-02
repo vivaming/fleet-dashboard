@@ -1,0 +1,80 @@
+/* PX7A-FIX v2 — ①清缝合怪（旧 UI 全隐藏）②白底三灰一菊黄兜底 ③实时 update 动画 */
+/* ① 缝合怪清除：旧 app.js 渲染的所有宿主元素全部隐藏，页面只留 px7 自己的 root */
+body.px7-a > #main,
+body.px7-a > header,
+body.px7-a > footer,
+body.px7-a > #stale-banner,
+body.px7-a > #agent-bar,
+body.px7-a > #alert-marquee,
+body.px7-a > #free-quota,
+body.px7-a > #flowBgToggle,
+body.px7-a > .scanlines,
+body.px7-a > .host-section,
+body.px7-a > .stats-row,
+body.px7-a > .title-row { display: none !important; }
+
+/* ② 全页白底兜底（html + body 双保险，覆盖一切旧背景） */
+html, body.px7-a {
+  background: #ECEDEF !important;
+}
+body.px7-a {
+  color: #26282B;
+  min-height: 100vh;
+}
+
+/* ③ 实时 update 动画 */
+/* 3a. LIVE 徽章呼吸脉冲（深灰实心圆 + 扩散光环） */
+@keyframes px7pulse {
+  0%   { box-shadow: 0 0 0 0 rgba(58,63,70,.45); }
+  70%  { box-shadow: 0 0 0 9px rgba(58,63,70,0); }
+  100% { box-shadow: 0 0 0 0 rgba(58,63,70,0); }
+}
+.px7-status .px7-live-dot {
+  display: inline-block; width: 9px; height: 9px;
+  background: #3A3F46; border-radius: 50%;
+  animation: px7pulse 1.8s ease-out infinite;
+}
+
+/* 3b. 时钟走秒：秒数字段每次更新轻微上翻淡入 */
+@keyframes px7tick {
+  0%   { opacity: .25; transform: translateY(4px); }
+  100% { opacity: 1;   transform: translateY(0); }
+}
+.px7-status .px7-clock { animation: px7tick .45s ease-out; }
+
+/* 3c. 条形 shimmer：填充条上有扫光缓慢掠过（数据活着的感觉） */
+.px7-row .px7-fill { position: relative; overflow: hidden; }
+.px7-row .px7-fill::after {
+  content: '';
+  position: absolute; top: 0; bottom: 0; left: -30%;
+  width: 30%;
+  background: linear-gradient(90deg, rgba(255,255,255,0), rgba(255,255,255,.5), rgba(255,255,255,0));
+  animation: px7sweep 2.6s linear infinite;
+}
+@keyframes px7sweep {
+  0%   { left: -30%; }
+  100% { left: 105%; }
+}
+/* 菊黄条上扫光换深灰半透明（白光在黄底上看不见） */
+.px7-row .px7-fill.lv0::after,
+.px7-row .px7-fill.lv1::after {
+  background: linear-gradient(90deg, rgba(58,63,70,0), rgba(58,63,70,.28), rgba(58,63,70,0));
+}
+
+/* 3d. 数据变化闪烁：条宽度/百分比更新瞬间闪一下提示「有新数据」 */
+@keyframes px7blink {
+  0%   { filter: brightness(1.55); }
+  100% { filter: brightness(1); }
+}
+.px7-row .px7-fill.px7-updated { animation: px7blink .7s ease-out; }
+.px7-val.px7-updated { animation: px7blink .7s ease-out; }
+
+/* 3e. 尊重系统减动画偏好 */
+@media (prefers-reduced-motion: reduce) {
+  .px7-status .px7-live-dot,
+  .px7-status .px7-clock,
+  .px7-row .px7-fill::after,
+  .px7-row .px7-fill.px7-updated,
+  .px7-val.px7-updated { animation: none !important; }
+  .px7-row .px7-fill::after { display: none; }
+}

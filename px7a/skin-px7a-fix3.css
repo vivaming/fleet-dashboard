@@ -1,0 +1,28 @@
+/* PX7A-FIX v4 — sweep 挂真实类 .px6-fill/.px6-hfill（根容器是 .px6-main 不是 .px6-root） */
+@keyframes px7sweep {
+  0%   { left: -30%; }
+  100% { left: 105%; }
+}
+body.px7-a .px6-fill,
+body.px7-a .px6-hfill {
+  position: relative; overflow: hidden;
+}
+body.px7-a .px6-fill::after,
+body.px7-a .px6-hfill::after {
+  content: '';
+  position: absolute; top: 0; bottom: 0; left: -30%;
+  width: 30%;
+  background: linear-gradient(90deg, rgba(255,255,255,0), rgba(255,255,255,.5), rgba(255,255,255,0));
+  animation: px7sweep 2.6s linear infinite;
+}
+/* 菊黄/桔灰条上扫光改深灰 */
+body.px7-a .px6-fill.lv0::after,
+body.px7-a .px6-fill.lv1::after,
+body.px7-a .px6-hfill.lv0::after,
+body.px7-a .px6-hfill.lv1::after {
+  background: linear-gradient(90deg, rgba(58,63,70,0), rgba(58,63,70,.28), rgba(58,63,70,0));
+}
+@media (prefers-reduced-motion: reduce) {
+  body.px7-a .px6-fill::after,
+  body.px7-a .px6-hfill::after { display: none; }
+}

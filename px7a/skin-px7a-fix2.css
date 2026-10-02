@@ -1,0 +1,58 @@
+/* PX7A-FIX v3 — 修正选择器：lane 用的类名是 px6-root/px6-main/px6-live/px6-clock 系
+   （沿用了 px6c 骨架未改名），动画与观测必须对齐真实类名 */
+
+/* 时钟走秒动画挂真实类 px6-clock */
+@keyframes px7tick {
+  0%   { opacity: .25; transform: translateY(4px); }
+  100% { opacity: 1;   transform: translateY(0); }
+}
+body.px7-a .px6-clock { display: inline-block; animation: px7tick .45s ease-out; }
+
+/* LIVE 呼吸脉冲挂真实类 px6-live（内含 dot） */
+@keyframes px7pulse {
+  0%   { box-shadow: 0 0 0 0 rgba(58,63,70,.45); }
+  70%  { box-shadow: 0 0 0 9px rgba(58,63,70,0); }
+  100% { box-shadow: 0 0 0 0 rgba(58,63,70,0); }
+}
+body.px7-a .px6-live { display: inline-block; border-radius: 50%; animation: px7pulse 1.8s ease-out infinite; }
+
+/* 条 shimmer + 数据变化闪烁：真实行结构未知，按 px6-root 内通用条填充挂 */
+@keyframes px7sweep {
+  0%   { left: -30%; }
+  100% { left: 105%; }
+}
+body.px7-a .px6-root .bar-fill,
+body.px7-a .px6-root .fill,
+body.px7-a .px6-root [class*="fill"] {
+  position: relative; overflow: hidden;
+}
+body.px7-a .px6-root .bar-fill::after,
+body.px7-a .px6-root .fill::after,
+body.px7-a .px6-root [class*="fill"]::after {
+  content: '';
+  position: absolute; top: 0; bottom: 0; left: -30%;
+  width: 30%;
+  background: linear-gradient(90deg, rgba(255,255,255,0), rgba(255,255,255,.5), rgba(255,255,255,0));
+  animation: px7sweep 2.6s linear infinite;
+}
+body.px7-a .px6-root .bar-fill.lv0::after,
+body.px7-a .px6-root .bar-fill.lv1::after,
+body.px7-a .px6-root [class*="fill"].lv0::after,
+body.px7-a .px6-root [class*="fill"].lv1::after {
+  background: linear-gradient(90deg, rgba(58,63,70,0), rgba(58,63,70,.28), rgba(58,63,70,0));
+}
+
+@keyframes px7blink {
+  0%   { filter: brightness(1.55); }
+  100% { filter: brightness(1); }
+}
+body.px7-a .px7-updated { animation: px7blink .7s ease-out; }
+
+@media (prefers-reduced-motion: reduce) {
+  body.px7-a .px6-clock,
+  body.px7-a .px6-live,
+  body.px7-a .px7-updated { animation: none !important; }
+  body.px7-a .px6-root .bar-fill::after,
+  body.px7-a .px6-root .fill::after,
+  body.px7-a .px6-root [class*="fill"]::after { display: none; }
+}
