@@ -233,9 +233,8 @@ function boot() {
     }
     /* 9 个 bot 图案去重：同图案的 bot 强制换配色 */
     function faceUnique(bot, seen) {
-      var start = hashCode(bot.id || "") % COMBOS;
-      var c = start;
-      while (seen[c]) c = (c + 1) % COMBOS;
+      var c = hashCode(bot.id || "") % COMBOS;
+      if (seen[c]) c = (c + 7) % COMBOS;
       seen[c] = 1;
       var pat = FACES[FACE_KEYS[c % FACE_KEYS.length]];
       var pal = PALES[Math.floor(c / FACE_KEYS.length) % PALES.length];
