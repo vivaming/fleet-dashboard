@@ -1,0 +1,286 @@
+/* ============================================================
+   PX6 · variant D「灰白」(px6-mono)
+   lane D · fleet-skins/wd_px6d
+   黑白灰 + 唯一绿给成功率。白描边像素脸。最克制：
+   无辉光、无扫描线、无动画背景；只有两处运动——
+   LIVE 圆点脉冲 与 < BACK 光标闪烁。
+   成功色阶：0% 红 → 25% 橙 → 50% 黄 → 100% 绿，向灰去饱和到 38%。
+   ============================================================ */
+
+body.px6-mono {
+  --bg:      #050708;
+  --panel:   #0a0d10;
+  --panel-2: #10151a;
+  --accent:  #2ecc71;
+  --mono: 'JetBrains Mono','Pixeloid Sans',ui-monospace,'SF Mono',Menlo,Consolas,monospace;
+  --line:    #ffffff10;
+  --line-2:  #ffffff22;
+  --track:   #161a1f;
+  --fg:      #eceff2;
+  --fg-mid:  #9aa4ab;
+  --fg-dim:  #5d676e;
+  --ink:     #f2f5f7;
+  --pix:  'Pixeloid Sans','JetBrains Mono',ui-monospace,monospace;
+}
+/* 成功率色阶（JS 端生成）：0% 红 → 25% 橙 → 50% 黄 → 100% 绿，
+   全部向自身去饱和到 38%，落在灰白基底里但方向仍可读。 */
+
+html.px6-mono,
+body.px6-mono {
+  margin: 0; padding: 0;
+  background: var(--bg);
+  color: var(--fg);
+  font-family: system-ui,-apple-system,"PingFang SC","Microsoft YaHei",sans-serif;
+  font-size: 13px; line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* app.js 的宿主容器存在但不显示（app.js 需要它们不报错） */
+body.px6-mono > header,
+body.px6-mono > main,
+body.px6-mono > #free-quota,
+body.px6-mono > footer,
+body.px6-mono > .scanlines { display: none !important; }
+
+body.px6-mono { padding: 22px 18px 60px; }
+
+body.px6-mono ::selection { background: var(--accent); color: #04110a; }
+body.px6-mono::-webkit-scrollbar { width: 8px; height: 8px; }
+body.px6-mono::-webkit-scrollbar-track { background: transparent; }
+body.px6-mono::-webkit-scrollbar-thumb { background: #ffffff1a; }
+body.px6-mono::-webkit-scrollbar-thumb:hover { background: #ffffff33; }
+
+.px6 { max-width: 880px; margin: 0 auto; }
+.px6 .m { font-family: var(--mono); font-variant-numeric: tabular-nums; }
+.px6 .p { font-family: var(--pix); }
+.px6 .dim { color: var(--fg-dim); }
+
+/* ── 顶部状态行 ─────────────────────────────── */
+.px6-top {
+  display: flex; align-items: center; gap: 8px;
+  font-family: var(--mono); font-size: 11.5px;
+  letter-spacing: .12em; color: var(--fg-mid);
+  padding-bottom: 10px; margin-bottom: 4px;
+  border-bottom: 1px solid var(--line-2);
+}
+.px6-top .sep { color: var(--fg-dim); opacity: .55; }
+.px6-top .t-name { color: var(--fg); letter-spacing: .22em; }
+.px6-top .t-live { display: flex; align-items: center; gap: 6px; color: var(--accent); }
+.px6-top .dot {
+  display: inline-block; width: 7px; height: 7px;
+  background: var(--accent); animation: px6pulse 1.9s ease-in-out infinite;
+}
+@keyframes px6pulse { 0%,100% { opacity: 1; } 50% { opacity: .32; } }
+
+/* ── section ────────────────────────────────── */
+.px6-sec { margin-top: 26px; }
+.px6-head {
+  display: flex; align-items: baseline; gap: 10px;
+  font-family: var(--mono); font-size: 10.5px;
+  letter-spacing: .28em; text-transform: uppercase;
+  color: var(--fg-mid);
+  padding-bottom: 7px; margin-bottom: 13px;
+  border-bottom: 1px solid var(--line-2);
+}
+.px6-head .ht { color: var(--fg); }
+.px6-head .hv { color: var(--fg-mid); }
+.px6-head .hr { margin-left: auto; color: var(--fg-dim); letter-spacing: .18em; }
+
+.px6-foot {
+  margin-top: 30px; padding-top: 10px;
+  border-top: 1px solid var(--line);
+  font-family: var(--mono); font-size: 10px;
+  letter-spacing: .16em; color: var(--fg-dim);
+  display: flex; gap: 10px; flex-wrap: wrap;
+}
+
+/* ── HOSTS ──────────────────────────────────── */
+.px6-hrows { display: flex; flex-direction: column; gap: 11px; }
+.px6-hrow { display: flex; align-items: center; gap: 13px; }
+.px6-hrow .hn {
+  flex: 0 0 auto; min-width: 84px;
+  font-family: var(--mono); font-size: 13px;
+  color: var(--fg); letter-spacing: .04em;
+}
+.px6-hrow .hb { flex: 1 1 auto; }
+.px6-hrow .hm {
+  flex: 0 0 auto; font-family: var(--mono); font-size: 10.5px;
+  color: var(--fg-dim); letter-spacing: .1em;
+}
+
+/* ── 通用条形：暗轨道 + 实心直角色块 ─────────── */
+.px6-bar { display: flex; align-items: center; gap: 7px; }
+.px6-bar .track {
+  flex: 1 1 auto; min-width: 0; height: 16px;
+  background: var(--track); position: relative;
+  border: 1px solid #ffffff0d;
+}
+.px6-bar .fill { position: absolute; left: 0; top: 0; bottom: 0; background: var(--c); }
+.px6-bar .pct {
+  flex: 0 0 auto; min-width: 3.4em;
+  text-align: left; font-weight: 700; color: var(--ink);
+  font-family: var(--mono); font-size: 11px;
+  font-variant-numeric: tabular-nums;
+}
+.px6-bar.thin .track { height: 10px; }
+.px6-mrow .mn {
+  flex: 0 0 auto; font-family: var(--mono); font-size: 10.5px;
+  color: var(--fg-dim); font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+
+/* ── USAGE 总览（各 bot 总量）───────────────── */
+.px6-urows { display: flex; flex-direction: column; gap: 9px; }
+.px6-urow { display: flex; align-items: center; gap: 12px; }
+.px6-urow .un {
+  flex: 0 0 auto; width: 96px;
+  font-family: var(--mono); font-size: 12px; color: var(--fg);
+  overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+}
+.px6-urow .ub { flex: 1 1 auto; min-width: 0; }
+.px6-urow .um {
+  flex: 0 0 auto; font-family: var(--mono); font-size: 10px;
+  color: var(--fg-dim); letter-spacing: .08em;
+}
+
+/* ── BOTS 像素图标矩阵 ──────────────────────── */
+.px6-icons {
+  display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px;
+}
+.px6-cell {
+  display: block; padding: 12px 10px 10px;
+  background: var(--panel); border: 1px solid var(--line);
+  cursor: pointer; text-align: left;
+  transition: border-color .12s, background .12s;
+}
+.px6-cell:hover { border-color: var(--line-2); background: var(--panel-2); }
+.px6-cell:focus-visible { outline: 1px solid var(--accent); outline-offset: 2px; }
+.px6-cell.on { border-color: var(--accent); }
+
+.px6-pixel {
+  display: block; width: 36px; height: 36px;
+  position: relative; transition: transform .12s;
+}
+.px6-cell:hover .px6-pixel { transform: scale(1.06); }
+.px6-pixel i {
+  display: block; width: 3px; height: 3px;
+  position: absolute; left: 0; top: 0;
+}
+.px6-cn {
+  display: block; margin-top: 10px;
+  font-family: var(--mono); font-size: 12px; color: var(--fg);
+  overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+}
+.px6-cm {
+  display: block; margin-top: 2px;
+  font-family: var(--mono); font-size: 10px; color: var(--fg-dim);
+  letter-spacing: .06em; overflow: hidden; text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.px6-cm .ok { color: var(--accent); }
+
+/* ── drilldown：USAGE 专项 ──────────────────── */
+.px6-detail { margin-top: 6px; }
+.px6-back {
+  position: relative;
+  display: inline-flex; align-items: center; gap: 7px;
+  background: none; border: 1px solid var(--line-2);
+  color: var(--fg); font-family: var(--mono); font-size: 11px;
+  letter-spacing: .16em; padding: 6px 12px; cursor: pointer;
+  margin-bottom: 16px;
+}
+.px6-back:hover { border-color: var(--fg-mid); background: var(--panel); }
+.px6-back:focus-visible { outline: 1px solid var(--accent); outline-offset: 2px; }
+.px6-back::after {
+  content: '_'; margin-left: 1px;
+  animation: px6blink 1.06s steps(1) infinite;
+}
+@keyframes px6blink { 0%,49% { opacity: 1; } 50%,100% { opacity: 0; } }
+
+.px6-dtop {
+  display: flex; align-items: baseline; gap: 14px; flex-wrap: wrap;
+  padding-bottom: 12px; margin-bottom: 4px;
+  border-bottom: 1px solid var(--line-2);
+}
+.px6-dtop .dn {
+  font-size: 22px; font-weight: 700; color: var(--fg); letter-spacing: .02em;
+}
+.px6-dtop .dpix { display: inline-block; vertical-align: middle; transform: scale(.62); margin-right: 2px; }
+.px6-dtop .dsub { font-family: var(--mono); font-size: 11px; color: var(--fg-dim); letter-spacing: .08em; }
+.px6-dtop .dsub b { color: var(--fg-mid); font-weight: 600; }
+.px6-dtop .dlive {
+  margin-left: auto; display: inline-flex; align-items: center; gap: 6px;
+  font-family: var(--mono); font-size: 10.5px; letter-spacing: .18em; color: var(--fg-mid);
+}
+.px6-dtop .dlive i { width: 6px; height: 6px; background: currentColor; display: inline-block; }
+
+.px6-dmeta {
+  display: flex; gap: 18px; flex-wrap: wrap;
+  font-family: var(--mono); font-size: 10.5px; color: var(--fg-dim);
+  letter-spacing: .06em; padding: 10px 0 14px;
+  border-bottom: 1px solid var(--line);
+}
+.px6-dmeta b { color: var(--fg); font-weight: 600; }
+.px6-dmeta .ok { color: var(--accent); }
+
+.px6-pg { margin-top: 16px; }
+.px6-pg-h {
+  display: flex; align-items: center; gap: 9px;
+  font-family: var(--mono); font-size: 10.5px; letter-spacing: .2em;
+  text-transform: uppercase; color: var(--fg-mid);
+  padding-left: 8px; border-left: 2px solid var(--fg-dim);
+  margin-bottom: 9px;
+}
+.px6-pg-h b { color: var(--fg); font-weight: 600; letter-spacing: .12em; }
+.px6-pg-h .pt { margin-left: auto; color: var(--fg-dim); letter-spacing: .1em; }
+
+.px6-mrow { display: flex; align-items: center; gap: 11px; padding: 5px 0; }
+.px6-mrow .ml {
+  flex: 0 0 auto; width: 232px;
+  font-family: var(--mono); font-size: 11.5px; color: var(--fg-mid);
+  overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+}
+.px6-mrow .mb { flex: 1 1 auto; min-width: 0; }
+.px6-mrow .mn {
+  flex: 0 0 auto; font-family: var(--mono); font-size: 10.5px;
+  color: var(--fg-dim); font-variant-numeric: tabular-nums; white-space: nowrap;
+}
+
+/* 历史 usage：4h / 4–24h / 24h–7d 三段 */
+.px6-hist { margin-top: 20px; padding: 13px 14px; background: var(--panel); border: 1px solid var(--line); }
+.px6-hist-h {
+  display: flex; align-items: center; gap: 10px; margin-bottom: 11px;
+  font-family: var(--mono); font-size: 10.5px; letter-spacing: .2em;
+  text-transform: uppercase; color: var(--fg-mid);
+}
+.px6-hist-h .hr { margin-left: auto; color: var(--fg-dim); letter-spacing: .12em; }
+.px6-hist-b { display: flex; gap: 2px; }
+.px6-hist-b .seg { height: 16px; border-top: 1px solid #ffffff10; border-bottom: 1px solid #00000030; }
+.px6-hist-b .seg.zero { background: var(--track) !important; border-style: dashed; border-color: var(--line); }
+.px6-hist-rows { margin-top: 10px; display: flex; flex-direction: column; gap: 6px; }
+.px6-hist-rows .hrw {
+  display: flex; align-items: center; gap: 10px;
+  font-family: var(--mono); font-size: 10.5px; color: var(--fg-dim);
+}
+.px6-hist-rows .sw { width: 9px; height: 9px; flex: 0 0 auto; border: 1px solid #00000040; }
+.px6-hist-rows .lb { flex: 0 0 76px; color: var(--fg-mid); letter-spacing: .08em; }
+.px6-hist-rows .rv { flex: 1 1 auto; color: var(--fg-mid); font-variant-numeric: tabular-nums; }
+.px6-hist-rows .rv b { color: var(--fg); font-weight: 600; }
+
+/* ── 空态 ───────────────────────────────────── */
+.px6-empty { color: var(--fg-dim); font-family: var(--mono); font-size: 11px; letter-spacing: .1em; padding: 10px 0; }
+
+@media (max-width: 700px) {
+  .px6-icons { grid-template-columns: repeat(2, 1fr); }
+  .px6-mrow .ml { width: 128px; }
+  .px6-urow .un { width: 76px; }
+  .px6-hrow .hn { min-width: 72px; }
+}
+@media (max-width: 440px) {
+  .px6-icons { grid-template-columns: 1fr 1fr; }
+  .px6-mrow .ml { width: 92px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .px6-top .dot, .px6-back, .px6-back::after { animation: none !important; }
+}

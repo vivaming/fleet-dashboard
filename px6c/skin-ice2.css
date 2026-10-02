@@ -1,0 +1,375 @@
+/* ============================================================
+   PX6 · 变体 C「冰蓝」 px6-ice
+   骨架 = 用户钦定 HUB 版式（FLEET 状态行 / HOSTS / USAGE / 条尾百分比）
+   差异 = 冷蓝底 #081018 + 冰蓝像素脸图标 + 成功率色阶「红→青」
+         （高成功率 = 青 #22d3ee，替代原版绿 #2ecc71）
+   ============================================================ */
+
+/* ---------- 原版皮肤 DOM 全部让位 ---------- */
+body.px6-ice > header,
+body.px6-ice > main,
+body.px6-ice > footer,
+body.px6-ice > #free-quota,
+body.px6-ice > .scanlines,
+body.px6-ice > #flowBgCanvas,
+body.px6-ice > #flowBgToggle { display: none !important; }
+
+/* ---------- 皮肤级变量 ---------- */
+body.px6-ice {
+  --bg:      #081018;          /* 冷蓝近黑底 */
+  --panel:   #0b1822;
+  --panel2:  #0e1f2c;
+  --track:   #12222e;          /* 条形暗轨道 */
+  --edge:    #16303f;          /* 1px 细线 */
+  --edge2:   #1d3d50;
+  --txt:     #d9eaf3;
+  --dim:     #62859a;
+  --dim2:    #3d5b6b;
+  --accent:  #22d3ee;          /* 主 accent：青 */
+  --accent2: #38bdf8;
+  --ok:      #2ecc71;
+  --warn:    #eab308;
+  --bad:     #ef4444;
+  --proc:    #22d3ee;
+  --mono: 'JetBrains Mono', ui-monospace, 'SF Mono', Consolas, monospace;
+  --pix:  'Pixeloid Sans', 'JetBrains Mono', monospace;
+  --cjk:  system-ui, -apple-system, 'PingFang SC', 'Microsoft YaHei', sans-serif;
+
+  margin: 0;
+  background: var(--bg);
+  color: var(--txt);
+  font: 12px/1.55 var(--mono), var(--cjk);
+  min-height: 100vh;
+}
+
+/* 顶部冷光 + 底部反光 */
+body.px6-ice::before {
+  content: ""; position: fixed; inset: 0; pointer-events: none; z-index: 1;
+  background:
+    radial-gradient(58% 34% at 50% -6%, rgba(34, 211, 238, .13), transparent 70%),
+    radial-gradient(70% 42% at 50% 106%, rgba(56, 189, 248, .07), transparent 72%);
+}
+/* 扫描线（极淡，不遮字） */
+body.px6-ice::after {
+  content: ""; position: fixed; inset: 0; pointer-events: none; z-index: 3; opacity: .5;
+  background: repeating-linear-gradient(0deg, rgba(180, 225, 255, .035) 0 1px, transparent 1px 3px);
+}
+
+#px6-root,
+#px6-root * { box-sizing: border-box; }
+
+#px6-root {
+  position: relative; z-index: 2;
+  max-width: 880px; margin: 0 auto;
+  padding: 22px 18px 54px;
+}
+
+/* ============================================================
+   顶部状态行  FLEET · HH:MM:SS · 3 hosts · 9 bots · ● live
+   ============================================================ */
+.px6-top { display: flex; align-items: baseline; gap: 12px; flex-wrap: wrap; }
+.px6-status {
+  display: flex; align-items: center; gap: 9px;
+  font: 700 11px/1 var(--mono); letter-spacing: .18em;
+  color: var(--txt); text-transform: uppercase;
+  padding: 9px 12px;
+  background: linear-gradient(180deg, #0e1f2c, #0a1621);
+  border: 1px solid var(--edge2);
+  box-shadow: 0 0 0 1px rgba(34, 211, 238, .05), 0 6px 18px rgba(0, 0, 0, .45);
+}
+.px6-status i { font-style: normal; color: var(--dim2); }
+.px6-status b { font-weight: 700; color: var(--txt); }
+.px6-clock {
+  color: var(--accent); letter-spacing: .2em;
+  text-shadow: 0 0 9px rgba(34, 211, 238, .45);
+}
+.px6-live { color: var(--accent); font-weight: 700; text-shadow: 0 0 9px rgba(34, 211, 238, .5); }
+.px6-live.warn { color: var(--warn); text-shadow: 0 0 9px rgba(234, 179, 8, .45); }
+.px6-live.bad  { color: var(--bad);  text-shadow: 0 0 9px rgba(239, 68, 68, .45); }
+.px6-snap {
+  margin-left: auto;
+  font: 400 10px/1 var(--mono); letter-spacing: .1em; color: var(--dim2);
+}
+
+/* ============================================================
+   Section 骨架：标题 大写+宽字距 · 右侧细值 · 1px 细线
+   ============================================================ */
+.px6-sec { margin-top: 26px; }
+.px6-sechead {
+  display: flex; align-items: baseline; gap: 11px;
+  padding-bottom: 7px; margin-bottom: 12px;
+  border-bottom: 1px solid var(--edge);
+}
+.px6-secname {
+  font: 700 10px/1 var(--pix);
+  letter-spacing: .34em; text-transform: uppercase; color: var(--txt);
+  -webkit-font-smoothing: none;
+}
+.px6-secname::before {
+  content: ""; display: inline-block;
+  width: 7px; height: 7px; margin-right: 8px; vertical-align: 1px;
+  background: var(--accent);
+  box-shadow: 0 0 8px rgba(34, 211, 238, .55);
+}
+.px6-secsub {
+  font: 400 9.5px/1 var(--mono); letter-spacing: .14em;
+  color: var(--dim); text-transform: uppercase;
+}
+.px6-secrval {
+  margin-left: auto;
+  font: 700 10px/1 var(--mono); letter-spacing: .12em; color: var(--dim);
+  text-align: right;
+}
+.px6-secrval em { font-style: normal; color: var(--txt); }
+.px6-secrval .ok  { color: var(--accent); }
+.px6-secrval .bad { color: var(--bad); }
+
+/* ============================================================
+   条：暗轨道 #12222e + 实心直角色块 · 高 16px · 条尾 <b> 百分比
+   ============================================================ */
+.px6-bar { display: flex; align-items: center; gap: 0; min-width: 0; flex: 1 1 auto; }
+.px6-track {
+  display: flex; align-items: center;
+  position: relative;
+  height: 16px; width: 100%;
+  background: var(--track);
+  border: 1px solid #1c3240;
+}
+.px6-fill {
+  display: block; height: 100%;
+  min-width: 2px;
+  box-shadow: 0 0 9px rgba(34, 211, 238, .18);
+}
+.px6-pct {
+  flex: 0 0 auto;
+  margin-left: 7px;
+  font: 700 11px/1 var(--mono);
+  color: #fff; letter-spacing: .04em;
+}
+.px6-pct .ps { font-size: 9px; color: var(--dim); }
+
+/* ============================================================
+   HOSTS section
+   ============================================================ */
+.px6-hosts { display: flex; flex-direction: column; gap: 10px; }
+.px6-host {
+  display: grid;
+  grid-template-columns: 74px 1fr 96px;
+  gap: 14px; align-items: center;
+}
+.px6-host .lbl {
+  font: 700 13px/1 var(--mono); letter-spacing: .06em; color: var(--txt);
+}
+.px6-host .lbl span { color: var(--dim2); font-size: 10px; letter-spacing: .1em; }
+.px6-host .meta {
+  font: 400 9.5px/1.3 var(--mono); color: var(--dim2); letter-spacing: .06em;
+  text-align: right; white-space: nowrap;
+}
+
+/* ============================================================
+   USAGE 总览
+   ============================================================ */
+.px6-usage { display: flex; flex-direction: column; gap: 9px; }
+.px6-usage .px6-row { cursor: pointer; }
+.px6-row {
+  display: grid;
+  grid-template-columns: 116px minmax(0, 1fr) 122px;
+  gap: 13px; align-items: center;
+  padding: 3px 4px;
+  transition: background .12s;
+}
+.px6-row:hover { background: rgba(34, 211, 238, .06); }
+.px6-rlbl {
+  font: 700 11px/1.25 var(--mono); color: var(--txt);
+  letter-spacing: .04em; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+}
+.px6-rlbl em { font-style: normal; color: var(--dim); font-weight: 400; }
+.px6-rval {
+  font: 400 9.5px/1.3 var(--mono); color: var(--dim);
+  text-align: right; letter-spacing: .04em; white-space: nowrap;
+}
+.px6-rval b { color: var(--dim); font-weight: 700; }
+
+.px6-legend {
+  margin-top: 11px; padding-top: 8px; border-top: 1px dashed var(--edge);
+  display: flex; align-items: center; gap: 14px; flex-wrap: wrap;
+  font: 400 9px/1 var(--mono); letter-spacing: .1em; color: var(--dim2);
+  text-transform: uppercase;
+}
+.px6-legend .sw {
+  display: inline-block; width: 16px; height: 7px; margin-right: 5px;
+  vertical-align: -1px;
+}
+
+/* ============================================================
+   BOTS 像素图标矩阵
+   ============================================================ */
+.px6-matrix {
+  display: grid;
+  grid-template-columns: repeat(9, minmax(0, 1fr));
+  gap: 8px;
+}
+.px6-cell {
+  display: flex; flex-direction: column; align-items: center; gap: 6px;
+  padding: 10px 3px 9px;
+  background: var(--panel);
+  border: 1px solid var(--edge);
+  cursor: pointer;
+  transition: background .12s, border-color .12s, transform .06s, filter .12s;
+  position: relative;
+}
+.px6-cell:hover {
+  background: var(--panel2);
+  border-color: var(--accent);
+  filter: brightness(1.3);
+  box-shadow: 0 0 14px rgba(34, 211, 238, .16);
+}
+.px6-cell:active { transform: translateY(1px); }
+.px6-cell .dot {
+  position: absolute; top: 5px; right: 5px;
+  width: 4px; height: 4px; background: var(--accent);
+  box-shadow: 0 0 6px rgba(34, 211, 238, .6);
+}
+.px6-cell.dim .dot { background: var(--dim2); box-shadow: none; }
+.px6-face {
+  width: 44px; height: 44px; display: block;
+  image-rendering: pixelated;
+  shape-rendering: crispEdges;
+}
+.px6-cname {
+  max-width: 100%;
+  font: 700 9px/1.2 var(--mono); letter-spacing: .05em;
+  color: var(--dim); text-align: center;
+  overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+}
+.px6-cell:hover .px6-cname { color: var(--txt); }
+.px6-crate { font: 700 9px/1 var(--mono); letter-spacing: .05em; }
+.px6-csub {
+  font: 400 8px/1 var(--mono); letter-spacing: .06em; color: var(--dim2);
+}
+
+/* ============================================================
+   Drilldown 详情页
+   ============================================================ */
+.px6-detail { animation: px6in .14s ease-out; }
+@keyframes px6in { from { opacity: 0; transform: translateY(4px); } to { opacity: 1; transform: none; } }
+
+.px6-back {
+  display: inline-flex; align-items: center; gap: 5px;
+  background: transparent; border: 1px solid var(--edge2);
+  color: var(--dim); cursor: pointer;
+  font: 700 10px/1 var(--mono); letter-spacing: .18em;
+  padding: 6px 10px; margin-bottom: 12px;
+  transition: .12s;
+}
+.px6-back:hover { color: var(--accent); border-color: var(--accent); }
+.px6-back:focus-visible { outline: 1px solid var(--accent); outline-offset: 2px; }
+
+.px6-dhead {
+  display: flex; align-items: center; gap: 14px;
+  padding: 13px 14px;
+  background: linear-gradient(180deg, var(--panel2), var(--panel));
+  border: 1px solid var(--edge2);
+}
+.px6-dface { width: 52px; height: 52px; flex: 0 0 auto; image-rendering: pixelated; }
+.px6-dmeta { min-width: 0; flex: 1 1 auto; }
+.px6-dname {
+  font: 700 15px/1.2 var(--mono); letter-spacing: .06em; color: var(--txt);
+  overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+}
+.px6-dsub {
+  margin-top: 4px;
+  font: 400 10px/1.4 var(--mono); letter-spacing: .08em; color: var(--dim);
+  overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+}
+.px6-dsub i { font-style: normal; color: var(--dim2); }
+.px6-drate {
+  flex: 0 0 auto;
+  font: 700 24px/1 var(--mono); letter-spacing: .02em;
+  padding: 8px 12px; border: 1px solid var(--edge2);
+}
+.px6-drate span { font-size: 13px; color: var(--dim); }
+
+.px6-pg { margin-bottom: 14px; }
+.px6-pgname {
+  display: flex; align-items: center; gap: 8px;
+  margin: 11px 0 7px;
+  font: 700 9.5px/1 var(--pix); letter-spacing: .28em; text-transform: uppercase;
+  color: var(--accent2); -webkit-font-smoothing: none;
+}
+.px6-pgname::before {
+  content: ""; width: 5px; height: 5px; background: currentColor;
+  box-shadow: 0 0 7px currentColor;
+}
+.px6-pgname i {
+  font-style: normal; font-family: var(--mono); font-weight: 400;
+  letter-spacing: .08em; color: var(--dim2);
+}
+.px6-pgname em {
+  margin-left: auto; font-style: normal; font-family: var(--mono); font-weight: 400;
+  letter-spacing: .06em; color: var(--dim);
+}
+
+.px6-empty {
+  padding: 14px; border: 1px dashed var(--edge);
+  color: var(--dim2); font: 400 10px/1.6 var(--mono); letter-spacing: .06em;
+  text-align: center;
+}
+
+/* 历史 usage：三段并排，段间 2px 缝 */
+.px6-hist {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 2px;
+  background: transparent;
+}
+.px6-hseg {
+  display: flex; flex-direction: column; gap: 6px;
+  padding: 9px 10px;
+  background: var(--panel);
+  border: 1px solid var(--edge);
+}
+.px6-hlbl {
+  font: 700 9.5px/1 var(--pix); letter-spacing: .2em; color: var(--txt);
+  -webkit-font-smoothing: none;
+}
+.px6-htrack {
+  display: flex; align-items: center;
+  height: 16px; width: 100%;
+  background: var(--track); border: 1px solid #1c3240;
+}
+.px6-hfill { display: block; height: 100%; min-width: 2px; }
+.px6-hc {
+  display: flex; justify-content: space-between; gap: 6px;
+  font: 400 9px/1 var(--mono); letter-spacing: .05em; color: var(--dim);
+}
+.px6-hc b { color: var(--txt); font-weight: 700; }
+
+/* ============================================================
+   footer
+   ============================================================ */
+.px6-foot {
+  margin-top: 30px; padding-top: 10px;
+  border-top: 1px solid var(--edge);
+  display: flex; gap: 12px; flex-wrap: wrap;
+  font: 400 9px/1.5 var(--mono); letter-spacing: .08em; color: var(--dim2);
+}
+.px6-foot span { white-space: nowrap; }
+
+/* ============================================================
+   响应式
+   ============================================================ */
+@media (max-width: 780px) {
+  #px6-root { padding: 16px 12px 44px; }
+  .px6-matrix { grid-template-columns: repeat(5, minmax(0, 1fr)); }
+  .px6-row { grid-template-columns: 92px minmax(0, 1fr) 92px; gap: 9px; }
+  .px6-usage .px6-row { grid-template-columns: 80px minmax(0, 1fr) 86px; }
+  .px6-host { grid-template-columns: 60px 1fr 78px; gap: 10px; }
+  .px6-snap { display: none; }
+}
+@media (max-width: 480px) {
+  .px6-matrix { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .px6-row,
+  .px6-usage .px6-row { grid-template-columns: 72px minmax(0, 1fr) 78px; }
+  .px6-dhead { flex-wrap: wrap; }
+}

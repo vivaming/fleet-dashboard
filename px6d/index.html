@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>舰队监控站 · FLEET MONITOR · PX6-MONO</title>
+<script src="api-override.js"></script>
+</head>
+<body class="px6-mono">
+<!-- app.js 的宿主容器：保留占位以免 app.js 抛错，输出由 CSS 隐藏 -->
+<header>
+  <div class="title-row">
+    <h1>舰队监控站</h1>
+    <span class="subtitle">FLEET MONITOR // PHASE-2</span>
+    <span id="fresh-badge" class="badge">…</span>
+  </div>
+  <div class="stats-row" id="stats-row"></div>
+  <div id="stale-banner" class="stale-banner hidden"></div>
+  <div id="agent-bar" class="agent-bar" style="display:none"></div>
+  <div id="alert-marquee" class="alert-marquee hidden"></div>
+</header>
+<main id="main"></main>
+<div id="free-quota" class="free-quota-section"></div>
+<footer>
+  <span id="footer-info">loading…</span>
+</footer>
+
+<!-- PX6 · variant D「灰白」独立渲染层 -->
+<div id="px6" class="px6"></div>
+
+<script src="/static/app.js"></script>
+<link rel="stylesheet" href="fonts.css">
+<link rel="stylesheet" href="skin-mono2.css">
+<script src="skin-mono2.js"></script>
+</body>
+</html>

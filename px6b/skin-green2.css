@@ -1,0 +1,208 @@
+/* ============================================================
+   PX6-B · skin-green2.css — 终端绿磷光 fleet dashboard
+   基底: HUB 版式 + 像素图标矩阵 + drilldown usage
+   body class: px6-green
+   ============================================================ */
+
+/* ---------- 全局：终端绿磷光 ---------- */
+body.px6-green {
+  --px-bg:        #050708;
+  --px-bg2:       #06120b;
+  --px-panel:     #081109;
+  --px-track:     #16202b;   /* 暗轨道 */
+  --px-line:      #1dd07945;
+  --px-text:      #d0ffdd;
+  --px-dim:       #3f9a62;
+  --px-dim2:      #1f5c3c;
+  --px-head:      #7dffb6;
+  /* 语义色 */
+  --px-green:     #2ecc71;   /* 健康 / 成功 */
+  --px-amber:     #f59e0b;   /* 警告 / 成功率中段 */
+  --px-yellow:    #eab308;
+  --px-red:       #ef4444;   /* 危险 */
+  --px-cyan:      #22d3ee;   /* 进程 */
+  background: var(--px-bg);
+  color: var(--px-text);
+  font-family: "Pixeloid Sans", "JetBrains Mono", ui-monospace, SFMono-Regular,
+               Menlo, Consolas, "Liberation Mono", monospace,
+               system-ui, "PingFang SC", "Microsoft YaHei", sans-serif;
+}
+
+body.px6-green #main { max-width: 900px; margin: 0 auto; padding: 12px 16px 40px; }
+body.px6-green main { display: block; }
+
+/* 隐藏默认 jevdesk 头部装饰，露出纯 HUB 状态行 */
+body.px6-green .scanlines { opacity: .05; mix-blend-mode: screen; }
+body.px6-green header .title-row { display: none; }
+body.px6-green .free-quota-section, body.px6-green .alert-marquee { display: none; }
+body.px6-green footer { max-width: 900px; margin: 0 auto 20px; padding: 0 16px;
+  color: var(--px-dim); font-size: 11px; letter-spacing: .05em; }
+body.px6-green #stale-banner { max-width: 900px; margin: 4px auto 0; }
+
+/* ---------- 顶部状态行 ---------- */
+body.px6-green #stats-row.px-top {
+  font-family: "JetBrains Mono", "Pixeloid Sans", ui-monospace, monospace;
+  font-size: 14px; letter-spacing: .12em; color: #fff; white-space: nowrap;
+  display: flex; flex-wrap: wrap; gap: 0 14px; padding: 6px 0 10px;
+}
+body.px6-green #stats-row.px-top .s-live { color: var(--px-green); }
+body.px6-green #stats-row.px-top .s-dim { color: var(--px-dim); }
+body.px6-green #stats-row.px-top .s-bold { font-weight: 700; }
+
+/* ---------- 区块骨架 ---------- */
+body.px6-green .px-dash .px-sec { margin: 22px 0; }
+body.px6-green .px-sec .px-sec-head {
+  display: flex; justify-content: space-between; align-items: baseline;
+  font-family: "JetBrains Mono", monospace; text-transform: uppercase;
+  font-size: 12px; letter-spacing: .32em; color: var(--px-head);
+  padding: 0 2px 8px; border-bottom: 1px solid var(--px-line);
+}
+body.px6-green .px-sec .px-sec-head .px-big { font-weight: 700; letter-spacing: .32em; }
+body.px6-green .px-sec .px-sec-head .px-val {
+  font-family: "JetBrains Mono", monospace; font-size: 11px; letter-spacing: .14em;
+  color: var(--px-dim); font-weight: 400; text-transform: none;
+}
+
+/* ---------- HOSTS ---------- */
+body.px6-green .px-hosts { margin: 14px 4px 0; }
+body.px6-green .px-host { display: flex; align-items: center; gap: 12px; margin: 9px 0; }
+body.px6-green .px-host .px-host-name {
+  width: 44px; color: var(--px-head); font-weight: 700;
+  font-family: "JetBrains Mono", monospace; font-size: 13px; letter-spacing: .05em;
+}
+body.px6-green .px-track {
+  flex: 1; height: 16px; background: var(--px-track);
+  position: relative; overflow: hidden; border: 1px solid #1dd07922;
+}
+body.px6-green .px-track .px-fill { position: absolute; inset: 0 auto 0 0;
+  background: var(--px-green); }
+body.px6-green .px-host .px-host-meta {
+  width: 60px; text-align: right; color: var(--px-dim);
+  font-size: 11px; white-space: nowrap; font-family: "JetBrains Mono", monospace;
+}
+body.px6-green .px-host .px-host-meta b { color: var(--px-green); font-weight: 700; }
+
+/* ---------- USAGE 总览 ---------- */
+body.px6-green .px-usage { margin: 10px 4px 0; }
+body.px6-green .px-urow { display: flex; align-items: center; gap: 10px; margin: 7px 0; }
+body.px6-green .px-urow .px-u-name {
+  width: 124px; flex: none; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+  color: var(--px-text); font-size: 12px;
+}
+body.px6-green .px-urow .px-u-name .px-u-host { color: var(--px-dim); font-size: 10px; }
+body.px6-green .px-urow .px-track { flex: 1; height: 14px; }
+body.px6-green .px-urow .px-u-tail {
+  flex: none; width: 44px; text-align: right; font-weight: 700; color: #fff;
+  font-family: "JetBrains Mono", monospace; font-size: 11px;
+}
+body.px6-green .px-urow .px-u-num {
+  flex: none; width: 92px; text-align: right; color: var(--px-dim);
+  font-size: 10px; white-space: nowrap; font-family: "JetBrains Mono", monospace;
+}
+
+/* ---------- BOTS 像素图标矩阵 ---------- */
+body.px6-green .px-bots { margin: 12px 4px 0; }
+body.px6-green .px-botgrid {
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(124px, 1fr));
+  gap: 16px 14px; padding: 14px 2px 4px;
+}
+body.px6-green .px-botic {
+  display: flex; flex-direction: column; align-items: center; gap: 6px;
+  background: none; border: 1px solid transparent; border-radius: 4px;
+  padding: 10px 6px 8px; cursor: pointer; color: inherit;
+  text-align: center; font-family: inherit;
+}
+body.px6-green .px-botic:hover { background: var(--px-panel); border-color: var(--px-line); }
+body.px6-green .px-botic .px-botname {
+  font-size: 11px; letter-spacing: .06em; color: var(--px-text);
+  max-width: 100%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+}
+body.px6-green .px-botic .px-bothost { font-size: 9px; color: var(--px-dim); letter-spacing: .08em; }
+body.px6-green .px-botic .px-pix { width: 32px; height: 32px;
+  display: block; image-rendering: pixelated; }
+body.px6-green .px-botic:hover .px-pix {
+  filter: brightness(1.3) drop-shadow(0 0 6px #2ecc7177);
+}
+body.px6-green .px-botic:active { transform: translateY(1px); }
+
+/* ---------- DRILLDOWN (USAGE 详情) ---------- */
+body.px6-green .px-drill { margin: 4px 0 20px; }
+body.px6-green .px-drill .px-back {
+  display: inline-block; cursor: pointer; user-select: none; color: var(--px-cyan);
+  font-family: "JetBrains Mono", monospace; font-size: 12px; letter-spacing: .18em;
+  padding: 6px 12px; border: 1px solid var(--px-line); background: var(--px-panel);
+}
+body.px6-green .px-drill .px-back:hover { color: var(--px-bg); background: var(--px-cyan); border-color: var(--px-cyan); }
+body.px6-green .px-drill .px-bhead {
+  display: flex; align-items: baseline; gap: 16px; flex-wrap: wrap;
+  margin: 16px 2px 4px;
+}
+body.px6-green .px-drill .px-bname {
+  font-family: "Pixeloid Sans", "JetBrains Mono", monospace;
+  font-size: 30px; letter-spacing: .04em; color: var(--px-head); font-weight: 700;
+}
+body.px6-green .px-drill .px-bhost {
+  color: var(--px-dim); font-size: 13px; letter-spacing: .1em;
+  font-family: "JetBrains Mono", monospace;
+}
+body.px6-green .px-drill .px-bmeta { color: var(--px-dim); font-size: 11px; letter-spacing: .08em; }
+body.px6-green .px-drill .px-sec { margin: 24px 0; }
+body.px6-green .px-drill .px-sec-head {
+  display: flex; justify-content: space-between; align-items: baseline;
+  font-family: "JetBrains Mono", monospace; text-transform: uppercase;
+  font-size: 12px; letter-spacing: .32em; color: var(--px-head);
+  padding: 0 2px 8px; border-bottom: 1px solid var(--px-line);
+}
+body.px6-green .px-drill .px-sec-head .px-val {
+  font-size: 11px; letter-spacing: .14em; color: var(--px-dim); font-weight: 400;
+  text-transform: none;
+}
+
+/* provider 分组头 */
+body.px6-green .px-grp { margin: 18px 4px 4px; }
+body.px6-green .px-grp-name {
+  color: var(--px-dim); font-size: 10px; letter-spacing: .22em; text-transform: uppercase;
+  font-family: "JetBrains Mono", monospace; margin-bottom: 4px;
+}
+
+/* model 行 */
+body.px6-green .px-mrow { display: flex; align-items: center; gap: 10px; margin: 7px 0; }
+body.px6-green .px-mrow .px-m-lbl {
+  flex: none; width: 210px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+  color: var(--px-text); font-size: 11px;
+}
+body.px6-green .px-mrow .px-m-lbl .px-prov { color: var(--px-dim); }
+body.px6-green .px-mrow .px-track { flex: 1; height: 14px; min-width: 60px; }
+body.px6-green .px-mrow .px-m-tail {
+  flex: none; width: 40px; text-align: right; font-weight: 700; color: #fff;
+  font-family: "JetBrains Mono", monospace; font-size: 11px;
+}
+body.px6-green .px-mrow .px-m-num {
+  flex: none; width: 150px; text-align: right; color: var(--px-dim);
+  font-size: 10px; white-space: nowrap; font-family: "JetBrains Mono", monospace;
+}
+body.px6-green .px-mrow .px-m-num b { color: var(--px-text); font-weight: 400; }
+
+/* 历史 usage：时间分段条 */
+body.px6-green .px-hist { margin: 10px 4px 4px; }
+body.px6-green .px-hist-seg {
+  display: flex; gap: 2px; height: 16px; background: var(--px-track);
+}
+body.px6-green .px-hist-seg .px-hseg { flex: 1; position: relative; overflow: hidden; }
+body.px6-green .px-hist-seg .px-hseg .px-fill { position: absolute; inset: 0 auto 0 0; }
+body.px6-green .px-hist-legend {
+  display: flex; gap: 18px; margin-top: 8px; color: var(--px-dim); font-size: 10px;
+  font-family: "JetBrains Mono", monospace; flex-wrap: wrap;
+}
+body.px6-green .px-hist-legend b { color: var(--px-text); font-weight: 400; }
+body.px6-green .px-hist-legend .px-ok { color: var(--px-green); }
+body.px6-green .px-hist-legend .px-bad { color: var(--px-red); }
+
+body.px6-green .hidden { display: none !important; }
+
+/* 8-bit 转场闪烁（E 街机专用，此处预留 .px-flicker） */
+body.px6-green .px-flicker { animation: px-flick 220ms ease-out; }
+@keyframes px-flick {
+  0% { opacity: 1; } 8% { opacity: .12; } 20% { opacity: 1; }
+  36% { opacity: .12; } 55% { opacity: 1; } 100% { opacity: 1; }
+}
