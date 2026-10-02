@@ -26,3 +26,8 @@ body.px7-a .px6-hfill.lv1::after {
   body.px7-a .px6-fill::after,
   body.px7-a .px6-hfill::after { display: none; }
 }
+
+/* 灰白档填充在极浅轨道上的可辨识描边 */
+body.px7-a .px6-fill { box-sizing: border-box; }
+body.px7-a .px6-fill.lv3 { outline: 1px solid #9AA0A8; outline-offset: -1px; }
+body.px7-a .px6-hfill.lv3 { outline: 1px solid #9AA0A8; outline-offset: -1px; }

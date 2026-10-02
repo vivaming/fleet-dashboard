@@ -70,6 +70,26 @@
     return 4;
   }
 
+  /* 档位 → 文字色（同族，非新色）：
+     填充/边框用 rateColor；**文字**必须按底色换族内变体，否则失读。
+     rateTailText：条尾文字坐在暗轨道 #10151C 上 → 深灰两档提亮为同族浅灰
+     rateText    ：矩阵 pct / 详情大字坐在浅灰白纸面 #F4F4F6 上 → 菊黄/灰白两档压深 */
+  var rateTailText = ['#FFB300', '#D8AE77', '#A9B0B7', '#E3E6E9', '#B8C0C7'];
+  var rateText     = ['#8A5A00', '#6B4F2E', '#4E545B', '#5E646C', '#3A3F46'];
+  function tailColor(rate) { return rateTailText[rateBand(rate)]; }
+  function textColor(rate) { return rateText[rateBand(rate)]; }
+
+  /* 快照年龄（秒）。generated_at 是 ISO8601 字符串（如 2026-10-01T05:31:55Z），
+     不是 epoch；只有出现数值型 generated_at_epoch 才按秒用 */
+  function snapAge(snap) {
+    var ref = snap.generated_at_epoch;
+    if (typeof ref !== 'number') {
+      var t = Date.parse(snap.generated_at);
+      if (isNaN(t)) return 0;
+      ref = t / 1000;
+    }
+    return Math.max(0, Date.now() / 1000 - ref);
+  }
   /* ============================================================
      数据归一
      ============================================================ */
@@ -202,7 +222,7 @@
   /* ============================================================
      条组件
      长度 = pctLen(%)  颜色 = rateColor(rate)  条尾 <b> = 成功率%
-     条尾粗体、字色跟条色一致（内联 color = rateColor(rate)）
+     条尾粗体、与条色同族（tailColor：暗轨道上深灰两档提亮）
      .px6-bar > .px6-track(flex) > .px6-fill + <b class="px6-pct">  紧贴
      ============================================================ */
   function barHTML(pctLen, rate, tail) {
@@ -211,7 +231,7 @@
     return '<span class="px6-bar">'
       + '<span class="px6-track">'
       + '<span class="px6-fill" style="width:' + w.toFixed(1) + '%;background:' + c + '"></span>'
-      + (tail ? '<b class="px6-pct" style="color:' + c + '">' + Math.round(rate) + '<span class="ps">%</span></b>' : '')
+      + (tail ? '<b class="px6-pct" style="color:' + tailColor(rate) + '">' + Math.round(rate) + '<span class="ps">%</span></b>' : '')
       + '</span></span>';
   }
 
@@ -262,7 +282,7 @@
     var up = bots.length;
     var live = $('px6-live');
     var staleS = snap.unknown_after_s || 90, staleAfter = snap.stale_after_s || 45;
-    var age = Math.max(0, (Date.now() / 1000) - (snap.generated_at_epoch || snap.generated_at));
+    var age = snapAge(snap);
     var cls = age > staleS ? 'bad' : (age > staleAfter ? 'warn' : '');
     var txt = age > staleS ? '● stale' : (age > staleAfter ? '● aging' : '● live');
 
@@ -282,7 +302,8 @@
       + '<div class="px6-foot">'
       +   '<span>PX7 · GREY-YELLOW-INK HUB</span>'
       +   '<span>scheme v' + esc(String(snap.schema_version || '?')) + '</span>'
-      +   '<span>collector ' + esc(String(snap.collector || '?')) + '</span>'
+      +   '<span>collector ' + esc(String((snap.collector && snap.collector.pid) || '?'))
+        + ' · cycle ' + esc(String((snap.collector && snap.collector.cycle) != null ? snap.collector.cycle : '?')) + '</span>'
       +   '<span>' + esc(String(snap.collect_interval_s || '?')) + 's 采集 / 只读</span>'
       + '</div>';
   }
@@ -341,7 +362,7 @@
         + '<span class="dot"></span>'
         + faceSVG(i)
         + '<span class="px6-cname">' + esc(b.display_name) + '</span>'
-        + '<span class="px6-crate" style="color:' + rateColor(s.rate) + '">' + Math.round(s.rate) + '%</span>'
+        + '<span class="px6-crate" style="color:' + textColor(s.rate) + '">' + Math.round(s.rate) + '%</span>'
         + '<span class="px6-csub">' + fmtTok(s.tok) + '</span>'
         + '</div>';
     });
@@ -391,9 +412,10 @@
     });
   }
   function legendSwatches() {
+    /* 每档取一个代表值，保证 5 个色阶都在图例里出现 */
     var html = '';
-    [0, 25, 50, 75, 100].forEach(function (r) {
-      html += '<span class="sw" style="background:' + rateColor(r) + '"></span>';
+    [[20, '&lt;40'], [50, '40-60'], [70, '60-80'], [88, '80-95'], [100, '≥95']].forEach(function (p) {
+      html += '<span class="sw" style="background:' + rateColor(p[0]) + '"></span>' + p[1] + ' ';
     });
     return html;
   }
@@ -446,7 +468,7 @@
     }).join('');
 
     var unk = ((b.agents_completed_buckets || {}).unknown || {}).unknown || 0;
-    var rc = rateColor(s.rate);
+    var rc = textColor(s.rate), rcFill = rateColor(s.rate);
     $('px6-main').innerHTML =
       '<div class="px6-detail">'
       + '<button class="px6-back" id="px6-back" type="button">&lt; BACK</button>'
@@ -457,7 +479,7 @@
       +     '<div class="px6-dsub">' + esc(b.__host) + ' <i>·</i> ' + esc(b.id)
       +       ' <i>·</i> ' + s.groups.length + ' model <i>·</i> ' + s.groupsByProv.length + ' provider</div>'
       +   '</div>'
-      +   '<span class="px6-drate" style="color:' + rc + ';border-color:' + rc + '">'
+      +   '<span class="px6-drate" style="color:' + rc + ';border-color:' + rcFill + '">'
       +     Math.round(s.rate) + '<span>%</span></span>'
       + '</div>'
       + '<section class="px6-sec">'
@@ -498,10 +520,50 @@
   /* ============================================================
      入口
      ============================================================ */
+  /* 工作态判定（任务4）：work.state 含「工作」或「进展」。
+     ⚠ 只按 display_name 建立矩阵 cell ↔ bot 的映射不可靠（重名/显示名
+     与 id 不一致），改为在 renderHome 的 cells 构建处直接内联标记。 */
+  function isWorking(b) {
+    var st = (b && b.work && b.work.state) || '';
+    return st.indexOf('工作') >= 0 || st.indexOf('进展') >= 0;
+  }
   function render() {
     if (!state.snap) return;
     if (state.view === 'detail') renderDetail(); else renderHome();
+    /* 任务4：按快照给矩阵 cell / drilldown 标题加 .working
+       （data-widx 是 renderHome 写入的 bots 数组下标，稳定不重名） */
+    try {
+      var bots = botsOf(state.snap);
+      var root = $('px6-main');
+      if (state.view === 'detail') {
+        var s = bots[clamp(state.botKey, 0, bots.length - 1)];
+        var det = root.querySelector('.px6-detail');
+        if (det && s) det.classList.toggle('working', isWorking(s)); /* botsOf 返回裸 bot，无 .bot 包装 */
+      } else {
+        root.querySelectorAll('.px6-cell[data-bot]').forEach(function (el) {
+          var b = bots[+el.getAttribute('data-bot')];
+          if (b) el.classList.toggle('working', isWorking(b));
+        });
+      }
+    } catch (e) { /* 不阻塞主渲染 */ }
+    /* 任务5：FREE QUOTA section 重渲 + 重挂（若 quota 层已就绪） */
+    if (window.__PX7_RENDER_QUOTA__) window.__PX7_RENDER_QUOTA__(state.snap);
   }
+  /* live 轮询层把新快照推进来（skin-px7a-live.js） */
+  window.__PX7_SET_SNAPSHOT__ = function (snap, via) {
+    var first = !state.snap; /* 首帧：必须完整渲染 */
+    var changed = false;
+    if (state.snap && snap && state.snap.generated_at !== snap.generated_at) changed = true;
+    state.snap = snap;
+    window.__PX7_MODE__ = via; /* 旧 load() 兜底轮询的门卫信号 */
+    if (first || !document.getElementById('px6-root')) {
+      renderShell();
+      render();
+    } else if (changed) {
+      render(); /* generated_at 变了 → 全量重渲（条宽瞬时跳变，非平滑过渡） */
+    }
+    tickClock();
+  };
   function tickClock() {
     var c = $('px6-clock');
     if (c) {
@@ -511,12 +573,15 @@
     }
     var live = $('px6-live');
     if (live && state.snap) {
-      var snap = state.snap;
-      var age = Math.max(0, (Date.now() / 1000) - (snap.generated_at_epoch || snap.generated_at));
-      var staleS = snap.unknown_after_s || 90, staleAfter = snap.stale_after_s || 45;
-      var cls = age > staleS ? 'bad' : (age > staleAfter ? 'warn' : '');
-      live.className = 'px6-live ' + cls;
-      live.textContent = age > staleS ? '● stale' : (age > staleAfter ? '● aging' : '● live');
+      /* live 层（skin-px7a-live.js）接管徽章文案时（data-src 已设），此处不覆盖 */
+      if (!live.getAttribute('data-src')) {
+        var snap = state.snap;
+        var age = snapAge(snap);
+        var staleS = snap.unknown_after_s || 90, staleAfter = snap.stale_after_s || 45;
+        var cls = age > staleS ? 'bad' : (age > staleAfter ? 'warn' : '');
+        live.className = 'px6-live ' + cls;
+        live.textContent = age > staleS ? '● stale' : (age > staleAfter ? '● aging' : '● live');
+      }
     }
   }
   function fatal(msg) {
@@ -525,13 +590,23 @@
       + '<div class="px6-empty" style="margin-top:26px">' + esc(msg) + '</div>';
   }
   function load() {
+    /* R2-rev2：旧 120s 兜底轮询改走 live 层同一入口。
+       direct 模式下旧快照轮询**不得覆盖**直连数据（Astra R2 MINOR）；
+       首帧（state.snap 为空）时仍负责 bootstrap。 */
+    if (state.snap && window.__PX7_MODE__ === 'direct') return;
     return fetch('/api/status', { cache: 'no-store' })
       .then(function (r) { if (!r.ok) throw new Error('HTTP ' + r.status); return r.json(); })
       .then(function (snap) {
-        state.snap = snap;
-        renderShell();
-        render();
-        tickClock();
+        /* 异步窗口防护：请求期间 live 层已切 direct → 旧快照响应作废 */
+        if (window.__PX7_MODE__ === 'direct') return snap;
+        if (window.__PX7_SET_SNAPSHOT__) {
+          window.__PX7_SET_SNAPSHOT__(snap, 'snapshot');
+        } else {
+          state.snap = snap;
+          renderShell();
+          render();
+          tickClock();
+        }
       })
       .catch(function (e) { fatal('无法读取快照：' + e.message); });
   }

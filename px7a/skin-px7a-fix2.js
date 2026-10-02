@@ -1,4 +1,4 @@
-/* PX7A-FIX v3 js — 时钟对齐真实类 px6-clock + 条变化闪烁（MutationObserver 版） */
+/* PX7A-FIX v3 js — 时钟对齐真实类 px6-clock + 条变化闪烁（2s 定时快照对比版） */
 (function () {
   'use strict';
 

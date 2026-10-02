@@ -22,17 +22,21 @@ body.px7-a {
   --bg:      #ECEDEF;          /* 浅灰白纸感底 */
   --panel:   #F4F4F6;          /* 面板 */
   --panel2:  #FFFFFF;          /* hover / 提亮 */
-  --track:   #10151C;          /* 条形暗轨道（比深灰条更暗） */
+  --track:   #E2E4E8;          /* 极浅灰轨道（用户钦定，替换近黑） */
   --edge:    #D8DADD;          /* 1px 细线 */
   --edge2:   #C6CACC;
   --txt:     #26282B;          /* 深灰近黑 */
   --dim:     #7A7F86;
-  --dim2:    #A0A4AA;
+  --dim2:    #6A6F76;          /* 更暗的次级文字（8-9px 元数据 ≥4.2:1） */
   --accent:  #3A3F46;          /* 主 accent = 深灰（健康 / LIVE） */
   --accent2: #6E747C;
   --ok:      #3A3F46;
-  --warn:    #C2955C;          /* aging = 桔灰 */
-  --bad:     #FFB300;          /* stale / offline = 菊黄（危险端） */
+  --warn:    #C2955C;          /* aging = 桔灰（填充/边框） */
+  --bad:     #FFB300;          /* stale / offline = 菊黄（危险端，填充/边框） */
+  /* 同族加深：菊黄/桔灰在浅灰白纸面上做**文字**会失读，
+     故仅文字处用这两个（与条色同族，非新色） */
+  --warn-tx: #6B4F2E;
+  --bad-tx:  #8A5A00;
   --proc:    #3A3F46;
   --mono: 'JetBrains Mono', ui-monospace, 'SF Mono', Consolas, monospace;
   --pix:  'Pixeloid Sans', 'JetBrains Mono', monospace;
@@ -87,8 +91,8 @@ body.px7-a::after {
   color: var(--accent); letter-spacing: .2em;
 }
 .px6-live { color: var(--accent); font-weight: 700; }
-.px6-live.warn { color: var(--warn); }
-.px6-live.bad  { color: var(--bad); }
+.px6-live.warn { color: var(--warn-tx); }
+.px6-live.bad  { color: var(--bad-tx); }
 .px6-snap {
   margin-left: auto;
   font: 400 10px/1 var(--mono); letter-spacing: .1em; color: var(--dim2);
@@ -124,11 +128,11 @@ body.px7-a::after {
 }
 .px6-secrval em { font-style: normal; color: var(--txt); }
 .px6-secrval .ok  { color: var(--accent); }
-.px6-secrval .bad { color: var(--bad); }
+.px6-secrval .bad { color: var(--bad-tx); }
 
 /* ============================================================
    条：暗轨道 #10151C + 实心直角色块 · 高 16px · 条尾 <b> 百分比
-   条色 = 成功率 5 档离散色阶；条尾粗体、字色跟条色一致
+   条色 = 成功率 5 档离散色阶；条尾粗体、与条色同族
    ============================================================ */
 .px6-bar { display: flex; align-items: center; gap: 0; min-width: 0; flex: 1 1 auto; }
 .px6-track {
@@ -136,7 +140,7 @@ body.px7-a::after {
   position: relative;
   height: 16px; width: 100%;
   background: var(--track);
-  border: 1px solid #05080C;
+  border: 1px solid #D0D3D8;
 }
 .px6-fill {
   display: block; height: 100%;
@@ -147,6 +151,8 @@ body.px7-a::after {
   margin-left: 7px;
   font: 700 11px/1 var(--mono);
   letter-spacing: .04em;
+  /* 条尾坐在暗轨道 #10151C 上；深灰两档由 JS 提亮为同族浅灰，
+     其余三档直接用条色（#FFB300 / #D8AE77 / #E3E6E9） */
 }
 .px6-pct .ps { font-size: 9px; opacity: .7; }
 
@@ -235,7 +241,7 @@ body.px7-a::after {
 /* 低成功率（band 0/1）：边框 + 名字 + 角点 → 菊黄 */
 .px6-cell.low { border-color: #FFB300; box-shadow: inset 0 0 0 1px rgba(255, 179, 0, .35); }
 .px6-cell.low .dot { background: #FFB300; }
-.px6-cell.low .px6-cname { color: #C98900; }
+.px6-cell.low .px6-cname { color: var(--bad-tx); }
 .px6-face {
   width: 44px; height: 44px; display: block;
   image-rendering: pixelated;
@@ -341,7 +347,7 @@ body.px7-a::after {
 .px6-htrack {
   display: flex; align-items: center;
   height: 16px; width: 100%;
-  background: var(--track); border: 1px solid #05080C;
+  background: var(--track); border: 1px solid #D0D3D8;
 }
 .px6-hfill { display: block; height: 100%; min-width: 2px; }
 .px6-hc {

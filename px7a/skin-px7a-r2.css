@@ -1,0 +1,87 @@
+/* PX7A-R2 CSS v1 — 任务2/4/5 收尾样式
+   ① 任务2: 条宽平滑过渡（generated_at 变化时 live 层改 width → 0.9s 缓动）
+   ② 任务4: 工作中 bot 名字菊黄呼吸 1.4s（矩阵 + drilldown 标题，reduced-motion 禁用）
+   ③ 任务5: FREE QUOTA section 行样式（浅灰纸面体系，复用皮肤变量） */
+
+/* ---------- ① 数值平滑过渡（live 层改 width 时生效） ---------- */
+body.px7-a .px6-fill,
+body.px7-a .px6-hfill {
+  transition: width .9s cubic-bezier(.2, .7, .3, 1);
+}
+@media (prefers-reduced-motion: reduce) {
+  body.px7-a .px6-fill,
+  body.px7-a .px6-hfill { transition: none; }
+}
+
+/* ---------- ② 工作中 bot 名字：菊黄呼吸 ---------- */
+@keyframes px7workbreath {
+  0%, 100% { opacity: 1; }
+  50%      { opacity: .35; }
+}
+/* 判定由 JS 加 .working 到 .px6-cell / .px6-detail */
+body.px7-a .px6-cell.working .px6-cname {
+  color: var(--bad-tx); /* #8A5A00 菊黄文字族（浅底可读） */
+  animation: px7workbreath 1.4s ease-in-out infinite;
+}
+/* drilldown 标题同样呼吸 */
+body.px7-a .px6-detail.working .px6-dname {
+  color: var(--bad-tx);
+  animation: px7workbreath 1.4s ease-in-out infinite;
+}
+/* 矩阵角点同步呼吸提示（不与失败低成功率混淆：低成功率=边框+角点静态菊黄，
+   工作中=名字呼吸，drilldown 里看 work.state 全称） */
+@media (prefers-reduced-motion: reduce) {
+  body.px7-a .px6-cell.working .px6-cname,
+  body.px7-a .px6-detail.working .px6-dname { animation: none; }
+  body.px7-a .px6-qfill { transition: none; }
+}
+
+/* ---------- ③ FREE QUOTA 行 ---------- */
+.px6-quota { display: flex; flex-direction: column; gap: 8px; }
+.px6-qrow {
+  display: grid;
+  grid-template-columns: 128px minmax(0, 1fr) 214px 88px;
+  gap: 12px; align-items: center;
+  padding: 3px 4px;
+}
+.px6-qlbl {
+  font: 700 11px/1.25 var(--mono); color: var(--txt);
+  letter-spacing: .04em; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+}
+.px6-qstale, .px6-qpart {
+  text-decoration: none;
+  font: 700 8px/1 var(--mono); letter-spacing: .1em; text-transform: uppercase;
+  padding: 2px 4px; vertical-align: 1px;
+  color: var(--dim2); border: 1px solid var(--edge2); background: var(--panel);
+}
+.px6-qtrack {
+  display: flex; align-items: center;
+  height: 13px; width: 100%;
+  background: var(--track); border: 1px solid #D0D3D8;
+}
+.px6-qfill {
+  display: block; height: 100%; min-width: 2px;
+  background: #3A3F46; /* 健康深灰 */
+  transition: width .9s cubic-bezier(.2, .7, .3, 1);
+}
+.px6-qfill.low  { background: #FFB300; }  /* 剩<20% 菊黄 */
+.px6-qfill.unk  { background: #C9CDD2; opacity: .55; } /* unknown 灰占位 */
+.px6-qrval {
+  font: 700 10.5px/1 var(--mono); color: var(--txt); letter-spacing: .04em;
+  white-space: nowrap; text-align: right;
+}
+.px6-qrval i { font-style: normal; font-weight: 400; color: var(--dim); }
+.px6-qrval em { font-style: normal; font-weight: 400; color: var(--dim2); }
+.px6-qrow.qlow .px6-qrval { color: var(--bad-tx); }
+.px6-qwin {
+  font: 400 9px/1 var(--mono); letter-spacing: .08em; color: var(--dim2);
+  text-align: right; white-space: nowrap;
+}
+@media (max-width: 780px) {
+  .px6-qrow { grid-template-columns: 96px minmax(0, 1fr) 150px; }
+  .px6-qwin { display: none; }
+}
+@media (max-width: 480px) {
+  .px6-qrow { grid-template-columns: 84px minmax(0, 1fr) 120px; }
+  .px6-qrval i { display: none; }
+}
