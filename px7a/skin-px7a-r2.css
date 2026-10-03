@@ -85,3 +85,73 @@ body.px7-a .px6-detail.working .px6-dname {
   .px6-qrow { grid-template-columns: 84px minmax(0, 1fr) 120px; }
   .px6-qrval i { display: none; }
 }
+
+
+/* ---------- R2-audit: unknown/nodata 三态（findings_C 方案1，Astra ROUND5 修正采纳版） ---------- */
+/* 未归类：中灰斜纹（纹理而非新色相），无百分比 */
+body.px7-a .px6-fill--unk,
+body.px7-a .px6-hfill--unk {
+  background: repeating-linear-gradient(45deg, #6E747C 0 4px, #E2E4E8 4px 8px) !important;
+}
+body.px7-a .px6-fill--nodata,
+body.px7-a .px6-hfill--nodata {
+  background: transparent !important;
+  border-right: 1px solid #C6CACC;
+}
+body.px7-a .px6-crate--unk,
+body.px7-a .px6-drate--unk {
+  letter-spacing: .1em;
+}
+/* 名字 ? 角标（未归档提示，不改变真值） */
+body.px7-a .px6-cname .px6-q {
+  font: 700 8px/1 var(--mono);
+  color: #4E545B;
+  vertical-align: 2px;
+  margin-left: 1px;
+}
+/* 图例 */
+body.px7-a .px6-legend .sw--unk-text,
+body.px7-a .px6-legend .sw--nodata-text { text-transform: none; }
+@media (prefers-reduced-motion: reduce) {
+  body.px7-a .px6-fill--unk, body.px7-a .px6-hfill--unk,
+  body.px7-a .px6-fill--nodata, body.px7-a .px6-hfill--nodata { transition: none; }
+}
+
+
+/* ---------- R2-user: drilldown 模型全名（wrap 不截断） ---------- */
+body.px7-a .px6-detail .px6-row { grid-template-columns: minmax(140px, 220px) minmax(0, 1fr) 104px; }
+body.px7-a .px6-detail .px6-rlbl {
+  white-space: normal;
+  word-break: break-all;
+  line-height: 1.35;
+}
+/* 手机窄屏：数值列不挤 */
+@media (max-width: 480px) {
+  body.px7-a .px6-detail .px6-row { grid-template-columns: minmax(110px, 150px) minmax(0, 1fr) 78px; }
+}
+/* ② 工作中 bot：克制 highlight —— 名字左侧一枚 3px 菊黄竖标 + 名字转正色，不加动画不加边框 */
+body.px7-a .px6-detail.working .px6-dname {
+  color: var(--bad-tx);
+  animation: none; /* R2-user：呼吸动画撤掉，改为静态克制标 */
+}
+body.px7-a .px6-detail.working .px6-dname::before {
+  content: '';
+  display: inline-block;
+  width: 3px; height: 12px;
+  margin-right: 7px;
+  vertical-align: -1px;
+  background: #FFB300;
+}
+body.px7-a .px6-cell.working .px6-cname {
+  animation: none; /* 撤呼吸 */
+  color: var(--txt); /* 从 dim 提到正色（克制） */
+}
+body.px7-a .px6-cell.working .px6-cname::before {
+  content: '';
+  display: inline-block;
+  width: 3px; height: 8px;
+  margin-right: 5px;
+  vertical-align: 0;
+  background: #FFB300;
+}
+/* reduced-motion 已覆盖；这里无动画故无需再禁 */

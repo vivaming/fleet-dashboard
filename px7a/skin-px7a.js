@@ -137,15 +137,69 @@
   }
   function totalOf(g) { return (g.input || 0) + (g.output || 0) + (g.cache_read || 0); }
 
-  function bucketRate(bk) {
-    var n = 0, f = 0, t = 0;
-    if (bk) for (var k in bk) { var v = bk[k] || {}; n += v.normal || 0; f += v.failed || 0; t += v.timeout || 0; }
+  /* 三态聚合（R2-audit 修正，Astra ROUND5 采纳版）：
+     state='rate'          denom>0：现有口径照算
+     state='unclassified'  denom=0 且 unknown>0：有记录但结局全不可判定，禁显百分比
+     state='nodata'        denom=0 且 unknown=0：无任何记录
+     注意：遍历全部桶键（unknown 既是时段桶名也是叶字段名） */
+  function bucketCounts(bk) {
+    var n = 0, f = 0, t = 0, u = 0;
+    if (bk) for (var k in bk) {
+      var v = bk[k] || {};
+      n += v.normal || 0; f += v.failed || 0; t += v.timeout || 0; u += v.unknown || 0;
+    }
     var d = n + f + t;
-    return { normal: n, failed: f, timeout: t, denom: d, rate: d === 0 ? 100 : 100 * n / d };
+    return {
+      normal: n, failed: f, timeout: t, unknown: u,
+      denom: d, all: d + u,
+      state: d > 0 ? 'rate' : (u > 0 ? 'unclassified' : 'nodata'),
+      rate: d > 0 ? 100 * n / d : 0
+    };
+  }
+  /* 兼容旧调用点（host 聚合手算处仍要对象形状） */
+  function bucketRate(bk) { return bucketCounts(bk); }
+  /* 平面计数版（host 聚合累加结果用） */
+  function countsFromFlat(n, f, t, u) {
+    var d = n + f + t;
+    return {
+      normal: n, failed: f, timeout: t, unknown: u,
+      denom: d, all: d + u,
+      state: d > 0 ? 'rate' : (u > 0 ? 'unclassified' : 'nodata'),
+      rate: d > 0 ? 100 * n / d : 0
+    };
+  }
+
+  /* 视图层：全站唯一决定「画什么」。非 rate 态绝不进 rateColor
+     （rateColor(NaN/undefined) 兜底 #3A3F46 健康深灰 = 地雷；rateColor(0)=菊黄 误报危险）
+     UNK_TX = rateText[2] 同值 #4E545B，面板上对比度 6.97:1 */
+  var UNK_TX = '#4E545B';
+  function rateView(br) {
+    if (br.state === 'rate') {
+      return { cls: '', glyph: '', pctText: Math.round(br.rate) + '%',
+               fill: 'background:' + rateColor(br.rate),
+               pctColor: tailColor(br.rate), cellColor: textColor(br.rate) };
+    }
+    if (br.state === 'unclassified') {
+      return { cls: ' px6-fill--unk', glyph: '?', pctText: '?',
+               fill: '', pctColor: UNK_TX, cellColor: UNK_TX };
+    }
+    return { cls: ' px6-fill--nodata', glyph: '\u2013', pctText: '\u2013',
+             fill: '', pctColor: UNK_TX, cellColor: UNK_TX };
+  }
+
+  // 单时段叶节点三态版（HISTORY seg 用）
+  function leafCounts(bk) {
+    var n = (bk && bk.normal) || 0, f = (bk && bk.failed) || 0, t = (bk && bk.timeout) || 0;
+    var u = (bk && bk.unknown) || 0;
+    var d = n + f + t;
+    return {
+      normal: n, failed: f, timeout: t, unknown: u, denom: d, all: d + u,
+      state: d > 0 ? 'rate' : (u > 0 ? 'unclassified' : 'nodata'),
+      rate: d > 0 ? 100 * n / d : 0
+    };
   }
   function segRate(bk) { return leafRate(bk || {}); }
-
-  // 单个时段叶节点 {normal,failed,timeout,unknown} → 成功率
+  // 单个时段叶节点 → 成功率（rate 态专用；非 rate 态由调用方走三态渲染）
   function leafRate(bk) {
     var n = (bk && bk.normal) || 0, f = (bk && bk.failed) || 0, t = (bk && bk.timeout) || 0;
     var d = n + f + t;
@@ -254,13 +308,14 @@
     var rows = usageRows(b), groups = groupUsage(rows);
     var tok = 0, calls = 0, i;
     for (i = 0; i < groups.length; i++) { tok += totalOf(groups[i]); calls += groups[i].calls; }
-    var br = bucketRate(b.agents_completed_buckets || {});
+    var br = bucketCounts(b.agents_completed_buckets || {});
     var segs = ['4h', '4–24h', '24h–7d'].map(function (k) {
       var bk = (b.agents_completed_buckets || {})[k] || {};
-      var n = bk.normal || 0, f = bk.failed || 0, t = bk.timeout || 0;
-      return { key: k, normal: n, failed: f, timeout: t, denom: n + f + t, rate: segRate(bk) };
+      var lc = leafCounts(bk);
+      return { key: k, normal: lc.normal, failed: lc.failed, timeout: lc.timeout,
+               unknown: lc.unknown, denom: lc.denom, state: lc.state, rate: lc.rate };
     });
-    return { bot: b, rows: rows, groups: groups, groupsByProv: groupsOf(groups), tok: tok, calls: calls, rate: br.rate, br: br, segs: segs };
+    return { bot: b, rows: rows, groups: groups, groupsByProv: groupsOf(groups), tok: tok, calls: calls, br: br, segs: segs };
   }
 
   /* ============================================================
@@ -321,22 +376,24 @@
     var hostMax = 1;
     var hAgg = hosts.map(function (h) {
       var hs = sums.filter(function (s) { return s.bot.__host === h.short; });
-      var br = bucketRate({}), tok = 0, calls = 0, i;
+      var acc = { normal: 0, failed: 0, timeout: 0, unknown: 0 }, tok = 0, calls = 0, i;
       for (i = 0; i < hs.length; i++) {
         tok += hs[i].tok; calls += hs[i].calls;
         var b = hs[i].br;
-        br.normal += b.normal; br.failed += b.failed; br.timeout += b.timeout;
+        acc.normal += b.normal; acc.failed += b.failed; acc.timeout += b.timeout; acc.unknown += b.unknown;
       }
-      var d = br.normal + br.failed + br.timeout;
-      br.rate = d === 0 ? 100 : 100 * br.normal / d;
+      /* Astra ROUND5 BLOCKER：累加后必须重算 denom/state，不能漏。
+         acc 是平面对象（非桶结构），用 countsFromFlat 判三态 */
+      var br = countsFromFlat(acc.normal, acc.failed, acc.timeout, acc.unknown);
       hostMax = Math.max(hostMax, tok);
-      return { h: h, n: hs.length, tok: tok, calls: calls, rate: br.rate };
+      return { h: h, n: hs.length, tok: tok, calls: calls, br: br };
     });
     hAgg.forEach(function (a) {
+      var hv = rateView(a.br);
       hostRows += '<div class="px6-host">'
         + '<span class="lbl">' + esc(a.h.short) + '</span>'
-        + barHTML(a.tok / hostMax * 100, a.rate, true)
-        + '<span class="meta">' + a.n + ' bots · ' + fmtTok(a.tok) + '</span>'
+        + barHTML(a.tok / hostMax * 100, a.br, true)
+        + '<span class="meta">' + a.n + ' bots · ' + fmtTok(a.tok) + (a.br.unknown ? ' · ' + a.br.unknown + ' 未归档' : '') + '</span>'
         + '</div>';
     });
 
@@ -344,9 +401,10 @@
     var usageRows = '';
     sums.forEach(function (s, i) {
       var b = s.bot;
+      var uv = rateView(s.br);
       usageRows += '<div class="px6-row" data-bot="' + esc(i) + '" title="' + esc(b.display_name) + ' → usage 详情">'
         + '<span class="px6-rlbl">' + esc(b.display_name) + ' <em>' + esc(b.__host) + '</em></span>'
-        + barHTML(s.tok / maxTok * 100, s.rate, true)
+        + barHTML(s.tok / maxTok * 100, s.br, true)
         + '<span class="px6-rval">' + fmtTok(s.tok) + ' tok<br><b>' + fmtInt(s.calls) + ' calls</b></span>'
         + '</div>';
     });
@@ -355,14 +413,18 @@
     var cells = '';
     sums.forEach(function (s, i) {
       var b = s.bot;
-      /* 低成功率（band 0/1 = 菊黄 / 桔灰）→ 图标边框 + 名字转菊黄 */
-      var lowCls = (rateBand(s.rate) <= 1) ? ' low' : '';
+      var v = rateView(s.br);
+      /* low 判定仅在 rate 态（unclassified/nodata 不取色、不触发菊黄边框） */
+      var lowCls = (v.cls === '' && rateBand(s.br.rate) <= 1) ? ' low' : '';
+      var pctTxt = (v.cls === '') ? Math.round(s.br.rate) + '%' : v.pctText;
+      var tip = b.display_name + ' \u2014 ' + (v.cls === '' ? pctTxt : v.pctText + (' (\u672a\u5f52\u6863 ' + s.br.unknown + '/' + s.br.all + ')'))
+        + ' · ' + fmtTok(s.tok) + ' tok · ' + fmtInt(s.calls) + ' calls';
       cells += '<div class="px6-cell' + lowCls + (s.tok === 0 ? ' dim' : '') + '" data-bot="' + esc(i) + '" role="button" tabindex="0"'
-        + ' title="' + esc(b.display_name) + ' — ' + Math.round(s.rate) + '% · ' + fmtTok(s.tok) + ' tok · ' + fmtInt(s.calls) + ' calls">'
+        + ' title="' + esc(tip) + '">'
         + '<span class="dot"></span>'
         + faceSVG(i)
-        + '<span class="px6-cname">' + esc(b.display_name) + '</span>'
-        + '<span class="px6-crate" style="color:' + textColor(s.rate) + '">' + Math.round(s.rate) + '%</span>'
+        + '<span class="px6-cname">' + esc(b.display_name) + (s.br.unknown > 0 ? '<sup class="px6-q">?</sup>' : '') + '</span>'
+        + '<span class="px6-crate' + (v.cls ? ' px6-crate--unk' : '') + '" style="color:' + v.cellColor + '">' + pctTxt + '</span>'
         + '<span class="px6-csub">' + fmtTok(s.tok) + '</span>'
         + '</div>';
     });
@@ -386,8 +448,9 @@
       +   '<div class="px6-usage">' + usageRows + '</div>'
       +   '<div class="px6-legend">'
       +     '<span>条长=总量 / 最大 bot</span>'
-      +     '<span>色 = 成功率 ' + legendSwatches() + '</span>'
-      +     '<span>条尾 = 成功率 %</span>'
+      +     '<span>色 = 已归类成功率 ' + legendSwatches() + '</span>'
+      +     '<span class="sw--unk-text">? = 结局未归档（不显示百分比）</span>'
+      +     '<span class="sw--nodata-text">\u2013 = 无记录</span>'
       +   '</div>'
       + '</section>'
       + '<section class="px6-sec">'
@@ -447,28 +510,41 @@
         var v = totalOf(m);
         pgHTML += '<div class="px6-row">'
           + '<span class="px6-rlbl" title="' + esc(p.provider + '/' + m.model) + '"><em>' + esc(p.provider) + '</em>/' + esc(m.model) + '</span>'
-          + barHTML(v / maxModel * 100, s.rate, true)
+          + barHTML(v / maxModel * 100, s.br, true)
           + '<span class="px6-rval">' + fmtTok(v) + ' tok<br><b>' + fmtInt(m.calls) + ' calls</b></span>'
           + '</div>';
       });
       pgHTML += '</div>';
     });
 
-    /* --- 历史 usage：3 段时间分段条 --- */
-    var maxSeg = Math.max.apply(null, s.segs.map(function (x) { return x.denom; }).concat([1]));
+    /* --- 历史 usage：3 段时间分段条（三态版） --- */
+    var maxSeg = Math.max.apply(null, s.segs.map(function (x) { return x.all || x.denom; }).concat([1]));
     var histHTML = s.segs.map(function (x) {
-      var vol = x.denom / maxSeg * 100;
-      var noRec = x.denom === 0;
+      var vol = (x.all || x.denom) / maxSeg * 100;
+      var segCls = '';
+      var segFill = 'background:' + rateColor(x.rate);
+      var segOpacity = '1';
+      var rightTxt;
+      if (x.denom > 0) {
+        rightTxt = Math.round(x.rate) + '%';
+      } else if (x.unknown > 0) {
+        segCls = ' px6-hfill--unk'; segFill = '';
+        rightTxt = '? (' + x.unknown + ' 未归档)';
+      } else {
+        segCls = ' px6-hfill--nodata'; segFill = ''; segOpacity = '.32';
+        rightTxt = 'no records';
+      }
       return '<div class="px6-hseg">'
         + '<span class="px6-hlbl">' + esc(x.key) + '</span>'
-        + '<span class="px6-htrack"><span class="px6-hfill" style="width:' + clamp(vol, 2, 100).toFixed(1) + '%;background:' + rateColor(x.rate) + ';opacity:' + (noRec ? '.32' : '1') + '"></span></span>'
+        + '<span class="px6-htrack"><span class="px6-hfill' + segCls + '" style="width:' + clamp(vol, 2, 100).toFixed(1) + '%;' + segFill + ';opacity:' + segOpacity + '"></span></span>'
         + '<span class="px6-hc"><span><b>' + x.normal + '</b> ok / ' + (x.failed + x.timeout) + ' bad</span>'
-        + '<span>' + (noRec ? 'no records' : Math.round(x.rate) + '%') + '</span></span>'
+        + '<span>' + rightTxt + '</span></span>'
         + '</div>';
     }).join('');
 
-    var unk = ((b.agents_completed_buckets || {}).unknown || {}).unknown || 0;
-    var rc = textColor(s.rate), rcFill = rateColor(s.rate);
+    var unk = s.br.unknown;
+    var dv = rateView(s.br);
+    var dvPct = (dv.cls === '') ? Math.round(s.br.rate) + '%' : dv.pctText;
     $('px6-main').innerHTML =
       '<div class="px6-detail">'
       + '<button class="px6-back" id="px6-back" type="button">&lt; BACK</button>'
@@ -479,8 +555,12 @@
       +     '<div class="px6-dsub">' + esc(b.__host) + ' <i>·</i> ' + esc(b.id)
       +       ' <i>·</i> ' + s.groups.length + ' model <i>·</i> ' + s.groupsByProv.length + ' provider</div>'
       +   '</div>'
-      +   '<span class="px6-drate" style="color:' + rc + ';border-color:' + rcFill + '">'
-      +     Math.round(s.rate) + '<span>%</span></span>'
+      +   '<span class="px6-drate' + (dv.cls ? ' px6-drate--unk' : '') + '" style="color:' + dv.cellColor + ';border-color:' + (dv.cls ? UNK_TX : rateColor(s.br.rate)) + '"'
+      +     (dv.cls === '' && s.br.unknown > 0 ? ' title="已归类成功率；另有 ' + s.br.unknown + ' 条未归档（占 ' + (Math.round(100 * s.br.unknown / s.br.all * 10) / 10) + '%）"' : '')
+      +   '>'
+      +     dvPct + (dv.cls === '' ? '<span>%</span>' : '') + '</span>'
+      +   (dv.cls !== '' ? '<span class="px6-dsub" style="color:' + UNK_TX + '">结局未归档 ' + s.br.unknown + '/' + s.br.all + ' 条（来源缺 omp_ledger）</span>' : '')
+      +   (dv.cls === '' && s.br.unknown > 0 ? '<span class="px6-dsub" style="color:' + UNK_TX + '">已归类口径 · 另有 ' + s.br.unknown + '/' + s.br.all + ' 未归档</span>' : '')
       + '</div>'
       + '<section class="px6-sec">'
       +   '<div class="px6-sechead">'
@@ -491,8 +571,8 @@
       +   pgHTML
       +   '<div class="px6-legend">'
       +     '<span>条长 = 用量总量 / 本 bot 最大 model</span>'
-      +     '<span>条色 = 本 bot 成功率 ' + Math.round(s.rate) + '%</span>'
-      +     '<span>条尾 = 成功率 %</span>'
+      +     '<span>条色 = 本 bot 已归类成功率 ' + (dv.cls === '' ? Math.round(s.br.rate) + '%' : dv.pctText) + '</span>'
+      +     '<span>条尾 = 已归类成功率 %</span>'
       +   '</div>'
       + '</section>'
       + '<section class="px6-sec">'
@@ -504,9 +584,9 @@
       +   '</div>'
       +   '<div class="px6-hist">' + histHTML + '</div>'
       +   '<div class="px6-legend">'
-      +     '<span>条长 = 记录量 / 最大时段</span>'
-      +     '<span>段色 = 该时段成功率</span>'
-      +     '<span>无记录按时段 100%</span>'
+      +     '<span>条长 = 记录量（含未归档）/ 最大时段</span>'
+      +     '<span>段色 = 该时段已归类成功率</span>'
+      +     '<span>? = 结局未归档 · \u2013 = 无记录</span>'
       +   '</div>'
       + '</section>'
       + '</div>';
