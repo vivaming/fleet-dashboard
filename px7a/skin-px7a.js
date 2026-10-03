@@ -280,12 +280,23 @@
      .px6-bar > .px6-track(flex) > .px6-fill + <b class="px6-pct">  紧贴
      ============================================================ */
   function barHTML(pctLen, rate, tail) {
+    /* rate 参数兼容两形态: 数字(旧) / br对象(R2三态)。对象时按 state 分支,
+       非 rate 态尾标 '?' 不显百分比 (修 HOSTS/USAGE NaN%: 调用点传 br, Math.round(br)=NaN) */
+    var isObj = rate && typeof rate === 'object';
     var w = clamp(pctLen, 2, 82);
-    var c = rateColor(rate);
+    if (isObj && rate.state !== 'rate') {
+      return '<span class="px6-bar">'
+        + '<span class="px6-track">'
+        + '<span class="px6-fill px6-fill--unk" style="width:' + w.toFixed(1) + '%"></span>'
+        + (tail ? '<b class="px6-pct" style="color:' + UNK_TX + '">?</b>' : '')
+        + '</span></span>';
+    }
+    var r = isObj ? rate.rate : rate;
+    var c = rateColor(r);
     return '<span class="px6-bar">'
       + '<span class="px6-track">'
       + '<span class="px6-fill" style="width:' + w.toFixed(1) + '%;background:' + c + '"></span>'
-      + (tail ? '<b class="px6-pct" style="color:' + tailColor(rate) + '">' + Math.round(rate) + '<span class="ps">%</span></b>' : '')
+      + (tail ? '<b class="px6-pct" style="color:' + tailColor(r) + '">' + Math.round(r) + '<span class="ps">%</span></b>' : '')
       + '</span></span>';
   }
 
@@ -423,7 +434,7 @@
         + ' title="' + esc(tip) + '">'
         + '<span class="dot"></span>'
         + faceSVG(i)
-        + '<span class="px6-cname">' + esc(b.display_name) + (s.br.unknown > 0 ? '<sup class="px6-q">?</sup>' : '') + '</span>'
+        + '<span class="px6-cname">' + esc(b.display_name) + (s.br.unknown > 0 && v.cls === '' ? '<sup class="px6-q">?</sup>' : '') + '</span>'
         + '<span class="px6-crate' + (v.cls ? ' px6-crate--unk' : '') + '" style="color:' + v.cellColor + '">' + pctTxt + '</span>'
         + '<span class="px6-csub">' + fmtTok(s.tok) + '</span>'
         + '</div>';
