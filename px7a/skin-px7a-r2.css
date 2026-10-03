@@ -88,10 +88,15 @@ body.px7-a .px6-detail.working .px6-dname {
 
 
 /* ---------- R2-audit: unknown/nodata 三态（findings_C 方案1，Astra ROUND5 修正采纳版） ---------- */
-/* 未归类：中灰斜纹（纹理而非新色相），无百分比 */
+/* 未归类（v3 修正）：低对比素灰实色——粗斜纹上全宽大条视觉过吵（用户否决 10/03）。
+   纹理只留给 HISTORY 小分段；大条(填充区)与胶囊(分数区)统一 8% 透明度中灰，安静区分于彩色语义条 */
 body.px7-a .px6-fill--unk,
 body.px7-a .px6-hfill--unk {
-  background: repeating-linear-gradient(45deg, #6E747C 0 4px, #E2E4E8 4px 8px) !important;
+  background: rgba(110, 116, 124, .16) !important;
+}
+/* HISTORY 小分段保留细斜纹（低面积，不吵）：密度减半 + 同灰系 */
+body.px7-a .px6-hfill--unk {
+  background: repeating-linear-gradient(45deg, #9AA0A8 0 3px, #C9CDD2 3px 6px) !important;
 }
 body.px7-a .px6-fill--nodata,
 body.px7-a .px6-hfill--nodata {
