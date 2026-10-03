@@ -565,7 +565,7 @@
       + '<section class="px6-sec">'
       +   '<div class="px6-sechead">'
       +     '<span class="px6-secname">USAGE</span>'
-      +     '<span class="px6-secsub">by provider → model</span>'
+      +     '<span class="px6-secsub">累计自首记录 · tok 含缓存读</span>'
       +     '<span class="px6-secrval"><em>' + fmtTok(s.tok) + '</em> tok · ' + fmtInt(s.calls) + ' calls</span>'
       +   '</div>'
       +   pgHTML
