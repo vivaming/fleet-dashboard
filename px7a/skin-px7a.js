@@ -143,14 +143,15 @@
      state='nodata'        denom=0 且 unknown=0：无任何记录
      注意：遍历全部桶键（unknown 既是时段桶名也是叶字段名） */
   function bucketCounts(bk) {
-    var n = 0, f = 0, t = 0, u = 0;
+    var n = 0, f = 0, t = 0, u = 0, es = 0;
     if (bk) for (var k in bk) {
       var v = bk[k] || {};
       n += v.normal || 0; f += v.failed || 0; t += v.timeout || 0; u += v.unknown || 0;
+      es += v.empty_shell || 0;
     }
     var d = n + f + t;
     return {
-      normal: n, failed: f, timeout: t, unknown: u,
+      normal: n, failed: f, timeout: t, unknown: u, empty_shell: es,
       denom: d, all: d + u,
       state: d > 0 ? 'rate' : (u > 0 ? 'unclassified' : 'nodata'),
       rate: d > 0 ? 100 * n / d : 0
@@ -159,10 +160,10 @@
   /* 兼容旧调用点（host 聚合手算处仍要对象形状） */
   function bucketRate(bk) { return bucketCounts(bk); }
   /* 平面计数版（host 聚合累加结果用） */
-  function countsFromFlat(n, f, t, u) {
+  function countsFromFlat(n, f, t, u, es) {
     var d = n + f + t;
     return {
-      normal: n, failed: f, timeout: t, unknown: u,
+      normal: n, failed: f, timeout: t, unknown: u, empty_shell: es || 0,
       denom: d, all: d + u,
       state: d > 0 ? 'rate' : (u > 0 ? 'unclassified' : 'nodata'),
       rate: d > 0 ? 100 * n / d : 0
@@ -191,9 +192,10 @@
   function leafCounts(bk) {
     var n = (bk && bk.normal) || 0, f = (bk && bk.failed) || 0, t = (bk && bk.timeout) || 0;
     var u = (bk && bk.unknown) || 0;
+    var es = (bk && bk.empty_shell) || 0;
     var d = n + f + t;
     return {
-      normal: n, failed: f, timeout: t, unknown: u, denom: d, all: d + u,
+      normal: n, failed: f, timeout: t, unknown: u, empty_shell: es, denom: d, all: d + u,
       state: d > 0 ? 'rate' : (u > 0 ? 'unclassified' : 'nodata'),
       rate: d > 0 ? 100 * n / d : 0
     };
@@ -387,24 +389,29 @@
     var hostMax = 1;
     var hAgg = hosts.map(function (h) {
       var hs = sums.filter(function (s) { return s.bot.__host === h.short; });
-      var acc = { normal: 0, failed: 0, timeout: 0, unknown: 0 }, tok = 0, calls = 0, i;
+      var acc = { normal: 0, failed: 0, timeout: 0, unknown: 0, empty_shell: 0 }, tok = 0, calls = 0, i;
       for (i = 0; i < hs.length; i++) {
         tok += hs[i].tok; calls += hs[i].calls;
         var b = hs[i].br;
         acc.normal += b.normal; acc.failed += b.failed; acc.timeout += b.timeout; acc.unknown += b.unknown;
+        acc.empty_shell += b.empty_shell || 0;
       }
       /* Astra ROUND5 BLOCKER：累加后必须重算 denom/state，不能漏。
          acc 是平面对象（非桶结构），用 countsFromFlat 判三态 */
-      var br = countsFromFlat(acc.normal, acc.failed, acc.timeout, acc.unknown);
+      var br = countsFromFlat(acc.normal, acc.failed, acc.timeout, acc.unknown, acc.empty_shell);
       hostMax = Math.max(hostMax, tok);
-      return { h: h, n: hs.length, tok: tok, calls: calls, br: br };
+      return { h: h, n: hs.length, tok: tok, calls: calls, br: br, acc: acc };
     });
     hAgg.forEach(function (a) {
       var hv = rateView(a.br);
-      hostRows += '<div class="px6-host">'
+      /* F: 悬浮明细 — 问号来源拆解 (approx 源 / 空壳) */
+      var tip = a.h.short + ' 结局口径: ' + a.br.normal + ' ok / ' + (a.br.failed + a.br.timeout) + ' bad'
+        + (a.br.unknown ? ' / ' + a.br.unknown + ' 证据不足(?)' : '')
+        + (a.br.empty_shell ? ' / ' + a.br.empty_shell + ' 空壳' : '');
+      hostRows += '<div class="px6-host" title="' + esc(tip) + '">'
         + '<span class="lbl">' + esc(a.h.short) + '</span>'
         + barHTML(a.tok / hostMax * 100, a.br, true)
-        + '<span class="meta">' + a.n + ' bots · ' + fmtTok(a.tok) + (a.br.unknown ? ' · ' + a.br.unknown + ' 未归档' : '') + '</span>'
+        + '<span class="meta">' + a.n + ' bots · ' + fmtTok(a.tok) + (a.br.unknown ? ' · ' + a.br.unknown + ' 证据不足' : '') + (a.br.empty_shell ? ' · ' + a.br.empty_shell + ' 空壳' : '') + '</span>'
         + '</div>';
     });
 
@@ -591,6 +598,7 @@
       +     '<span class="px6-secname">HISTORY</span>'
       +     '<span class="px6-secsub">agents_completed_buckets</span>'
       +     '<span class="px6-secrval">' + s.br.normal + ' ok / ' + (s.br.failed + s.br.timeout) + ' bad'
+      + (s.br.empty_shell ? ' · ' + s.br.empty_shell + ' 空壳' : '')
       + (unk ? ' · ' + unk + ' 未归档' : '') + '</span>'
       +   '</div>'
       +   '<div class="px6-hist">' + histHTML + '</div>'
