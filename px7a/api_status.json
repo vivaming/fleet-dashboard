@@ -1,25 +1,25 @@
 {
  "schema_version": 1,
- "snapshot_id": "7d72e830f17d",
- "generated_at": "2026-10-04T21:20:53Z",
+ "snapshot_id": "14e824a2e12e",
+ "generated_at": "2026-10-04T23:18:37Z",
  "collect_interval_s": 15,
  "web_refresh_hint_s": 5,
- "stale_after_s": 60,
- "unknown_after_s": 125,
+ "stale_after_s": 80,
+ "unknown_after_s": 160,
  "collector": {
-  "pid": 75855,
-  "last_success_at": "2026-10-04T21:20:20Z",
-  "cycle": 41802,
-  "round_seconds": 31.8
+  "pid": 759117,
+  "last_success_at": "2026-10-04T23:17:55Z",
+  "cycle": 42002,
+  "round_seconds": 40.6
  },
  "hosts": [
   {
    "host_id": "ming-ai-station",
    "short": ".69",
    "transport": "local",
-   "observed_at": "2026-10-04T21:20:21Z",
-   "observed_at_epoch": 1791148821.466829,
-   "last_success_at": "2026-10-04T21:20:21Z",
+   "observed_at": "2026-10-04T23:17:56Z",
+   "observed_at_epoch": 1791155876.445563,
+   "last_success_at": "2026-10-04T23:17:56Z",
    "error": null,
    "bots": [
     {
@@ -34,16 +34,16 @@
       "state_label": "online"
      },
      "work": {
-      "state": "近期有工作进展",
+      "state": "在线·空闲",
       "reasons": [
-       "近期业务活动 -45759s 前"
+       "无待执行任务；最近活动 1891561s 前"
       ],
-      "progress_age_s": -45759.52216911316
+      "progress_age_s": 1891562
      },
      "activity": {
       "text": "会话：Check why Nyx bot stopped working",
       "source": "session_title",
-      "at": "2026-10-05T10:03:01Z"
+      "at": "2026-09-13T01:51:54Z"
      },
      "xpi_agents": {
       "count": 0,
@@ -68,7 +68,7 @@
       "total": 0,
       "truncated": false,
       "items": [],
-      "at": 1791148821.4773512,
+      "at": 1791155876.4559767,
       "omp_exits_24h": {
        "count": 0,
        "omp": 0,
@@ -112,7 +112,7 @@
        }
       ],
       "error": null,
-      "sampled_at": 1791148821.4796996,
+      "sampled_at": 1791155876.4585447,
       "coverage": "complete"
      },
      "db_status": {
@@ -121,8 +121,8 @@
      },
      "log_status": {
       "exists": true,
-      "business_ts": "2026-10-05T10:03:01Z",
-      "housekeeping_ts": "2026-10-04T21:19:55Z"
+      "business_ts": null,
+      "housekeeping_ts": "2026-10-04T23:17:00Z"
      },
      "tri": {
       "tri": "reachable",
@@ -130,7 +130,7 @@
      },
      "_severity": 0,
      "log_errors": {
-      "count_24h": 12,
+      "count_24h": 8,
       "recent": [
        {
         "ts": 1791194575.0,
@@ -177,25 +177,29 @@
        "normal": 0,
        "failed": 0,
        "timeout": 0,
-       "unknown": 0
+       "unknown": 0,
+       "empty_shell": 0
       },
       "4–24h": {
        "normal": 0,
        "failed": 0,
        "timeout": 0,
-       "unknown": 0
+       "unknown": 0,
+       "empty_shell": 0
       },
       "24h–7d": {
        "normal": 0,
        "failed": 0,
        "timeout": 0,
-       "unknown": 0
+       "unknown": 0,
+       "empty_shell": 0
       },
       "unknown": {
        "normal": 0,
        "failed": 0,
        "timeout": 0,
-       "unknown": 0
+       "unknown": 0,
+       "empty_shell": 0
       }
      },
      "agents_completed_count": 0,
@@ -210,10 +214,10 @@
      "id": "ming-ai-station:nyx",
      "profile": "nyx",
      "session_budget": {
-      "last_prompt_tokens": 236913,
+      "last_prompt_tokens": 172482,
       "model": null,
       "provider": null,
-      "session_id": "20261002_144951_89f0f40e"
+      "session_id": "20260924_180017_7e0ed3ef"
      },
      "display_name": "nyx",
      "process": {
@@ -223,16 +227,16 @@
       "state_label": "online"
      },
      "work": {
-      "state": "近期有工作进展",
+      "state": "在线·空闲",
       "reasons": [
-       "近期业务活动 55s 前"
+       "无待执行任务；最近活动 360s 前"
       ],
-      "progress_age_s": 55
+      "progress_age_s": 360
      },
      "activity": {
-      "text": "会话：U.S. growth vs receipts animation",
+      "text": "会话：呼叫Nyx进来",
       "source": "session_title",
-      "at": "2026-10-04T21:19:26Z"
+      "at": "2026-10-04T23:11:56Z"
      },
      "xpi_agents": {
       "count": 0,
@@ -378,7 +382,7 @@
         "model_basis": "config_only"
        }
       ],
-      "at": 1791148821.4831412,
+      "at": 1791155876.4624107,
       "omp_exits_24h": {
        "count": 0,
        "omp": 0,
@@ -392,9 +396,9 @@
        "model": "glm-5.3-flash",
        "provider": "zai",
        "base_url": "https://open.bigmodel.cn/api/coding/paas/v4",
-       "last_seen": 1790993292.7962372,
+       "last_seen": 1791154679.973508,
        "recent": false,
-       "last_seen_epoch": 1790993292.7962372,
+       "last_seen_epoch": 1791154679.973508,
        "estimated_cost_usd": 0.0,
        "cost_status": null,
        "_score": 2,
@@ -434,10 +438,10 @@
      "problem_flags": [
       {
        "code": "session_overrun",
-       "session_id": "20261002_144951_89f0f40e",
-       "source": "sessions.last_activity_at（主会话 20261002_144 · 629条消息 · 已运行2天）",
+       "session_id": "20260924_180017_7e0ed3ef",
+       "source": "sessions.last_activity_at（主会话 20260924_180 · 594条消息 · 已运行10天）",
        "window": "主会话累计（自会话开始，非窗口；口径为 sessions 表会话自身列，非 usage 加总）",
-       "detail": "sessions.last_activity_at（主会话 20261002_144 · 629条消息 · 已运行2天） · api_calls=299 (>150)",
+       "detail": "sessions.last_activity_at（主会话 20260924_180 · 594条消息 · 已运行10天） · api_calls=249 (>150)",
        "suggest": "开新会话（写 HANDOFF.md 交接后 /new）"
       }
      ],
@@ -578,13 +582,13 @@
         "provider": "zai",
         "base_url": "https://open.bigmodel.cn/api/coding/paas/v4",
         "billing_mode": "",
-        "input": 33012002,
-        "output": 3122129,
-        "cache_read": 513683840,
+        "input": 33398109,
+        "output": 3131179,
+        "cache_read": 516765184,
         "cache_write": 0,
-        "calls": 4285,
+        "calls": 4304,
         "first_seen": 1789182709.1077647,
-        "last_seen": 1790993292.7962372
+        "last_seen": 1791154679.973508
        },
        {
         "model": "glm-5.3-flash",
@@ -653,7 +657,7 @@
        }
       ],
       "error": null,
-      "sampled_at": 1791148821.4857073,
+      "sampled_at": 1791155876.4648862,
       "coverage": "complete"
      },
      "db_status": {
@@ -662,8 +666,8 @@
      },
      "log_status": {
       "exists": true,
-      "business_ts": "2026-10-04T21:19:26Z",
-      "housekeeping_ts": "2026-10-04T21:20:12Z"
+      "business_ts": "2026-10-04T23:11:56Z",
+      "housekeeping_ts": "2026-10-04T23:17:26Z"
      },
      "tri": {
       "tri": "reachable",
@@ -671,32 +675,32 @@
      },
      "_severity": 0,
      "log_errors": {
-      "count_24h": 59,
+      "count_24h": 76,
       "recent": [
        {
-        "ts": 1791148755.0,
+        "ts": 1791155516.0,
         "level": "WARNING",
-        "msg": "2026-10-05 10:19:15,135 WARNING plugins.platforms.telegram.telegram_network: [Telegram] IPv4 Telegram API IP 149.154.166.110 failed:"
+        "msg": "2026-10-05 12:11:56,603 WARNING plugins.platforms.telegram.telegram_network: [Telegram] IPv4 Telegram API IP 149.154.167.220 failed:"
        },
        {
-        "ts": 1791148755.0,
+        "ts": 1791155515.0,
         "level": "WARNING",
-        "msg": "2026-10-05 10:19:15,135 WARNING plugins.platforms.telegram.telegram_network: [Telegram] Sticky Telegram path 149.154.166.110 failed; re-walking IPv4 literals before the hostname"
+        "msg": "2026-10-05 12:11:55,966 WARNING plugins.platforms.telegram.telegram_network: [Telegram] IPv4 Telegram API IP 149.154.166.110 failed:"
        },
        {
-        "ts": 1791148632.0,
+        "ts": 1791155515.0,
         "level": "WARNING",
-        "msg": "2026-10-05 10:17:12,889 WARNING plugins.platforms.telegram.telegram_network: [Telegram] IPv4 Telegram API IP 149.154.167.220 failed:"
+        "msg": "2026-10-05 12:11:55,966 WARNING plugins.platforms.telegram.telegram_network: [Telegram] Sticky Telegram path 149.154.166.110 failed; re-walking IPv4 literals before the hostname"
        },
        {
-        "ts": 1791148632.0,
+        "ts": 1791155493.0,
         "level": "WARNING",
-        "msg": "2026-10-05 10:17:12,889 WARNING plugins.platforms.telegram.telegram_network: [Telegram] Sticky Telegram path 149.154.167.220 failed; re-walking IPv4 literals before the hostname"
+        "msg": "2026-10-05 12:11:33,136 WARNING plugins.platforms.telegram.telegram_network: [Telegram] Dual-stack api.telegram.org path failed ()"
        },
        {
-        "ts": 1791148621.0,
+        "ts": 1791155493.0,
         "level": "WARNING",
-        "msg": "2026-10-05 10:17:01,198 WARNING plugins.platforms.telegram.telegram_network: [Telegram] IPv4 Telegram API IP 149.154.166.110 failed:"
+        "msg": "2026-10-05 12:11:33,136 WARNING plugins.platforms.telegram.telegram_network: [Telegram] Sticky Telegram path api.telegram.org failed; re-walking IPv4 literals before the hostname"
        }
       ],
       "error": null
@@ -2834,7 +2838,7 @@
        "taskbook": null,
        "model": "volcengine/deepseek-v4-flash-ga-260731",
        "tokens": null,
-       "outcome": "unknown",
+       "outcome": "empty_shell",
        "outcome_basis": "agent_close",
        "pid": null,
        "profile": null
@@ -2848,7 +2852,7 @@
        "taskbook": null,
        "model": "volcengine/deepseek-v4-flash-ga-260731",
        "tokens": null,
-       "outcome": "unknown",
+       "outcome": "empty_shell",
        "outcome_basis": "agent_close",
        "pid": null,
        "profile": null
@@ -2862,7 +2866,7 @@
        "taskbook": null,
        "model": "volcengine/deepseek-v4-flash-ga-260731",
        "tokens": null,
-       "outcome": "unknown",
+       "outcome": "empty_shell",
        "outcome_basis": "agent_close",
        "pid": null,
        "profile": null
@@ -2944,25 +2948,29 @@
        "normal": 0,
        "failed": 0,
        "timeout": 0,
-       "unknown": 0
+       "unknown": 0,
+       "empty_shell": 0
       },
       "4–24h": {
        "normal": 0,
        "failed": 0,
        "timeout": 0,
-       "unknown": 0
+       "unknown": 0,
+       "empty_shell": 0
       },
       "24h–7d": {
        "normal": 38,
        "failed": 3,
        "timeout": 0,
-       "unknown": 3
+       "unknown": 0,
+       "empty_shell": 3
       },
       "unknown": {
        "normal": 0,
        "failed": 0,
        "timeout": 0,
-       "unknown": 62
+       "unknown": 62,
+       "empty_shell": 0
       }
      },
      "agents_completed_count": 106,
@@ -2977,7 +2985,7 @@
      "id": "ming-ai-station:nova",
      "profile": "nova",
      "session_budget": {
-      "last_prompt_tokens": 170453,
+      "last_prompt_tokens": 175042,
       "model": null,
       "provider": null,
       "session_id": "20260924_173222_dbab0cf7"
@@ -2990,16 +2998,16 @@
       "state_label": "online"
      },
      "work": {
-      "state": "近期有工作进展",
+      "state": "在线·空闲",
       "reasons": [
-       "近期业务活动 101s 前"
+       "无待执行任务；最近活动 1493s 前"
       ],
-      "progress_age_s": 101
+      "progress_age_s": 1493
      },
      "activity": {
       "text": "会话：Audio and connection check",
       "source": "session_title",
-      "at": "2026-10-04T21:18:40Z"
+      "at": "2026-10-04T22:53:03Z"
      },
      "xpi_agents": {
       "count": 0,
@@ -3100,7 +3108,7 @@
         "model_basis": "config_only"
        }
       ],
-      "at": 1791148821.4947646,
+      "at": 1791155876.4742534,
       "omp_exits_24h": {
        "count": 0,
        "omp": 0,
@@ -3114,9 +3122,9 @@
        "model": "glm-5.3-flash",
        "provider": "zai",
        "base_url": "https://open.bigmodel.cn/api/coding/paas/v4",
-       "last_seen": 1790929248.7465112,
+       "last_seen": 1791151531.6242402,
        "recent": false,
-       "last_seen_epoch": 1790929248.7465112,
+       "last_seen_epoch": 1791151531.6242402,
        "estimated_cost_usd": 0.0,
        "cost_status": "unknown",
        "_score": 2,
@@ -3143,9 +3151,9 @@
       {
        "code": "session_overrun",
        "session_id": "20260924_173222_dbab0cf7",
-       "source": "sessions.last_activity_at（主会话 20260924_173 · 678条消息 · 已运行10天）",
+       "source": "sessions.last_activity_at（主会话 20260924_173 · 706条消息 · 已运行10天）",
        "window": "主会话累计（自会话开始，非窗口；口径为 sessions 表会话自身列，非 usage 加总）",
-       "detail": "sessions.last_activity_at（主会话 20260924_173 · 678条消息 · 已运行10天） · api_calls=287 (>150)",
+       "detail": "sessions.last_activity_at（主会话 20260924_173 · 706条消息 · 已运行10天） · api_calls=296 (>150)",
        "suggest": "开新会话（写 HANDOFF.md 交接后 /new）"
       }
      ],
@@ -3208,13 +3216,13 @@
         "provider": "zai",
         "base_url": "https://open.bigmodel.cn/api/coding/paas/v4",
         "billing_mode": "",
-        "input": 36344930,
-        "output": 2722156,
-        "cache_read": 1063579968,
+        "input": 36524397,
+        "output": 2725516,
+        "cache_read": 1065309056,
         "cache_write": 0,
-        "calls": 4881,
+        "calls": 4892,
         "first_seen": 1789591348.2668073,
-        "last_seen": 1790929248.7465112
+        "last_seen": 1791151531.6242402
        },
        {
         "model": "glm-5.3-flash",
@@ -3231,7 +3239,7 @@
        }
       ],
       "error": null,
-      "sampled_at": 1791148821.4965756,
+      "sampled_at": 1791155876.4762,
       "coverage": "complete"
      },
      "db_status": {
@@ -3240,8 +3248,8 @@
      },
      "log_status": {
       "exists": true,
-      "business_ts": "2026-10-04T21:18:40Z",
-      "housekeeping_ts": "2026-10-04T21:20:12Z"
+      "business_ts": "2026-10-04T22:53:03Z",
+      "housekeeping_ts": "2026-10-04T23:17:26Z"
      },
      "tri": {
       "tri": "reachable",
@@ -3249,32 +3257,32 @@
      },
      "_severity": 0,
      "log_errors": {
-      "count_24h": 76,
+      "count_24h": 65,
       "recent": [
        {
-        "ts": 1791148709.0,
-        "level": "WARNING",
-        "msg": "2026-10-05 10:18:29,787 WARNING plugins.platforms.telegram.telegram_network: [Telegram] IPv4 Telegram API IP 149.154.166.110 failed:"
+        "ts": 1791154383.0,
+        "level": "ERROR",
+        "msg": "2026-10-05 11:53:03,024 ERROR [20260924_173222_dbab0cf7] agent.conversation_loop: API call failed after 3 retries. HTTP 429: 您的账户已达到速率限制，请您控制请求频率 | provider=zai model=glm-5.3-flash msgs=650 tokens=~17"
        },
        {
-        "ts": 1791148709.0,
+        "ts": 1791154383.0,
         "level": "WARNING",
-        "msg": "2026-10-05 10:18:29,787 WARNING plugins.platforms.telegram.telegram_network: [Telegram] Sticky Telegram path 149.154.166.110 failed; re-walking IPv4 literals before the hostname"
+        "msg": "2026-10-05 11:53:03,022 WARNING [20260924_173222_dbab0cf7] agent.conversation_loop: API call failed (attempt 3/3) error_type=RateLimitError thread=hermes-gateway_0:127823930980032 provider=zai base_ur"
        },
        {
-        "ts": 1791148576.0,
-        "level": "WARNING",
-        "msg": "2026-10-05 10:16:16,796 WARNING plugins.platforms.telegram.telegram_network: [Telegram] IPv4 Telegram API IP 149.154.167.220 failed:"
+        "ts": 1791154383.0,
+        "level": "INFO",
+        "msg": "2026-10-05 11:53:03,022 INFO [20260924_173222_dbab0cf7] agent.credential_pool: credential pool: marking GLM_API_KEY exhausted (status=429), rotating"
        },
        {
-        "ts": 1791148576.0,
-        "level": "WARNING",
-        "msg": "2026-10-05 10:16:16,796 WARNING plugins.platforms.telegram.telegram_network: [Telegram] Sticky Telegram path 149.154.167.220 failed; re-walking IPv4 literals before the hostname"
+        "ts": 1791154383.0,
+        "level": "INFO",
+        "msg": "2026-10-05 11:53:03,019 INFO run_agent: OpenAI client closed (stream_error_cleanup, shared=False, tcp_force_closed=0) thread=Thread-46 (<lambda>):127823901607616 provider=zai base_url=https://open.big"
        },
        {
-        "ts": 1791148388.0,
-        "level": "WARNING",
-        "msg": "2026-10-05 10:13:08,577 WARNING plugins.platforms.telegram.telegram_network: [Telegram] IPv4 Telegram API IP 149.154.166.110 failed:"
+        "ts": 1791154383.0,
+        "level": "ERROR",
+        "msg": "2026-10-05 11:53:03,013 ERROR agent.chat_completion_helpers: Streaming failed before delivery: Error code: 429 - {'error': {'code': '1302', 'message': '您的账户已达到速率限制，请您控制请求频率'}}"
        }
       ],
       "error": null
@@ -3752,25 +3760,29 @@
        "normal": 0,
        "failed": 0,
        "timeout": 0,
-       "unknown": 0
+       "unknown": 0,
+       "empty_shell": 0
       },
       "4–24h": {
        "normal": 0,
        "failed": 0,
        "timeout": 0,
-       "unknown": 0
+       "unknown": 0,
+       "empty_shell": 0
       },
       "24h–7d": {
        "normal": 0,
        "failed": 0,
        "timeout": 0,
-       "unknown": 0
+       "unknown": 0,
+       "empty_shell": 0
       },
       "unknown": {
        "normal": 0,
        "failed": 0,
        "timeout": 0,
-       "unknown": 23
+       "unknown": 23,
+       "empty_shell": 0
       }
      },
      "agents_completed_count": 23,
@@ -8100,14 +8112,14 @@
    },
    "call_usage_24h": {
     "counts": {
-     "sensenova": 20,
-     "groq": 20,
-     "openrouter_free": 20,
-     "cloudflare_ai": 20,
-     "blockrun_free": 20
+     "sensenova": 44,
+     "groq": 44,
+     "openrouter_free": 44,
+     "cloudflare_ai": 44,
+     "blockrun_free": 44
     },
     "partial": false,
-    "sampled_at": 1791148821.509508,
+    "sampled_at": 1791155876.489337,
     "basis": "timestamped_assistant_events; unlogged retries unavailable"
    }
   },
@@ -8115,9 +8127,9 @@
    "host_id": "ming-server",
    "short": ".65",
    "transport": "ssh",
-   "observed_at": "2026-10-04T21:20:21Z",
-   "observed_at_epoch": 1791148821.543499,
-   "last_success_at": "2026-10-04T21:20:21Z",
+   "observed_at": "2026-10-04T23:17:56Z",
+   "observed_at_epoch": 1791155876.523646,
+   "last_success_at": "2026-10-04T23:17:56Z",
    "error": null,
    "bots": [
     {
@@ -8131,9 +8143,9 @@
      "work": {
       "state": "近期有工作进展",
       "reasons": [
-       "远端日志活动 59s 前"
+       "远端日志活动 21s 前"
       ],
-      "progress_age_s": 60
+      "progress_age_s": 21
      },
      "activity": {
       "text": "会话：Understand how Explee marketing tool works（377 次调用）",
@@ -9577,12 +9589,7 @@
       ],
       "coverage": "complete"
      },
-     "session_budget": {
-      "last_prompt_tokens": 167722,
-      "model": null,
-      "provider": null,
-      "session_id": "20260927_232758_bfbd265e"
-     },
+     "session_budget": null,
      "problem_flags": [
       {
        "code": "session_overrun",
@@ -9594,32 +9601,32 @@
       }
      ],
      "log_errors": {
-      "count_24h": 11,
+      "count_24h": 20,
       "recent": [
        {
-        "ts": 1791147624.0,
+        "ts": 1791154895.0,
         "level": "UNKNOWN",
-        "msg": "2026-10-04 21:00:24,192 ERROR cron.scheduler: Job '3d43552dc36f': delivery error: Telegram send failed: You must pass the token you received from https://t.me/Botfather! (target telegram:7857923688)"
+        "msg": "2026-10-04 23:01:35,153 WARNING tools.environments.file_sync: sync_back: all 3 attempts failed: SSH bulk download failed:"
        },
        {
-        "ts": 1791145823.0,
+        "ts": 1791154890.0,
         "level": "UNKNOWN",
-        "msg": "2026-10-04 20:30:23,115 ERROR cron.scheduler: Job '3d43552dc36f': delivery error: Telegram send failed: You must pass the token you received from https://t.me/Botfather! (target telegram:7857923688)"
+        "msg": "2026-10-04 23:01:30,835 WARNING tools.environments.file_sync: sync_back: attempt 2 failed (SSH bulk download failed: ), retrying in 4s"
        },
        {
-        "ts": 1791144022.0,
+        "ts": 1791154888.0,
         "level": "UNKNOWN",
-        "msg": "2026-10-04 20:00:22,065 ERROR cron.scheduler: Job '3d43552dc36f': delivery error: Telegram send failed: You must pass the token you received from https://t.me/Botfather! (target telegram:7857923688)"
+        "msg": "2026-10-04 23:01:28,462 WARNING tools.environments.file_sync: sync_back: attempt 1 failed (SSH bulk download failed: ), retrying in 2s"
        },
        {
-        "ts": 1791142220.0,
+        "ts": 1791154859.0,
         "level": "UNKNOWN",
-        "msg": "2026-10-04 19:30:20,982 ERROR cron.scheduler: Job '3d43552dc36f': delivery error: Telegram send failed: You must pass the token you received from https://t.me/Botfather! (target telegram:7857923688)"
+        "msg": "2026-10-04 23:00:59,426 WARNING agent.title_generator: Title generation failed: Error code: 401 - {'error': {'code': '401', 'message': 'token expired or incorrect'}}"
        },
        {
-        "ts": 1791140419.0,
+        "ts": 1791154847.0,
         "level": "UNKNOWN",
-        "msg": "2026-10-04 19:00:19,826 ERROR cron.scheduler: Job '3d43552dc36f': delivery error: Telegram send failed: You must pass the token you received from https://t.me/Botfather! (target telegram:7857923688)"
+        "msg": "2026-10-04 23:00:47,029 ERROR gateway.platforms.base: [Webhook] Fallback send also failed: Platform telegram not connected"
        }
       ],
       "error": null
@@ -10058,38 +10065,1234 @@
       }
      },
      "agents_unified_injected_exits": 0,
-     "agents_completed": [],
-     "agents_completed_4h": [],
+     "agents_completed": [
+      {
+       "host": "ming-server",
+       "source": "omp_ledger",
+       "identity": "ming-server:omp_ledger:01a0e537-4825-7000-9b5b-7c5a553dd247",
+       "ended_at": 1790552115.938,
+       "confidence": "exact",
+       "taskbook": "tmp",
+       "model": null,
+       "tokens": null,
+       "outcome": "failed",
+       "outcome_basis": "sigterm",
+       "pid": 3756938,
+       "profile": "default"
+      },
+      {
+       "host": "ming-server",
+       "source": "omp_ledger",
+       "identity": "ming-server:omp_ledger:01a0e539-65f6-7000-a69a-934b29f20119",
+       "ended_at": 1790552287.777,
+       "confidence": "exact",
+       "taskbook": "tmp",
+       "model": null,
+       "tokens": null,
+       "outcome": "failed",
+       "outcome_basis": "sigterm",
+       "pid": 3768270,
+       "profile": "default"
+      },
+      {
+       "host": "ming-server",
+       "source": "omp_ledger",
+       "identity": "ming-server:omp_ledger:01a0e53c-932e-7000-9ac0-986bc091d113",
+       "ended_at": 1790552630.92,
+       "confidence": "exact",
+       "taskbook": "work-explee_analysis-lane_a",
+       "model": null,
+       "tokens": null,
+       "outcome": "normal",
+       "outcome_basis": "dispose",
+       "pid": 3786721,
+       "profile": "default"
+      },
+      {
+       "host": "ming-server",
+       "source": "omp_ledger",
+       "identity": "ming-server:omp_ledger:01a0e596-6f43-7000-bda5-2609a1e6a10c",
+       "ended_at": 1790558508.05,
+       "confidence": "exact",
+       "taskbook": "work-explee_analysis-lane_d",
+       "model": null,
+       "tokens": null,
+       "outcome": "normal",
+       "outcome_basis": "dispose",
+       "pid": 61708,
+       "profile": "default"
+      },
+      {
+       "host": "ming-server",
+       "source": "omp_ledger",
+       "identity": "ming-server:omp_ledger:01a0e674-8722-7000-9127-227dd59d7be2",
+       "ended_at": 1790572989.853,
+       "confidence": "exact",
+       "taskbook": "work-explee_analysis",
+       "model": null,
+       "tokens": null,
+       "outcome": "failed",
+       "outcome_basis": "sigterm",
+       "pid": 1207735,
+       "profile": "default"
+      },
+      {
+       "host": "ming-server",
+       "source": "omp_ledger",
+       "identity": "ming-server:omp_ledger:01a0e678-38c6-7000-936b-bc879ec163ee",
+       "ended_at": 1790573090.325,
+       "confidence": "exact",
+       "taskbook": "treemap_content_audit",
+       "model": null,
+       "tokens": null,
+       "outcome": "normal",
+       "outcome_basis": "dispose",
+       "pid": 1227653,
+       "profile": "default"
+      },
+      {
+       "host": "ming-server",
+       "source": "omp_ledger",
+       "identity": "ming-server:omp_ledger:01a0e751-b47f-7000-8071-92faf3c0b66f",
+       "ended_at": 1790589687.646,
+       "confidence": "exact",
+       "taskbook": "Naomi-pilaf_v1-r1_T2",
+       "model": null,
+       "tokens": null,
+       "outcome": "failed",
+       "outcome_basis": "sigterm",
+       "pid": 2375807,
+       "profile": "default"
+      },
+      {
+       "host": "ming-server",
+       "source": "omp_ledger",
+       "identity": "ming-server:omp_ledger:01a0eaa3-c905-7000-95a7-8d0523e1dc59",
+       "ended_at": 1790644497.942,
+       "confidence": "exact",
+       "taskbook": "Naomi-treemap-0928-wd_s_layout_4",
+       "model": null,
+       "tokens": null,
+       "outcome": "failed",
+       "outcome_basis": "sigterm",
+       "pid": 3173293,
+       "profile": "default"
+      },
+      {
+       "host": "ming-server",
+       "source": "omp_ledger",
+       "identity": "ming-server:omp_ledger:01a0eaa3-c78d-7000-9a79-3bf6c36af809",
+       "ended_at": 1790644493.317,
+       "confidence": "exact",
+       "taskbook": "Naomi-treemap-0928-wd_o_full_8",
+       "model": null,
+       "tokens": null,
+       "outcome": "failed",
+       "outcome_basis": "sigterm",
+       "pid": 3173545,
+       "profile": "default"
+      },
+      {
+       "host": "ming-server",
+       "source": "omp_ledger",
+       "identity": "ming-server:omp_ledger:01a0eaa3-c8f2-7000-913e-f95b7f56e9dd",
+       "ended_at": 1790644493.318,
+       "confidence": "exact",
+       "taskbook": "Naomi-treemap-0928-wd_s_evt_7",
+       "model": null,
+       "tokens": null,
+       "outcome": "failed",
+       "outcome_basis": "sigterm",
+       "pid": 3173614,
+       "profile": "default"
+      },
+      {
+       "host": "ming-server",
+       "source": "omp_ledger",
+       "identity": "ming-server:omp_ledger:01a0eaa3-c7b6-7000-82f1-2aacdecbe90f",
+       "ended_at": 1790644498.334,
+       "confidence": "exact",
+       "taskbook": "Naomi-treemap-0928-wd_s_a11y_5",
+       "model": null,
+       "tokens": null,
+       "outcome": "failed",
+       "outcome_basis": "sigterm",
+       "pid": 3173762,
+       "profile": "default"
+      },
+      {
+       "host": "ming-server",
+       "source": "omp_ledger",
+       "identity": "ming-server:omp_ledger:01a0eaa5-950f-7000-8502-21f0ddfb5d20",
+       "ended_at": 1790644498.334,
+       "confidence": "exact",
+       "taskbook": "Naomi-treemap-0928-wd_s_full_6",
+       "model": null,
+       "tokens": null,
+       "outcome": "failed",
+       "outcome_basis": "sigterm",
+       "pid": 3173841,
+       "profile": "default"
+      },
+      {
+       "host": "ming-server",
+       "source": "omp_ledger",
+       "identity": "ming-server:omp_ledger:01a0ec7b-c35f-7000-8983-5801375c042b",
+       "ended_at": 1790674693.752,
+       "confidence": "exact",
+       "taskbook": "work-explee_analysis-w1_a",
+       "model": null,
+       "tokens": null,
+       "outcome": "normal",
+       "outcome_basis": "dispose",
+       "pid": 1424191,
+       "profile": "default"
+      },
+      {
+       "host": "ming-server",
+       "source": "omp_ledger",
+       "identity": "ming-server:omp_ledger:01a0ec7b-c348-7000-af75-eaf2a39fe771",
+       "ended_at": 1790675050.288,
+       "confidence": "exact",
+       "taskbook": "work-explee_analysis-w1_c",
+       "model": null,
+       "tokens": null,
+       "outcome": "normal",
+       "outcome_basis": "dispose",
+       "pid": 1424133,
+       "profile": "default"
+      },
+      {
+       "host": "ming-server",
+       "source": "omp_ledger",
+       "identity": "ming-server:omp_ledger:01a0f0a6-b873-7000-a948-f78e6b609793",
+       "ended_at": 1790745356.101,
+       "confidence": "exact",
+       "taskbook": "tmp",
+       "model": null,
+       "tokens": null,
+       "outcome": "failed",
+       "outcome_basis": "sigterm",
+       "pid": 2580656,
+       "profile": "default"
+      },
+      {
+       "host": "ming-server",
+       "source": "omp_ledger",
+       "identity": "ming-server:omp_ledger:01a0f0c8-bba6-7000-940d-f392f31f1b87",
+       "ended_at": 1790747284.798,
+       "confidence": "exact",
+       "taskbook": "work-explee_analysis-w2_a",
+       "model": null,
+       "tokens": null,
+       "outcome": "failed",
+       "outcome_basis": "sigterm",
+       "pid": 2799221,
+       "profile": "default"
+      },
+      {
+       "host": "ming-server",
+       "source": "omp_ledger",
+       "identity": "ming-server:omp_ledger:01a0f103-ada5-7000-826b-ca9ae48b0ed4",
+       "ended_at": 1790749989.928,
+       "confidence": "exact",
+       "taskbook": "work-explee_analysis",
+       "model": null,
+       "tokens": null,
+       "outcome": "failed",
+       "outcome_basis": "sigterm",
+       "pid": 3238980,
+       "profile": "default"
+      },
+      {
+       "host": "ming-server",
+       "source": "omp_ledger",
+       "identity": "ming-server:omp_ledger:01a0f103-aea9-7000-bb3a-e3b4c142a953",
+       "ended_at": 1790749989.977,
+       "confidence": "exact",
+       "taskbook": "work-explee_analysis",
+       "model": null,
+       "tokens": null,
+       "outcome": "failed",
+       "outcome_basis": "sigterm",
+       "pid": 3239137,
+       "profile": "default"
+      },
+      {
+       "host": "ming-server",
+       "source": "omp_ledger",
+       "identity": "ming-server:omp_ledger:01a0f105-aae4-7000-b349-8e980277b5d3",
+       "ended_at": 1790750129.667,
+       "confidence": "exact",
+       "taskbook": "work-explee_analysis",
+       "model": null,
+       "tokens": null,
+       "outcome": "failed",
+       "outcome_basis": "sigterm",
+       "pid": 3255432,
+       "profile": "default"
+      },
+      {
+       "host": "ming-server",
+       "source": "omp_ledger",
+       "identity": "ming-server:omp_ledger:01a0f105-a7f9-7000-ac4b-47a11ebe0c2e",
+       "ended_at": 1790750129.692,
+       "confidence": "exact",
+       "taskbook": "work-explee_analysis",
+       "model": null,
+       "tokens": null,
+       "outcome": "failed",
+       "outcome_basis": "sigterm",
+       "pid": 3255462,
+       "profile": "default"
+      },
+      {
+       "host": "ming-server",
+       "source": "omp_ledger",
+       "identity": "ming-server:omp_ledger:01a0f105-aa2a-7000-a387-7c3f8aefb800",
+       "ended_at": 1790750129.71,
+       "confidence": "exact",
+       "taskbook": "work-explee_analysis",
+       "model": null,
+       "tokens": null,
+       "outcome": "failed",
+       "outcome_basis": "sigterm",
+       "pid": 3255494,
+       "profile": "default"
+      },
+      {
+       "host": "ming-server",
+       "source": "omp_ledger",
+       "identity": "ming-server:omp_ledger:01a0f106-880f-7000-8f37-814684ba4aac",
+       "ended_at": 1790750189.804,
+       "confidence": "exact",
+       "taskbook": "work-explee_analysis",
+       "model": null,
+       "tokens": null,
+       "outcome": "failed",
+       "outcome_basis": "sigterm",
+       "pid": 3263423,
+       "profile": "default"
+      },
+      {
+       "host": "ming-server",
+       "source": "omp_ledger",
+       "identity": "ming-server:omp_ledger:01a0f106-88b8-7000-bdeb-54a318cfff93",
+       "ended_at": 1790750189.804,
+       "confidence": "exact",
+       "taskbook": "work-explee_analysis",
+       "model": null,
+       "tokens": null,
+       "outcome": "failed",
+       "outcome_basis": "sigterm",
+       "pid": 3263439,
+       "profile": "default"
+      },
+      {
+       "host": "ming-server",
+       "source": "omp_ledger",
+       "identity": "ming-server:omp_ledger:01a0f107-726a-7000-9bc8-c960eab4de60",
+       "ended_at": 1790750249.894,
+       "confidence": "exact",
+       "taskbook": "work-explee_analysis",
+       "model": null,
+       "tokens": null,
+       "outcome": "failed",
+       "outcome_basis": "sigterm",
+       "pid": 3270272,
+       "profile": "default"
+      },
+      {
+       "host": "ming-server",
+       "source": "omp_ledger",
+       "identity": "ming-server:omp_ledger:01a0f107-72e9-7000-8f8b-2b8171a3ea1a",
+       "ended_at": 1790750249.908,
+       "confidence": "exact",
+       "taskbook": "work-explee_analysis",
+       "model": null,
+       "tokens": null,
+       "outcome": "failed",
+       "outcome_basis": "sigterm",
+       "pid": 3270314,
+       "profile": "default"
+      },
+      {
+       "host": "ming-server",
+       "source": "omp_ledger",
+       "identity": "ming-server:omp_ledger:01a0f108-5a1f-7000-9aca-649e282d8db7",
+       "ended_at": 1790750309.958,
+       "confidence": "exact",
+       "taskbook": "work-explee_analysis",
+       "model": null,
+       "tokens": null,
+       "outcome": "failed",
+       "outcome_basis": "sigterm",
+       "pid": 3277751,
+       "profile": "default"
+      },
+      {
+       "host": "ming-server",
+       "source": "omp_ledger",
+       "identity": "ming-server:omp_ledger:01a0f109-450b-7000-8034-4df2f2f17e4f",
+       "ended_at": 1790750370.063,
+       "confidence": "exact",
+       "taskbook": "work-explee_analysis",
+       "model": null,
+       "tokens": null,
+       "outcome": "failed",
+       "outcome_basis": "sigterm",
+       "pid": 3284300,
+       "profile": "default"
+      },
+      {
+       "host": "ming-server",
+       "source": "omp_ledger",
+       "identity": "ming-server:omp_ledger:01a0f0e0-0646-7000-b10e-d1d82f7ac057",
+       "ended_at": 1790750638.895,
+       "confidence": "exact",
+       "taskbook": "work-pitchlens",
+       "model": null,
+       "tokens": null,
+       "outcome": "normal",
+       "outcome_basis": "dispose",
+       "pid": 2985341,
+       "profile": "default"
+      },
+      {
+       "host": "ming-server",
+       "source": "omp_ledger",
+       "identity": "ming-server:omp_ledger:01a0f14c-63a0-7000-a029-7b176d017c10",
+       "ended_at": 1790754858.854,
+       "confidence": "exact",
+       "taskbook": "work-explee_analysis",
+       "model": null,
+       "tokens": null,
+       "outcome": "failed",
+       "outcome_basis": "sigterm",
+       "pid": 3622082,
+       "profile": "default"
+      },
+      {
+       "host": "ming-server",
+       "source": "omp_ledger",
+       "identity": "ming-server:omp_ledger:01a0f151-9451-7000-ab9b-c78a040e86c3",
+       "ended_at": 1790755139.052,
+       "confidence": "exact",
+       "taskbook": "work-explee_analysis",
+       "model": null,
+       "tokens": null,
+       "outcome": "failed",
+       "outcome_basis": "sigterm",
+       "pid": 3648446,
+       "profile": "default"
+      },
+      {
+       "host": "ming-server",
+       "source": "omp_ledger",
+       "identity": "ming-server:omp_ledger:01a0f165-473f-7000-9903-3bcc2e9ef2ea",
+       "ended_at": 1790756430.104,
+       "confidence": "exact",
+       "taskbook": "work-explee_analysis",
+       "model": null,
+       "tokens": null,
+       "outcome": "failed",
+       "outcome_basis": "sigterm",
+       "pid": 3748040,
+       "profile": "default"
+      },
+      {
+       "host": "ming-server",
+       "source": "omp_ledger",
+       "identity": "ming-server:omp_ledger:01a0f166-3fde-7000-8b59-53a596815fe7",
+       "ended_at": 1790756493.689,
+       "confidence": "exact",
+       "taskbook": "work-explee_analysis",
+       "model": null,
+       "tokens": null,
+       "outcome": "failed",
+       "outcome_basis": "sigterm",
+       "pid": 3753178,
+       "profile": "default"
+      },
+      {
+       "host": "ming-server",
+       "source": "omp_ledger",
+       "identity": "ming-server:omp_ledger:01a0f167-9f9c-7000-923f-29b70f5c96f6",
+       "ended_at": 1790756583.742,
+       "confidence": "exact",
+       "taskbook": "work-explee_analysis",
+       "model": null,
+       "tokens": null,
+       "outcome": "failed",
+       "outcome_basis": "sigterm",
+       "pid": 3760229,
+       "profile": "default"
+      },
+      {
+       "host": "ming-server",
+       "source": "omp_ledger",
+       "identity": "ming-server:omp_ledger:01a0f16a-e3d6-7000-9e92-03878cfd843d",
+       "ended_at": 1790756767.885,
+       "confidence": "exact",
+       "taskbook": "work-explee_analysis",
+       "model": null,
+       "tokens": null,
+       "outcome": "failed",
+       "outcome_basis": "sigterm",
+       "pid": 3776833,
+       "profile": "default"
+      },
+      {
+       "host": "ming-server",
+       "source": "omp_ledger",
+       "identity": "ming-server:omp_ledger:01a0f16e-2baa-7000-b774-4217de14ac2f",
+       "ended_at": 1790757107.722,
+       "confidence": "exact",
+       "taskbook": "Naomi-pilaf_v1-r1_ammo-a1",
+       "model": null,
+       "tokens": null,
+       "outcome": "failed",
+       "outcome_basis": "sigterm",
+       "pid": 3794647,
+       "profile": "default"
+      },
+      {
+       "host": "ming-server",
+       "source": "omp_ledger",
+       "identity": "ming-server:omp_ledger:01a0f16e-2cf1-7000-a2bd-0c557c931c10",
+       "ended_at": 1790757107.872,
+       "confidence": "exact",
+       "taskbook": "Naomi-pilaf_v1-r1_ammo-a2",
+       "model": null,
+       "tokens": null,
+       "outcome": "failed",
+       "outcome_basis": "sigterm",
+       "pid": 3794773,
+       "profile": "default"
+      },
+      {
+       "host": "ming-server",
+       "source": "omp_ledger",
+       "identity": "ming-server:omp_ledger:01a0f191-68e5-7000-a181-e6ebae39361a",
+       "ended_at": 1790760436.636,
+       "confidence": "exact",
+       "taskbook": "work-explee_analysis-w4_p",
+       "model": null,
+       "tokens": null,
+       "outcome": "failed",
+       "outcome_basis": "sigterm",
+       "pid": 4002030,
+       "profile": "default"
+      },
+      {
+       "host": "ming-server",
+       "source": "omp_ledger",
+       "identity": "ming-server:omp_ledger:01a0f1b1-8998-7000-9b86-d3acdb10ad52",
+       "ended_at": 1790761772.394,
+       "confidence": "exact",
+       "taskbook": "Naomi-xpy_v3-rl_delivery-lane_web",
+       "model": null,
+       "tokens": null,
+       "outcome": "failed",
+       "outcome_basis": "sigterm",
+       "pid": 32939,
+       "profile": "default",
+       "candidate_indices": [
+        38,
+        39,
+        40,
+        41,
+        42
+       ]
+      },
+      {
+       "host": "ming-server",
+       "source": "omp_ledger",
+       "identity": "ming-server:omp_ledger:01a0f1b1-898d-7001-9565-a38cc45f4e2a",
+       "ended_at": 1790761772.395,
+       "confidence": "exact",
+       "taskbook": "Naomi-xpy_v3-rl_delivery-lane_web",
+       "model": null,
+       "tokens": null,
+       "outcome": "failed",
+       "outcome_basis": "sigterm",
+       "pid": 32939,
+       "profile": "default",
+       "candidate_indices": [
+        37,
+        39,
+        40,
+        41,
+        42
+       ]
+      },
+      {
+       "host": "ming-server",
+       "source": "omp_ledger",
+       "identity": "ming-server:omp_ledger:01a0f1b1-898c-7000-90a1-65974d012664",
+       "ended_at": 1790761772.395,
+       "confidence": "exact",
+       "taskbook": "Naomi-xpy_v3-rl_delivery-lane_web",
+       "model": null,
+       "tokens": null,
+       "outcome": "failed",
+       "outcome_basis": "sigterm",
+       "pid": 32939,
+       "profile": "default",
+       "candidate_indices": [
+        37,
+        38,
+        40,
+        41,
+        42
+       ]
+      },
+      {
+       "host": "ming-server",
+       "source": "omp_ledger",
+       "identity": "ming-server:omp_ledger:01a0f1b1-898d-7000-ad69-7e00ce33bd01",
+       "ended_at": 1790761772.396,
+       "confidence": "exact",
+       "taskbook": "Naomi-xpy_v3-rl_delivery-lane_web",
+       "model": null,
+       "tokens": null,
+       "outcome": "failed",
+       "outcome_basis": "sigterm",
+       "pid": 32939,
+       "profile": "default",
+       "candidate_indices": [
+        37,
+        38,
+        39,
+        41,
+        42
+       ]
+      },
+      {
+       "host": "ming-server",
+       "source": "omp_ledger",
+       "identity": "ming-server:omp_ledger:01a0f1b1-8989-7000-b4f8-a50fcf84fa5f",
+       "ended_at": 1790761772.396,
+       "confidence": "exact",
+       "taskbook": "Naomi-xpy_v3-rl_delivery-lane_web",
+       "model": null,
+       "tokens": null,
+       "outcome": "failed",
+       "outcome_basis": "sigterm",
+       "pid": 32939,
+       "profile": "default",
+       "candidate_indices": [
+        37,
+        38,
+        39,
+        40,
+        42
+       ]
+      },
+      {
+       "host": "ming-server",
+       "source": "omp_ledger",
+       "identity": "ming-server:omp_ledger:01a0f1aa-7706-7000-9785-170d8fcc8583",
+       "ended_at": 1790761772.396,
+       "confidence": "exact",
+       "taskbook": "Naomi-xpy_v3-rl_delivery-lane_web",
+       "model": null,
+       "tokens": null,
+       "outcome": "failed",
+       "outcome_basis": "sigterm",
+       "pid": 32939,
+       "profile": "default",
+       "candidate_indices": [
+        37,
+        38,
+        39,
+        40,
+        41
+       ]
+      },
+      {
+       "host": "ming-server",
+       "source": "omp_ledger",
+       "identity": "ming-server:omp_ledger:01a0f1b4-358f-7000-a360-4aada9734d7d",
+       "ended_at": 1790762412.869,
+       "confidence": "exact",
+       "taskbook": "Naomi-xpy_v3-rl_delivery-lane_case",
+       "model": null,
+       "tokens": null,
+       "outcome": "failed",
+       "outcome_basis": "sigterm",
+       "pid": 175573,
+       "profile": "default"
+      },
+      {
+       "host": "ming-server",
+       "source": "omp_ledger",
+       "identity": "ming-server:omp_ledger:01a0f1c4-ff52-7000-928b-20cb1e75c08e",
+       "ended_at": 1790764116.267,
+       "confidence": "exact",
+       "taskbook": "work-explee_analysis-w6_f123",
+       "model": null,
+       "tokens": null,
+       "outcome": "failed",
+       "outcome_basis": "sigterm",
+       "pid": 367094,
+       "profile": "default"
+      },
+      {
+       "host": "ming-server",
+       "source": "omp_ledger",
+       "identity": "ming-server:omp_ledger:01a0f215-5535-7000-bf58-52b01df085e4",
+       "ended_at": 1790769680.033,
+       "confidence": "exact",
+       "taskbook": "tmp-win67-p0",
+       "model": null,
+       "tokens": null,
+       "outcome": "failed",
+       "outcome_basis": "sigterm",
+       "pid": 1169818,
+       "profile": "default"
+      },
+      {
+       "host": "ming-server",
+       "source": "omp_ledger",
+       "identity": "ming-server:omp_ledger:01a0f231-0915-7000-9d02-f33cdf960409",
+       "ended_at": 1790771495.639,
+       "confidence": "exact",
+       "taskbook": "tmp-win67-p0",
+       "model": null,
+       "tokens": null,
+       "outcome": "failed",
+       "outcome_basis": "sigterm",
+       "pid": 1411486,
+       "profile": "default"
+      },
+      {
+       "host": "ming-server",
+       "source": "omp_ledger",
+       "identity": "ming-server:omp_ledger:01a0f44c-5ab8-7000-8df3-6efa717da5d9",
+       "ended_at": 1790805097.152,
+       "confidence": "exact",
+       "taskbook": "work-explee_analysis",
+       "model": null,
+       "tokens": null,
+       "outcome": "failed",
+       "outcome_basis": "sigterm",
+       "pid": 620426,
+       "profile": "default"
+      },
+      {
+       "host": "ming-server",
+       "source": "omp_ledger",
+       "identity": "ming-server:omp_ledger:01a0f468-0a60-7000-95d0-65dfc1eac46c",
+       "ended_at": 1790807288.875,
+       "confidence": "exact",
+       "taskbook": "Naomi-fleet-jevdesk-wd_a",
+       "model": null,
+       "tokens": null,
+       "outcome": "normal",
+       "outcome_basis": "dispose",
+       "pid": 799304,
+       "profile": "default"
+      },
+      {
+       "host": "ming-server",
+       "source": "omp_ledger",
+       "identity": "ming-server:omp_ledger:01a0f47e-cc2e-7000-a8b2-b2f27dacc0db",
+       "ended_at": 1790808812.262,
+       "confidence": "exact",
+       "taskbook": "Naomi-fleet-skins-wd_p2",
+       "model": null,
+       "tokens": null,
+       "outcome": "normal",
+       "outcome_basis": "dispose",
+       "pid": 946212,
+       "profile": "default"
+      },
+      {
+       "host": "ming-server",
+       "source": "omp_ledger",
+       "identity": "ming-server:omp_ledger:01a0f47e-cc2d-7000-90dc-bb9d5a138792",
+       "ended_at": 1790809547.296,
+       "confidence": "exact",
+       "taskbook": "Naomi-fleet-skins-wd_p1",
+       "model": null,
+       "tokens": null,
+       "outcome": "failed",
+       "outcome_basis": "sigterm",
+       "pid": 946142,
+       "profile": "default"
+      },
+      {
+       "host": "ming-server",
+       "source": "omp_ledger",
+       "identity": "ming-server:omp_ledger:01a0f47e-caf0-7000-aae7-aafb8e331073",
+       "ended_at": 1790809547.57,
+       "confidence": "exact",
+       "taskbook": "Naomi-fleet-skins-wd_p5",
+       "model": null,
+       "tokens": null,
+       "outcome": "failed",
+       "outcome_basis": "sigterm",
+       "pid": 946354,
+       "profile": "default"
+      },
+      {
+       "host": "ming-server",
+       "source": "omp_ledger",
+       "identity": "ming-server:omp_ledger:01a0f490-bf45-7000-a065-f13eedfe9e44",
+       "ended_at": 1790810201.708,
+       "confidence": "exact",
+       "taskbook": "Naomi-fleet-skins-wd_p3",
+       "model": null,
+       "tokens": null,
+       "outcome": "normal",
+       "outcome_basis": "dispose",
+       "pid": 1124828,
+       "profile": "default"
+      },
+      {
+       "host": "ming-server",
+       "source": "omp_ledger",
+       "identity": "ming-server:omp_ledger:01a0f491-83a4-7000-9509-ed556abb60a9",
+       "ended_at": 1790810421.67,
+       "confidence": "exact",
+       "taskbook": "Naomi-fleet-skins-wd_p1",
+       "model": null,
+       "tokens": null,
+       "outcome": "failed",
+       "outcome_basis": "sigterm",
+       "pid": 1131999,
+       "profile": "default"
+      },
+      {
+       "host": "ming-server",
+       "source": "omp_ledger",
+       "identity": "ming-server:omp_ledger:01a0f492-854a-7000-90e5-544cb5cb29c9",
+       "ended_at": 1790810765.537,
+       "confidence": "exact",
+       "taskbook": "Naomi-fleet-skins-wd_p5",
+       "model": null,
+       "tokens": null,
+       "outcome": "failed",
+       "outcome_basis": "sigterm",
+       "pid": 1132128,
+       "profile": "default"
+      },
+      {
+       "host": "ming-server",
+       "source": "omp_ledger",
+       "identity": "ming-server:omp_ledger:01a0f492-851d-7000-84a8-e599f2ccb96f",
+       "ended_at": 1790810790.63,
+       "confidence": "exact",
+       "taskbook": "Naomi-fleet-skins-wd_p4",
+       "model": null,
+       "tokens": null,
+       "outcome": "failed",
+       "outcome_basis": "sigterm",
+       "pid": 1136323,
+       "profile": "default"
+      },
+      {
+       "host": "ming-server",
+       "source": "omp_ledger",
+       "identity": "ming-server:omp_ledger:01a0f4a5-aabd-7000-8e4b-8c6d9356596b",
+       "ended_at": 1790812089.719,
+       "confidence": "exact",
+       "taskbook": "Naomi-fleet-skins-wd_p5",
+       "model": null,
+       "tokens": null,
+       "outcome": "failed",
+       "outcome_basis": "sigterm",
+       "pid": 1334406,
+       "profile": "default"
+      },
+      {
+       "host": "ming-server",
+       "source": "omp_ledger",
+       "identity": "ming-server:omp_ledger:01a0f487-fd6c-7000-9c8b-935ce3d1de24",
+       "ended_at": 1790813380.849,
+       "confidence": "exact",
+       "taskbook": "Naomi-fleet-skins-wd_p4",
+       "model": null,
+       "tokens": null,
+       "outcome": "failed",
+       "outcome_basis": "sigterm",
+       "pid": 1040533,
+       "profile": "default"
+      },
+      {
+       "host": "ming-server",
+       "source": "omp_ledger",
+       "identity": "ming-server:omp_ledger:01a0f4db-eeac-7000-8d41-7240ca06887e",
+       "ended_at": 1790815430.918,
+       "confidence": "exact",
+       "taskbook": "Naomi-fleet-skins-wd_p5",
+       "model": null,
+       "tokens": null,
+       "outcome": "normal",
+       "outcome_basis": "dispose",
+       "pid": 1722480,
+       "profile": "default"
+      },
+      {
+       "host": "ming-server",
+       "source": "omp_ledger",
+       "identity": "ming-server:omp_ledger:01a0f4ea-988c-7000-9598-0dc1aaabc7c5",
+       "ended_at": 1790816311.853,
+       "confidence": "exact",
+       "taskbook": "Naomi-fleet-skins-wd_p3",
+       "model": null,
+       "tokens": null,
+       "outcome": "failed",
+       "outcome_basis": "sigterm",
+       "pid": 1838096,
+       "profile": "default"
+      },
+      {
+       "host": "ming-server",
+       "source": "omp_ledger",
+       "identity": "ming-server:omp_ledger:01a0f4f8-9b1b-7000-9d18-5ef447acda36",
+       "ended_at": 1790817227.948,
+       "confidence": "exact",
+       "taskbook": "Naomi-fleet-skins-wd_p3",
+       "model": null,
+       "tokens": null,
+       "outcome": "failed",
+       "outcome_basis": "sigterm",
+       "pid": 2000886,
+       "profile": "default"
+      },
+      {
+       "host": "ming-server",
+       "source": "omp_ledger",
+       "identity": "ming-server:omp_ledger:01a0f511-427c-7000-8a1e-4f5a73a32a69",
+       "ended_at": 1790819265.857,
+       "confidence": "exact",
+       "taskbook": "Naomi-fleet-skins-wd_p5b",
+       "model": null,
+       "tokens": null,
+       "outcome": "normal",
+       "outcome_basis": "dispose",
+       "pid": 2241761,
+       "profile": "default"
+      },
+      {
+       "host": "ming-server",
+       "source": "omp_ledger",
+       "identity": "ming-server:omp_ledger:01a0f511-43eb-7000-988d-b508f180bc29",
+       "ended_at": 1790819446.997,
+       "confidence": "exact",
+       "taskbook": "Naomi-fleet-skins-wd_p5a",
+       "model": null,
+       "tokens": null,
+       "outcome": "failed",
+       "outcome_basis": "sigterm",
+       "pid": 2241686,
+       "profile": "default"
+      },
+      {
+       "host": "ming-server",
+       "source": "omp_ledger",
+       "identity": "ming-server:omp_ledger:01a0f511-4492-7000-9b57-330893936576",
+       "ended_at": 1790819446.996,
+       "confidence": "exact",
+       "taskbook": "Naomi-fleet-skins-wd_p5e",
+       "model": null,
+       "tokens": null,
+       "outcome": "failed",
+       "outcome_basis": "sigterm",
+       "pid": 2241835,
+       "profile": "default"
+      },
+      {
+       "host": "ming-server",
+       "source": "omp_ledger",
+       "identity": "ming-server:omp_ledger:01a0f51b-ace2-7000-b410-6b3ef75d1752",
+       "ended_at": 1790820073.837,
+       "confidence": "exact",
+       "taskbook": "Naomi-fleet-skins-wd_p5c",
+       "model": null,
+       "tokens": null,
+       "outcome": "failed",
+       "outcome_basis": "sigterm",
+       "pid": 2386463,
+       "profile": "default"
+      },
+      {
+       "host": "ming-server",
+       "source": "omp_ledger",
+       "identity": "ming-server:omp_ledger:01a0f51b-ade1-7000-8d20-7b45daf36ad8",
+       "ended_at": 1790820073.838,
+       "confidence": "exact",
+       "taskbook": "Naomi-fleet-skins-wd_p5d",
+       "model": null,
+       "tokens": null,
+       "outcome": "failed",
+       "outcome_basis": "sigterm",
+       "pid": 2386565,
+       "profile": "default"
+      },
+      {
+       "host": "ming-server",
+       "source": "omp_ledger",
+       "identity": "ming-server:omp_ledger:01a0f528-731b-7000-9658-74983afce440",
+       "ended_at": 1790820073.836,
+       "confidence": "exact",
+       "taskbook": "Naomi-fleet-skins-wd_p5e",
+       "model": null,
+       "tokens": null,
+       "outcome": "failed",
+       "outcome_basis": "sigterm",
+       "pid": 2576359,
+       "profile": "default"
+      },
+      {
+       "host": "ming-server",
+       "source": "omp_ledger",
+       "identity": "ming-server:omp_ledger:01a0f58d-531f-7000-bde7-c3e7ebf97963",
+       "ended_at": 1790828690.105,
+       "confidence": "exact",
+       "taskbook": "work-pitchlens",
+       "model": null,
+       "tokens": null,
+       "outcome": "normal",
+       "outcome_basis": "dispose",
+       "pid": 3698462,
+       "profile": "default"
+      },
+      {
+       "host": "ming-server",
+       "source": "omp_ledger",
+       "identity": "ming-server:omp_ledger:01a0f58e-3b7f-7000-8d60-bf1d33b1b8a0",
+       "ended_at": 1790828706.613,
+       "confidence": "exact",
+       "taskbook": "work-pitchlens",
+       "model": null,
+       "tokens": null,
+       "outcome": "normal",
+       "outcome_basis": "dispose",
+       "pid": 3698640,
+       "profile": "default"
+      },
+      {
+       "host": "ming-server",
+       "source": "omp_ledger",
+       "identity": "ming-server:omp_ledger:01a0f591-047b-7000-86d2-c42c59d00db5",
+       "ended_at": 1790828732.703,
+       "confidence": "exact",
+       "taskbook": "Naomi-fleet-skins-wd_p5",
+       "model": null,
+       "tokens": null,
+       "outcome": "normal",
+       "outcome_basis": "dispose",
+       "pid": 3727958,
+       "profile": "default"
+      },
+      {
+       "host": "ming-server",
+       "source": "omp_ledger",
+       "identity": "ming-server:omp_ledger:01a0f60c-2ea2-7000-8eb7-161249a3aa0f",
+       "ended_at": 1790835887.292,
+       "confidence": "exact",
+       "taskbook": "Naomi-xpy_v3-rl_p0-wd_t2",
+       "model": null,
+       "tokens": null,
+       "outcome": "failed",
+       "outcome_basis": "sigterm",
+       "pid": 941752,
+       "profile": "default"
+      },
+      {
+       "host": "ming-server",
+       "source": "omp_ledger",
+       "identity": "ming-server:omp_ledger:01a0f623-46fe-7000-a061-8bee58151fba",
+       "ended_at": 1790837401.367,
+       "confidence": "exact",
+       "taskbook": "Naomi-xpy_v3-rl_p0-wd_t2",
+       "model": null,
+       "tokens": null,
+       "outcome": "failed",
+       "outcome_basis": "sigterm",
+       "pid": 1192463,
+       "profile": "default"
+      },
+      {
+       "host": "ming-server",
+       "source": "omp_ledger",
+       "identity": "ming-server:omp_ledger:01a0f63b-3f75-7000-93f4-89a4fab9756f",
+       "ended_at": 1790837675.802,
+       "confidence": "exact",
+       "taskbook": "Naomi-xpy_v3-rl_p0-wd_t3",
+       "model": null,
+       "tokens": null,
+       "outcome": "normal",
+       "outcome_basis": "dispose",
+       "pid": 1447557,
+       "profile": "default"
+      },
+      {
+       "host": "ming-server",
+       "source": "omp_ledger",
+       "identity": "ming-server:omp_ledger:01a0f6bb-2a0d-7000-b0ee-abdbd407bf11",
+       "ended_at": 1790851259.056,
+       "confidence": "exact",
+       "taskbook": "work-pitchlens",
+       "model": null,
+       "tokens": null,
+       "outcome": "failed",
+       "outcome_basis": "sigterm",
+       "pid": 2533965,
+       "profile": "default"
+      },
+      {
+       "host": "ming-server",
+       "source": "omp_ledger",
+       "identity": "ming-server:omp_ledger:01a10917-7439-7000-8cc4-da538a13d07a",
+       "ended_at": 1791154172.207,
+       "confidence": "exact",
+       "taskbook": "tmp",
+       "model": null,
+       "tokens": null,
+       "outcome": "failed",
+       "outcome_basis": "sigterm",
+       "pid": 203696,
+       "profile": "default"
+      },
+      {
+       "host": "ming-server",
+       "source": "omp_ledger",
+       "identity": "ming-server:omp_ledger:01a1091e-3383-7000-aa3a-a0534ffbb97c",
+       "ended_at": 1791154775.835,
+       "confidence": "exact",
+       "taskbook": "tmp",
+       "model": null,
+       "tokens": null,
+       "outcome": "failed",
+       "outcome_basis": "sigterm",
+       "pid": 273912,
+       "profile": "default"
+      },
+      {
+       "host": "ming-server",
+       "source": "omp_ledger",
+       "identity": "ming-server:omp_ledger:01a1091f-8288-7000-ac6b-47759f0f3fe0",
+       "ended_at": 1791154700.448,
+       "confidence": "exact",
+       "taskbook": "tmp",
+       "model": null,
+       "tokens": null,
+       "outcome": "failed",
+       "outcome_basis": "sigterm",
+       "pid": 285261,
+       "profile": "default"
+      },
+      {
+       "host": "ming-server",
+       "source": "omp_ledger",
+       "identity": "ming-server:omp_ledger:01a10922-cab5-7000-81e3-2d65efa75cb7",
+       "ended_at": 1791154775.835,
+       "confidence": "exact",
+       "taskbook": "tmp",
+       "model": null,
+       "tokens": null,
+       "outcome": "failed",
+       "outcome_basis": "sigterm",
+       "pid": 337533,
+       "profile": "default"
+      }
+     ],
+     "agents_completed_4h": [
+      {
+       "host": "ming-server",
+       "source": "omp_ledger",
+       "identity": "ming-server:omp_ledger:01a1091e-3383-7000-aa3a-a0534ffbb97c",
+       "ended_at": 1791154775.835,
+       "confidence": "exact",
+       "taskbook": "tmp",
+       "model": null,
+       "tokens": null,
+       "outcome": "failed",
+       "outcome_basis": "sigterm",
+       "pid": 273912,
+       "profile": "default"
+      },
+      {
+       "host": "ming-server",
+       "source": "omp_ledger",
+       "identity": "ming-server:omp_ledger:01a10922-cab5-7000-81e3-2d65efa75cb7",
+       "ended_at": 1791154775.835,
+       "confidence": "exact",
+       "taskbook": "tmp",
+       "model": null,
+       "tokens": null,
+       "outcome": "failed",
+       "outcome_basis": "sigterm",
+       "pid": 337533,
+       "profile": "default"
+      },
+      {
+       "host": "ming-server",
+       "source": "omp_ledger",
+       "identity": "ming-server:omp_ledger:01a1091f-8288-7000-ac6b-47759f0f3fe0",
+       "ended_at": 1791154700.448,
+       "confidence": "exact",
+       "taskbook": "tmp",
+       "model": null,
+       "tokens": null,
+       "outcome": "failed",
+       "outcome_basis": "sigterm",
+       "pid": 285261,
+       "profile": "default"
+      },
+      {
+       "host": "ming-server",
+       "source": "omp_ledger",
+       "identity": "ming-server:omp_ledger:01a10917-7439-7000-8cc4-da538a13d07a",
+       "ended_at": 1791154172.207,
+       "confidence": "exact",
+       "taskbook": "tmp",
+       "model": null,
+       "tokens": null,
+       "outcome": "failed",
+       "outcome_basis": "sigterm",
+       "pid": 203696,
+       "profile": "default"
+      }
+     ],
      "agents_completed_buckets": {
       "4h": {
        "normal": 0,
-       "failed": 0,
+       "failed": 4,
        "timeout": 0,
-       "unknown": 0
+       "unknown": 0,
+       "empty_shell": 0
       },
       "4–24h": {
        "normal": 0,
        "failed": 0,
        "timeout": 0,
-       "unknown": 0
+       "unknown": 0,
+       "empty_shell": 0
       },
       "24h–7d": {
-       "normal": 0,
-       "failed": 0,
+       "normal": 15,
+       "failed": 59,
        "timeout": 0,
-       "unknown": 0
+       "unknown": 0,
+       "empty_shell": 0
       },
       "unknown": {
        "normal": 0,
        "failed": 0,
        "timeout": 0,
-       "unknown": 0
+       "unknown": 0,
+       "empty_shell": 0
       }
      },
-     "agents_completed_count": 0,
+     "agents_completed_count": 78,
      "agents_completed_count_basis": "source_records_not_exact_task_total",
      "agents_completed_coverage": {
-      "omp_ledger": "partial",
+      "omp_ledger": "observed",
       "xpi_seen": "missing",
       "hermes_db": "complete"
      }
@@ -10105,14 +11308,14 @@
      "work": {
       "state": "近期有工作进展",
       "reasons": [
-       "远端日志活动 6s 前"
+       "远端日志活动 1s 前"
       ],
-      "progress_age_s": 7
+      "progress_age_s": 1
      },
      "activity": {
-      "text": "会话：保存马桶盖收据（20 次调用）",
+      "text": "会话：修朗读 blocks 过 narration_qa 门禁（155 次调用）",
       "source": "session_db",
-      "at": "2026-10-04T03:57:51Z"
+      "at": "2026-10-04T22:53:49Z"
      },
      "subagents": {
       "confirmed_running": 0,
@@ -10283,10 +11486,10 @@
        "provider": "zai",
        "base_url": "https://open.bigmodel.cn/api/coding/paas/v4",
        "billing_mode": "",
-       "last_seen": 1791086307.5440574,
-       "input": 3656854,
-       "output": 486029,
-       "calls": 764,
+       "last_seen": 1791154450.1728425,
+       "input": 3802434,
+       "output": 497506,
+       "calls": 796,
        "first_seen": 1788564498.7921848,
        "_fromTotals": true,
        "label": "GLM coding 订阅包",
@@ -10451,50 +11654,60 @@
         "provider": "zai",
         "base_url": "https://open.bigmodel.cn/api/coding/paas/v4",
         "billing_mode": "",
-        "input": 3656854,
-        "output": 486029,
-        "cache_read": 48805696,
+        "input": 3802434,
+        "output": 497506,
+        "cache_read": 51836928,
         "cache_write": 0,
-        "calls": 764,
+        "calls": 796,
         "first_seen": 1788564498.7921848,
-        "last_seen": 1791086307.5440574
+        "last_seen": 1791154450.1728425
        }
       ],
       "coverage": "complete"
      },
      "session_budget": {
-      "last_prompt_tokens": 33852,
+      "last_prompt_tokens": 96239,
       "model": null,
       "provider": null,
-      "session_id": "20260926_015521_facad780"
+      "session_id": "20260924_053222_957cf545"
      },
+     "problem_flags": [
+      {
+       "code": "session_overrun",
+       "session_id": "20260924_053222_957cf545",
+       "source": "sessions.last_activity_atï¼ä¸»ä¼è¯ telegram 20260924_053 Â· 324 æ¡æ¶æ¯ Â· èª started_at ç´¯è®¡ 8 å¤©ï¼",
+       "window": "ä¸»ä¼è¯ç´¯è®¡ï¼èªä¼è¯å¼å§ï¼éçªå£ï¼",
+       "detail": "api_call_count=155 (>150) Â· æ¥æº sessions.last_activity_atï¼ä¸»ä¼è¯ telegram 20260924_053 Â· 324 æ¡æ¶æ¯ Â· èª started_at ç´¯è®¡ 8 å¤©ï¼",
+       "suggest": "/new å¼æ°ä¼è¯ + HANDOFF äº¤æ¥"
+      }
+     ],
      "log_errors": {
-      "count_24h": 157,
+      "count_24h": 205,
       "recent": [
        {
-        "ts": 1791148696.0,
+        "ts": 1791154723.0,
         "level": "UNKNOWN",
-        "msg": "2026-10-04 21:18:16,203 WARNING plugins.platforms.telegram.telegram_network: [Telegram] Dual-stack api.telegram.org path failed ()"
+        "msg": "2026-10-04 22:58:43,883 WARNING plugins.platforms.telegram.telegram_network: [Telegram] Dual-stack api.telegram.org path failed ()"
        },
        {
-        "ts": 1791148696.0,
+        "ts": 1791154723.0,
         "level": "UNKNOWN",
-        "msg": "2026-10-04 21:18:16,191 WARNING plugins.platforms.telegram.telegram_network: [Telegram] Sticky Telegram path api.telegram.org failed; re-walking IPv4 literals before the hostname"
+        "msg": "2026-10-04 22:58:43,875 WARNING plugins.platforms.telegram.telegram_network: [Telegram] Sticky Telegram path api.telegram.org failed; re-walking IPv4 literals before the hostname"
        },
        {
-        "ts": 1791148239.0,
+        "ts": 1791154540.0,
         "level": "UNKNOWN",
-        "msg": "2026-10-04 21:10:39,196 WARNING plugins.platforms.telegram.telegram_network: [Telegram] IPv4 Telegram API IP 149.154.166.110 failed:"
+        "msg": "2026-10-04 22:55:40,677 WARNING plugins.platforms.telegram.telegram_network: [Telegram] IPv4 Telegram API IP 149.154.166.110 failed:"
        },
        {
-        "ts": 1791148239.0,
+        "ts": 1791154540.0,
         "level": "UNKNOWN",
-        "msg": "2026-10-04 21:10:39,195 WARNING plugins.platforms.telegram.telegram_network: [Telegram] Sticky Telegram path 149.154.166.110 failed; re-walking IPv4 literals before the hostname"
+        "msg": "2026-10-04 22:55:40,677 WARNING plugins.platforms.telegram.telegram_network: [Telegram] Sticky Telegram path 149.154.166.110 failed; re-walking IPv4 literals before the hostname"
        },
        {
-        "ts": 1791146870.0,
+        "ts": 1791153354.0,
         "level": "UNKNOWN",
-        "msg": "2026-10-04 20:47:50,804 WARNING hermes_plugins.telegram_platform.adapter: [Telegram] Telegram network error (attempt 1/10), reconnecting in 5s. Error: httpx.ConnectError:"
+        "msg": "2026-10-04 22:35:54,100 WARNING plugins.platforms.telegram.telegram_network: [Telegram] Dual-stack api.telegram.org path failed ()"
        }
       ],
       "error": null
@@ -10521,89 +11734,1226 @@
        "normal": 0,
        "failed": 0,
        "timeout": 0,
-       "unknown": 0
+       "unknown": 0,
+       "empty_shell": 0
       },
       "4–24h": {
        "normal": 0,
        "failed": 0,
        "timeout": 0,
-       "unknown": 0
+       "unknown": 0,
+       "empty_shell": 0
       },
       "24h–7d": {
        "normal": 0,
        "failed": 0,
        "timeout": 0,
-       "unknown": 0
+       "unknown": 0,
+       "empty_shell": 0
       },
       "unknown": {
        "normal": 0,
        "failed": 0,
        "timeout": 0,
-       "unknown": 0
+       "unknown": 0,
+       "empty_shell": 0
       }
      },
      "agents_completed_count": 0,
      "agents_completed_count_basis": "source_records_not_exact_task_total",
      "agents_completed_coverage": {
-      "omp_ledger": "partial",
+      "omp_ledger": "observed",
       "xpi_seen": "missing",
       "hermes_db": "complete"
      }
     }
    ],
    "xpi_unattributed": {
-    "count": 4,
+    "count": 0,
     "pipe_dropped": 0,
-    "items": [
-     {
-      "pid": 2224714,
-      "taskbook": null,
-      "model": null,
-      "age_s": 233747,
-      "state": "finished_recent",
-      "via": null
-     },
-     {
-      "pid": 2255811,
-      "taskbook": null,
-      "model": null,
-      "age_s": 233621,
-      "state": "finished_recent",
-      "via": null
-     },
-     {
-      "pid": 2463191,
-      "taskbook": null,
-      "model": null,
-      "age_s": 232854,
-      "state": "finished_recent",
-      "via": null
-     },
-     {
-      "pid": 2539815,
-      "taskbook": null,
-      "model": null,
-      "age_s": 232570,
-      "state": "finished_recent",
-      "via": null
-     }
-    ]
+    "items": []
    },
    "omp_exits": {
-    "error": "OSError",
-    "partial": true,
-    "all_items": []
+    "all_items": [
+     {
+      "type": "exit",
+      "session_id": "01a0e537-4825-7000-9b5b-7c5a553dd247",
+      "pid": 3756938,
+      "reason": "sigterm",
+      "raw_reason": "sigterm",
+      "exit_code": null,
+      "kind": "signal",
+      "level": "warn",
+      "ts": 1790552115.938,
+      "session_file": "/home/vivaming/.omp/agent/sessions/-tmp/2026-09-27T23-33-20-549Z_01a0e537-4825-7000-9b5b-7c5a553dd247.jsonl",
+      "taskbook": "tmp",
+      "profile": "default"
+     },
+     {
+      "type": "exit",
+      "session_id": "01a0e539-65f6-7000-a69a-934b29f20119",
+      "pid": 3768270,
+      "reason": "sigterm",
+      "raw_reason": "sigterm",
+      "exit_code": null,
+      "kind": "signal",
+      "level": "warn",
+      "ts": 1790552287.777,
+      "session_file": "/home/vivaming/.omp/agent/sessions/-tmp/2026-09-27T23-35-39-254Z_01a0e539-65f6-7000-a69a-934b29f20119.jsonl",
+      "taskbook": "tmp",
+      "profile": "default"
+     },
+     {
+      "type": "exit",
+      "session_id": "01a0e53c-932e-7000-9ac0-986bc091d113",
+      "pid": 3786721,
+      "reason": "normal",
+      "raw_reason": "dispose",
+      "exit_code": null,
+      "kind": "normal",
+      "level": "debug",
+      "ts": 1790552630.92,
+      "session_file": "/home/vivaming/.omp/agent/sessions/-work-explee_analysis-lane_a/2026-09-27T23-39-07-438Z_01a0e53c-932e-7000-9ac0-986bc091d113.jsonl",
+      "taskbook": "work-explee_analysis-lane_a",
+      "profile": "default"
+     },
+     {
+      "type": "exit",
+      "session_id": "01a0e596-6f43-7000-bda5-2609a1e6a10c",
+      "pid": 61708,
+      "reason": "normal",
+      "raw_reason": "dispose",
+      "exit_code": null,
+      "kind": "normal",
+      "level": "debug",
+      "ts": 1790558508.05,
+      "session_file": "/home/vivaming/.omp/agent/sessions/-work-explee_analysis-lane_d/2026-09-28T01-17-16-483Z_01a0e596-6f43-7000-bda5-2609a1e6a10c.jsonl",
+      "taskbook": "work-explee_analysis-lane_d",
+      "profile": "default"
+     },
+     {
+      "type": "exit",
+      "session_id": "01a0e674-8722-7000-9127-227dd59d7be2",
+      "pid": 1207735,
+      "reason": "sigterm",
+      "raw_reason": "sigterm",
+      "exit_code": null,
+      "kind": "signal",
+      "level": "warn",
+      "ts": 1790572989.853,
+      "session_file": "/home/vivaming/.omp/agent/sessions/-work-explee_analysis/2026-09-28T05-19-51-586Z_01a0e674-8722-7000-9127-227dd59d7be2.jsonl",
+      "taskbook": "work-explee_analysis",
+      "profile": "default"
+     },
+     {
+      "type": "exit",
+      "session_id": "01a0e678-38c6-7000-936b-bc879ec163ee",
+      "pid": 1227653,
+      "reason": "normal",
+      "raw_reason": "dispose",
+      "exit_code": null,
+      "kind": "normal",
+      "level": "debug",
+      "ts": 1790573090.325,
+      "session_file": "/home/vivaming/.omp/agent/sessions/-treemap_content_audit/2026-09-28T05-23-53-670Z_01a0e678-38c6-7000-936b-bc879ec163ee.jsonl",
+      "taskbook": "treemap_content_audit",
+      "profile": "default"
+     },
+     {
+      "type": "exit",
+      "session_id": "01a0e751-b47f-7000-8071-92faf3c0b66f",
+      "pid": 2375807,
+      "reason": "sigterm",
+      "raw_reason": "sigterm",
+      "exit_code": null,
+      "kind": "signal",
+      "level": "warn",
+      "ts": 1790589687.646,
+      "session_file": "/home/vivaming/.omp/agent/sessions/-Naomi-pilaf_v1-r1_T2/2026-09-28T09-21-26-655Z_01a0e751-b47f-7000-8071-92faf3c0b66f.jsonl",
+      "taskbook": "Naomi-pilaf_v1-r1_T2",
+      "profile": "default"
+     },
+     {
+      "type": "exit",
+      "session_id": "01a0eaa3-c905-7000-95a7-8d0523e1dc59",
+      "pid": 3173293,
+      "reason": "sigterm",
+      "raw_reason": "sigterm",
+      "exit_code": null,
+      "kind": "signal",
+      "level": "warn",
+      "ts": 1790644497.942,
+      "session_file": "/home/vivaming/.omp/agent/sessions/-Naomi-treemap-0928-wd_s_layout_4/2026-09-29T00-49-57-509Z_01a0eaa3-c905-7000-95a7-8d0523e1dc59.jsonl",
+      "taskbook": "Naomi-treemap-0928-wd_s_layout_4",
+      "profile": "default"
+     },
+     {
+      "type": "exit",
+      "session_id": "01a0eaa3-c78d-7000-9a79-3bf6c36af809",
+      "pid": 3173545,
+      "reason": "sigterm",
+      "raw_reason": "sigterm",
+      "exit_code": null,
+      "kind": "signal",
+      "level": "warn",
+      "ts": 1790644493.317,
+      "session_file": "/home/vivaming/.omp/agent/sessions/-Naomi-treemap-0928-wd_o_full_8/2026-09-29T00-49-57-133Z_01a0eaa3-c78d-7000-9a79-3bf6c36af809.jsonl",
+      "taskbook": "Naomi-treemap-0928-wd_o_full_8",
+      "profile": "default"
+     },
+     {
+      "type": "exit",
+      "session_id": "01a0eaa3-c8f2-7000-913e-f95b7f56e9dd",
+      "pid": 3173614,
+      "reason": "sigterm",
+      "raw_reason": "sigterm",
+      "exit_code": null,
+      "kind": "signal",
+      "level": "warn",
+      "ts": 1790644493.318,
+      "session_file": "/home/vivaming/.omp/agent/sessions/-Naomi-treemap-0928-wd_s_evt_7/2026-09-29T00-49-57-490Z_01a0eaa3-c8f2-7000-913e-f95b7f56e9dd.jsonl",
+      "taskbook": "Naomi-treemap-0928-wd_s_evt_7",
+      "profile": "default"
+     },
+     {
+      "type": "exit",
+      "session_id": "01a0eaa3-c7b6-7000-82f1-2aacdecbe90f",
+      "pid": 3173762,
+      "reason": "sigterm",
+      "raw_reason": "sigterm",
+      "exit_code": null,
+      "kind": "signal",
+      "level": "warn",
+      "ts": 1790644498.334,
+      "session_file": "/home/vivaming/.omp/agent/sessions/-Naomi-treemap-0928-wd_s_a11y_5/2026-09-29T00-49-57-174Z_01a0eaa3-c7b6-7000-82f1-2aacdecbe90f.jsonl",
+      "taskbook": "Naomi-treemap-0928-wd_s_a11y_5",
+      "profile": "default"
+     },
+     {
+      "type": "exit",
+      "session_id": "01a0eaa5-950f-7000-8502-21f0ddfb5d20",
+      "pid": 3173841,
+      "reason": "sigterm",
+      "raw_reason": "sigterm",
+      "exit_code": null,
+      "kind": "signal",
+      "level": "warn",
+      "ts": 1790644498.334,
+      "session_file": "/home/vivaming/.omp/agent/sessions/-Naomi-treemap-0928-wd_s_full_6/2026-09-29T00-51-55-279Z_01a0eaa5-950f-7000-8502-21f0ddfb5d20.jsonl",
+      "taskbook": "Naomi-treemap-0928-wd_s_full_6",
+      "profile": "default"
+     },
+     {
+      "type": "exit",
+      "session_id": "01a0ec7b-c35f-7000-8983-5801375c042b",
+      "pid": 1424191,
+      "reason": "normal",
+      "raw_reason": "dispose",
+      "exit_code": null,
+      "kind": "normal",
+      "level": "debug",
+      "ts": 1790674693.752,
+      "session_file": "/home/vivaming/.omp/agent/sessions/-work-explee_analysis-w1_a/2026-09-29T09-25-29-055Z_01a0ec7b-c35f-7000-8983-5801375c042b.jsonl",
+      "taskbook": "work-explee_analysis-w1_a",
+      "profile": "default"
+     },
+     {
+      "type": "exit",
+      "session_id": "01a0ec7b-c348-7000-af75-eaf2a39fe771",
+      "pid": 1424133,
+      "reason": "normal",
+      "raw_reason": "dispose",
+      "exit_code": null,
+      "kind": "normal",
+      "level": "debug",
+      "ts": 1790675050.288,
+      "session_file": "/home/vivaming/.omp/agent/sessions/-work-explee_analysis-w1_c/2026-09-29T09-25-29-032Z_01a0ec7b-c348-7000-af75-eaf2a39fe771.jsonl",
+      "taskbook": "work-explee_analysis-w1_c",
+      "profile": "default"
+     },
+     {
+      "type": "exit",
+      "session_id": "01a0f0a6-b873-7000-a948-f78e6b609793",
+      "pid": 2580656,
+      "reason": "sigterm",
+      "raw_reason": "sigterm",
+      "exit_code": null,
+      "kind": "signal",
+      "level": "warn",
+      "ts": 1790745356.101,
+      "session_file": "/home/vivaming/.omp/agent/sessions/-tmp/2026-09-30T04-50-53-171Z_01a0f0a6-b873-7000-a948-f78e6b609793.jsonl",
+      "taskbook": "tmp",
+      "profile": "default"
+     },
+     {
+      "type": "exit",
+      "session_id": "01a0f0c8-bba6-7000-940d-f392f31f1b87",
+      "pid": 2799221,
+      "reason": "sigterm",
+      "raw_reason": "sigterm",
+      "exit_code": null,
+      "kind": "signal",
+      "level": "warn",
+      "ts": 1790747284.798,
+      "session_file": "/home/vivaming/.omp/agent/sessions/-work-explee_analysis-w2_a/2026-09-30T05-28-02-214Z_01a0f0c8-bba6-7000-940d-f392f31f1b87.jsonl",
+      "taskbook": "work-explee_analysis-w2_a",
+      "profile": "default"
+     },
+     {
+      "type": "exit",
+      "session_id": "01a0f103-ada5-7000-826b-ca9ae48b0ed4",
+      "pid": 3238980,
+      "reason": "sigterm",
+      "raw_reason": "sigterm",
+      "exit_code": null,
+      "kind": "signal",
+      "level": "warn",
+      "ts": 1790749989.928,
+      "session_file": "/home/vivaming/.omp/agent/sessions/-work-explee_analysis/2026-09-30T06-32-25-253Z_01a0f103-ada5-7000-826b-ca9ae48b0ed4.jsonl",
+      "taskbook": "work-explee_analysis",
+      "profile": "default"
+     },
+     {
+      "type": "exit",
+      "session_id": "01a0f103-aea9-7000-bb3a-e3b4c142a953",
+      "pid": 3239137,
+      "reason": "sigterm",
+      "raw_reason": "sigterm",
+      "exit_code": null,
+      "kind": "signal",
+      "level": "warn",
+      "ts": 1790749989.977,
+      "session_file": "/home/vivaming/.omp/agent/sessions/-work-explee_analysis/2026-09-30T06-32-25-513Z_01a0f103-aea9-7000-bb3a-e3b4c142a953.jsonl",
+      "taskbook": "work-explee_analysis",
+      "profile": "default"
+     },
+     {
+      "type": "exit",
+      "session_id": "01a0f105-aae4-7000-b349-8e980277b5d3",
+      "pid": 3255432,
+      "reason": "sigterm",
+      "raw_reason": "sigterm",
+      "exit_code": null,
+      "kind": "signal",
+      "level": "warn",
+      "ts": 1790750129.667,
+      "session_file": "/home/vivaming/.omp/agent/sessions/-work-explee_analysis/2026-09-30T06-34-35-620Z_01a0f105-aae4-7000-b349-8e980277b5d3.jsonl",
+      "taskbook": "work-explee_analysis",
+      "profile": "default"
+     },
+     {
+      "type": "exit",
+      "session_id": "01a0f105-a7f9-7000-ac4b-47a11ebe0c2e",
+      "pid": 3255462,
+      "reason": "sigterm",
+      "raw_reason": "sigterm",
+      "exit_code": null,
+      "kind": "signal",
+      "level": "warn",
+      "ts": 1790750129.692,
+      "session_file": "/home/vivaming/.omp/agent/sessions/-work-explee_analysis/2026-09-30T06-34-34-873Z_01a0f105-a7f9-7000-ac4b-47a11ebe0c2e.jsonl",
+      "taskbook": "work-explee_analysis",
+      "profile": "default"
+     },
+     {
+      "type": "exit",
+      "session_id": "01a0f105-aa2a-7000-a387-7c3f8aefb800",
+      "pid": 3255494,
+      "reason": "sigterm",
+      "raw_reason": "sigterm",
+      "exit_code": null,
+      "kind": "signal",
+      "level": "warn",
+      "ts": 1790750129.71,
+      "session_file": "/home/vivaming/.omp/agent/sessions/-work-explee_analysis/2026-09-30T06-34-35-434Z_01a0f105-aa2a-7000-a387-7c3f8aefb800.jsonl",
+      "taskbook": "work-explee_analysis",
+      "profile": "default"
+     },
+     {
+      "type": "exit",
+      "session_id": "01a0f106-880f-7000-8f37-814684ba4aac",
+      "pid": 3263423,
+      "reason": "sigterm",
+      "raw_reason": "sigterm",
+      "exit_code": null,
+      "kind": "signal",
+      "level": "warn",
+      "ts": 1790750189.804,
+      "session_file": "/home/vivaming/.omp/agent/sessions/-work-explee_analysis/2026-09-30T06-35-32-239Z_01a0f106-880f-7000-8f37-814684ba4aac.jsonl",
+      "taskbook": "work-explee_analysis",
+      "profile": "default"
+     },
+     {
+      "type": "exit",
+      "session_id": "01a0f106-88b8-7000-bdeb-54a318cfff93",
+      "pid": 3263439,
+      "reason": "sigterm",
+      "raw_reason": "sigterm",
+      "exit_code": null,
+      "kind": "signal",
+      "level": "warn",
+      "ts": 1790750189.804,
+      "session_file": "/home/vivaming/.omp/agent/sessions/-work-explee_analysis/2026-09-30T06-35-32-408Z_01a0f106-88b8-7000-bdeb-54a318cfff93.jsonl",
+      "taskbook": "work-explee_analysis",
+      "profile": "default"
+     },
+     {
+      "type": "exit",
+      "session_id": "01a0f107-726a-7000-9bc8-c960eab4de60",
+      "pid": 3270272,
+      "reason": "sigterm",
+      "raw_reason": "sigterm",
+      "exit_code": null,
+      "kind": "signal",
+      "level": "warn",
+      "ts": 1790750249.894,
+      "session_file": "/home/vivaming/.omp/agent/sessions/-work-explee_analysis/2026-09-30T06-36-32-234Z_01a0f107-726a-7000-9bc8-c960eab4de60.jsonl",
+      "taskbook": "work-explee_analysis",
+      "profile": "default"
+     },
+     {
+      "type": "exit",
+      "session_id": "01a0f107-72e9-7000-8f8b-2b8171a3ea1a",
+      "pid": 3270314,
+      "reason": "sigterm",
+      "raw_reason": "sigterm",
+      "exit_code": null,
+      "kind": "signal",
+      "level": "warn",
+      "ts": 1790750249.908,
+      "session_file": "/home/vivaming/.omp/agent/sessions/-work-explee_analysis/2026-09-30T06-36-32-361Z_01a0f107-72e9-7000-8f8b-2b8171a3ea1a.jsonl",
+      "taskbook": "work-explee_analysis",
+      "profile": "default"
+     },
+     {
+      "type": "exit",
+      "session_id": "01a0f108-5a1f-7000-9aca-649e282d8db7",
+      "pid": 3277751,
+      "reason": "sigterm",
+      "raw_reason": "sigterm",
+      "exit_code": null,
+      "kind": "signal",
+      "level": "warn",
+      "ts": 1790750309.958,
+      "session_file": "/home/vivaming/.omp/agent/sessions/-work-explee_analysis/2026-09-30T06-37-31-551Z_01a0f108-5a1f-7000-9aca-649e282d8db7.jsonl",
+      "taskbook": "work-explee_analysis",
+      "profile": "default"
+     },
+     {
+      "type": "exit",
+      "session_id": "01a0f109-450b-7000-8034-4df2f2f17e4f",
+      "pid": 3284300,
+      "reason": "sigterm",
+      "raw_reason": "sigterm",
+      "exit_code": null,
+      "kind": "signal",
+      "level": "warn",
+      "ts": 1790750370.063,
+      "session_file": "/home/vivaming/.omp/agent/sessions/-work-explee_analysis/2026-09-30T06-38-31-691Z_01a0f109-450b-7000-8034-4df2f2f17e4f.jsonl",
+      "taskbook": "work-explee_analysis",
+      "profile": "default"
+     },
+     {
+      "type": "exit",
+      "session_id": "01a0f0e0-0646-7000-b10e-d1d82f7ac057",
+      "pid": 2985341,
+      "reason": "normal",
+      "raw_reason": "dispose",
+      "exit_code": null,
+      "kind": "normal",
+      "level": "debug",
+      "ts": 1790750638.895,
+      "session_file": "/home/vivaming/.omp/agent/sessions/-work-pitchlens/2026-09-30T05-53-28-646Z_01a0f0e0-0646-7000-b10e-d1d82f7ac057.jsonl",
+      "taskbook": "work-pitchlens",
+      "profile": "default"
+     },
+     {
+      "type": "exit",
+      "session_id": "01a0f14c-63a0-7000-a029-7b176d017c10",
+      "pid": 3622082,
+      "reason": "sigterm",
+      "raw_reason": "sigterm",
+      "exit_code": null,
+      "kind": "signal",
+      "level": "warn",
+      "ts": 1790754858.854,
+      "session_file": "/home/vivaming/.omp/agent/sessions/-work-explee_analysis/2026-09-30T07-51-50-432Z_01a0f14c-63a0-7000-a029-7b176d017c10.jsonl",
+      "taskbook": "work-explee_analysis",
+      "profile": "default"
+     },
+     {
+      "type": "exit",
+      "session_id": "01a0f151-9451-7000-ab9b-c78a040e86c3",
+      "pid": 3648446,
+      "reason": "sigterm",
+      "raw_reason": "sigterm",
+      "exit_code": null,
+      "kind": "signal",
+      "level": "warn",
+      "ts": 1790755139.052,
+      "session_file": "/home/vivaming/.omp/agent/sessions/-work-explee_analysis/2026-09-30T07-57-30-577Z_01a0f151-9451-7000-ab9b-c78a040e86c3.jsonl",
+      "taskbook": "work-explee_analysis",
+      "profile": "default"
+     },
+     {
+      "type": "exit",
+      "session_id": "01a0f165-473f-7000-9903-3bcc2e9ef2ea",
+      "pid": 3748040,
+      "reason": "sigterm",
+      "raw_reason": "sigterm",
+      "exit_code": null,
+      "kind": "signal",
+      "level": "warn",
+      "ts": 1790756430.104,
+      "session_file": "/home/vivaming/.omp/agent/sessions/-work-explee_analysis/2026-09-30T08-19-01-567Z_01a0f165-473f-7000-9903-3bcc2e9ef2ea.jsonl",
+      "taskbook": "work-explee_analysis",
+      "profile": "default"
+     },
+     {
+      "type": "exit",
+      "session_id": "01a0f166-3fde-7000-8b59-53a596815fe7",
+      "pid": 3753178,
+      "reason": "sigterm",
+      "raw_reason": "sigterm",
+      "exit_code": null,
+      "kind": "signal",
+      "level": "warn",
+      "ts": 1790756493.689,
+      "session_file": "/home/vivaming/.omp/agent/sessions/-work-explee_analysis/2026-09-30T08-20-05-214Z_01a0f166-3fde-7000-8b59-53a596815fe7.jsonl",
+      "taskbook": "work-explee_analysis",
+      "profile": "default"
+     },
+     {
+      "type": "exit",
+      "session_id": "01a0f167-9f9c-7000-923f-29b70f5c96f6",
+      "pid": 3760229,
+      "reason": "sigterm",
+      "raw_reason": "sigterm",
+      "exit_code": null,
+      "kind": "signal",
+      "level": "warn",
+      "ts": 1790756583.742,
+      "session_file": "/home/vivaming/.omp/agent/sessions/-work-explee_analysis/2026-09-30T08-21-35-260Z_01a0f167-9f9c-7000-923f-29b70f5c96f6.jsonl",
+      "taskbook": "work-explee_analysis",
+      "profile": "default"
+     },
+     {
+      "type": "exit",
+      "session_id": "01a0f16a-e3d6-7000-9e92-03878cfd843d",
+      "pid": 3776833,
+      "reason": "sigterm",
+      "raw_reason": "sigterm",
+      "exit_code": null,
+      "kind": "signal",
+      "level": "warn",
+      "ts": 1790756767.885,
+      "session_file": "/home/vivaming/.omp/agent/sessions/-work-explee_analysis/2026-09-30T08-25-09-334Z_01a0f16a-e3d6-7000-9e92-03878cfd843d.jsonl",
+      "taskbook": "work-explee_analysis",
+      "profile": "default"
+     },
+     {
+      "type": "exit",
+      "session_id": "01a0f16e-2baa-7000-b774-4217de14ac2f",
+      "pid": 3794647,
+      "reason": "sigterm",
+      "raw_reason": "sigterm",
+      "exit_code": null,
+      "kind": "signal",
+      "level": "warn",
+      "ts": 1790757107.722,
+      "session_file": "/home/vivaming/.omp/agent/sessions/-Naomi-pilaf_v1-r1_ammo-a1/2026-09-30T08-28-44-330Z_01a0f16e-2baa-7000-b774-4217de14ac2f.jsonl",
+      "taskbook": "Naomi-pilaf_v1-r1_ammo-a1",
+      "profile": "default"
+     },
+     {
+      "type": "exit",
+      "session_id": "01a0f16e-2cf1-7000-a2bd-0c557c931c10",
+      "pid": 3794773,
+      "reason": "sigterm",
+      "raw_reason": "sigterm",
+      "exit_code": null,
+      "kind": "signal",
+      "level": "warn",
+      "ts": 1790757107.872,
+      "session_file": "/home/vivaming/.omp/agent/sessions/-Naomi-pilaf_v1-r1_ammo-a2/2026-09-30T08-28-44-657Z_01a0f16e-2cf1-7000-a2bd-0c557c931c10.jsonl",
+      "taskbook": "Naomi-pilaf_v1-r1_ammo-a2",
+      "profile": "default"
+     },
+     {
+      "type": "exit",
+      "session_id": "01a0f191-68e5-7000-a181-e6ebae39361a",
+      "pid": 4002030,
+      "reason": "sigterm",
+      "raw_reason": "sigterm",
+      "exit_code": null,
+      "kind": "signal",
+      "level": "warn",
+      "ts": 1790760436.636,
+      "session_file": "/home/vivaming/.omp/agent/sessions/-work-explee_analysis-w4_p/2026-09-30T09-07-13-765Z_01a0f191-68e5-7000-a181-e6ebae39361a.jsonl",
+      "taskbook": "work-explee_analysis-w4_p",
+      "profile": "default"
+     },
+     {
+      "type": "exit",
+      "session_id": "01a0f1b1-8998-7000-9b86-d3acdb10ad52",
+      "pid": 32939,
+      "reason": "sigterm",
+      "raw_reason": "sigterm",
+      "exit_code": null,
+      "kind": "signal",
+      "level": "warn",
+      "ts": 1790761772.394,
+      "session_file": "/home/vivaming/.omp/agent/sessions/-Naomi-xpy_v3-rl_delivery-lane_web/2026-09-30T09-34-35-782Z_01a0f1aa-7706-7000-9785-170d8fcc8583/Q5QuotaRl.jsonl",
+      "taskbook": "Naomi-xpy_v3-rl_delivery-lane_web",
+      "profile": "default"
+     },
+     {
+      "type": "exit",
+      "session_id": "01a0f1b1-898d-7001-9565-a38cc45f4e2a",
+      "pid": 32939,
+      "reason": "sigterm",
+      "raw_reason": "sigterm",
+      "exit_code": null,
+      "kind": "signal",
+      "level": "warn",
+      "ts": 1790761772.395,
+      "session_file": "/home/vivaming/.omp/agent/sessions/-Naomi-xpy_v3-rl_delivery-lane_web/2026-09-30T09-34-35-782Z_01a0f1aa-7706-7000-9785-170d8fcc8583/Q4OssImpl.jsonl",
+      "taskbook": "Naomi-xpy_v3-rl_delivery-lane_web",
+      "profile": "default"
+     },
+     {
+      "type": "exit",
+      "session_id": "01a0f1b1-898c-7000-90a1-65974d012664",
+      "pid": 32939,
+      "reason": "sigterm",
+      "raw_reason": "sigterm",
+      "exit_code": null,
+      "kind": "signal",
+      "level": "warn",
+      "ts": 1790761772.395,
+      "session_file": "/home/vivaming/.omp/agent/sessions/-Naomi-xpy_v3-rl_delivery-lane_web/2026-09-30T09-34-35-782Z_01a0f1aa-7706-7000-9785-170d8fcc8583/Q2RewardShaping.jsonl",
+      "taskbook": "Naomi-xpy_v3-rl_delivery-lane_web",
+      "profile": "default"
+     },
+     {
+      "type": "exit",
+      "session_id": "01a0f1b1-898d-7000-ad69-7e00ce33bd01",
+      "pid": 32939,
+      "reason": "sigterm",
+      "raw_reason": "sigterm",
+      "exit_code": null,
+      "kind": "signal",
+      "level": "warn",
+      "ts": 1790761772.396,
+      "session_file": "/home/vivaming/.omp/agent/sessions/-Naomi-xpy_v3-rl_delivery-lane_web/2026-09-30T09-34-35-782Z_01a0f1aa-7706-7000-9785-170d8fcc8583/Q3BanditRouting.jsonl",
+      "taskbook": "Naomi-xpy_v3-rl_delivery-lane_web",
+      "profile": "default"
+     },
+     {
+      "type": "exit",
+      "session_id": "01a0f1b1-8989-7000-b4f8-a50fcf84fa5f",
+      "pid": 32939,
+      "reason": "sigterm",
+      "raw_reason": "sigterm",
+      "exit_code": null,
+      "kind": "signal",
+      "level": "warn",
+      "ts": 1790761772.396,
+      "session_file": "/home/vivaming/.omp/agent/sessions/-Naomi-xpy_v3-rl_delivery-lane_web/2026-09-30T09-34-35-782Z_01a0f1aa-7706-7000-9785-170d8fcc8583/Q1RlRouting.jsonl",
+      "taskbook": "Naomi-xpy_v3-rl_delivery-lane_web",
+      "profile": "default"
+     },
+     {
+      "type": "exit",
+      "session_id": "01a0f1aa-7706-7000-9785-170d8fcc8583",
+      "pid": 32939,
+      "reason": "sigterm",
+      "raw_reason": "sigterm",
+      "exit_code": null,
+      "kind": "signal",
+      "level": "warn",
+      "ts": 1790761772.396,
+      "session_file": "/home/vivaming/.omp/agent/sessions/-Naomi-xpy_v3-rl_delivery-lane_web/2026-09-30T09-34-35-782Z_01a0f1aa-7706-7000-9785-170d8fcc8583.jsonl",
+      "taskbook": "Naomi-xpy_v3-rl_delivery-lane_web",
+      "profile": "default"
+     },
+     {
+      "type": "exit",
+      "session_id": "01a0f1b4-358f-7000-a360-4aada9734d7d",
+      "pid": 175573,
+      "reason": "sigterm",
+      "raw_reason": "sigterm",
+      "exit_code": null,
+      "kind": "signal",
+      "level": "warn",
+      "ts": 1790762412.869,
+      "session_file": "/home/vivaming/.omp/agent/sessions/-Naomi-xpy_v3-rl_delivery-lane_case/2026-09-30T09-45-14-383Z_01a0f1b4-358f-7000-a360-4aada9734d7d.jsonl",
+      "taskbook": "Naomi-xpy_v3-rl_delivery-lane_case",
+      "profile": "default"
+     },
+     {
+      "type": "exit",
+      "session_id": "01a0f1c4-ff52-7000-928b-20cb1e75c08e",
+      "pid": 367094,
+      "reason": "sigterm",
+      "raw_reason": "sigterm",
+      "exit_code": null,
+      "kind": "signal",
+      "level": "warn",
+      "ts": 1790764116.267,
+      "session_file": "/home/vivaming/.omp/agent/sessions/-work-explee_analysis-w6_f123/2026-09-30T10-03-34-610Z_01a0f1c4-ff52-7000-928b-20cb1e75c08e.jsonl",
+      "taskbook": "work-explee_analysis-w6_f123",
+      "profile": "default"
+     },
+     {
+      "type": "exit",
+      "session_id": "01a0f215-5535-7000-bf58-52b01df085e4",
+      "pid": 1169818,
+      "reason": "sigterm",
+      "raw_reason": "sigterm",
+      "exit_code": null,
+      "kind": "signal",
+      "level": "warn",
+      "ts": 1790769680.033,
+      "session_file": "/home/vivaming/.omp/agent/sessions/-tmp-win67-p0/2026-09-30T11-31-19-477Z_01a0f215-5535-7000-bf58-52b01df085e4.jsonl",
+      "taskbook": "tmp-win67-p0",
+      "profile": "default"
+     },
+     {
+      "type": "exit",
+      "session_id": "01a0f231-0915-7000-9d02-f33cdf960409",
+      "pid": 1411486,
+      "reason": "sigterm",
+      "raw_reason": "sigterm",
+      "exit_code": null,
+      "kind": "signal",
+      "level": "warn",
+      "ts": 1790771495.639,
+      "session_file": "/home/vivaming/.omp/agent/sessions/-tmp-win67-p0/2026-09-30T12-01-34-997Z_01a0f231-0915-7000-9d02-f33cdf960409.jsonl",
+      "taskbook": "tmp-win67-p0",
+      "profile": "default"
+     },
+     {
+      "type": "exit",
+      "session_id": "01a0f44c-5ab8-7000-8df3-6efa717da5d9",
+      "pid": 620426,
+      "reason": "sigterm",
+      "raw_reason": "sigterm",
+      "exit_code": null,
+      "kind": "signal",
+      "level": "warn",
+      "ts": 1790805097.152,
+      "session_file": "/home/vivaming/.omp/agent/sessions/-work-explee_analysis/2026-09-30T21-50-39-800Z_01a0f44c-5ab8-7000-8df3-6efa717da5d9.jsonl",
+      "taskbook": "work-explee_analysis",
+      "profile": "default"
+     },
+     {
+      "type": "exit",
+      "session_id": "01a0f468-0a60-7000-95d0-65dfc1eac46c",
+      "pid": 799304,
+      "reason": "normal",
+      "raw_reason": "dispose",
+      "exit_code": null,
+      "kind": "normal",
+      "level": "debug",
+      "ts": 1790807288.875,
+      "session_file": "/home/vivaming/.omp/agent/sessions/-Naomi-fleet-jevdesk-wd_a/2026-09-30T22-20-54-240Z_01a0f468-0a60-7000-95d0-65dfc1eac46c.jsonl",
+      "taskbook": "Naomi-fleet-jevdesk-wd_a",
+      "profile": "default"
+     },
+     {
+      "type": "exit",
+      "session_id": "01a0f47e-cc2e-7000-a8b2-b2f27dacc0db",
+      "pid": 946212,
+      "reason": "normal",
+      "raw_reason": "dispose",
+      "exit_code": null,
+      "kind": "normal",
+      "level": "debug",
+      "ts": 1790808812.262,
+      "session_file": "/home/vivaming/.omp/agent/sessions/-Naomi-fleet-skins-wd_p2/2026-09-30T22-45-45-646Z_01a0f47e-cc2e-7000-a8b2-b2f27dacc0db.jsonl",
+      "taskbook": "Naomi-fleet-skins-wd_p2",
+      "profile": "default"
+     },
+     {
+      "type": "exit",
+      "session_id": "01a0f47e-cc2d-7000-90dc-bb9d5a138792",
+      "pid": 946142,
+      "reason": "sigterm",
+      "raw_reason": "sigterm",
+      "exit_code": null,
+      "kind": "signal",
+      "level": "warn",
+      "ts": 1790809547.296,
+      "session_file": "/home/vivaming/.omp/agent/sessions/-Naomi-fleet-skins-wd_p1/2026-09-30T22-45-45-645Z_01a0f47e-cc2d-7000-90dc-bb9d5a138792.jsonl",
+      "taskbook": "Naomi-fleet-skins-wd_p1",
+      "profile": "default"
+     },
+     {
+      "type": "exit",
+      "session_id": "01a0f47e-caf0-7000-aae7-aafb8e331073",
+      "pid": 946354,
+      "reason": "sigterm",
+      "raw_reason": "sigterm",
+      "exit_code": null,
+      "kind": "signal",
+      "level": "warn",
+      "ts": 1790809547.57,
+      "session_file": "/home/vivaming/.omp/agent/sessions/-Naomi-fleet-skins-wd_p5/2026-09-30T22-45-45-328Z_01a0f47e-caf0-7000-aae7-aafb8e331073.jsonl",
+      "taskbook": "Naomi-fleet-skins-wd_p5",
+      "profile": "default"
+     },
+     {
+      "type": "exit",
+      "session_id": "01a0f490-bf45-7000-a065-f13eedfe9e44",
+      "pid": 1124828,
+      "reason": "normal",
+      "raw_reason": "dispose",
+      "exit_code": null,
+      "kind": "normal",
+      "level": "debug",
+      "ts": 1790810201.708,
+      "session_file": "/home/vivaming/.omp/agent/sessions/-Naomi-fleet-skins-wd_p3/2026-09-30T23-05-21-989Z_01a0f490-bf45-7000-a065-f13eedfe9e44.jsonl",
+      "taskbook": "Naomi-fleet-skins-wd_p3",
+      "profile": "default"
+     },
+     {
+      "type": "exit",
+      "session_id": "01a0f491-83a4-7000-9509-ed556abb60a9",
+      "pid": 1131999,
+      "reason": "sigterm",
+      "raw_reason": "sigterm",
+      "exit_code": null,
+      "kind": "signal",
+      "level": "warn",
+      "ts": 1790810421.67,
+      "session_file": "/home/vivaming/.omp/agent/sessions/-Naomi-fleet-skins-wd_p1/2026-09-30T23-06-12-260Z_01a0f491-83a4-7000-9509-ed556abb60a9.jsonl",
+      "taskbook": "Naomi-fleet-skins-wd_p1",
+      "profile": "default"
+     },
+     {
+      "type": "exit",
+      "session_id": "01a0f492-854a-7000-90e5-544cb5cb29c9",
+      "pid": 1132128,
+      "reason": "sigterm",
+      "raw_reason": "sigterm",
+      "exit_code": null,
+      "kind": "signal",
+      "level": "warn",
+      "ts": 1790810765.537,
+      "session_file": "/home/vivaming/.omp/agent/sessions/-Naomi-fleet-skins-wd_p5/2026-09-30T23-07-18-218Z_01a0f492-854a-7000-90e5-544cb5cb29c9.jsonl",
+      "taskbook": "Naomi-fleet-skins-wd_p5",
+      "profile": "default"
+     },
+     {
+      "type": "exit",
+      "session_id": "01a0f492-851d-7000-84a8-e599f2ccb96f",
+      "pid": 1136323,
+      "reason": "sigterm",
+      "raw_reason": "sigterm",
+      "exit_code": null,
+      "kind": "signal",
+      "level": "warn",
+      "ts": 1790810790.63,
+      "session_file": "/home/vivaming/.omp/agent/sessions/-Naomi-fleet-skins-wd_p4/2026-09-30T23-07-18-173Z_01a0f492-851d-7000-84a8-e599f2ccb96f.jsonl",
+      "taskbook": "Naomi-fleet-skins-wd_p4",
+      "profile": "default"
+     },
+     {
+      "type": "exit",
+      "session_id": "01a0f4a5-aabd-7000-8e4b-8c6d9356596b",
+      "pid": 1334406,
+      "reason": "sigterm",
+      "raw_reason": "sigterm",
+      "exit_code": null,
+      "kind": "signal",
+      "level": "warn",
+      "ts": 1790812089.719,
+      "session_file": "/home/vivaming/.omp/agent/sessions/-Naomi-fleet-skins-wd_p5/2026-09-30T23-28-12-989Z_01a0f4a5-aabd-7000-8e4b-8c6d9356596b.jsonl",
+      "taskbook": "Naomi-fleet-skins-wd_p5",
+      "profile": "default"
+     },
+     {
+      "type": "exit",
+      "session_id": "01a0f487-fd6c-7000-9c8b-935ce3d1de24",
+      "pid": 1040533,
+      "reason": "sigterm",
+      "raw_reason": "sigterm",
+      "exit_code": null,
+      "kind": "signal",
+      "level": "warn",
+      "ts": 1790813380.849,
+      "session_file": "/home/vivaming/.omp/agent/sessions/-Naomi-fleet-skins-wd_p4/2026-09-30T22-55-48-076Z_01a0f487-fd6c-7000-9c8b-935ce3d1de24.jsonl",
+      "taskbook": "Naomi-fleet-skins-wd_p4",
+      "profile": "default"
+     },
+     {
+      "type": "exit",
+      "session_id": "01a0f4db-eeac-7000-8d41-7240ca06887e",
+      "pid": 1722480,
+      "reason": "normal",
+      "raw_reason": "dispose",
+      "exit_code": null,
+      "kind": "normal",
+      "level": "debug",
+      "ts": 1790815430.918,
+      "session_file": "/home/vivaming/.omp/agent/sessions/-Naomi-fleet-skins-wd_p5/2026-10-01T00-27-29-324Z_01a0f4db-eeac-7000-8d41-7240ca06887e.jsonl",
+      "taskbook": "Naomi-fleet-skins-wd_p5",
+      "profile": "default"
+     },
+     {
+      "type": "exit",
+      "session_id": "01a0f4ea-988c-7000-9598-0dc1aaabc7c5",
+      "pid": 1838096,
+      "reason": "sigterm",
+      "raw_reason": "sigterm",
+      "exit_code": null,
+      "kind": "signal",
+      "level": "warn",
+      "ts": 1790816311.853,
+      "session_file": "/home/vivaming/.omp/agent/sessions/-Naomi-fleet-skins-wd_p3/2026-10-01T00-43-30-316Z_01a0f4ea-988c-7000-9598-0dc1aaabc7c5.jsonl",
+      "taskbook": "Naomi-fleet-skins-wd_p3",
+      "profile": "default"
+     },
+     {
+      "type": "exit",
+      "session_id": "01a0f4f8-9b1b-7000-9d18-5ef447acda36",
+      "pid": 2000886,
+      "reason": "sigterm",
+      "raw_reason": "sigterm",
+      "exit_code": null,
+      "kind": "signal",
+      "level": "warn",
+      "ts": 1790817227.948,
+      "session_file": "/home/vivaming/.omp/agent/sessions/-Naomi-fleet-skins-wd_p3/2026-10-01T00-58-48-475Z_01a0f4f8-9b1b-7000-9d18-5ef447acda36.jsonl",
+      "taskbook": "Naomi-fleet-skins-wd_p3",
+      "profile": "default"
+     },
+     {
+      "type": "exit",
+      "session_id": "01a0f511-427c-7000-8a1e-4f5a73a32a69",
+      "pid": 2241761,
+      "reason": "normal",
+      "raw_reason": "dispose",
+      "exit_code": null,
+      "kind": "normal",
+      "level": "debug",
+      "ts": 1790819265.857,
+      "session_file": "/home/vivaming/.omp/agent/sessions/-Naomi-fleet-skins-wd_p5b/2026-10-01T01-25-44-188Z_01a0f511-427c-7000-8a1e-4f5a73a32a69.jsonl",
+      "taskbook": "Naomi-fleet-skins-wd_p5b",
+      "profile": "default"
+     },
+     {
+      "type": "exit",
+      "session_id": "01a0f511-43eb-7000-988d-b508f180bc29",
+      "pid": 2241686,
+      "reason": "sigterm",
+      "raw_reason": "sigterm",
+      "exit_code": null,
+      "kind": "signal",
+      "level": "warn",
+      "ts": 1790819446.997,
+      "session_file": "/home/vivaming/.omp/agent/sessions/-Naomi-fleet-skins-wd_p5a/2026-10-01T01-25-44-555Z_01a0f511-43eb-7000-988d-b508f180bc29.jsonl",
+      "taskbook": "Naomi-fleet-skins-wd_p5a",
+      "profile": "default"
+     },
+     {
+      "type": "exit",
+      "session_id": "01a0f511-4492-7000-9b57-330893936576",
+      "pid": 2241835,
+      "reason": "sigterm",
+      "raw_reason": "sigterm",
+      "exit_code": null,
+      "kind": "signal",
+      "level": "warn",
+      "ts": 1790819446.996,
+      "session_file": "/home/vivaming/.omp/agent/sessions/-Naomi-fleet-skins-wd_p5e/2026-10-01T01-25-44-722Z_01a0f511-4492-7000-9b57-330893936576.jsonl",
+      "taskbook": "Naomi-fleet-skins-wd_p5e",
+      "profile": "default"
+     },
+     {
+      "type": "exit",
+      "session_id": "01a0f51b-ace2-7000-b410-6b3ef75d1752",
+      "pid": 2386463,
+      "reason": "sigterm",
+      "raw_reason": "sigterm",
+      "exit_code": null,
+      "kind": "signal",
+      "level": "warn",
+      "ts": 1790820073.837,
+      "session_file": "/home/vivaming/.omp/agent/sessions/-Naomi-fleet-skins-wd_p5c/2026-10-01T01-37-06-787Z_01a0f51b-ace2-7000-b410-6b3ef75d1752.jsonl",
+      "taskbook": "Naomi-fleet-skins-wd_p5c",
+      "profile": "default"
+     },
+     {
+      "type": "exit",
+      "session_id": "01a0f51b-ade1-7000-8d20-7b45daf36ad8",
+      "pid": 2386565,
+      "reason": "sigterm",
+      "raw_reason": "sigterm",
+      "exit_code": null,
+      "kind": "signal",
+      "level": "warn",
+      "ts": 1790820073.838,
+      "session_file": "/home/vivaming/.omp/agent/sessions/-Naomi-fleet-skins-wd_p5d/2026-10-01T01-37-07-041Z_01a0f51b-ade1-7000-8d20-7b45daf36ad8.jsonl",
+      "taskbook": "Naomi-fleet-skins-wd_p5d",
+      "profile": "default"
+     },
+     {
+      "type": "exit",
+      "session_id": "01a0f528-731b-7000-9658-74983afce440",
+      "pid": 2576359,
+      "reason": "sigterm",
+      "raw_reason": "sigterm",
+      "exit_code": null,
+      "kind": "signal",
+      "level": "warn",
+      "ts": 1790820073.836,
+      "session_file": "/home/vivaming/.omp/agent/sessions/-Naomi-fleet-skins-wd_p5e/2026-10-01T01-51-03-963Z_01a0f528-731b-7000-9658-74983afce440.jsonl",
+      "taskbook": "Naomi-fleet-skins-wd_p5e",
+      "profile": "default"
+     },
+     {
+      "type": "exit",
+      "session_id": "01a0f58d-531f-7000-bde7-c3e7ebf97963",
+      "pid": 3698462,
+      "reason": "normal",
+      "raw_reason": "dispose",
+      "exit_code": null,
+      "kind": "normal",
+      "level": "debug",
+      "ts": 1790828690.105,
+      "session_file": "/home/vivaming/.omp/agent/sessions/-work-pitchlens/2026-10-01T03-41-14-911Z_01a0f58d-531f-7000-bde7-c3e7ebf97963.jsonl",
+      "taskbook": "work-pitchlens",
+      "profile": "default"
+     },
+     {
+      "type": "exit",
+      "session_id": "01a0f58e-3b7f-7000-8d60-bf1d33b1b8a0",
+      "pid": 3698640,
+      "reason": "normal",
+      "raw_reason": "dispose",
+      "exit_code": null,
+      "kind": "normal",
+      "level": "debug",
+      "ts": 1790828706.613,
+      "session_file": "/home/vivaming/.omp/agent/sessions/-work-pitchlens/2026-10-01T03-42-14-399Z_01a0f58e-3b7f-7000-8d60-bf1d33b1b8a0.jsonl",
+      "taskbook": "work-pitchlens",
+      "profile": "default"
+     },
+     {
+      "type": "exit",
+      "session_id": "01a0f591-047b-7000-86d2-c42c59d00db5",
+      "pid": 3727958,
+      "reason": "normal",
+      "raw_reason": "dispose",
+      "exit_code": null,
+      "kind": "normal",
+      "level": "debug",
+      "ts": 1790828732.703,
+      "session_file": "/home/vivaming/.omp/agent/sessions/-Naomi-fleet-skins-wd_p5/2026-10-01T03-45-16-923Z_01a0f591-047b-7000-86d2-c42c59d00db5.jsonl",
+      "taskbook": "Naomi-fleet-skins-wd_p5",
+      "profile": "default"
+     },
+     {
+      "type": "exit",
+      "session_id": "01a0f60c-2ea2-7000-8eb7-161249a3aa0f",
+      "pid": 941752,
+      "reason": "sigterm",
+      "raw_reason": "sigterm",
+      "exit_code": null,
+      "kind": "signal",
+      "level": "warn",
+      "ts": 1790835887.292,
+      "session_file": "/home/vivaming/.omp/agent/sessions/-Naomi-xpy_v3-rl_p0-wd_t2/2026-10-01T05-59-48-642Z_01a0f60c-2ea2-7000-8eb7-161249a3aa0f.jsonl",
+      "taskbook": "Naomi-xpy_v3-rl_p0-wd_t2",
+      "profile": "default"
+     },
+     {
+      "type": "exit",
+      "session_id": "01a0f623-46fe-7000-a061-8bee58151fba",
+      "pid": 1192463,
+      "reason": "sigterm",
+      "raw_reason": "sigterm",
+      "exit_code": null,
+      "kind": "signal",
+      "level": "warn",
+      "ts": 1790837401.367,
+      "session_file": "/home/vivaming/.omp/agent/sessions/-Naomi-xpy_v3-rl_p0-wd_t2/2026-10-01T06-25-02-206Z_01a0f623-46fe-7000-a061-8bee58151fba.jsonl",
+      "taskbook": "Naomi-xpy_v3-rl_p0-wd_t2",
+      "profile": "default"
+     },
+     {
+      "type": "exit",
+      "session_id": "01a0f63b-3f75-7000-93f4-89a4fab9756f",
+      "pid": 1447557,
+      "reason": "normal",
+      "raw_reason": "dispose",
+      "exit_code": null,
+      "kind": "normal",
+      "level": "debug",
+      "ts": 1790837675.802,
+      "session_file": "/home/vivaming/.omp/agent/sessions/-Naomi-xpy_v3-rl_p0-wd_t3/2026-10-01T06-51-13-141Z_01a0f63b-3f75-7000-93f4-89a4fab9756f.jsonl",
+      "taskbook": "Naomi-xpy_v3-rl_p0-wd_t3",
+      "profile": "default"
+     },
+     {
+      "type": "exit",
+      "session_id": "01a0f6bb-2a0d-7000-b0ee-abdbd407bf11",
+      "pid": 2533965,
+      "reason": "sigterm",
+      "raw_reason": "sigterm",
+      "exit_code": null,
+      "kind": "signal",
+      "level": "warn",
+      "ts": 1790851259.056,
+      "session_file": "/home/vivaming/.omp/agent/sessions/-work-pitchlens/2026-10-01T09-10-56-269Z_01a0f6bb-2a0d-7000-b0ee-abdbd407bf11.jsonl",
+      "taskbook": "work-pitchlens",
+      "profile": "default"
+     },
+     {
+      "type": "exit",
+      "session_id": "01a10917-7439-7000-8cc4-da538a13d07a",
+      "pid": 203696,
+      "reason": "sigterm",
+      "raw_reason": "sigterm",
+      "exit_code": null,
+      "kind": "signal",
+      "level": "warn",
+      "ts": 1791154172.207,
+      "session_file": "/home/vivaming/.omp/agent/sessions/-tmp/2026-10-04T22-44-54-457Z_01a10917-7439-7000-8cc4-da538a13d07a.jsonl",
+      "taskbook": "tmp",
+      "profile": "default"
+     },
+     {
+      "type": "exit",
+      "session_id": "01a1091e-3383-7000-aa3a-a0534ffbb97c",
+      "pid": 273912,
+      "reason": "sigterm",
+      "raw_reason": "sigterm",
+      "exit_code": null,
+      "kind": "signal",
+      "level": "warn",
+      "ts": 1791154775.835,
+      "session_file": "/home/vivaming/.omp/agent/sessions/-tmp/2026-10-04T22-52-16-643Z_01a1091e-3383-7000-aa3a-a0534ffbb97c.jsonl",
+      "taskbook": "tmp",
+      "profile": "default"
+     },
+     {
+      "type": "exit",
+      "session_id": "01a1091f-8288-7000-ac6b-47759f0f3fe0",
+      "pid": 285261,
+      "reason": "sigterm",
+      "raw_reason": "sigterm",
+      "exit_code": null,
+      "kind": "signal",
+      "level": "warn",
+      "ts": 1791154700.448,
+      "session_file": "/home/vivaming/.omp/agent/sessions/-tmp/2026-10-04T22-53-42-408Z_01a1091f-8288-7000-ac6b-47759f0f3fe0.jsonl",
+      "taskbook": "tmp",
+      "profile": "default"
+     },
+     {
+      "type": "exit",
+      "session_id": "01a10922-cab5-7000-81e3-2d65efa75cb7",
+      "pid": 337533,
+      "reason": "sigterm",
+      "raw_reason": "sigterm",
+      "exit_code": null,
+      "kind": "signal",
+      "level": "warn",
+      "ts": 1791154775.835,
+      "session_file": "/home/vivaming/.omp/agent/sessions/-tmp/2026-10-04T22-57-17-493Z_01a10922-cab5-7000-81e3-2d65efa75cb7.jsonl",
+      "taskbook": "tmp",
+      "profile": "default"
+     }
+    ],
+    "partial": false,
+    "total_24h": 4,
+    "per_bot_24h": {
+     "default": [
+      {
+       "type": "exit",
+       "session_id": "01a1091e-3383-7000-aa3a-a0534ffbb97c",
+       "pid": 273912,
+       "reason": "sigterm",
+       "raw_reason": "sigterm",
+       "exit_code": null,
+       "kind": "signal",
+       "level": "warn",
+       "ts": 1791154775.835,
+       "session_file": "/home/vivaming/.omp/agent/sessions/-tmp/2026-10-04T22-52-16-643Z_01a1091e-3383-7000-aa3a-a0534ffbb97c.jsonl",
+       "taskbook": "tmp",
+       "profile": "default"
+      },
+      {
+       "type": "exit",
+       "session_id": "01a10922-cab5-7000-81e3-2d65efa75cb7",
+       "pid": 337533,
+       "reason": "sigterm",
+       "raw_reason": "sigterm",
+       "exit_code": null,
+       "kind": "signal",
+       "level": "warn",
+       "ts": 1791154775.835,
+       "session_file": "/home/vivaming/.omp/agent/sessions/-tmp/2026-10-04T22-57-17-493Z_01a10922-cab5-7000-81e3-2d65efa75cb7.jsonl",
+       "taskbook": "tmp",
+       "profile": "default"
+      },
+      {
+       "type": "exit",
+       "session_id": "01a1091f-8288-7000-ac6b-47759f0f3fe0",
+       "pid": 285261,
+       "reason": "sigterm",
+       "raw_reason": "sigterm",
+       "exit_code": null,
+       "kind": "signal",
+       "level": "warn",
+       "ts": 1791154700.448,
+       "session_file": "/home/vivaming/.omp/agent/sessions/-tmp/2026-10-04T22-53-42-408Z_01a1091f-8288-7000-ac6b-47759f0f3fe0.jsonl",
+       "taskbook": "tmp",
+       "profile": "default"
+      },
+      {
+       "type": "exit",
+       "session_id": "01a10917-7439-7000-8cc4-da538a13d07a",
+       "pid": 203696,
+       "reason": "sigterm",
+       "raw_reason": "sigterm",
+       "exit_code": null,
+       "kind": "signal",
+       "level": "warn",
+       "ts": 1791154172.207,
+       "session_file": "/home/vivaming/.omp/agent/sessions/-tmp/2026-10-04T22-44-54-457Z_01a10917-7439-7000-8cc4-da538a13d07a.jsonl",
+       "taskbook": "tmp",
+       "profile": "default"
+      }
+     ]
+    },
+    "by_bot_24h": {
+     "default": 4
+    }
    },
    "xpi_seen_exits": null,
-   "ledger_coverage": "本轮缺数"
+   "ledger_coverage": "observed",
+   "call_usage_24h": {
+    "counts": {
+     "unknown": 475,
+     "sensenova": 533,
+     "openrouter_free": 2
+    },
+    "partial": false,
+    "sampled_at": 1791155889.9807017,
+    "basis": "timestamped_assistant_events; unlogged retries unavailable"
+   }
   },
   {
    "host_id": "win-station",
    "short": ".67",
    "transport": "ssh-nested",
-   "observed_at": "2026-10-04T21:20:30Z",
-   "observed_at_epoch": 1791148830.900167,
-   "last_success_at": "2026-10-04T21:20:30Z",
+   "observed_at": "2026-10-04T23:18:10Z",
+   "observed_at_epoch": 1791155890.346713,
+   "last_success_at": "2026-10-04T23:18:10Z",
    "error": null,
    "bots": [
     {
@@ -10611,16 +12961,16 @@
      "profile": "bot2",
      "display_name": "bot2",
      "process": {
-      "pid": 1228,
+      "pid": 10932,
       "state_label": "online",
       "chain": [
        {
-        "pid": 1228,
+        "pid": 10932,
         "role": "入口",
         "kind": "venv"
        },
        {
-        "pid": 7392,
+        "pid": 13000,
         "role": "包装子进程",
         "kind": "uv"
        }
@@ -10628,16 +12978,16 @@
       "dup_procs": 1
      },
      "work": {
-      "state": "近期有工作进展",
+      "state": "在线·空闲",
       "reasons": [
-       "主会话最近活动 97s 前"
+       "主会话最近活动 1074s 前"
       ],
-      "progress_age_s": 97
+      "progress_age_s": 1075
      },
      "activity": {
-      "text": "会话：Set up xpi SSH for Hermes migration（70 次调用）",
+      "text": "会话：Set up xpi SSH for Hermes migration（115 次调用）",
       "source": "session_db",
-      "at": "2026-10-04T21:18:59Z"
+      "at": "2026-10-04T23:00:22Z"
      },
      "subagents": {
       "confirmed_running": 0,
@@ -11079,10 +13429,10 @@
        "provider": "",
        "base_url": "",
        "billing_mode": "",
-       "last_seen": 1790351322.2499774,
-       "input": 1957,
-       "output": 2524,
-       "calls": 5,
+       "last_seen": 1791151520.0459876,
+       "input": 2117,
+       "output": 2883,
+       "calls": 6,
        "first_seen": 1787006613.0662088,
        "_fromTotals": true,
        "label": "未知渠道",
@@ -11244,10 +13594,10 @@
        "provider": "zai",
        "base_url": "https://api.z.ai/api/coding/paas/v4",
        "billing_mode": "",
-       "last_seen": 1791148782.3949826,
-       "input": 6250785,
-       "output": 1019818,
-       "calls": 2154,
+       "last_seen": 1791154844.6205568,
+       "input": 6611274,
+       "output": 1085077,
+       "calls": 2257,
        "first_seen": 1790214769.7126176,
        "_fromTotals": true,
        "label": "GLM coding 订阅包",
@@ -11657,13 +14007,13 @@
         "provider": "",
         "base_url": "",
         "billing_mode": "",
-        "input": 1957,
-        "output": 2524,
-        "cache_read": 1010,
+        "input": 2117,
+        "output": 2883,
+        "cache_read": 1221,
         "cache_write": 0,
-        "calls": 5,
+        "calls": 6,
         "first_seen": 1787006613.0662088,
-        "last_seen": 1790351322.2499774
+        "last_seen": 1791151520.0459876
        },
        {
         "model": "glm-5-turbo",
@@ -11800,13 +14150,13 @@
         "provider": "zai",
         "base_url": "https://api.z.ai/api/coding/paas/v4",
         "billing_mode": "",
-        "input": 6250785,
-        "output": 1019818,
-        "cache_read": 236366464,
+        "input": 6611274,
+        "output": 1085077,
+        "cache_read": 247890624,
         "cache_write": 0,
-        "calls": 2154,
+        "calls": 2257,
         "first_seen": 1790214769.7126176,
-        "last_seen": 1791148782.3949826
+        "last_seen": 1791154844.6205568
        },
        {
         "model": "glm-5.3-flash",
@@ -12116,38 +14466,38 @@
       "housekeeping_ts": null
      },
      "session_budget": {
-      "last_prompt_tokens": 101488,
+      "last_prompt_tokens": 143474,
       "model": null,
       "provider": null,
       "session_id": "20261003_013802_3ae3cc13"
      },
      "log_errors": {
-      "count_24h": 79,
+      "count_24h": 96,
       "recent": [
        {
-        "ts": 1791148382.0,
+        "ts": 1791154733.0,
         "level": "WARNING",
-        "msg": "2026-10-05 10:13:02,252 WARNING [20261003_013802_3ae3cc13] agent.tool_executor: Tool terminal returned error (0.01s): {\"output\": \"\", \"exit_code\": -1, \"error\": \"BLOCKED (hardline): command parser limit"
+        "msg": "2026-10-05 11:58:53,566 WARNING plugins.platforms.telegram.telegram_network: [Telegram] IPv4 Telegram API IP 149.154.166.110 failed:"
        },
        {
-        "ts": 1791148156.0,
+        "ts": 1791154733.0,
         "level": "WARNING",
-        "msg": "2026-10-05 10:09:16,184 WARNING [20261003_013802_3ae3cc13] agent.tool_executor: Tool terminal returned error (0.55s): {\"output\": \"bash: C:\\\\Users\\\\VIVAm\\\\AppData\\\\Local\\\\hermes\\\\profiles\\\\bot2\\\\cache\\"
+        "msg": "2026-10-05 11:58:53,565 WARNING plugins.platforms.telegram.telegram_network: [Telegram] Sticky Telegram path 149.154.166.110 failed; re-walking IPv4 literals before the hostname"
        },
        {
-        "ts": 1791148136.0,
+        "ts": 1791154673.0,
         "level": "WARNING",
-        "msg": "2026-10-05 10:08:56,806 WARNING [20261003_013802_3ae3cc13] agent.tool_executor: Tool terminal returned error (0.41s): {\"output\": \"vivaming@192.168.178.69: Permission denied (publickey,password).\", \"ex"
+        "msg": "2026-10-05 11:57:53,698 WARNING plugins.platforms.telegram.telegram_network: [Telegram] IPv4 Telegram API IP 149.154.166.110 failed:"
        },
        {
-        "ts": 1791148136.0,
+        "ts": 1791154673.0,
         "level": "WARNING",
-        "msg": "2026-10-05 10:08:56,387 WARNING [20261003_013802_3ae3cc13] agent.tool_executor: Tool terminal returned error (3.10s): {\"output\": \"\", \"exit_code\": -1, \"error\": \"BLOCKED (hardline): command parser limit"
+        "msg": "2026-10-05 11:57:53,697 WARNING plugins.platforms.telegram.telegram_network: [Telegram] Sticky Telegram path 149.154.166.110 failed; re-walking IPv4 literals before the hostname"
        },
        {
-        "ts": 1791134716.0,
-        "level": "WARNING",
-        "msg": "2026-10-05 06:25:16,943 WARNING plugins.platforms.telegram.telegram_network: [Telegram] IPv4 Telegram API IP 149.154.166.110 failed:"
+        "ts": 1791154562.0,
+        "level": "INFO",
+        "msg": "2026-10-05 11:56:02,429 INFO gateway.run: Session storage: C:\\Users\\VIVAm\\AppData\\Local\\hermes\\profiles\\bot2\\sessions"
        }
       ],
       "error": null
@@ -13477,25 +15827,29 @@
        "normal": 0,
        "failed": 0,
        "timeout": 0,
-       "unknown": 0
+       "unknown": 0,
+       "empty_shell": 0
       },
       "4–24h": {
        "normal": 0,
        "failed": 0,
        "timeout": 0,
-       "unknown": 0
+       "unknown": 0,
+       "empty_shell": 0
       },
       "24h–7d": {
        "normal": 0,
        "failed": 0,
        "timeout": 0,
-       "unknown": 0
+       "unknown": 0,
+       "empty_shell": 0
       },
       "unknown": {
        "normal": 0,
        "failed": 0,
        "timeout": 0,
-       "unknown": 0
+       "unknown": 0,
+       "empty_shell": 0
       }
      },
      "agents_completed_count": 0,
@@ -13511,16 +15865,16 @@
      "profile": "nelson",
      "display_name": "nelson",
      "process": {
-      "pid": 11416,
+      "pid": 10828,
       "state_label": "online",
       "chain": [
        {
-        "pid": 11416,
+        "pid": 10828,
         "role": "入口",
         "kind": "venv"
        },
        {
-        "pid": 9164,
+        "pid": 5640,
         "role": "包装子进程",
         "kind": "uv"
        }
@@ -13530,14 +15884,14 @@
      "work": {
       "state": "在线·空闲",
       "reasons": [
-       "主会话最近活动 147985s 前"
+       "主会话最近活动 1322s 前"
       ],
-      "progress_age_s": 147986
+      "progress_age_s": 1322
      },
      "activity": {
-      "text": "会话：Bihive update request（219 次调用）",
+      "text": "会话：新xpi问题集中交Naomi修复（385 次调用）",
       "source": "session_db",
-      "at": "2026-10-03T04:14:15Z"
+      "at": "2026-10-04T22:56:20Z"
      },
      "subagents": {
       "confirmed_running": 0,
@@ -13919,10 +16273,10 @@
        "provider": "zai",
        "base_url": "https://api.z.ai/api/coding/paas/v4",
        "billing_mode": "",
-       "last_seen": 1791000881.9056349,
-       "input": 7499768,
-       "output": 797553,
-       "calls": 2525,
+       "last_seen": 1791154587.431061,
+       "input": 7789191,
+       "output": 814627,
+       "calls": 2570,
        "first_seen": 1790222859.9936998,
        "_fromTotals": true,
        "label": "GLM coding 订阅包",
@@ -14265,13 +16619,13 @@
         "provider": "zai",
         "base_url": "https://api.z.ai/api/coding/paas/v4",
         "billing_mode": "",
-        "input": 7499768,
-        "output": 797553,
-        "cache_read": 282019200,
+        "input": 7789191,
+        "output": 814627,
+        "cache_read": 287789824,
         "cache_write": 0,
-        "calls": 2525,
+        "calls": 2570,
         "first_seen": 1790222859.9936998,
-        "last_seen": 1791000881.9056349
+        "last_seen": 1791154587.431061
        },
        {
         "model": "glm-5.3-flash",
@@ -14373,48 +16727,48 @@
       "housekeeping_ts": null
      },
      "session_budget": {
-      "last_prompt_tokens": 133356,
+      "last_prompt_tokens": 134861,
       "model": null,
       "provider": null,
-      "session_id": "20261002_153756_b964e7df"
+      "session_id": "20260924_173220_33417473"
      },
      "problem_flags": [
       {
        "code": "session_overrun",
-       "session_id": "20261002_153756_b964e7df",
-       "source": "sessions.last_activity_at（主会话 telegram 20261002_153 · 451 条消息 · 自 started_at 累计 2 天）",
+       "session_id": "20260924_173220_33417473",
+       "source": "sessions.last_activity_at（主会话 telegram 20260924_173 · 735 条消息 · 自 started_at 累计 10 天）",
        "window": "主会话累计（自会话开始，非窗口）",
-       "detail": "api_call_count=219 (>150) · 来源 sessions.last_activity_at（主会话 telegram 20261002_153 · 451 条消息 · 自 started_at 累计 2 天）",
+       "detail": "api_call_count=385 (>150) · 来源 sessions.last_activity_at（主会话 telegram 20260924_173 · 735 条消息 · 自 started_at 累计 10 天）",
        "suggest": "/new 开新会话 + HANDOFF 交接"
       }
      ],
      "log_errors": {
-      "count_24h": 30,
+      "count_24h": 63,
       "recent": [
        {
-        "ts": 1791144395.0,
+        "ts": 1791154387.0,
         "level": "WARNING",
-        "msg": "2026-10-05 09:06:35,619 WARNING plugins.platforms.telegram.telegram_network: [Telegram] IPv4 Telegram API IP 149.154.166.110 failed:"
+        "msg": "2026-10-05 11:53:07,919 WARNING [20260924_173220_33417473] agent.conversation_loop: Retrying API call in 2.1581636732555762s (attempt 1/3) thread=hermes-gateway_1:13600 provider=zai base_url=https://a"
        },
        {
-        "ts": 1791144395.0,
+        "ts": 1791154387.0,
         "level": "WARNING",
-        "msg": "2026-10-05 09:06:35,618 WARNING plugins.platforms.telegram.telegram_network: [Telegram] Sticky Telegram path 149.154.166.110 failed; re-walking IPv4 literals before the hostname"
+        "msg": "2026-10-05 11:53:07,918 WARNING [20260924_173220_33417473] agent.conversation_loop: API call failed (attempt 1/3) error_type=RateLimitError thread=hermes-gateway_1:13600 provider=zai base_url=https://"
        },
        {
-        "ts": 1791138544.0,
-        "level": "WARNING",
-        "msg": "2026-10-05 07:29:04,405 WARNING plugins.platforms.telegram.telegram_network: [Telegram] IPv4 Telegram API IP 149.154.166.110 failed:"
+        "ts": 1791154387.0,
+        "level": "ERROR",
+        "msg": "2026-10-05 11:53:07,825 ERROR agent.chat_completion_helpers: Streaming failed before delivery: Error code: 429 - {'error': {'code': '1302', 'message': 'Rate limit reached for requests'}}"
        },
        {
-        "ts": 1791138544.0,
-        "level": "WARNING",
-        "msg": "2026-10-05 07:29:04,404 WARNING plugins.platforms.telegram.telegram_network: [Telegram] Sticky Telegram path 149.154.166.110 failed; re-walking IPv4 literals before the hostname"
+        "ts": 1791154383.0,
+        "level": "ERROR",
+        "msg": "2026-10-05 11:53:03,215 ERROR [20260924_173220_33417473] agent.conversation_loop: API call failed after 3 retries. HTTP 429: Rate limit reached for requests | provider=zai model=glm-5.3-flash msgs=687"
        },
        {
-        "ts": 1791130353.0,
+        "ts": 1791154383.0,
         "level": "WARNING",
-        "msg": "2026-10-05 05:12:33,991 WARNING plugins.platforms.telegram.telegram_network: [Telegram] IPv4 Telegram API IP 149.154.166.110 failed:"
+        "msg": "2026-10-05 11:53:03,207 WARNING [20260924_173220_33417473] agent.conversation_loop: API call failed (attempt 3/3) error_type=RateLimitError thread=hermes-gateway_0:8244 provider=zai base_url=https://a"
        }
       ],
       "error": null
@@ -14990,25 +17344,29 @@
        "normal": 0,
        "failed": 0,
        "timeout": 0,
-       "unknown": 0
+       "unknown": 0,
+       "empty_shell": 0
       },
       "4–24h": {
        "normal": 0,
        "failed": 0,
        "timeout": 0,
-       "unknown": 0
+       "unknown": 0,
+       "empty_shell": 0
       },
       "24h–7d": {
        "normal": 0,
        "failed": 0,
        "timeout": 0,
-       "unknown": 0
+       "unknown": 0,
+       "empty_shell": 0
       },
       "unknown": {
        "normal": 0,
        "failed": 0,
        "timeout": 0,
-       "unknown": 0
+       "unknown": 0,
+       "empty_shell": 0
       }
      },
      "agents_completed_count": 0,
@@ -15024,16 +17382,16 @@
      "profile": "neta",
      "display_name": "neta",
      "process": {
-      "pid": 14504,
+      "pid": 6804,
       "state_label": "online",
       "chain": [
        {
-        "pid": 14504,
+        "pid": 6804,
         "role": "入口",
         "kind": "venv"
        },
        {
-        "pid": 5520,
+        "pid": 11224,
         "role": "包装子进程",
         "kind": "uv"
        }
@@ -15043,27 +17401,42 @@
      "work": {
       "state": "在线·空闲",
       "reasons": [
-       "主会话最近活动 35774s 前"
+       "主会话最近活动 1325s 前"
       ],
-      "progress_age_s": 35775
+      "progress_age_s": 1325
      },
      "activity": {
-      "text": "会话：Pitch lens项目进度更新（1016 次调用）",
+      "text": "会话：Check if chat is working（314 次调用）",
       "source": "session_db",
-      "at": "2026-10-04T11:24:31Z"
+      "at": "2026-10-04T22:56:23Z"
      },
      "subagents": {
       "confirmed_running": 0,
       "open_unverified": 0,
       "stale_open": 0,
-      "total": 7,
-      "active_7d": 0,
-      "completed_24h": 0,
-      "completed_7d": 0,
-      "empty_shell_24h": 0,
+      "total": 8,
+      "active_7d": 1,
+      "completed_24h": 1,
+      "completed_7d": 1,
+      "empty_shell_24h": 1,
       "coverage": "complete",
       "truncated": false,
       "items": [
+       {
+        "child_session_id": "20261005_110708_cdffd8",
+        "config_model": "volcengine/deepseek-v4-flash-ga-260731",
+        "started_at": 1791151638.211914,
+        "ended_at": 1791151639.5798016,
+        "last_act": 1791151638.2199981,
+        "confirmed_running": false,
+        "open_unverified": false,
+        "stale_open": false,
+        "last_activity_description": "",
+        "message_count": 1,
+        "api_call_count": 0,
+        "end_reason": "agent_close",
+        "empty_shell": true
+       },
        {
         "child_session_id": "20260926_211521_18455d",
         "config_model": "volcengine/deepseek-v4-flash-ga-260731",
@@ -15627,10 +18000,10 @@
        "provider": "zai",
        "base_url": "https://api.z.ai/api/coding/paas/v4",
        "billing_mode": "",
-       "last_seen": 1791113488.3767145,
-       "input": 13709471,
-       "output": 1019542,
-       "calls": 2671,
+       "last_seen": 1791154590.1023822,
+       "input": 14156014,
+       "output": 1034714,
+       "calls": 2731,
        "first_seen": 1790216071.488277,
        "_fromTotals": true,
        "label": "GLM coding 订阅包",
@@ -16110,13 +18483,13 @@
         "provider": "zai",
         "base_url": "https://api.z.ai/api/coding/paas/v4",
         "billing_mode": "",
-        "input": 13709471,
-        "output": 1019542,
-        "cache_read": 422206848,
+        "input": 14156014,
+        "output": 1034714,
+        "cache_read": 430430400,
         "cache_write": 0,
-        "calls": 2671,
+        "calls": 2731,
         "first_seen": 1790216071.488277,
-        "last_seen": 1791113488.3767145
+        "last_seen": 1791154590.1023822
        },
        {
         "model": "glm-5.3-flash",
@@ -16179,56 +18552,48 @@
       "housekeeping_ts": null
      },
      "session_budget": {
-      "last_prompt_tokens": 234974,
-      "model": "glm-5.3-flash",
-      "provider": "zai",
-      "session_id": "20260930_164752_3fc37e02"
+      "last_prompt_tokens": 150217,
+      "model": null,
+      "provider": null,
+      "session_id": "20260924_173220_a5187fa8"
      },
      "problem_flags": [
       {
        "code": "session_overrun",
-       "session_id": "20260930_164752_3fc37e02",
-       "source": "sessions.last_activity_at（主会话 telegram 20260930_164 · 1423 条消息 · 自 started_at 累计 4 天）",
+       "session_id": "20260924_173220_a5187fa8",
+       "source": "sessions.last_activity_at（主会话 telegram 20260924_173 · 418 条消息 · 自 started_at 累计 10 天）",
        "window": "主会话累计（自会话开始，非窗口）",
-       "detail": "api_call_count=1016 (>150) · 来源 sessions.last_activity_at（主会话 telegram 20260930_164 · 1423 条消息 · 自 started_at 累计 4 天）",
+       "detail": "api_call_count=314 (>150) · 来源 sessions.last_activity_at（主会话 telegram 20260924_173 · 418 条消息 · 自 started_at 累计 10 天）",
        "suggest": "/new 开新会话 + HANDOFF 交接"
-      },
-      {
-       "code": "context_bloating",
-       "session_id": "20260930_164752_3fc37e02",
-       "source": "sessions.last_activity_at（主会话 telegram 20260930_164 · 1423 条消息 · 自 started_at 累计 4 天）",
-       "window": "主会话累计（自会话开始，非窗口）",
-       "detail": "cache_read_tokens=219310336 (>180M) · 来源 sessions.last_activity_at（主会话 telegram 20260930_164 · 1423 条消息 · 自 started_at 累计 4 天）",
-       "suggest": "检查上下文膨胀，考虑 /new"
       }
      ],
      "log_errors": {
-      "count_24h": 116,
+      "count_24h": 68,
       "recent": [
        {
-        "ts": 1791146914.0,
+        "ts": 1791154485.0,
         "level": "WARNING",
-        "msg": "2026-10-05 09:48:34,528 WARNING plugins.platforms.telegram.telegram_network: [Telegram] IPv4 Telegram API IP 149.154.166.110 failed:"
+        "msg": "2026-10-05 11:54:45,433 WARNING plugins.platforms.telegram.telegram_network: [Telegram] IPv4 Telegram API IP 149.154.166.110 failed:"
        },
        {
-        "ts": 1791146914.0,
+        "ts": 1791154485.0,
         "level": "WARNING",
-        "msg": "2026-10-05 09:48:34,528 WARNING plugins.platforms.telegram.telegram_network: [Telegram] Sticky Telegram path 149.154.166.110 failed; re-walking IPv4 literals before the hostname"
+        "msg": "2026-10-05 11:54:45,433 WARNING plugins.platforms.telegram.telegram_network: [Telegram] Sticky Telegram path 149.154.166.110 failed; re-walking IPv4 literals before the hostname"
        },
        {
-        "ts": 1791139644.0,
+        "ts": 1791154388.0,
         "level": "WARNING",
-        "msg": "2026-10-05 07:47:24,349 WARNING plugins.platforms.telegram.telegram_network: [Telegram] IPv4 Telegram API IP 149.154.166.110 failed:"
+        "msg": "2026-10-05 11:53:08,100 WARNING [20260924_173220_a5187fa8] agent.conversation_loop: Retrying API call in 2.9415153329181027s (attempt 1/3) thread=hermes-gateway_1:8656 provider=zai base_url=https://ap"
        },
        {
-        "ts": 1791139644.0,
+        "ts": 1791154388.0,
         "level": "WARNING",
-        "msg": "2026-10-05 07:47:24,349 WARNING plugins.platforms.telegram.telegram_network: [Telegram] Sticky Telegram path 149.154.166.110 failed; re-walking IPv4 literals before the hostname"
+        "msg": "2026-10-05 11:53:08,099 WARNING [20260924_173220_a5187fa8] agent.conversation_loop: API call failed (attempt 1/3) error_type=RateLimitError thread=hermes-gateway_1:8656 provider=zai base_url=https://a"
        },
        {
-        "ts": 1791135360.0,
-        "level": "WARNING",
-        "msg": "2026-10-05 06:36:00,241 WARNING plugins.platforms.telegram.telegram_network: [Telegram] IPv4 Telegram API IP 149.154.166.110 failed:"
+        "ts": 1791154388.0,
+        "level": "ERROR",
+        "msg": "2026-10-05 11:53:08,038 ERROR agent.chat_completion_helpers: Streaming failed before delivery: Error code: 429 - {'error': {'code': '1302', 'message': 'Rate limit reached for requests'}}"
        }
       ],
       "error": null
@@ -16239,6 +18604,32 @@
      },
      "_severity": 0,
      "agents_unified": [
+      {
+       "source": "hermes",
+       "bot_id": null,
+       "started_at": 1791151638.211914,
+       "last_activity": 1791151638.2199981,
+       "state": "finished",
+       "taskbook": null,
+       "model": "volcengine/deepseek-v4-flash-ga-260731",
+       "pid_or_session_id": "20261005_110708_cdffd8",
+       "dedup_key": "hermes:20261005_110708_cdffd8",
+       "raw": {
+        "child_session_id": "20261005_110708_cdffd8",
+        "config_model": "volcengine/deepseek-v4-flash-ga-260731",
+        "started_at": 1791151638.211914,
+        "ended_at": 1791151639.5798016,
+        "last_act": 1791151638.2199981,
+        "confirmed_running": false,
+        "open_unverified": false,
+        "stale_open": false,
+        "last_activity_description": "",
+        "message_count": 1,
+        "api_call_count": 0,
+        "end_reason": "agent_close",
+        "empty_shell": true
+       }
+      },
       {
        "source": "hermes",
        "bot_id": null,
@@ -16423,45 +18814,79 @@
       }
      ],
      "agents_unified_summary": {
-      "count": 7,
+      "count": 8,
       "running": 0,
       "unverified": 0,
-      "finished": 7,
+      "finished": 8,
       "stale_open": 0,
       "by_source": {
-       "hermes": 7
+       "hermes": 8
       }
      },
      "agents_unified_injected_exits": 0,
-     "agents_completed": [],
-     "agents_completed_4h": [],
+     "agents_completed": [
+      {
+       "host": "win-station",
+       "source": "hermes_db",
+       "identity": "win-station:hermes_db:20261005_110708_cdffd8",
+       "ended_at": 1791151639.5798016,
+       "confidence": "exact",
+       "taskbook": null,
+       "model": "volcengine/deepseek-v4-flash-ga-260731",
+       "tokens": null,
+       "outcome": "empty_shell",
+       "outcome_basis": "agent_close",
+       "pid": null,
+       "profile": null
+      }
+     ],
+     "agents_completed_4h": [
+      {
+       "host": "win-station",
+       "source": "hermes_db",
+       "identity": "win-station:hermes_db:20261005_110708_cdffd8",
+       "ended_at": 1791151639.5798016,
+       "confidence": "exact",
+       "taskbook": null,
+       "model": "volcengine/deepseek-v4-flash-ga-260731",
+       "tokens": null,
+       "outcome": "empty_shell",
+       "outcome_basis": "agent_close",
+       "pid": null,
+       "profile": null
+      }
+     ],
      "agents_completed_buckets": {
       "4h": {
        "normal": 0,
        "failed": 0,
        "timeout": 0,
-       "unknown": 0
+       "unknown": 0,
+       "empty_shell": 1
       },
       "4–24h": {
        "normal": 0,
        "failed": 0,
        "timeout": 0,
-       "unknown": 0
+       "unknown": 0,
+       "empty_shell": 0
       },
       "24h–7d": {
        "normal": 0,
        "failed": 0,
        "timeout": 0,
-       "unknown": 0
+       "unknown": 0,
+       "empty_shell": 0
       },
       "unknown": {
        "normal": 0,
        "failed": 0,
        "timeout": 0,
-       "unknown": 0
+       "unknown": 0,
+       "empty_shell": 0
       }
      },
-     "agents_completed_count": 0,
+     "agents_completed_count": 1,
      "agents_completed_count_basis": "source_records_not_exact_task_total",
      "agents_completed_coverage": {
       "omp_ledger": "missing",
@@ -16474,16 +18899,16 @@
      "profile": "nina",
      "display_name": "nina",
      "process": {
-      "pid": 7220,
+      "pid": 2460,
       "state_label": "online",
       "chain": [
        {
-        "pid": 7220,
+        "pid": 2460,
         "role": "入口",
         "kind": "venv"
        },
        {
-        "pid": 3508,
+        "pid": 16316,
         "role": "包装子进程",
         "kind": "uv"
        }
@@ -16493,14 +18918,14 @@
      "work": {
       "state": "近期有工作进展",
       "reasons": [
-       "主会话最近活动 7s 前"
+       "主会话最近活动 45s 前"
       ],
-      "progress_age_s": 7
+      "progress_age_s": 46
      },
      "activity": {
-      "text": "会话：Process update request（194 次调用）",
+      "text": "会话：Process update request（274 次调用）",
       "source": "session_db",
-      "at": "2026-10-04T21:20:43Z"
+      "at": "2026-10-04T23:17:48Z"
      },
      "subagents": {
       "confirmed_running": 0,
@@ -17017,10 +19442,10 @@
        "provider": "zai",
        "base_url": "https://open.bigmodel.cn/api/coding/paas/v4",
        "billing_mode": "",
-       "last_seen": 1791148821.8327663,
-       "input": 42961739,
-       "output": 7287461,
-       "calls": 8855,
+       "last_seen": 1791155880.229388,
+       "input": 44090742,
+       "output": 7345430,
+       "calls": 9004,
        "first_seen": 1787897508.583917,
        "_fromTotals": true,
        "label": "GLM coding 订阅包",
@@ -17555,13 +19980,13 @@
         "provider": "zai",
         "base_url": "https://open.bigmodel.cn/api/coding/paas/v4",
         "billing_mode": "",
-        "input": 42961739,
-        "output": 7287461,
-        "cache_read": 989308992,
+        "input": 44090742,
+        "output": 7345430,
+        "cache_read": 1017790144,
         "cache_write": 0,
-        "calls": 8855,
+        "calls": 9004,
         "first_seen": 1787897508.583917,
-        "last_seen": 1791148821.8327663
+        "last_seen": 1791155880.229388
        },
        {
         "model": "glm-5.3-flash",
@@ -17728,7 +20153,7 @@
       "housekeeping_ts": null
      },
      "session_budget": {
-      "last_prompt_tokens": 156052,
+      "last_prompt_tokens": 200921,
       "model": null,
       "provider": null,
       "session_id": "20261003_200117_e28e208f"
@@ -17737,39 +20162,39 @@
       {
        "code": "session_overrun",
        "session_id": "20261003_200117_e28e208f",
-       "source": "sessions.last_activity_at（主会话 telegram 20261003_200 · 417 条消息 · 自 started_at 累计 1 天）",
+       "source": "sessions.last_activity_at（主会话 telegram 20261003_200 · 582 条消息 · 自 started_at 累计 1 天）",
        "window": "主会话累计（自会话开始，非窗口）",
-       "detail": "api_call_count=194 (>150) · 来源 sessions.last_activity_at（主会话 telegram 20261003_200 · 417 条消息 · 自 started_at 累计 1 天）",
+       "detail": "api_call_count=274 (>150) · 来源 sessions.last_activity_at（主会话 telegram 20261003_200 · 582 条消息 · 自 started_at 累计 1 天）",
        "suggest": "/new 开新会话 + HANDOFF 交接"
       }
      ],
      "log_errors": {
-      "count_24h": 41,
+      "count_24h": 97,
       "recent": [
        {
-        "ts": 1791148594.0,
+        "ts": 1791155198.0,
         "level": "WARNING",
-        "msg": "2026-10-05 10:16:34,234 WARNING plugins.platforms.telegram.telegram_network: [Telegram] IPv4 Telegram API IP 149.154.166.110 failed:"
+        "msg": "2026-10-05 12:06:38,305 WARNING [20261003_200117_e28e208f] agent.tool_executor: Tool skill_manage returned error (0.06s): {\"success\": false, \"error\": \"Refusing background curator patch for skill 'astr"
        },
        {
-        "ts": 1791148594.0,
+        "ts": 1791155184.0,
         "level": "WARNING",
-        "msg": "2026-10-05 10:16:34,233 WARNING plugins.platforms.telegram.telegram_network: [Telegram] Sticky Telegram path 149.154.166.110 failed; re-walking IPv4 literals before the hostname"
+        "msg": "2026-10-05 12:06:24,689 WARNING [20261003_200117_e28e208f] agent.tool_executor: Tool skill_manage returned error (0.02s): {\"success\": false, \"error\": \"Refusing background curator patch for skill 'dash"
        },
        {
-        "ts": 1791142804.0,
+        "ts": 1791155168.0,
         "level": "WARNING",
-        "msg": "2026-10-05 08:40:04,608 WARNING plugins.platforms.telegram.telegram_network: [Telegram] IPv4 Telegram API IP 149.154.166.110 failed:"
+        "msg": "2026-10-05 12:06:08,463 WARNING [20261003_200117_e28e208f] agent.tool_executor: Tool skill_manage returned error (0.03s): {\"success\": false, \"error\": \"Refusing background curator patch for skill 'dash"
        },
        {
-        "ts": 1791142804.0,
+        "ts": 1791155145.0,
         "level": "WARNING",
-        "msg": "2026-10-05 08:40:04,608 WARNING plugins.platforms.telegram.telegram_network: [Telegram] Sticky Telegram path 149.154.166.110 failed; re-walking IPv4 literals before the hostname"
+        "msg": "2026-10-05 12:05:45,514 WARNING [20261003_200117_e28e208f] agent.tool_executor: Tool skill_manage returned error (0.02s): {\"success\": false, \"error\": \"Refusing background curator patch for skill 'dash"
        },
        {
-        "ts": 1791135361.0,
+        "ts": 1791155125.0,
         "level": "WARNING",
-        "msg": "2026-10-05 06:36:01,923 WARNING plugins.platforms.telegram.telegram_network: [Telegram] IPv4 Telegram API IP 149.154.166.110 failed:"
+        "msg": "2026-10-05 12:05:25,279 WARNING [20261003_200117_e28e208f] agent.tool_executor: Tool skill_manage returned error (0.02s): {\"success\": false, \"error\": \"Refusing background curator patch for skill 'dash"
        }
       ],
       "error": null
@@ -18631,25 +21056,29 @@
        "normal": 0,
        "failed": 0,
        "timeout": 0,
-       "unknown": 0
+       "unknown": 0,
+       "empty_shell": 0
       },
       "4–24h": {
        "normal": 0,
        "failed": 0,
        "timeout": 0,
-       "unknown": 0
+       "unknown": 0,
+       "empty_shell": 0
       },
       "24h–7d": {
        "normal": 0,
        "failed": 0,
        "timeout": 0,
-       "unknown": 0
+       "unknown": 0,
+       "empty_shell": 0
       },
       "unknown": {
        "normal": 0,
        "failed": 0,
        "timeout": 0,
-       "unknown": 0
+       "unknown": 0,
+       "empty_shell": 0
       }
      },
      "agents_completed_count": 0,
@@ -18704,8 +21133,8 @@
  },
  "free_quota": {
   "schema_version": 1,
-  "generated_at": "2026-10-04T21:20:53.222190Z",
-  "source_generated_at": "2026-10-04T21:20:28Z",
+  "generated_at": "2026-10-04T23:18:37.092142Z",
+  "source_generated_at": "2026-10-04T23:16:47Z",
   "source_status": "ok",
   "channels": [
    {
@@ -18749,8 +21178,8 @@
      "exact": 0
     },
     "freshness": "fresh",
-    "observed_at": "2026-10-04T21:20:26Z",
-    "oldest_observed_at": "2026-10-04T21:20:26Z",
+    "observed_at": "2026-10-04T23:16:45Z",
+    "oldest_observed_at": "2026-10-04T23:16:45Z",
     "next_probe_at": null,
     "reason_codes": [
      "unverified"
@@ -18763,15 +21192,15 @@
     "local_calls_24h": [
      {
       "host": "ming-ai-station",
-      "count": 20,
+      "count": 44,
       "partial": false,
-      "sampled_at": 1791148821.509508
+      "sampled_at": 1791155876.489337
      },
      {
       "host": "ming-server",
-      "count": null,
-      "partial": true,
-      "sampled_at": null
+      "count": 533,
+      "partial": false,
+      "sampled_at": 1791155889.9807017
      },
      {
       "host": "win-station",
@@ -18794,7 +21223,7 @@
      "window_start": null,
      "window_end": null,
      "reset": "1m26.4s",
-     "sampled_at": "2026-10-04T21:20:26Z",
+     "sampled_at": "2026-10-04T23:16:46Z",
      "used": 1,
      "limit": 1000,
      "remaining": 999,
@@ -18810,7 +21239,7 @@
       "limit": 8000,
       "remaining": 7927,
       "reset": "547ms",
-      "sampled_at": "2026-10-04T21:20:26Z",
+      "sampled_at": "2026-10-04T23:16:46Z",
       "source": "groq_response_headers"
      }
     ],
@@ -18848,8 +21277,8 @@
      "exact": 1
     },
     "freshness": "fresh",
-    "observed_at": "2026-10-04T21:20:26Z",
-    "oldest_observed_at": "2026-10-04T21:20:26Z",
+    "observed_at": "2026-10-04T23:16:46Z",
+    "oldest_observed_at": "2026-10-04T23:16:46Z",
     "next_probe_at": null,
     "reason_codes": [
      "ok"
@@ -18862,15 +21291,15 @@
     "local_calls_24h": [
      {
       "host": "ming-ai-station",
-      "count": 20,
+      "count": 44,
       "partial": false,
-      "sampled_at": 1791148821.509508
+      "sampled_at": 1791155876.489337
      },
      {
       "host": "ming-server",
-      "count": null,
-      "partial": true,
-      "sampled_at": null
+      "count": 0,
+      "partial": false,
+      "sampled_at": 1791155889.9807017
      },
      {
       "host": "win-station",
@@ -18921,8 +21350,8 @@
      "exact": 1
     },
     "freshness": "fresh",
-    "observed_at": "2026-10-04T21:20:27Z",
-    "oldest_observed_at": "2026-10-04T21:20:27Z",
+    "observed_at": "2026-10-04T23:16:46Z",
+    "oldest_observed_at": "2026-10-04T23:16:46Z",
     "next_probe_at": null,
     "reason_codes": [
      "ok"
@@ -18935,15 +21364,15 @@
     "local_calls_24h": [
      {
       "host": "ming-ai-station",
-      "count": 20,
+      "count": 44,
       "partial": false,
-      "sampled_at": 1791148821.509508
+      "sampled_at": 1791155876.489337
      },
      {
       "host": "ming-server",
-      "count": null,
-      "partial": true,
-      "sampled_at": null
+      "count": 2,
+      "partial": false,
+      "sampled_at": 1791155889.9807017
      },
      {
       "host": "win-station",
@@ -18994,8 +21423,8 @@
      "exact": 0
     },
     "freshness": "fresh",
-    "observed_at": "2026-10-04T21:20:27Z",
-    "oldest_observed_at": "2026-10-04T21:20:27Z",
+    "observed_at": "2026-10-04T23:16:46Z",
+    "oldest_observed_at": "2026-10-04T23:16:46Z",
     "next_probe_at": null,
     "reason_codes": [
      "http_error",
@@ -19009,15 +21438,15 @@
     "local_calls_24h": [
      {
       "host": "ming-ai-station",
-      "count": 20,
+      "count": 44,
       "partial": false,
-      "sampled_at": 1791148821.509508
+      "sampled_at": 1791155876.489337
      },
      {
       "host": "ming-server",
-      "count": null,
-      "partial": true,
-      "sampled_at": null
+      "count": 0,
+      "partial": false,
+      "sampled_at": 1791155889.9807017
      },
      {
       "host": "win-station",
@@ -19082,13 +21511,13 @@
       "host": "ming-ai-station",
       "count": 0,
       "partial": false,
-      "sampled_at": 1791148821.509508
+      "sampled_at": 1791155876.489337
      },
      {
       "host": "ming-server",
-      "count": null,
-      "partial": true,
-      "sampled_at": null
+      "count": 0,
+      "partial": false,
+      "sampled_at": 1791155889.9807017
      },
      {
       "host": "win-station",
@@ -19139,8 +21568,8 @@
      "exact": 0
     },
     "freshness": "fresh",
-    "observed_at": "2026-10-04T21:20:28Z",
-    "oldest_observed_at": "2026-10-04T21:20:28Z",
+    "observed_at": "2026-10-04T23:16:47Z",
+    "oldest_observed_at": "2026-10-04T23:16:47Z",
     "next_probe_at": null,
     "reason_codes": [
      "ok"
@@ -19153,15 +21582,15 @@
     "local_calls_24h": [
      {
       "host": "ming-ai-station",
-      "count": 20,
+      "count": 44,
       "partial": false,
-      "sampled_at": 1791148821.509508
+      "sampled_at": 1791155876.489337
      },
      {
       "host": "ming-server",
-      "count": null,
-      "partial": true,
-      "sampled_at": null
+      "count": 0,
+      "partial": false,
+      "sampled_at": 1791155889.9807017
      },
      {
       "host": "win-station",
@@ -19226,13 +21655,13 @@
       "host": "ming-ai-station",
       "count": 0,
       "partial": false,
-      "sampled_at": 1791148821.509508
+      "sampled_at": 1791155876.489337
      },
      {
       "host": "ming-server",
-      "count": null,
-      "partial": true,
-      "sampled_at": null
+      "count": 0,
+      "partial": false,
+      "sampled_at": 1791155889.9807017
      },
      {
       "host": "win-station",
@@ -19297,13 +21726,13 @@
       "host": "ming-ai-station",
       "count": 0,
       "partial": false,
-      "sampled_at": 1791148821.509508
+      "sampled_at": 1791155876.489337
      },
      {
       "host": "ming-server",
-      "count": null,
-      "partial": true,
-      "sampled_at": null
+      "count": 0,
+      "partial": false,
+      "sampled_at": 1791155889.9807017
      },
      {
       "host": "win-station",
@@ -19316,10 +21745,10 @@
   ]
  },
  "self_check": {
-  "checked_at": "2026-10-04T21:20:21Z",
-  "snapshot_id": "7d72e830f17d",
-  "status": "error",
-  "error_count": 1,
+  "checked_at": "2026-10-04T23:17:56Z",
+  "snapshot_id": "14e824a2e12e",
+  "status": "ok",
+  "error_count": 0,
   "warning_count": 0,
   "coverage": {
    "bots_total": 9,
@@ -19333,13 +21762,6 @@
     "complete": 9
    }
   },
-  "issues": [
-   {
-    "code": "NEG_PROGRESS_AGE",
-    "bot_id": "ming-ai-station:default",
-    "severity": "error",
-    "detail": "progress_age_s=-45759.52216911316（时钟异常，禁截 0 瞒报）"
-   }
-  ]
+  "issues": []
  }
 }
