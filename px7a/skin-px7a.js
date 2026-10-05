@@ -577,7 +577,7 @@
       +     (dv.cls === '' && s.br.unknown > 0 ? ' title="已归类成功率；另有 ' + s.br.unknown + ' 条未归档（占 ' + (Math.round(100 * s.br.unknown / s.br.all * 10) / 10) + '%）"' : '')
       +   '>'
       +     dvPct + (dv.cls === '' ? '<span>%</span>' : '') + '</span>'
-      +   (dv.cls !== '' ? '<span class="px6-dsub" style="color:' + UNK_TX + '">结局未归档 ' + s.br.unknown + '/' + s.br.all + ' 条（来源缺 omp_ledger）</span>' : '')
+      +   (dv.cls !== '' ? '<span class="px6-dsub" style="color:' + UNK_TX + '">结局未归档 ' + s.br.unknown + '/' + s.br.all + ' 条（' + unkSourceHint(b) + '）</span>' : '')
       +   (dv.cls === '' && s.br.unknown > 0 ? '<span class="px6-dsub" style="color:' + UNK_TX + '">已归类口径 · 另有 ' + s.br.unknown + '/' + s.br.all + ' 未归档</span>' : '')
       + '</div>'
       + '<section class="px6-sec">'
@@ -622,6 +622,17 @@
   /* 工作态判定（任务4）：work.state 含「工作」或「进展」。
      ⚠ 只按 display_name 建立矩阵 cell ↔ bot 的映射不可靠（重名/显示名
      与 id 不一致），改为在 renderHome 的 cells 构建处直接内联标记。 */
+
+  /* P2-2: 未归档来源动态描述 — 不硬编码 omp_ledger */
+  function unkSourceHint(b) {
+    var cov = (b && b.agents_completed_coverage) || {};
+    var parts = [];
+    if (cov.omp_ledger === 'missing' || cov.omp_ledger == null) parts.push('omp台账未接');
+    if (cov.xpi_seen === 'observed') parts.push('xpi_seen弱证据');
+    if (cov.hermes_db === 'missing') parts.push('sessions表缺失');
+    return parts.length ? parts.join('+') : '结局不可判';
+  }
+
   function isWorking(b) {
     var st = (b && b.work && b.work.state) || '';
     return st.indexOf('工作') >= 0 || st.indexOf('进展') >= 0;
