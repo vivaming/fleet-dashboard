@@ -1,25 +1,25 @@
 {
  "schema_version": 1,
- "snapshot_id": "14e824a2e12e",
- "generated_at": "2026-10-04T23:18:37Z",
+ "snapshot_id": "8fda8e1dfbdb",
+ "generated_at": "2026-10-05T01:05:25Z",
  "collect_interval_s": 15,
  "web_refresh_hint_s": 5,
  "stale_after_s": 80,
  "unknown_after_s": 160,
  "collector": {
-  "pid": 759117,
-  "last_success_at": "2026-10-04T23:17:55Z",
-  "cycle": 42002,
-  "round_seconds": 40.6
+  "pid": 1381344,
+  "last_success_at": "2026-10-05T01:04:43Z",
+  "cycle": 42148,
+  "round_seconds": 41.0
  },
  "hosts": [
   {
    "host_id": "ming-ai-station",
    "short": ".69",
    "transport": "local",
-   "observed_at": "2026-10-04T23:17:56Z",
-   "observed_at_epoch": 1791155876.445563,
-   "last_success_at": "2026-10-04T23:17:56Z",
+   "observed_at": "2026-10-05T01:04:44Z",
+   "observed_at_epoch": 1791162284.410425,
+   "last_success_at": "2026-10-05T01:04:44Z",
    "error": null,
    "bots": [
     {
@@ -36,9 +36,9 @@
      "work": {
       "state": "在线·空闲",
       "reasons": [
-       "无待执行任务；最近活动 1891561s 前"
+       "无待执行任务；最近活动 1897969s 前"
       ],
-      "progress_age_s": 1891562
+      "progress_age_s": 1897970
      },
      "activity": {
       "text": "会话：Check why Nyx bot stopped working",
@@ -68,7 +68,7 @@
       "total": 0,
       "truncated": false,
       "items": [],
-      "at": 1791155876.4559767,
+      "at": 1791162284.4211807,
       "omp_exits_24h": {
        "count": 0,
        "omp": 0,
@@ -112,7 +112,7 @@
        }
       ],
       "error": null,
-      "sampled_at": 1791155876.4585447,
+      "sampled_at": 1791162284.423769,
       "coverage": "complete"
      },
      "db_status": {
@@ -122,7 +122,7 @@
      "log_status": {
       "exists": true,
       "business_ts": null,
-      "housekeeping_ts": "2026-10-04T23:17:00Z"
+      "housekeeping_ts": "2026-10-05T01:04:05Z"
      },
      "tri": {
       "tri": "reachable",
@@ -130,7 +130,7 @@
      },
      "_severity": 0,
      "log_errors": {
-      "count_24h": 8,
+      "count_24h": 4,
       "recent": [
        {
         "ts": 1791194575.0,
@@ -151,11 +151,6 @@
         "ts": 1791194575.0,
         "level": "WARNING",
         "msg": "2026-10-05 23:02:55,985 WARNING agent.auxiliary_client: Auxiliary: marking openrouter unhealthy for 60s (payment / credit error). Subsequent auxiliary calls will skip it until 23:03:55."
-       },
-       {
-        "ts": 1791079380.0,
-        "level": "WARNING",
-        "msg": "2026-10-04 15:03:00,236 WARNING agent.auxiliary_client: Auxiliary: marking nous unhealthy for 60s (payment / credit error). Subsequent auxiliary calls will skip it until 15:04:00."
        }
       ],
       "error": null
@@ -188,6 +183,13 @@
        "empty_shell": 0
       },
       "24h–7d": {
+       "normal": 0,
+       "failed": 0,
+       "timeout": 0,
+       "unknown": 0,
+       "empty_shell": 0
+      },
+      "older": {
        "normal": 0,
        "failed": 0,
        "timeout": 0,
@@ -227,16 +229,16 @@
       "state_label": "online"
      },
      "work": {
-      "state": "在线·空闲",
+      "state": "近期有工作进展",
       "reasons": [
-       "无待执行任务；最近活动 360s 前"
+       "近期业务活动 118s 前"
       ],
-      "progress_age_s": 360
+      "progress_age_s": 118
      },
      "activity": {
       "text": "会话：呼叫Nyx进来",
       "source": "session_title",
-      "at": "2026-10-04T23:11:56Z"
+      "at": "2026-10-05T01:02:46Z"
      },
      "xpi_agents": {
       "count": 0,
@@ -382,7 +384,7 @@
         "model_basis": "config_only"
        }
       ],
-      "at": 1791155876.4624107,
+      "at": 1791162284.4279952,
       "omp_exits_24h": {
        "count": 0,
        "omp": 0,
@@ -657,7 +659,7 @@
        }
       ],
       "error": null,
-      "sampled_at": 1791155876.4648862,
+      "sampled_at": 1791162284.4304109,
       "coverage": "complete"
      },
      "db_status": {
@@ -666,8 +668,8 @@
      },
      "log_status": {
       "exists": true,
-      "business_ts": "2026-10-04T23:11:56Z",
-      "housekeeping_ts": "2026-10-04T23:17:26Z"
+      "business_ts": "2026-10-05T01:02:46Z",
+      "housekeeping_ts": "2026-10-05T01:04:38Z"
      },
      "tri": {
       "tri": "reachable",
@@ -675,32 +677,32 @@
      },
      "_severity": 0,
      "log_errors": {
-      "count_24h": 76,
+      "count_24h": 103,
       "recent": [
        {
-        "ts": 1791155516.0,
+        "ts": 1791162166.0,
         "level": "WARNING",
-        "msg": "2026-10-05 12:11:56,603 WARNING plugins.platforms.telegram.telegram_network: [Telegram] IPv4 Telegram API IP 149.154.167.220 failed:"
+        "msg": "2026-10-05 14:02:46,142 WARNING plugins.platforms.telegram.telegram_network: [Telegram] IPv4 Telegram API IP 149.154.167.220 failed:"
        },
        {
-        "ts": 1791155515.0,
+        "ts": 1791162165.0,
         "level": "WARNING",
-        "msg": "2026-10-05 12:11:55,966 WARNING plugins.platforms.telegram.telegram_network: [Telegram] IPv4 Telegram API IP 149.154.166.110 failed:"
+        "msg": "2026-10-05 14:02:45,426 WARNING plugins.platforms.telegram.telegram_network: [Telegram] IPv4 Telegram API IP 149.154.166.110 failed:"
        },
        {
-        "ts": 1791155515.0,
+        "ts": 1791162165.0,
         "level": "WARNING",
-        "msg": "2026-10-05 12:11:55,966 WARNING plugins.platforms.telegram.telegram_network: [Telegram] Sticky Telegram path 149.154.166.110 failed; re-walking IPv4 literals before the hostname"
+        "msg": "2026-10-05 14:02:45,425 WARNING plugins.platforms.telegram.telegram_network: [Telegram] Sticky Telegram path 149.154.166.110 failed; re-walking IPv4 literals before the hostname"
        },
        {
-        "ts": 1791155493.0,
+        "ts": 1791161833.0,
         "level": "WARNING",
-        "msg": "2026-10-05 12:11:33,136 WARNING plugins.platforms.telegram.telegram_network: [Telegram] Dual-stack api.telegram.org path failed ()"
+        "msg": "2026-10-05 13:57:13,049 WARNING plugins.platforms.telegram.telegram_network: [Telegram] IPv4 Telegram API IP 149.154.167.220 failed:"
        },
        {
-        "ts": 1791155493.0,
+        "ts": 1791161833.0,
         "level": "WARNING",
-        "msg": "2026-10-05 12:11:33,136 WARNING plugins.platforms.telegram.telegram_network: [Telegram] Sticky Telegram path api.telegram.org failed; re-walking IPv4 literals before the hostname"
+        "msg": "2026-10-05 13:57:13,049 WARNING plugins.platforms.telegram.telegram_network: [Telegram] Sticky Telegram path 149.154.167.220 failed; re-walking IPv4 literals before the hostname"
        }
       ],
       "error": null
@@ -2965,6 +2967,13 @@
        "unknown": 0,
        "empty_shell": 3
       },
+      "older": {
+       "normal": 6,
+       "failed": 0,
+       "timeout": 0,
+       "unknown": 0,
+       "empty_shell": 4
+      },
       "unknown": {
        "normal": 0,
        "failed": 0,
@@ -2985,10 +2994,10 @@
      "id": "ming-ai-station:nova",
      "profile": "nova",
      "session_budget": {
-      "last_prompt_tokens": 175042,
+      "last_prompt_tokens": 137508,
       "model": null,
       "provider": null,
-      "session_id": "20260924_173222_dbab0cf7"
+      "session_id": "20260924_152108_5fc8e93c"
      },
      "display_name": "nova",
      "process": {
@@ -2998,16 +3007,16 @@
       "state_label": "online"
      },
      "work": {
-      "state": "在线·空闲",
+      "state": "近期有工作进展",
       "reasons": [
-       "无待执行任务；最近活动 1493s 前"
+       "近期业务活动 49s 前"
       ],
-      "progress_age_s": 1493
+      "progress_age_s": 49
      },
      "activity": {
-      "text": "会话：Audio and connection check",
+      "text": "会话：Return to ming-server fleet",
       "source": "session_title",
-      "at": "2026-10-04T22:53:03Z"
+      "at": "2026-10-05T01:03:55Z"
      },
      "xpi_agents": {
       "count": 0,
@@ -3108,7 +3117,7 @@
         "model_basis": "config_only"
        }
       ],
-      "at": 1791155876.4742534,
+      "at": 1791162284.4400716,
       "omp_exits_24h": {
        "count": 0,
        "omp": 0,
@@ -3122,9 +3131,9 @@
        "model": "glm-5.3-flash",
        "provider": "zai",
        "base_url": "https://open.bigmodel.cn/api/coding/paas/v4",
-       "last_seen": 1791151531.6242402,
+       "last_seen": 1791156261.7554057,
        "recent": false,
-       "last_seen_epoch": 1791151531.6242402,
+       "last_seen_epoch": 1791156261.7554057,
        "estimated_cost_usd": 0.0,
        "cost_status": "unknown",
        "_score": 2,
@@ -3150,11 +3159,19 @@
      "problem_flags": [
       {
        "code": "session_overrun",
-       "session_id": "20260924_173222_dbab0cf7",
-       "source": "sessions.last_activity_at（主会话 20260924_173 · 706条消息 · 已运行10天）",
+       "session_id": "20260924_152108_5fc8e93c",
+       "source": "sessions.last_activity_at（主会话 20260924_152 · 693条消息 · 已运行10天）",
        "window": "主会话累计（自会话开始，非窗口；口径为 sessions 表会话自身列，非 usage 加总）",
-       "detail": "sessions.last_activity_at（主会话 20260924_173 · 706条消息 · 已运行10天） · api_calls=296 (>150)",
+       "detail": "sessions.last_activity_at（主会话 20260924_152 · 693条消息 · 已运行10天） · api_calls=1240 (>150)",
        "suggest": "开新会话（写 HANDOFF.md 交接后 /new）"
+      },
+      {
+       "code": "context_bloating",
+       "session_id": "20260924_152108_5fc8e93c",
+       "source": "sessions.last_activity_at（主会话 20260924_152 · 693条消息 · 已运行10天）",
+       "window": "主会话累计（自会话开始，非窗口；口径为 sessions 表会话自身列，非 usage 加总）",
+       "detail": "sessions.last_activity_at（主会话 20260924_152 · 693条消息 · 已运行10天） · 缓存读 329.2M tokens（≈200K轮次线的183%，假定窗口未核验）",
+       "suggest": "压缩上下文或 /new；会话内已完成任务写交接文件"
       }
      ],
      "tokens": {
@@ -3216,13 +3233,13 @@
         "provider": "zai",
         "base_url": "https://open.bigmodel.cn/api/coding/paas/v4",
         "billing_mode": "",
-        "input": 36524397,
-        "output": 2725516,
-        "cache_read": 1065309056,
+        "input": 36662085,
+        "output": 2727223,
+        "cache_read": 1066264256,
         "cache_write": 0,
-        "calls": 4892,
+        "calls": 4900,
         "first_seen": 1789591348.2668073,
-        "last_seen": 1791151531.6242402
+        "last_seen": 1791156261.7554057
        },
        {
         "model": "glm-5.3-flash",
@@ -3239,7 +3256,7 @@
        }
       ],
       "error": null,
-      "sampled_at": 1791155876.4762,
+      "sampled_at": 1791162284.4418762,
       "coverage": "complete"
      },
      "db_status": {
@@ -3248,8 +3265,8 @@
      },
      "log_status": {
       "exists": true,
-      "business_ts": "2026-10-04T22:53:03Z",
-      "housekeeping_ts": "2026-10-04T23:17:26Z"
+      "business_ts": "2026-10-05T01:03:55Z",
+      "housekeeping_ts": "2026-10-05T01:04:38Z"
      },
      "tri": {
       "tri": "reachable",
@@ -3257,32 +3274,32 @@
      },
      "_severity": 0,
      "log_errors": {
-      "count_24h": 65,
+      "count_24h": 51,
       "recent": [
        {
-        "ts": 1791154383.0,
-        "level": "ERROR",
-        "msg": "2026-10-05 11:53:03,024 ERROR [20260924_173222_dbab0cf7] agent.conversation_loop: API call failed after 3 retries. HTTP 429: 您的账户已达到速率限制，请您控制请求频率 | provider=zai model=glm-5.3-flash msgs=650 tokens=~17"
-       },
-       {
-        "ts": 1791154383.0,
+        "ts": 1791162224.0,
         "level": "WARNING",
-        "msg": "2026-10-05 11:53:03,022 WARNING [20260924_173222_dbab0cf7] agent.conversation_loop: API call failed (attempt 3/3) error_type=RateLimitError thread=hermes-gateway_0:127823930980032 provider=zai base_ur"
+        "msg": "2026-10-05 14:03:44,305 WARNING plugins.platforms.telegram.telegram_network: [Telegram] IPv4 Telegram API IP 149.154.166.110 failed:"
        },
        {
-        "ts": 1791154383.0,
-        "level": "INFO",
-        "msg": "2026-10-05 11:53:03,022 INFO [20260924_173222_dbab0cf7] agent.credential_pool: credential pool: marking GLM_API_KEY exhausted (status=429), rotating"
+        "ts": 1791162224.0,
+        "level": "WARNING",
+        "msg": "2026-10-05 14:03:44,305 WARNING plugins.platforms.telegram.telegram_network: [Telegram] Sticky Telegram path 149.154.166.110 failed; re-walking IPv4 literals before the hostname"
        },
        {
-        "ts": 1791154383.0,
-        "level": "INFO",
-        "msg": "2026-10-05 11:53:03,019 INFO run_agent: OpenAI client closed (stream_error_cleanup, shared=False, tcp_force_closed=0) thread=Thread-46 (<lambda>):127823901607616 provider=zai base_url=https://open.big"
+        "ts": 1791161790.0,
+        "level": "WARNING",
+        "msg": "2026-10-05 13:56:30,858 WARNING plugins.platforms.telegram.telegram_network: [Telegram] IPv4 Telegram API IP 149.154.167.220 failed:"
        },
        {
-        "ts": 1791154383.0,
-        "level": "ERROR",
-        "msg": "2026-10-05 11:53:03,013 ERROR agent.chat_completion_helpers: Streaming failed before delivery: Error code: 429 - {'error': {'code': '1302', 'message': '您的账户已达到速率限制，请您控制请求频率'}}"
+        "ts": 1791161790.0,
+        "level": "WARNING",
+        "msg": "2026-10-05 13:56:30,857 WARNING plugins.platforms.telegram.telegram_network: [Telegram] Sticky Telegram path 149.154.167.220 failed; re-walking IPv4 literals before the hostname"
+       },
+       {
+        "ts": 1791161724.0,
+        "level": "WARNING",
+        "msg": "2026-10-05 13:55:24,111 WARNING plugins.platforms.telegram.telegram_network: [Telegram] IPv4 Telegram API IP 149.154.166.110 failed:"
        }
       ],
       "error": null
@@ -3772,6 +3789,13 @@
       },
       "24h–7d": {
        "normal": 0,
+       "failed": 0,
+       "timeout": 0,
+       "unknown": 0,
+       "empty_shell": 0
+      },
+      "older": {
+       "normal": 5,
        "failed": 0,
        "timeout": 0,
        "unknown": 0,
@@ -8112,14 +8136,14 @@
    },
    "call_usage_24h": {
     "counts": {
-     "sensenova": 44,
-     "groq": 44,
-     "openrouter_free": 44,
-     "cloudflare_ai": 44,
-     "blockrun_free": 44
+     "sensenova": 64,
+     "groq": 64,
+     "openrouter_free": 64,
+     "cloudflare_ai": 64,
+     "blockrun_free": 64
     },
     "partial": false,
-    "sampled_at": 1791155876.489337,
+    "sampled_at": 1791162284.455238,
     "basis": "timestamped_assistant_events; unlogged retries unavailable"
    }
   },
@@ -8127,9 +8151,9 @@
    "host_id": "ming-server",
    "short": ".65",
    "transport": "ssh",
-   "observed_at": "2026-10-04T23:17:56Z",
-   "observed_at_epoch": 1791155876.523646,
-   "last_success_at": "2026-10-04T23:17:56Z",
+   "observed_at": "2026-10-05T01:04:44Z",
+   "observed_at_epoch": 1791162284.489934,
+   "last_success_at": "2026-10-05T01:04:44Z",
    "error": null,
    "bots": [
     {
@@ -8143,9 +8167,9 @@
      "work": {
       "state": "近期有工作进展",
       "reasons": [
-       "远端日志活动 21s 前"
+       "远端日志活动 59s 前"
       ],
-      "progress_age_s": 21
+      "progress_age_s": 59
      },
      "activity": {
       "text": "会话：Understand how Explee marketing tool works（377 次调用）",
@@ -9594,39 +9618,39 @@
       {
        "code": "session_overrun",
        "session_id": "20260927_232758_bfbd265e",
-       "source": "sessions.last_activity_atï¼ä¸»ä¼è¯ telegram 20260927_232 Â· 783 æ¡æ¶æ¯ Â· èª started_at ç´¯è®¡ 6 å¤©ï¼",
+       "source": "sessions.last_activity_atï¼ä¸»ä¼è¯ telegram 20260927_232 Â· 783 æ¡æ¶æ¯ Â· èª started_at ç´¯è®¡ 7 å¤©ï¼",
        "window": "ä¸»ä¼è¯ç´¯è®¡ï¼èªä¼è¯å¼å§ï¼éçªå£ï¼",
-       "detail": "api_call_count=377 (>150) Â· æ¥æº sessions.last_activity_atï¼ä¸»ä¼è¯ telegram 20260927_232 Â· 783 æ¡æ¶æ¯ Â· èª started_at ç´¯è®¡ 6 å¤©ï¼",
+       "detail": "api_call_count=377 (>150) Â· æ¥æº sessions.last_activity_atï¼ä¸»ä¼è¯ telegram 20260927_232 Â· 783 æ¡æ¶æ¯ Â· èª started_at ç´¯è®¡ 7 å¤©ï¼",
        "suggest": "/new å¼æ°ä¼è¯ + HANDOFF äº¤æ¥"
       }
      ],
      "log_errors": {
-      "count_24h": 20,
+      "count_24h": 241,
       "recent": [
+       {
+        "ts": 1791162032.0,
+        "level": "UNKNOWN",
+        "msg": "2026-10-05 01:00:32,631 ERROR cron.scheduler: Job '3d43552dc36f': delivery error: Telegram send failed: You must pass the token you received from https://t.me/Botfather! (target telegram:7857923688)"
+       },
+       {
+        "ts": 1791160232.0,
+        "level": "UNKNOWN",
+        "msg": "2026-10-05 00:30:32,105 ERROR cron.scheduler: Job '3d43552dc36f': delivery error: Telegram send failed: You must pass the token you received from https://t.me/Botfather! (target telegram:7857923688)"
+       },
+       {
+        "ts": 1791158431.0,
+        "level": "UNKNOWN",
+        "msg": "2026-10-05 00:00:31,552 ERROR cron.scheduler: Job '3d43552dc36f': delivery error: Telegram send failed: You must pass the token you received from https://t.me/Botfather! (target telegram:7857923688)"
+       },
+       {
+        "ts": 1791156631.0,
+        "level": "UNKNOWN",
+        "msg": "2026-10-04 23:30:31,030 ERROR cron.scheduler: Job '3d43552dc36f': delivery error: Telegram send failed: You must pass the token you received from https://t.me/Botfather! (target telegram:7857923688)"
+       },
        {
         "ts": 1791154895.0,
         "level": "UNKNOWN",
         "msg": "2026-10-04 23:01:35,153 WARNING tools.environments.file_sync: sync_back: all 3 attempts failed: SSH bulk download failed:"
-       },
-       {
-        "ts": 1791154890.0,
-        "level": "UNKNOWN",
-        "msg": "2026-10-04 23:01:30,835 WARNING tools.environments.file_sync: sync_back: attempt 2 failed (SSH bulk download failed: ), retrying in 4s"
-       },
-       {
-        "ts": 1791154888.0,
-        "level": "UNKNOWN",
-        "msg": "2026-10-04 23:01:28,462 WARNING tools.environments.file_sync: sync_back: attempt 1 failed (SSH bulk download failed: ), retrying in 2s"
-       },
-       {
-        "ts": 1791154859.0,
-        "level": "UNKNOWN",
-        "msg": "2026-10-04 23:00:59,426 WARNING agent.title_generator: Title generation failed: Error code: 401 - {'error': {'code': '401', 'message': 'token expired or incorrect'}}"
-       },
-       {
-        "ts": 1791154847.0,
-        "level": "UNKNOWN",
-        "msg": "2026-10-04 23:00:47,029 ERROR gateway.platforms.base: [Webhook] Fallback send also failed: Platform telegram not connected"
        }
       ],
       "error": null
@@ -10066,48 +10090,6 @@
      },
      "agents_unified_injected_exits": 0,
      "agents_completed": [
-      {
-       "host": "ming-server",
-       "source": "omp_ledger",
-       "identity": "ming-server:omp_ledger:01a0e537-4825-7000-9b5b-7c5a553dd247",
-       "ended_at": 1790552115.938,
-       "confidence": "exact",
-       "taskbook": "tmp",
-       "model": null,
-       "tokens": null,
-       "outcome": "failed",
-       "outcome_basis": "sigterm",
-       "pid": 3756938,
-       "profile": "default"
-      },
-      {
-       "host": "ming-server",
-       "source": "omp_ledger",
-       "identity": "ming-server:omp_ledger:01a0e539-65f6-7000-a69a-934b29f20119",
-       "ended_at": 1790552287.777,
-       "confidence": "exact",
-       "taskbook": "tmp",
-       "model": null,
-       "tokens": null,
-       "outcome": "failed",
-       "outcome_basis": "sigterm",
-       "pid": 3768270,
-       "profile": "default"
-      },
-      {
-       "host": "ming-server",
-       "source": "omp_ledger",
-       "identity": "ming-server:omp_ledger:01a0e53c-932e-7000-9ac0-986bc091d113",
-       "ended_at": 1790552630.92,
-       "confidence": "exact",
-       "taskbook": "work-explee_analysis-lane_a",
-       "model": null,
-       "tokens": null,
-       "outcome": "normal",
-       "outcome_basis": "dispose",
-       "pid": 3786721,
-       "profile": "default"
-      },
       {
        "host": "ming-server",
        "source": "omp_ledger",
@@ -10598,11 +10580,11 @@
        "pid": 32939,
        "profile": "default",
        "candidate_indices": [
+        35,
+        36,
+        37,
         38,
-        39,
-        40,
-        41,
-        42
+        39
        ]
       },
       {
@@ -10619,11 +10601,11 @@
        "pid": 32939,
        "profile": "default",
        "candidate_indices": [
+        34,
+        36,
         37,
-        39,
-        40,
-        41,
-        42
+        38,
+        39
        ]
       },
       {
@@ -10640,11 +10622,11 @@
        "pid": 32939,
        "profile": "default",
        "candidate_indices": [
+        34,
+        35,
         37,
         38,
-        40,
-        41,
-        42
+        39
        ]
       },
       {
@@ -10661,11 +10643,11 @@
        "pid": 32939,
        "profile": "default",
        "candidate_indices": [
-        37,
+        34,
+        35,
+        36,
         38,
-        39,
-        41,
-        42
+        39
        ]
       },
       {
@@ -10682,11 +10664,11 @@
        "pid": 32939,
        "profile": "default",
        "candidate_indices": [
+        34,
+        35,
+        36,
         37,
-        38,
-        39,
-        40,
-        42
+        39
        ]
       },
       {
@@ -10703,11 +10685,11 @@
        "pid": 32939,
        "profile": "default",
        "candidate_indices": [
+        34,
+        35,
+        36,
         37,
-        38,
-        39,
-        40,
-        41
+        38
        ]
       },
       {
@@ -11275,11 +11257,18 @@
        "empty_shell": 0
       },
       "24h–7d": {
-       "normal": 15,
-       "failed": 59,
+       "normal": 14,
+       "failed": 57,
        "timeout": 0,
        "unknown": 0,
        "empty_shell": 0
+      },
+      "older": {
+       "normal": 13,
+       "failed": 0,
+       "timeout": 0,
+       "unknown": 0,
+       "empty_shell": 3
       },
       "unknown": {
        "normal": 0,
@@ -11289,7 +11278,7 @@
        "empty_shell": 0
       }
      },
-     "agents_completed_count": 78,
+     "agents_completed_count": 75,
      "agents_completed_count_basis": "source_records_not_exact_task_total",
      "agents_completed_coverage": {
       "omp_ledger": "observed",
@@ -11308,9 +11297,9 @@
      "work": {
       "state": "近期有工作进展",
       "reasons": [
-       "远端日志活动 1s 前"
+       "远端日志活动 28s 前"
       ],
-      "progress_age_s": 1
+      "progress_age_s": 28
      },
      "activity": {
       "text": "会话：修朗读 blocks 过 narration_qa 门禁（155 次调用）",
@@ -11682,32 +11671,32 @@
       }
      ],
      "log_errors": {
-      "count_24h": 205,
+      "count_24h": 190,
       "recent": [
        {
-        "ts": 1791154723.0,
+        "ts": 1791160293.0,
         "level": "UNKNOWN",
-        "msg": "2026-10-04 22:58:43,883 WARNING plugins.platforms.telegram.telegram_network: [Telegram] Dual-stack api.telegram.org path failed ()"
+        "msg": "2026-10-05 00:31:33,729 WARNING plugins.platforms.telegram.telegram_network: [Telegram] IPv4 Telegram API IP 149.154.166.110 failed:"
        },
        {
-        "ts": 1791154723.0,
+        "ts": 1791160293.0,
         "level": "UNKNOWN",
-        "msg": "2026-10-04 22:58:43,875 WARNING plugins.platforms.telegram.telegram_network: [Telegram] Sticky Telegram path api.telegram.org failed; re-walking IPv4 literals before the hostname"
+        "msg": "2026-10-05 00:31:33,729 WARNING plugins.platforms.telegram.telegram_network: [Telegram] Sticky Telegram path 149.154.166.110 failed; re-walking IPv4 literals before the hostname"
        },
        {
-        "ts": 1791154540.0,
+        "ts": 1791154853.0,
         "level": "UNKNOWN",
-        "msg": "2026-10-04 22:55:40,677 WARNING plugins.platforms.telegram.telegram_network: [Telegram] IPv4 Telegram API IP 149.154.166.110 failed:"
+        "msg": "2026-10-04 23:00:53,167 WARNING tools.environments.file_sync: sync_back: all 3 attempts failed: SSH bulk download failed:"
        },
        {
-        "ts": 1791154540.0,
+        "ts": 1791154848.0,
         "level": "UNKNOWN",
-        "msg": "2026-10-04 22:55:40,677 WARNING plugins.platforms.telegram.telegram_network: [Telegram] Sticky Telegram path 149.154.166.110 failed; re-walking IPv4 literals before the hostname"
+        "msg": "2026-10-04 23:00:48,849 WARNING tools.environments.file_sync: sync_back: attempt 2 failed (SSH bulk download failed: ), retrying in 4s"
        },
        {
-        "ts": 1791153354.0,
+        "ts": 1791154846.0,
         "level": "UNKNOWN",
-        "msg": "2026-10-04 22:35:54,100 WARNING plugins.platforms.telegram.telegram_network: [Telegram] Dual-stack api.telegram.org path failed ()"
+        "msg": "2026-10-04 23:00:46,522 WARNING tools.environments.file_sync: sync_back: attempt 1 failed (SSH bulk download failed: ), retrying in 2s"
        }
       ],
       "error": null
@@ -11751,6 +11740,13 @@
        "unknown": 0,
        "empty_shell": 0
       },
+      "older": {
+       "normal": 0,
+       "failed": 0,
+       "timeout": 0,
+       "unknown": 0,
+       "empty_shell": 0
+      },
       "unknown": {
        "normal": 0,
        "failed": 0,
@@ -11775,48 +11771,6 @@
    },
    "omp_exits": {
     "all_items": [
-     {
-      "type": "exit",
-      "session_id": "01a0e537-4825-7000-9b5b-7c5a553dd247",
-      "pid": 3756938,
-      "reason": "sigterm",
-      "raw_reason": "sigterm",
-      "exit_code": null,
-      "kind": "signal",
-      "level": "warn",
-      "ts": 1790552115.938,
-      "session_file": "/home/vivaming/.omp/agent/sessions/-tmp/2026-09-27T23-33-20-549Z_01a0e537-4825-7000-9b5b-7c5a553dd247.jsonl",
-      "taskbook": "tmp",
-      "profile": "default"
-     },
-     {
-      "type": "exit",
-      "session_id": "01a0e539-65f6-7000-a69a-934b29f20119",
-      "pid": 3768270,
-      "reason": "sigterm",
-      "raw_reason": "sigterm",
-      "exit_code": null,
-      "kind": "signal",
-      "level": "warn",
-      "ts": 1790552287.777,
-      "session_file": "/home/vivaming/.omp/agent/sessions/-tmp/2026-09-27T23-35-39-254Z_01a0e539-65f6-7000-a69a-934b29f20119.jsonl",
-      "taskbook": "tmp",
-      "profile": "default"
-     },
-     {
-      "type": "exit",
-      "session_id": "01a0e53c-932e-7000-9ac0-986bc091d113",
-      "pid": 3786721,
-      "reason": "normal",
-      "raw_reason": "dispose",
-      "exit_code": null,
-      "kind": "normal",
-      "level": "debug",
-      "ts": 1790552630.92,
-      "session_file": "/home/vivaming/.omp/agent/sessions/-work-explee_analysis-lane_a/2026-09-27T23-39-07-438Z_01a0e53c-932e-7000-9ac0-986bc091d113.jsonl",
-      "taskbook": "work-explee_analysis-lane_a",
-      "profile": "default"
-     },
      {
       "type": "exit",
       "session_id": "01a0e596-6f43-7000-bda5-2609a1e6a10c",
@@ -12939,11 +12893,11 @@
    "call_usage_24h": {
     "counts": {
      "unknown": 475,
-     "sensenova": 533,
+     "sensenova": 502,
      "openrouter_free": 2
     },
     "partial": false,
-    "sampled_at": 1791155889.9807017,
+    "sampled_at": 1791162296.7831411,
     "basis": "timestamped_assistant_events; unlogged retries unavailable"
    }
   },
@@ -12951,9 +12905,9 @@
    "host_id": "win-station",
    "short": ".67",
    "transport": "ssh-nested",
-   "observed_at": "2026-10-04T23:18:10Z",
-   "observed_at_epoch": 1791155890.346713,
-   "last_success_at": "2026-10-04T23:18:10Z",
+   "observed_at": "2026-10-05T01:04:57Z",
+   "observed_at_epoch": 1791162297.113996,
+   "last_success_at": "2026-10-05T01:04:57Z",
    "error": null,
    "bots": [
     {
@@ -12961,16 +12915,16 @@
      "profile": "bot2",
      "display_name": "bot2",
      "process": {
-      "pid": 10932,
+      "pid": 8756,
       "state_label": "online",
       "chain": [
        {
-        "pid": 10932,
+        "pid": 8756,
         "role": "入口",
         "kind": "venv"
        },
        {
-        "pid": 13000,
+        "pid": 12872,
         "role": "包装子进程",
         "kind": "uv"
        }
@@ -12978,16 +12932,16 @@
       "dup_procs": 1
      },
      "work": {
-      "state": "在线·空闲",
+      "state": "近期有工作进展",
       "reasons": [
-       "主会话最近活动 1074s 前"
+       "主会话最近活动 5067s 前"
       ],
-      "progress_age_s": 1075
+      "progress_age_s": 5068
      },
      "activity": {
-      "text": "会话：Set up xpi SSH for Hermes migration（115 次调用）",
+      "text": "会话：Set up xpi SSH for Hermes migration（153 次调用）",
       "source": "session_db",
-      "at": "2026-10-04T23:00:22Z"
+      "at": "2026-10-04T23:40:37Z"
      },
      "subagents": {
       "confirmed_running": 0,
@@ -13594,10 +13548,10 @@
        "provider": "zai",
        "base_url": "https://api.z.ai/api/coding/paas/v4",
        "billing_mode": "",
-       "last_seen": 1791154844.6205568,
-       "input": 6611274,
-       "output": 1085077,
-       "calls": 2257,
+       "last_seen": 1791159328.134706,
+       "input": 6822729,
+       "output": 1129981,
+       "calls": 2317,
        "first_seen": 1790214769.7126176,
        "_fromTotals": true,
        "label": "GLM coding 订阅包",
@@ -14150,13 +14104,13 @@
         "provider": "zai",
         "base_url": "https://api.z.ai/api/coding/paas/v4",
         "billing_mode": "",
-        "input": 6611274,
-        "output": 1085077,
-        "cache_read": 247890624,
+        "input": 6822729,
+        "output": 1129981,
+        "cache_read": 256877248,
         "cache_write": 0,
-        "calls": 2257,
+        "calls": 2317,
         "first_seen": 1790214769.7126176,
-        "last_seen": 1791154844.6205568
+        "last_seen": 1791159328.134706
        },
        {
         "model": "glm-5.3-flash",
@@ -14466,38 +14420,48 @@
       "housekeeping_ts": null
      },
      "session_budget": {
-      "last_prompt_tokens": 143474,
+      "last_prompt_tokens": 172537,
       "model": null,
       "provider": null,
       "session_id": "20261003_013802_3ae3cc13"
      },
+     "problem_flags": [
+      {
+       "code": "session_overrun",
+       "session_id": "20261003_013802_3ae3cc13",
+       "source": "sessions.last_activity_at（主会话 telegram 20261003_013 · 347 条消息 · 自 started_at 累计 2 天）",
+       "window": "主会话累计（自会话开始，非窗口）",
+       "detail": "api_call_count=153 (>150) · 来源 sessions.last_activity_at（主会话 telegram 20261003_013 · 347 条消息 · 自 started_at 累计 2 天）",
+       "suggest": "/new 开新会话 + HANDOFF 交接"
+      }
+     ],
      "log_errors": {
-      "count_24h": 96,
+      "count_24h": 109,
       "recent": [
        {
-        "ts": 1791154733.0,
+        "ts": 1791161315.0,
         "level": "WARNING",
-        "msg": "2026-10-05 11:58:53,566 WARNING plugins.platforms.telegram.telegram_network: [Telegram] IPv4 Telegram API IP 149.154.166.110 failed:"
+        "msg": "2026-10-05 13:48:35,702 WARNING tools.environments.file_sync: sync_back: all 3 attempts failed: [Errno 13] Permission denied: 'C:\\\\Users\\\\VIVAm\\\\AppData\\\\Local\\\\Temp\\\\tmp47wzg31d.tar'"
        },
        {
-        "ts": 1791154733.0,
+        "ts": 1791161311.0,
         "level": "WARNING",
-        "msg": "2026-10-05 11:58:53,565 WARNING plugins.platforms.telegram.telegram_network: [Telegram] Sticky Telegram path 149.154.166.110 failed; re-walking IPv4 literals before the hostname"
+        "msg": "2026-10-05 13:48:31,610 WARNING tools.environments.file_sync: sync_back: attempt 2 failed ([Errno 13] Permission denied: 'C:\\\\Users\\\\VIVAm\\\\AppData\\\\Local\\\\Temp\\\\tmptylgbmg4.tar'), retrying in 4s"
        },
        {
-        "ts": 1791154673.0,
+        "ts": 1791161309.0,
         "level": "WARNING",
-        "msg": "2026-10-05 11:57:53,698 WARNING plugins.platforms.telegram.telegram_network: [Telegram] IPv4 Telegram API IP 149.154.166.110 failed:"
+        "msg": "2026-10-05 13:48:29,520 WARNING tools.environments.file_sync: sync_back: attempt 1 failed ([Errno 13] Permission denied: 'C:\\\\Users\\\\VIVAm\\\\AppData\\\\Local\\\\Temp\\\\tmp1pib0zhy.tar'), retrying in 2s"
        },
        {
-        "ts": 1791154673.0,
+        "ts": 1791160701.0,
         "level": "WARNING",
-        "msg": "2026-10-05 11:57:53,697 WARNING plugins.platforms.telegram.telegram_network: [Telegram] Sticky Telegram path 149.154.166.110 failed; re-walking IPv4 literals before the hostname"
+        "msg": "2026-10-05 13:38:21,507 WARNING plugins.platforms.telegram.telegram_network: [Telegram] IPv4 Telegram API IP 149.154.166.110 failed:"
        },
        {
-        "ts": 1791154562.0,
-        "level": "INFO",
-        "msg": "2026-10-05 11:56:02,429 INFO gateway.run: Session storage: C:\\Users\\VIVAm\\AppData\\Local\\hermes\\profiles\\bot2\\sessions"
+        "ts": 1791160701.0,
+        "level": "WARNING",
+        "msg": "2026-10-05 13:38:21,507 WARNING plugins.platforms.telegram.telegram_network: [Telegram] Sticky Telegram path 149.154.166.110 failed; re-walking IPv4 literals before the hostname"
        }
       ],
       "error": null
@@ -15844,6 +15808,13 @@
        "unknown": 0,
        "empty_shell": 0
       },
+      "older": {
+       "normal": 43,
+       "failed": 0,
+       "timeout": 0,
+       "unknown": 0,
+       "empty_shell": 6
+      },
       "unknown": {
        "normal": 0,
        "failed": 0,
@@ -15865,16 +15836,16 @@
      "profile": "nelson",
      "display_name": "nelson",
      "process": {
-      "pid": 10828,
+      "pid": 14084,
       "state_label": "online",
       "chain": [
        {
-        "pid": 10828,
+        "pid": 14084,
         "role": "入口",
         "kind": "venv"
        },
        {
-        "pid": 5640,
+        "pid": 6484,
         "role": "包装子进程",
         "kind": "uv"
        }
@@ -15884,9 +15855,9 @@
      "work": {
       "state": "在线·空闲",
       "reasons": [
-       "主会话最近活动 1322s 前"
+       "主会话最近活动 7730s 前"
       ],
-      "progress_age_s": 1322
+      "progress_age_s": 7730
      },
      "activity": {
       "text": "会话：新xpi问题集中交Naomi修复（385 次调用）",
@@ -16743,32 +16714,32 @@
       }
      ],
      "log_errors": {
-      "count_24h": 63,
+      "count_24h": 56,
       "recent": [
        {
-        "ts": 1791154387.0,
+        "ts": 1791161430.0,
         "level": "WARNING",
-        "msg": "2026-10-05 11:53:07,919 WARNING [20260924_173220_33417473] agent.conversation_loop: Retrying API call in 2.1581636732555762s (attempt 1/3) thread=hermes-gateway_1:13600 provider=zai base_url=https://a"
+        "msg": "2026-10-05 13:50:30,632 WARNING hermes_plugins.telegram_platform.adapter: [Telegram] Telegram network error (attempt 1/10), reconnecting in 5s. Error: httpx.ConnectError:"
        },
        {
-        "ts": 1791154387.0,
+        "ts": 1791161430.0,
         "level": "WARNING",
-        "msg": "2026-10-05 11:53:07,918 WARNING [20260924_173220_33417473] agent.conversation_loop: API call failed (attempt 1/3) error_type=RateLimitError thread=hermes-gateway_1:13600 provider=zai base_url=https://"
+        "msg": "2026-10-05 13:50:30,632 WARNING hermes_plugins.telegram_platform.adapter: [Telegram] Telegram polling degraded (heartbeat probe); gateway stays alive and will retry. Error: httpx.ConnectError:"
        },
        {
-        "ts": 1791154387.0,
-        "level": "ERROR",
-        "msg": "2026-10-05 11:53:07,825 ERROR agent.chat_completion_helpers: Streaming failed before delivery: Error code: 429 - {'error': {'code': '1302', 'message': 'Rate limit reached for requests'}}"
-       },
-       {
-        "ts": 1791154383.0,
-        "level": "ERROR",
-        "msg": "2026-10-05 11:53:03,215 ERROR [20260924_173220_33417473] agent.conversation_loop: API call failed after 3 retries. HTTP 429: Rate limit reached for requests | provider=zai model=glm-5.3-flash msgs=687"
-       },
-       {
-        "ts": 1791154383.0,
+        "ts": 1791161430.0,
         "level": "WARNING",
-        "msg": "2026-10-05 11:53:03,207 WARNING [20260924_173220_33417473] agent.conversation_loop: API call failed (attempt 3/3) error_type=RateLimitError thread=hermes-gateway_0:8244 provider=zai base_url=https://a"
+        "msg": "2026-10-05 13:50:30,631 WARNING plugins.platforms.telegram.telegram_network: [Telegram] IPv4 Telegram API IP 149.154.166.110 failed:"
+       },
+       {
+        "ts": 1791161429.0,
+        "level": "WARNING",
+        "msg": "2026-10-05 13:50:29,974 WARNING plugins.platforms.telegram.telegram_network: [Telegram] Dual-stack api.telegram.org path failed ()"
+       },
+       {
+        "ts": 1791161429.0,
+        "level": "WARNING",
+        "msg": "2026-10-05 13:50:29,959 WARNING plugins.platforms.telegram.telegram_network: [Telegram] Sticky Telegram path api.telegram.org failed; re-walking IPv4 literals before the hostname"
        }
       ],
       "error": null
@@ -17361,6 +17332,13 @@
        "unknown": 0,
        "empty_shell": 0
       },
+      "older": {
+       "normal": 15,
+       "failed": 0,
+       "timeout": 0,
+       "unknown": 0,
+       "empty_shell": 6
+      },
       "unknown": {
        "normal": 0,
        "failed": 0,
@@ -17382,16 +17360,16 @@
      "profile": "neta",
      "display_name": "neta",
      "process": {
-      "pid": 6804,
+      "pid": 13908,
       "state_label": "online",
       "chain": [
        {
-        "pid": 6804,
+        "pid": 13908,
         "role": "入口",
         "kind": "venv"
        },
        {
-        "pid": 11224,
+        "pid": 13796,
         "role": "包装子进程",
         "kind": "uv"
        }
@@ -17399,11 +17377,11 @@
       "dup_procs": 1
      },
      "work": {
-      "state": "在线·空闲",
+      "state": "近期有工作进展",
       "reasons": [
-       "主会话最近活动 1325s 前"
+       "主会话最近活动 7733s 前"
       ],
-      "progress_age_s": 1325
+      "progress_age_s": 7733
      },
      "activity": {
       "text": "会话：Check if chat is working（314 次调用）",
@@ -18568,8 +18546,18 @@
       }
      ],
      "log_errors": {
-      "count_24h": 68,
+      "count_24h": 70,
       "recent": [
+       {
+        "ts": 1791158421.0,
+        "level": "WARNING",
+        "msg": "2026-10-05 13:00:21,505 WARNING plugins.platforms.telegram.telegram_network: [Telegram] IPv4 Telegram API IP 149.154.166.110 failed:"
+       },
+       {
+        "ts": 1791158421.0,
+        "level": "WARNING",
+        "msg": "2026-10-05 13:00:21,505 WARNING plugins.platforms.telegram.telegram_network: [Telegram] Sticky Telegram path 149.154.166.110 failed; re-walking IPv4 literals before the hostname"
+       },
        {
         "ts": 1791154485.0,
         "level": "WARNING",
@@ -18584,16 +18572,6 @@
         "ts": 1791154388.0,
         "level": "WARNING",
         "msg": "2026-10-05 11:53:08,100 WARNING [20260924_173220_a5187fa8] agent.conversation_loop: Retrying API call in 2.9415153329181027s (attempt 1/3) thread=hermes-gateway_1:8656 provider=zai base_url=https://ap"
-       },
-       {
-        "ts": 1791154388.0,
-        "level": "WARNING",
-        "msg": "2026-10-05 11:53:08,099 WARNING [20260924_173220_a5187fa8] agent.conversation_loop: API call failed (attempt 1/3) error_type=RateLimitError thread=hermes-gateway_1:8656 provider=zai base_url=https://a"
-       },
-       {
-        "ts": 1791154388.0,
-        "level": "ERROR",
-        "msg": "2026-10-05 11:53:08,038 ERROR agent.chat_completion_helpers: Streaming failed before delivery: Error code: 429 - {'error': {'code': '1302', 'message': 'Rate limit reached for requests'}}"
        }
       ],
       "error": null
@@ -18878,6 +18856,13 @@
        "unknown": 0,
        "empty_shell": 0
       },
+      "older": {
+       "normal": 1,
+       "failed": 0,
+       "timeout": 0,
+       "unknown": 0,
+       "empty_shell": 6
+      },
       "unknown": {
        "normal": 0,
        "failed": 0,
@@ -18899,16 +18884,16 @@
      "profile": "nina",
      "display_name": "nina",
      "process": {
-      "pid": 2460,
+      "pid": 3304,
       "state_label": "online",
       "chain": [
        {
-        "pid": 2460,
+        "pid": 3304,
         "role": "入口",
         "kind": "venv"
        },
        {
-        "pid": 16316,
+        "pid": 6028,
         "role": "包装子进程",
         "kind": "uv"
        }
@@ -18918,14 +18903,14 @@
      "work": {
       "state": "近期有工作进展",
       "reasons": [
-       "主会话最近活动 45s 前"
+       "主会话最近活动 14s 前"
       ],
-      "progress_age_s": 46
+      "progress_age_s": 14
      },
      "activity": {
-      "text": "会话：Process update request（274 次调用）",
+      "text": "会话：Process update request（329 次调用）",
       "source": "session_db",
-      "at": "2026-10-04T23:17:48Z"
+      "at": "2026-10-05T01:05:07Z"
      },
      "subagents": {
       "confirmed_running": 0,
@@ -19442,10 +19427,10 @@
        "provider": "zai",
        "base_url": "https://open.bigmodel.cn/api/coding/paas/v4",
        "billing_mode": "",
-       "last_seen": 1791155880.229388,
-       "input": 44090742,
-       "output": 7345430,
-       "calls": 9004,
+       "last_seen": 1791162247.8924797,
+       "input": 44635634,
+       "output": 7389357,
+       "calls": 9095,
        "first_seen": 1787897508.583917,
        "_fromTotals": true,
        "label": "GLM coding 订阅包",
@@ -19980,13 +19965,13 @@
         "provider": "zai",
         "base_url": "https://open.bigmodel.cn/api/coding/paas/v4",
         "billing_mode": "",
-        "input": 44090742,
-        "output": 7345430,
-        "cache_read": 1017790144,
+        "input": 44635634,
+        "output": 7389357,
+        "cache_read": 1037831104,
         "cache_write": 0,
-        "calls": 9004,
+        "calls": 9095,
         "first_seen": 1787897508.583917,
-        "last_seen": 1791155880.229388
+        "last_seen": 1791162247.8924797
        },
        {
         "model": "glm-5.3-flash",
@@ -20153,7 +20138,7 @@
       "housekeeping_ts": null
      },
      "session_budget": {
-      "last_prompt_tokens": 200921,
+      "last_prompt_tokens": 231917,
       "model": null,
       "provider": null,
       "session_id": "20261003_200117_e28e208f"
@@ -20162,39 +20147,39 @@
       {
        "code": "session_overrun",
        "session_id": "20261003_200117_e28e208f",
-       "source": "sessions.last_activity_at（主会话 telegram 20261003_200 · 582 条消息 · 自 started_at 累计 1 天）",
+       "source": "sessions.last_activity_at（主会话 telegram 20261003_200 · 694 条消息 · 自 started_at 累计 1 天）",
        "window": "主会话累计（自会话开始，非窗口）",
-       "detail": "api_call_count=274 (>150) · 来源 sessions.last_activity_at（主会话 telegram 20261003_200 · 582 条消息 · 自 started_at 累计 1 天）",
+       "detail": "api_call_count=329 (>150) · 来源 sessions.last_activity_at（主会话 telegram 20261003_200 · 694 条消息 · 自 started_at 累计 1 天）",
        "suggest": "/new 开新会话 + HANDOFF 交接"
       }
      ],
      "log_errors": {
-      "count_24h": 97,
+      "count_24h": 127,
       "recent": [
        {
-        "ts": 1791155198.0,
+        "ts": 1791161991.0,
         "level": "WARNING",
-        "msg": "2026-10-05 12:06:38,305 WARNING [20261003_200117_e28e208f] agent.tool_executor: Tool skill_manage returned error (0.06s): {\"success\": false, \"error\": \"Refusing background curator patch for skill 'astr"
+        "msg": "2026-10-05 13:59:51,936 WARNING plugins.platforms.telegram.telegram_network: [Telegram] IPv4 Telegram API IP 149.154.166.110 failed:"
        },
        {
-        "ts": 1791155184.0,
+        "ts": 1791161991.0,
         "level": "WARNING",
-        "msg": "2026-10-05 12:06:24,689 WARNING [20261003_200117_e28e208f] agent.tool_executor: Tool skill_manage returned error (0.02s): {\"success\": false, \"error\": \"Refusing background curator patch for skill 'dash"
+        "msg": "2026-10-05 13:59:51,935 WARNING plugins.platforms.telegram.telegram_network: [Telegram] Sticky Telegram path 149.154.166.110 failed; re-walking IPv4 literals before the hostname"
        },
        {
-        "ts": 1791155168.0,
+        "ts": 1791161960.0,
         "level": "WARNING",
-        "msg": "2026-10-05 12:06:08,463 WARNING [20261003_200117_e28e208f] agent.tool_executor: Tool skill_manage returned error (0.03s): {\"success\": false, \"error\": \"Refusing background curator patch for skill 'dash"
+        "msg": "2026-10-05 13:59:20,552 WARNING plugins.platforms.telegram.telegram_network: [Telegram] IPv4 Telegram API IP 149.154.166.110 failed:"
        },
        {
-        "ts": 1791155145.0,
+        "ts": 1791161960.0,
         "level": "WARNING",
-        "msg": "2026-10-05 12:05:45,514 WARNING [20261003_200117_e28e208f] agent.tool_executor: Tool skill_manage returned error (0.02s): {\"success\": false, \"error\": \"Refusing background curator patch for skill 'dash"
+        "msg": "2026-10-05 13:59:20,552 WARNING plugins.platforms.telegram.telegram_network: [Telegram] Sticky Telegram path 149.154.166.110 failed; re-walking IPv4 literals before the hostname"
        },
        {
-        "ts": 1791155125.0,
+        "ts": 1791161622.0,
         "level": "WARNING",
-        "msg": "2026-10-05 12:05:25,279 WARNING [20261003_200117_e28e208f] agent.tool_executor: Tool skill_manage returned error (0.02s): {\"success\": false, \"error\": \"Refusing background curator patch for skill 'dash"
+        "msg": "2026-10-05 13:53:42,103 WARNING plugins.platforms.telegram.telegram_network: [Telegram] IPv4 Telegram API IP 149.154.166.110 failed:"
        }
       ],
       "error": null
@@ -21073,6 +21058,13 @@
        "unknown": 0,
        "empty_shell": 0
       },
+      "older": {
+       "normal": 19,
+       "failed": 0,
+       "timeout": 0,
+       "unknown": 0,
+       "empty_shell": 13
+      },
       "unknown": {
        "normal": 0,
        "failed": 0,
@@ -21133,8 +21125,8 @@
  },
  "free_quota": {
   "schema_version": 1,
-  "generated_at": "2026-10-04T23:18:37.092142Z",
-  "source_generated_at": "2026-10-04T23:16:47Z",
+  "generated_at": "2026-10-05T01:05:25.377874Z",
+  "source_generated_at": "2026-10-05T01:01:52Z",
   "source_status": "ok",
   "channels": [
    {
@@ -21178,8 +21170,8 @@
      "exact": 0
     },
     "freshness": "fresh",
-    "observed_at": "2026-10-04T23:16:45Z",
-    "oldest_observed_at": "2026-10-04T23:16:45Z",
+    "observed_at": "2026-10-05T01:01:50Z",
+    "oldest_observed_at": "2026-10-05T01:01:50Z",
     "next_probe_at": null,
     "reason_codes": [
      "unverified"
@@ -21192,15 +21184,15 @@
     "local_calls_24h": [
      {
       "host": "ming-ai-station",
-      "count": 44,
+      "count": 64,
       "partial": false,
-      "sampled_at": 1791155876.489337
+      "sampled_at": 1791162284.455238
      },
      {
       "host": "ming-server",
-      "count": 533,
+      "count": 502,
       "partial": false,
-      "sampled_at": 1791155889.9807017
+      "sampled_at": 1791162296.7831411
      },
      {
       "host": "win-station",
@@ -21223,7 +21215,7 @@
      "window_start": null,
      "window_end": null,
      "reset": "1m26.4s",
-     "sampled_at": "2026-10-04T23:16:46Z",
+     "sampled_at": "2026-10-05T01:01:50Z",
      "used": 1,
      "limit": 1000,
      "remaining": 999,
@@ -21239,7 +21231,7 @@
       "limit": 8000,
       "remaining": 7927,
       "reset": "547ms",
-      "sampled_at": "2026-10-04T23:16:46Z",
+      "sampled_at": "2026-10-05T01:01:50Z",
       "source": "groq_response_headers"
      }
     ],
@@ -21277,8 +21269,8 @@
      "exact": 1
     },
     "freshness": "fresh",
-    "observed_at": "2026-10-04T23:16:46Z",
-    "oldest_observed_at": "2026-10-04T23:16:46Z",
+    "observed_at": "2026-10-05T01:01:50Z",
+    "oldest_observed_at": "2026-10-05T01:01:50Z",
     "next_probe_at": null,
     "reason_codes": [
      "ok"
@@ -21291,15 +21283,15 @@
     "local_calls_24h": [
      {
       "host": "ming-ai-station",
-      "count": 44,
+      "count": 64,
       "partial": false,
-      "sampled_at": 1791155876.489337
+      "sampled_at": 1791162284.455238
      },
      {
       "host": "ming-server",
       "count": 0,
       "partial": false,
-      "sampled_at": 1791155889.9807017
+      "sampled_at": 1791162296.7831411
      },
      {
       "host": "win-station",
@@ -21330,9 +21322,9 @@
     "limit": 1000,
     "reference_limit": 1000,
     "limit_quality": "verified",
-    "used": 3,
-    "remaining": 997,
-    "used_ratio": 0.003,
+    "used": 0,
+    "remaining": 1000,
+    "used_ratio": 0.0,
     "usage_quality": "exact",
     "known_subtotal": null,
     "state_counts": {
@@ -21350,8 +21342,8 @@
      "exact": 1
     },
     "freshness": "fresh",
-    "observed_at": "2026-10-04T23:16:46Z",
-    "oldest_observed_at": "2026-10-04T23:16:46Z",
+    "observed_at": "2026-10-05T01:01:51Z",
+    "oldest_observed_at": "2026-10-05T01:01:51Z",
     "next_probe_at": null,
     "reason_codes": [
      "ok"
@@ -21364,15 +21356,15 @@
     "local_calls_24h": [
      {
       "host": "ming-ai-station",
-      "count": 44,
+      "count": 64,
       "partial": false,
-      "sampled_at": 1791155876.489337
+      "sampled_at": 1791162284.455238
      },
      {
       "host": "ming-server",
       "count": 2,
       "partial": false,
-      "sampled_at": 1791155889.9807017
+      "sampled_at": 1791162296.7831411
      },
      {
       "host": "win-station",
@@ -21423,8 +21415,8 @@
      "exact": 0
     },
     "freshness": "fresh",
-    "observed_at": "2026-10-04T23:16:46Z",
-    "oldest_observed_at": "2026-10-04T23:16:46Z",
+    "observed_at": "2026-10-05T01:01:51Z",
+    "oldest_observed_at": "2026-10-05T01:01:51Z",
     "next_probe_at": null,
     "reason_codes": [
      "http_error",
@@ -21438,15 +21430,15 @@
     "local_calls_24h": [
      {
       "host": "ming-ai-station",
-      "count": 44,
+      "count": 64,
       "partial": false,
-      "sampled_at": 1791155876.489337
+      "sampled_at": 1791162284.455238
      },
      {
       "host": "ming-server",
       "count": 0,
       "partial": false,
-      "sampled_at": 1791155889.9807017
+      "sampled_at": 1791162296.7831411
      },
      {
       "host": "win-station",
@@ -21511,13 +21503,13 @@
       "host": "ming-ai-station",
       "count": 0,
       "partial": false,
-      "sampled_at": 1791155876.489337
+      "sampled_at": 1791162284.455238
      },
      {
       "host": "ming-server",
       "count": 0,
       "partial": false,
-      "sampled_at": 1791155889.9807017
+      "sampled_at": 1791162296.7831411
      },
      {
       "host": "win-station",
@@ -21568,8 +21560,8 @@
      "exact": 0
     },
     "freshness": "fresh",
-    "observed_at": "2026-10-04T23:16:47Z",
-    "oldest_observed_at": "2026-10-04T23:16:47Z",
+    "observed_at": "2026-10-05T01:01:52Z",
+    "oldest_observed_at": "2026-10-05T01:01:52Z",
     "next_probe_at": null,
     "reason_codes": [
      "ok"
@@ -21582,15 +21574,15 @@
     "local_calls_24h": [
      {
       "host": "ming-ai-station",
-      "count": 44,
+      "count": 64,
       "partial": false,
-      "sampled_at": 1791155876.489337
+      "sampled_at": 1791162284.455238
      },
      {
       "host": "ming-server",
       "count": 0,
       "partial": false,
-      "sampled_at": 1791155889.9807017
+      "sampled_at": 1791162296.7831411
      },
      {
       "host": "win-station",
@@ -21655,13 +21647,13 @@
       "host": "ming-ai-station",
       "count": 0,
       "partial": false,
-      "sampled_at": 1791155876.489337
+      "sampled_at": 1791162284.455238
      },
      {
       "host": "ming-server",
       "count": 0,
       "partial": false,
-      "sampled_at": 1791155889.9807017
+      "sampled_at": 1791162296.7831411
      },
      {
       "host": "win-station",
@@ -21726,13 +21718,13 @@
       "host": "ming-ai-station",
       "count": 0,
       "partial": false,
-      "sampled_at": 1791155876.489337
+      "sampled_at": 1791162284.455238
      },
      {
       "host": "ming-server",
       "count": 0,
       "partial": false,
-      "sampled_at": 1791155889.9807017
+      "sampled_at": 1791162296.7831411
      },
      {
       "host": "win-station",
@@ -21745,8 +21737,8 @@
   ]
  },
  "self_check": {
-  "checked_at": "2026-10-04T23:17:56Z",
-  "snapshot_id": "14e824a2e12e",
+  "checked_at": "2026-10-05T01:04:44Z",
+  "snapshot_id": "8fda8e1dfbdb",
   "status": "ok",
   "error_count": 0,
   "warning_count": 0,

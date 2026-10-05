@@ -322,7 +322,7 @@
     var tok = 0, calls = 0, i;
     for (i = 0; i < groups.length; i++) { tok += totalOf(groups[i]); calls += groups[i].calls; }
     var br = bucketCounts(b.agents_completed_buckets || {});
-    var segs = ['4h', '4–24h', '24h–7d'].map(function (k) {
+    var segs = ['4h', '4–24h', '24h–7d', 'older'].map(function (k) {
       var bk = (b.agents_completed_buckets || {})[k] || {};
       var lc = leafCounts(bk);
       return { key: k, normal: lc.normal, failed: lc.failed, timeout: lc.timeout,
@@ -553,7 +553,7 @@
         rightTxt = 'no records';
       }
       return '<div class="px6-hseg">'
-        + '<span class="px6-hlbl">' + esc(x.key) + '</span>'
+        + '<span class="px6-hlbl">' + esc(x.key === 'older' ? '>7d 全史' : x.key) + '</span>'
         + '<span class="px6-htrack"><span class="px6-hfill' + segCls + '" style="width:' + clamp(vol, 2, 100).toFixed(1) + '%;' + segFill + ';opacity:' + segOpacity + '"></span></span>'
         + '<span class="px6-hc"><span><b>' + x.normal + '</b> ok / ' + (x.failed + x.timeout) + ' bad</span>'
         + '<span>' + rightTxt + '</span></span>'
