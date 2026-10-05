@@ -55,13 +55,15 @@ function render(container, freeQuota, options = {}) {
     const fill = document.createElement("div");
     fill.className = "fq-fill";
     const w = capacityWidth(c.visual && c.visual.capacity_units, (c.visual && c.visual.scale_max_units) || 4);
-    const unknown = c.used_ratio == null || !snapFresh || c.usage_quality !== "exact";
+    const noKey = (c.account_count == null || c.account_count === 0); // Astra P1-2: 无账号=没配key
+    const unknown = (c.used_ratio == null || !snapFresh || c.usage_quality !== "exact") && !noKey;
     fill.style.width = (w == null ? 100 : w) + "%";
-    fill.style.background = unknown ? "repeating-linear-gradient(45deg,#f59e0b55 0 5px,#f59e0b99 5px 10px)" : usageColor(c.used_ratio);
+    fill.style.background = noKey ? "#e2e8f0" : (unknown ? "repeating-linear-gradient(45deg,#f59e0b55 0 5px,#f59e0b99 5px 10px)" : usageColor(c.used_ratio));
     if (w == null) fill.style.borderRight = "2px dashed #64748b";
     track.appendChild(fill);
     let txt;
-    if (!snapFresh) txt = "全站数据过期·比例降级";
+    if (noKey) txt = "未配 key"; // Astra P1-2: 静态事实, 优先于过期降级
+    else if (!snapFresh) txt = "全站数据过期·比例降级";
     else if (c.used_ratio != null) txt = `已用${(c.used_ratio * 100).toFixed(1)}% 剩${fmtNum(c.remaining)}`;
     else if (c.known_subtotal) txt = `已知${c.known_subtotal.account_count}/${c.account_count}账号小计`;
     else {

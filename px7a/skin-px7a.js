@@ -451,7 +451,7 @@
       '<section class="px6-sec">'
       +   '<div class="px6-sechead">'
       +     '<span class="px6-secname">HOSTS</span>'
-      +     '<span class="px6-secsub">' + hAgg.map(function (a) { return esc(a.h.short); }).join(' / ') + '</span>'
+      +     '<span class="px6-secsub">' + hAgg.map(function (a) { return esc(a.h.short); }).join(' / ') + ' <i>· 条长=台账量</i></span>'
       +     '<span class="px6-secrval"><em>' + sums.length + '</em>/' + sums.length + ' up</span>'
       +   '</div>'
       +   '<div class="px6-hosts">' + hostRows + '</div>'
