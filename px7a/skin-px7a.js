@@ -529,7 +529,8 @@
         pgHTML += '<div class="px6-row">'
           + '<span class="px6-rlbl" title="' + esc(p.provider + '/' + m.model) + '"><em>' + esc(p.provider) + '</em>/' + esc(m.model) + '</span>'
           + barHTML(v / maxModel * 100, s.br, true)
-          + '<span class="px6-rval">' + fmtTok(v) + ' tok<br><b>' + fmtInt(m.calls) + ' calls</b></span>'
+          + '<span class="px6-rval">' + fmtTok(v) + ' tok<br><b>' + fmtInt(m.calls) + ' calls</b>'
+          + '<span class="px6-rsub">↑' + fmtTok(m.input) + ' ↓' + fmtTok(m.output) + (m.cache_read ? ' 缓存' + fmtTok(m.cache_read) : '') + '</span>'
           + '</div>';
       });
       pgHTML += '</div>';
