@@ -5408,7 +5408,7 @@
           "work": {
             "state": "error",
             "reasons": [
-              "远端 wsl 采集失败: no marker in output (rc=255): ssh: connect to host 192.168.178.69 port 22: No route to host\n || stdout: "
+              "远端 wsl 采集失败: no marker in output (rc=255): ssh: connect to host x.x.x.x port 22: No route to host\n || stdout: "
             ],
             "progress_age_s": null
           },
@@ -5471,7 +5471,7 @@
           "work": {
             "state": "error",
             "reasons": [
-              "远端 wsl 采集失败: no marker in output (rc=255): ssh: connect to host 192.168.178.69 port 22: No route to host\n || stdout: "
+              "远端 wsl 采集失败: no marker in output (rc=255): ssh: connect to host x.x.x.x port 22: No route to host\n || stdout: "
             ],
             "progress_age_s": null
           },
@@ -6156,8 +6156,8 @@
     "error_count": 2,
     "warning_count": 2,
     "warnings": [
-      "ming-ai-station:nova: remote wsl failed: no marker in output (rc=255): ssh: connect to host 192.168.178.69 port 22: No route to host\n || stdout: ",
-      "ming-ai-station:nyx: remote wsl failed: no marker in output (rc=255): ssh: connect to host 192.168.178.69 port 22: No route to host\n || stdout: "
+      "ming-ai-station:nova: remote wsl failed: no marker in output (rc=255): ssh: connect to host x.x.x.x port 22: No route to host\n || stdout: ",
+      "ming-ai-station:nyx: remote wsl failed: no marker in output (rc=255): ssh: connect to host x.x.x.x port 22: No route to host\n || stdout: "
     ],
     "issues": [
       "ming-ai-station:nova: work=error",
