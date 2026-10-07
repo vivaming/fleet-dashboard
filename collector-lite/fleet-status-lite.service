@@ -1,0 +1,14 @@
+[Unit]
+Description=px7a-lite status server (:8711)
+After=network-online.target
+
+[Service]
+Type=simple
+User=vivaming
+WorkingDirectory=/home/vivaming/work/fleet-dashboard/px7a-tools
+ExecStart=/usr/bin/python3 /home/vivaming/work/fleet-dashboard/px7a-tools/server_lite.py
+Restart=always
+RestartSec=5
+
+[Install]
+WantedBy=default.target

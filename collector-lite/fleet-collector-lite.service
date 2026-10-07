@@ -1,0 +1,14 @@
+[Unit]
+Description=px7a-lite fleet collector (.65 resident, dual-OS aware)
+After=network-online.target
+
+[Service]
+Type=simple
+User=vivaming
+WorkingDirectory=/home/vivaming/work/fleet-dashboard/px7a-tools
+ExecStart=/usr/bin/python3 /home/vivaming/work/fleet-dashboard/px7a-tools/collect_lite.py --loop 15
+Restart=always
+RestartSec=5
+
+[Install]
+WantedBy=default.target
