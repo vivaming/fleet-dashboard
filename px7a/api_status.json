@@ -1,16 +1,16 @@
 {
   "schema_version": 1,
-  "snapshot_id": "16aa77c370ce",
-  "generated_at": "2026-10-07T12:29:49Z",
+  "snapshot_id": "e4c41fbe0edd",
+  "generated_at": "2026-10-07T12:59:58Z",
   "collect_interval_s": 15,
   "web_refresh_hint_s": 5,
   "stale_after_s": 60,
   "unknown_after_s": 125,
   "collector": {
     "pid": 4148941,
-    "cycle": 170,
-    "last_success_at": "2026-10-07T12:29:49Z",
-    "round_seconds": 0.826,
+    "cycle": 267,
+    "last_success_at": "2026-10-07T12:59:58Z",
+    "round_seconds": 3.547,
     "name": "collect_lite",
     "version": 1
   },
@@ -19,9 +19,9 @@
       "host_id": "ming-server",
       "short": ".65",
       "transport": "local",
-      "observed_at": "2026-10-07T12:29:48Z",
-      "observed_at_epoch": 1791376188.652682,
-      "last_success_at": "2026-10-07T12:29:48Z",
+      "observed_at": "2026-10-07T12:59:55Z",
+      "observed_at_epoch": 1791377995.0079248,
+      "last_success_at": "2026-10-07T12:59:55Z",
       "error": null,
       "bots": [
         {
@@ -33,9 +33,9 @@
           "work": {
             "state": "近期有工作进展",
             "reasons": [
-              "最近活动 12351s 前"
+              "最近活动 14157s 前"
             ],
-            "progress_age_s": 12351
+            "progress_age_s": 14157
           },
           "tokens": {
             "totals": [
@@ -1312,9 +1312,9 @@
           "work": {
             "state": "近期有工作进展",
             "reasons": [
-              "最近活动 12169s 前"
+              "最近活动 13976s 前"
             ],
-            "progress_age_s": 12169
+            "progress_age_s": 13976
           },
           "tokens": {
             "totals": [
@@ -1323,13 +1323,13 @@
                 "provider": "zai",
                 "base_url": "https://open.bigmodel.cn/api/coding/paas/v4",
                 "billing_mode": "",
-                "input": 4678315,
-                "output": 549335,
-                "cache_read": 66194560,
+                "input": 5336138,
+                "output": 593614,
+                "cache_read": 81546176,
                 "cache_write": 0,
-                "calls": 858,
+                "calls": 978,
                 "first_seen": 1788564522.2305634,
-                "last_seen": 1791375692.2459543
+                "last_seen": 1791377993.7190568
               },
               {
                 "model": "deepseek-v4-flash-ga-260731",
@@ -1375,13 +1375,13 @@
                 "provider": "zai",
                 "base_url": "https://open.bigmodel.cn/api/coding/paas/v4/",
                 "billing_mode": "",
-                "input": 38212,
-                "output": 43825,
+                "input": 39178,
+                "output": 45020,
                 "cache_read": 6464,
                 "cache_write": 0,
-                "calls": 101,
+                "calls": 103,
                 "first_seen": 1788564498.7921848,
-                "last_seen": 1791363937.0530257
+                "last_seen": 1791376803.0264525
               },
               {
                 "model": "deepseek-v4.1-flash:free",
@@ -1462,6 +1462,19 @@
                 "last_seen": 1791261337.6810713
               },
               {
+                "model": "glm-4.5-flash",
+                "provider": "",
+                "base_url": "",
+                "billing_mode": "",
+                "input": 2455,
+                "output": 2236,
+                "cache_read": 439,
+                "cache_write": 0,
+                "calls": 4,
+                "first_seen": 1788587250.9471781,
+                "last_seen": 1791376566.7960863
+              },
+              {
                 "model": "deepseek-v4-flash-ga-260731",
                 "provider": "volcengine",
                 "base_url": "https://ark.cn-beijing.volces.com/api/coding/v3/",
@@ -1473,19 +1486,6 @@
                 "calls": 3,
                 "first_seen": 1789423766.5782661,
                 "last_seen": 1789423818.7667139
-              },
-              {
-                "model": "glm-4.5-flash",
-                "provider": "",
-                "base_url": "",
-                "billing_mode": "",
-                "input": 1709,
-                "output": 1928,
-                "cache_read": 434,
-                "cache_write": 0,
-                "calls": 3,
-                "first_seen": 1788587250.9471781,
-                "last_seen": 1790289840.964885
               },
               {
                 "model": "deepseek-v4-flash-ga-260731",
@@ -1546,15 +1546,31 @@
               "model": "glm-5.3-flash",
               "provider": "zai",
               "base_url": "https://open.bigmodel.cn/api/coding/paas/v4",
-              "last_seen": 1791375692.2459543,
-              "input": 4678315,
-              "output": 549335,
-              "calls": 858,
+              "last_seen": 1791377993.7190568,
+              "input": 5336138,
+              "output": 593614,
+              "calls": 978,
               "first_seen": 1788564522.2305634,
               "estimated_cost_usd": 0.0,
               "cost_status": "unknown",
               "_score": 1,
               "label": "zai",
+              "free_status": "未知",
+              "evidence": "无核验记录"
+            },
+            {
+              "model": "glm-4.5-flash",
+              "provider": "",
+              "base_url": "",
+              "last_seen": 1791376566.7960863,
+              "input": 2455,
+              "output": 2236,
+              "calls": 4,
+              "first_seen": 1788587250.9471781,
+              "estimated_cost_usd": 0.0,
+              "cost_status": "unknown",
+              "_score": 1,
+              "label": "未知渠道",
               "free_status": "未知",
               "evidence": "无核验记录"
             },
@@ -1599,22 +1615,6 @@
               "output": 1168,
               "calls": 2,
               "first_seen": 1790630973.7501702,
-              "estimated_cost_usd": 0.0,
-              "cost_status": "unknown",
-              "_score": 1,
-              "label": "未知渠道",
-              "free_status": "未知",
-              "evidence": "无核验记录"
-            },
-            {
-              "model": "glm-4.5-flash",
-              "provider": "",
-              "base_url": "",
-              "last_seen": 1790289840.964885,
-              "input": 1709,
-              "output": 1928,
-              "calls": 3,
-              "first_seen": 1788587250.9471781,
               "estimated_cost_usd": 0.0,
               "cost_status": "unknown",
               "_score": 1,
@@ -1728,9 +1728,9 @@
       "host_id": "win-station",
       "short": ".67",
       "transport": "ssh",
-      "observed_at": "2026-10-07T12:29:49Z",
-      "observed_at_epoch": 1791376188.652682,
-      "last_success_at": "2026-10-07T12:29:49Z",
+      "observed_at": "2026-10-07T12:59:55Z",
+      "observed_at_epoch": 1791377995.0079248,
+      "last_success_at": "2026-10-07T12:59:55Z",
       "error": null,
       "bots": [
         {
@@ -1742,10 +1742,10 @@
           "work": {
             "state": "近期有工作进展",
             "reasons": [
-              "最近活动 8591s 前",
+              "最近活动 10398s 前",
               "近 7 天有效结局 normal=0 failed=4 timeout=0 empty_shell=0"
             ],
-            "progress_age_s": 8591
+            "progress_age_s": 10398
           },
           "tokens": {
             "totals": [
@@ -1793,13 +1793,13 @@
                 "provider": "zai",
                 "base_url": "https://api.z.ai/api/coding/paas/v4",
                 "billing_mode": "",
-                "input": 9376156,
-                "output": 1538746,
-                "cache_read": 397281408,
+                "input": 9667059,
+                "output": 1541042,
+                "cache_read": 399601984,
                 "cache_write": 0,
-                "calls": 3047,
+                "calls": 3066,
                 "first_seen": 1790214769.7126176,
-                "last_seen": 1791376187.6535692
+                "last_seen": 1791377607.5645573
               },
               {
                 "model": "nvidia/nemotron-3.5-lightning:free",
@@ -2601,10 +2601,10 @@
               "model": "glm-5.3-flash",
               "provider": "zai",
               "base_url": "https://api.z.ai/api/coding/paas/v4",
-              "last_seen": 1791376187.6535692,
-              "input": 9376156,
-              "output": 1538746,
-              "calls": 3047,
+              "last_seen": 1791377607.5645573,
+              "input": 9667059,
+              "output": 1541042,
+              "calls": 3066,
               "first_seen": 1790214769.7126176,
               "estimated_cost_usd": 0.0,
               "cost_status": "unknown",
@@ -3122,10 +3122,10 @@
           "work": {
             "state": "近期有工作进展",
             "reasons": [
-              "最近活动 8567s 前",
+              "最近活动 10374s 前",
               "近 7 天有效结局 normal=0 failed=1 timeout=0 empty_shell=0"
             ],
-            "progress_age_s": 8567
+            "progress_age_s": 10374
           },
           "tokens": {
             "totals": [
@@ -3160,13 +3160,13 @@
                 "provider": "zai",
                 "base_url": "https://api.z.ai/api/coding/paas/v4",
                 "billing_mode": "",
-                "input": 9806111,
-                "output": 870886,
-                "cache_read": 354892160,
+                "input": 10314043,
+                "output": 892632,
+                "cache_read": 365226432,
                 "cache_write": 0,
-                "calls": 2756,
+                "calls": 2789,
                 "first_seen": 1790222859.9936998,
-                "last_seen": 1791376180.3797023
+                "last_seen": 1791376995.742731
               },
               {
                 "model": "deepseek-v4-flash-ga-260731",
@@ -3539,10 +3539,10 @@
               "model": "glm-5.3-flash",
               "provider": "zai",
               "base_url": "https://api.z.ai/api/coding/paas/v4",
-              "last_seen": 1791376180.3797023,
-              "input": 9806111,
-              "output": 870886,
-              "calls": 2756,
+              "last_seen": 1791376995.742731,
+              "input": 10314043,
+              "output": 892632,
+              "calls": 2789,
               "first_seen": 1790222859.9936998,
               "estimated_cost_usd": 0.0,
               "cost_status": "unknown",
@@ -3724,10 +3724,10 @@
           "work": {
             "state": "近期有工作进展",
             "reasons": [
-              "最近活动 8543s 前",
+              "最近活动 10350s 前",
               "近 7 天有效结局 normal=0 failed=1 timeout=0 empty_shell=1"
             ],
-            "progress_age_s": 8543
+            "progress_age_s": 10350
           },
           "tokens": {
             "totals": [
@@ -3788,13 +3788,13 @@
                 "provider": "zai",
                 "base_url": "https://api.z.ai/api/coding/paas/v4",
                 "billing_mode": "",
-                "input": 14552153,
-                "output": 1026749,
-                "cache_read": 439515520,
+                "input": 14709493,
+                "output": 1027017,
+                "cache_read": 439835648,
                 "cache_write": 0,
-                "calls": 2729,
+                "calls": 2732,
                 "first_seen": 1790216071.488277,
-                "last_seen": 1791367644.5191743
+                "last_seen": 1791376999.38656
               },
               {
                 "model": "glm-5-turbo",
@@ -4284,10 +4284,10 @@
               "model": "glm-5.3-flash",
               "provider": "zai",
               "base_url": "https://api.z.ai/api/coding/paas/v4",
-              "last_seen": 1791367644.5191743,
-              "input": 14552153,
-              "output": 1026749,
-              "calls": 2729,
+              "last_seen": 1791376999.38656,
+              "input": 14709493,
+              "output": 1027017,
+              "calls": 2732,
               "first_seen": 1790216071.488277,
               "estimated_cost_usd": 0.0,
               "cost_status": "unknown",
@@ -4501,10 +4501,10 @@
           "work": {
             "state": "近期有工作进展",
             "reasons": [
-              "最近活动 8519s 前",
+              "最近活动 10325s 前",
               "近 7 天有效结局 normal=0 failed=2 timeout=0 empty_shell=0"
             ],
-            "progress_age_s": 8519
+            "progress_age_s": 10325
           },
           "tokens": {
             "totals": [
@@ -4513,13 +4513,13 @@
                 "provider": "zai",
                 "base_url": "https://open.bigmodel.cn/api/coding/paas/v4",
                 "billing_mode": "",
-                "input": 44619990,
-                "output": 5879085,
-                "cache_read": 1117130304,
+                "input": 45079190,
+                "output": 5888262,
+                "cache_read": 1122372544,
                 "cache_write": 0,
-                "calls": 9155,
+                "calls": 9180,
                 "first_seen": 1787897508.583917,
-                "last_seen": 1791374453.0727549
+                "last_seen": 1791377314.3278105
               },
               {
                 "model": "deepseek-v4-flash-ga-260731",
@@ -5100,10 +5100,10 @@
               "model": "glm-5.3-flash",
               "provider": "zai",
               "base_url": "https://open.bigmodel.cn/api/coding/paas/v4",
-              "last_seen": 1791374453.0727549,
-              "input": 44619990,
-              "output": 5879085,
-              "calls": 9155,
+              "last_seen": 1791377314.3278105,
+              "input": 45079190,
+              "output": 5888262,
+              "calls": 9180,
               "first_seen": 1787897508.583917,
               "estimated_cost_usd": 0.0,
               "cost_status": "unknown",
@@ -5394,9 +5394,9 @@
       "host_id": "ming-ai-station",
       "short": ".69",
       "transport": "ssh-wsl",
-      "observed_at": "2026-10-07T12:29:49Z",
-      "observed_at_epoch": 1791376188.652682,
-      "last_success_at": "2026-10-07T12:29:49Z",
+      "observed_at": "2026-10-07T12:59:58Z",
+      "observed_at_epoch": 1791377995.0079248,
+      "last_success_at": "2026-10-07T12:59:58Z",
       "error": null,
       "bots": [
         {
@@ -5406,60 +5406,16 @@
           "profile": "nova",
           "transport": "ssh-wsl",
           "work": {
-            "state": "近期有工作进展",
+            "state": "error",
             "reasons": [
-              "最近活动 18689s 前"
+              "远端 wsl 采集失败: no marker in output (rc=255): ssh: connect to host 192.168.178.69 port 22: No route to host\n || stdout: "
             ],
-            "progress_age_s": 18689
+            "progress_age_s": null
           },
           "tokens": {
-            "totals": [
-              {
-                "model": "glm-5.3-flash",
-                "provider": "zai",
-                "base_url": "https://open.bigmodel.cn/api/coding/paas/v4",
-                "billing_mode": "",
-                "input": 65289,
-                "output": 21100,
-                "cache_read": 698816,
-                "cache_write": 0,
-                "calls": 28,
-                "first_seen": 1791357507.8416786,
-                "last_seen": 1791370416.7775648
-              },
-              {
-                "model": "glm-5.3-flash",
-                "provider": "zai",
-                "base_url": "https://open.bigmodel.cn/api/coding/paas/v4/",
-                "billing_mode": "",
-                "input": 2166,
-                "output": 3722,
-                "cache_read": 576,
-                "cache_write": 0,
-                "calls": 6,
-                "first_seen": 1791357503.0647624,
-                "last_seen": 1791369790.617684
-              }
-            ]
+            "totals": []
           },
-          "models": [
-            {
-              "model": "glm-5.3-flash",
-              "provider": "zai",
-              "base_url": "https://open.bigmodel.cn/api/coding/paas/v4",
-              "last_seen": 1791370416.7775648,
-              "input": 65289,
-              "output": 21100,
-              "calls": 28,
-              "first_seen": 1791357507.8416786,
-              "estimated_cost_usd": 0.0,
-              "cost_status": "unknown",
-              "_score": 1,
-              "label": "zai",
-              "free_status": "未知",
-              "evidence": "无核验记录"
-            }
-          ],
+          "models": [],
           "agents_completed_buckets": {
             "4h": {
               "normal": 0,
@@ -5500,16 +5456,11 @@
           "agents_completed_coverage": {
             "omp_ledger": "未接入",
             "xpi_seen": "未接入",
-            "hermes_db": "complete"
+            "hermes_db": "unknown"
           },
           "agents_completed_count": 0,
           "agents_completed_count_basis": "hermes_db_child_sessions",
-          "db_status": "ok",
-          "db_stats": {
-            "child_sessions_total": 0,
-            "child_sessions_open": 0,
-            "child_sessions_classified": 0
-          }
+          "db_status": "error"
         },
         {
           "id": "ming-ai-station:nyx",
@@ -5518,60 +5469,16 @@
           "profile": "nyx",
           "transport": "ssh-wsl",
           "work": {
-            "state": "近期有工作进展",
+            "state": "error",
             "reasons": [
-              "最近活动 9273s 前"
+              "远端 wsl 采集失败: no marker in output (rc=255): ssh: connect to host 192.168.178.69 port 22: No route to host\n || stdout: "
             ],
-            "progress_age_s": 9273
+            "progress_age_s": null
           },
           "tokens": {
-            "totals": [
-              {
-                "model": "glm-5.3-flash",
-                "provider": "zai",
-                "base_url": "https://open.bigmodel.cn/api/coding/paas/v4",
-                "billing_mode": "",
-                "input": 20409,
-                "output": 561,
-                "cache_read": 20288,
-                "cache_write": 0,
-                "calls": 2,
-                "first_seen": 1791366920.69094,
-                "last_seen": 1791366954.8124692
-              },
-              {
-                "model": "glm-5.3-flash",
-                "provider": "zai",
-                "base_url": "https://open.bigmodel.cn/api/coding/paas/v4/",
-                "billing_mode": "",
-                "input": 235,
-                "output": 51,
-                "cache_read": 0,
-                "cache_write": 0,
-                "calls": 1,
-                "first_seen": 1791366918.6724067,
-                "last_seen": 1791366918.6724067
-              }
-            ]
+            "totals": []
           },
-          "models": [
-            {
-              "model": "glm-5.3-flash",
-              "provider": "zai",
-              "base_url": "https://open.bigmodel.cn/api/coding/paas/v4",
-              "last_seen": 1791366954.8124692,
-              "input": 20409,
-              "output": 561,
-              "calls": 2,
-              "first_seen": 1791366920.69094,
-              "estimated_cost_usd": 0.0,
-              "cost_status": "unknown",
-              "_score": 1,
-              "label": "zai",
-              "free_status": "未知",
-              "evidence": "无核验记录"
-            }
-          ],
+          "models": [],
           "agents_completed_buckets": {
             "4h": {
               "normal": 0,
@@ -5612,16 +5519,11 @@
           "agents_completed_coverage": {
             "omp_ledger": "未接入",
             "xpi_seen": "未接入",
-            "hermes_db": "complete"
+            "hermes_db": "unknown"
           },
           "agents_completed_count": 0,
           "agents_completed_count_basis": "hermes_db_child_sessions",
-          "db_status": "ok",
-          "db_stats": {
-            "child_sessions_total": 0,
-            "child_sessions_open": 0,
-            "child_sessions_classified": 0
-          }
+          "db_status": "error"
         }
       ]
     }
@@ -6248,13 +6150,19 @@
     "collector_note": "static-copied from /tmp/snap_final2.json (probe not implemented in collect_lite)"
   },
   "self_check": {
-    "checked_at": "2026-10-07T12:29:49Z",
-    "snapshot_id": "16aa77c370ce",
-    "status": "ok",
-    "error_count": 0,
-    "warning_count": 0,
-    "warnings": [],
-    "issues": [],
+    "checked_at": "2026-10-07T12:59:58Z",
+    "snapshot_id": "e4c41fbe0edd",
+    "status": "error",
+    "error_count": 2,
+    "warning_count": 2,
+    "warnings": [
+      "ming-ai-station:nova: remote wsl failed: no marker in output (rc=255): ssh: connect to host 192.168.178.69 port 22: No route to host\n || stdout: ",
+      "ming-ai-station:nyx: remote wsl failed: no marker in output (rc=255): ssh: connect to host 192.168.178.69 port 22: No route to host\n || stdout: "
+    ],
+    "issues": [
+      "ming-ai-station:nova: work=error",
+      "ming-ai-station:nyx: work=error"
+    ],
     "coverage": {
       "bots_total": 8
     }
