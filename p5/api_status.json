@@ -543,7 +543,7 @@
        {
         "model": "default",
         "provider": "nyx",
-        "base_url": "http://192.168.178.69:8642/v1",
+        "base_url": "http://x.x.x.x:8642/v1",
         "billing_mode": "chat_completions",
         "input": 327389,
         "output": 3621,
@@ -19927,7 +19927,7 @@
       {
        "model": "bonsai-27b-pq2",
        "provider": "custom",
-       "base_url": "http://192.168.178.69:8081/v1",
+       "base_url": "http://x.x.x.x:8081/v1",
        "billing_mode": "",
        "last_seen": 1789876293.2087696,
        "input": 44132,
@@ -20515,7 +20515,7 @@
        {
         "model": "bonsai-27b-pq2",
         "provider": "custom",
-        "base_url": "http://192.168.178.69:8081/v1",
+        "base_url": "http://x.x.x.x:8081/v1",
         "billing_mode": "",
         "input": 44132,
         "output": 2550,

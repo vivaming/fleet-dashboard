@@ -11,7 +11,7 @@
   if (window.__PX7LIVE__) return;
   window.__PX7LIVE__ = 1;
 
-  var DIRECT_URL = 'http://192.168.178.69:8710/api/status';
+  var DIRECT_URL = 'http://x.x.x.x:8710/api/status';
   var DIRECT_TIMEOUT_MS = 3000;
   var POLL_MS = 5000;            /* 快照轮询间隔（同源，零成本） */
   var mode = null;               /* 'direct' | 'snapshot' */
