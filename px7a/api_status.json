@@ -1,16 +1,16 @@
 {
   "schema_version": 1,
-  "snapshot_id": "c2df90dcde8a",
-  "generated_at": "2026-10-15T06:29:52Z",
+  "snapshot_id": "122367437248",
+  "generated_at": "2026-10-15T06:59:53Z",
   "collect_interval_s": 15,
   "web_refresh_hint_s": 5,
   "stale_after_s": 60,
   "unknown_after_s": 125,
   "collector": {
     "pid": 1240438,
-    "cycle": 36334,
-    "last_success_at": "2026-10-15T06:29:52Z",
-    "round_seconds": 0.971,
+    "cycle": 36447,
+    "last_success_at": "2026-10-15T06:59:53Z",
+    "round_seconds": 0.945,
     "name": "collect_lite",
     "version": 1
   },
@@ -19,9 +19,9 @@
       "host_id": "ming-server",
       "short": ".65",
       "transport": "local",
-      "observed_at": "2026-10-15T06:29:51Z",
-      "observed_at_epoch": 1792045791.1547046,
-      "last_success_at": "2026-10-15T06:29:51Z",
+      "observed_at": "2026-10-15T06:59:52Z",
+      "observed_at_epoch": 1792047592.2285821,
+      "last_success_at": "2026-10-15T06:59:52Z",
       "error": null,
       "bots": [
         {
@@ -33,10 +33,10 @@
           "work": {
             "state": "近期有工作进展",
             "reasons": [
-              "最近活动 6372s 前",
+              "最近活动 8173s 前",
               "近 7 天有效结局 normal=0 failed=1 timeout=0 empty_shell=0"
             ],
-            "progress_age_s": 6372
+            "progress_age_s": 8173
           },
           "tokens": {
             "totals": [
@@ -45,13 +45,13 @@
                 "provider": "zai",
                 "base_url": "https://open.bigmodel.cn/api/coding/paas/v4",
                 "billing_mode": "",
-                "input": 15557024,
-                "output": 2048279,
-                "cache_read": 386092032,
+                "input": 15624406,
+                "output": 2065074,
+                "cache_read": 386446592,
                 "cache_write": 0,
-                "calls": 3224,
+                "calls": 3231,
                 "first_seen": 1787898520.8342748,
-                "last_seen": 1792045789.9587197
+                "last_seen": 1792046656.1905768
               },
               {
                 "model": "nvidia/nemotron-3-ultra-550b-a55b:free",
@@ -314,6 +314,19 @@
                 "last_seen": 1787013198.731946
               },
               {
+                "model": "glm-5.3",
+                "provider": "zai",
+                "base_url": "https://open.bigmodel.cn/api/coding/paas/v4",
+                "billing_mode": "chat_completions",
+                "input": 197370,
+                "output": 89247,
+                "cache_read": 5387392,
+                "cache_write": 0,
+                "calls": 108,
+                "first_seen": 1787013586.9314144,
+                "last_seen": 1792047581.7045977
+              },
+              {
                 "model": "minimax/minimax-m3:free",
                 "provider": "openrouter",
                 "base_url": "https://openrouter.ai/api/v1",
@@ -364,19 +377,6 @@
                 "calls": 127,
                 "first_seen": 1787887381.800623,
                 "last_seen": 1792045602.1432898
-              },
-              {
-                "model": "glm-5.3",
-                "provider": "zai",
-                "base_url": "https://open.bigmodel.cn/api/coding/paas/v4",
-                "billing_mode": "chat_completions",
-                "input": 105310,
-                "output": 68613,
-                "cache_read": 4573696,
-                "cache_write": 0,
-                "calls": 94,
-                "first_seen": 1787013586.9314144,
-                "last_seen": 1787016602.667038
               },
               {
                 "model": "deepseek-v4-flash-ga-260731",
@@ -496,6 +496,19 @@
                 "last_seen": 1787781628.3165379
               },
               {
+                "model": "glm-5.3",
+                "provider": "zai",
+                "base_url": "https://open.bigmodel.cn/api/coding/paas/v4/",
+                "billing_mode": "",
+                "input": 5978,
+                "output": 12390,
+                "cache_read": 2688,
+                "cache_write": 0,
+                "calls": 17,
+                "first_seen": 1787537545.9760222,
+                "last_seen": 1792047435.2141616
+              },
+              {
                 "model": "glm-5.3-flash",
                 "provider": "",
                 "base_url": "",
@@ -520,19 +533,6 @@
                 "calls": 17,
                 "first_seen": 1787880126.1920547,
                 "last_seen": 1788520221.272114
-              },
-              {
-                "model": "glm-5.3",
-                "provider": "zai",
-                "base_url": "https://open.bigmodel.cn/api/coding/paas/v4/",
-                "billing_mode": "",
-                "input": 5478,
-                "output": 11553,
-                "cache_read": 2688,
-                "cache_write": 0,
-                "calls": 16,
-                "first_seen": 1787537545.9760222,
-                "last_seen": 1787660487.9898262
               },
               {
                 "model": "glm-5.3",
@@ -837,13 +837,29 @@
           },
           "models": [
             {
+              "model": "glm-5.3",
+              "provider": "zai",
+              "base_url": "https://open.bigmodel.cn/api/coding/paas/v4",
+              "last_seen": 1792047581.7045977,
+              "input": 197370,
+              "output": 89247,
+              "calls": 108,
+              "first_seen": 1787013586.9314144,
+              "estimated_cost_usd": 0.0,
+              "cost_status": "unknown",
+              "_score": 1,
+              "label": "zai",
+              "free_status": "未知",
+              "evidence": "无核验记录"
+            },
+            {
               "model": "glm-5.3-flash",
               "provider": "zai",
               "base_url": "https://open.bigmodel.cn/api/coding/paas/v4",
-              "last_seen": 1792045789.9587197,
-              "input": 15557024,
-              "output": 2048279,
-              "calls": 3224,
+              "last_seen": 1792046656.1905768,
+              "input": 15624406,
+              "output": 2065074,
+              "calls": 3231,
               "first_seen": 1787898520.8342748,
               "estimated_cost_usd": 0.0,
               "cost_status": "unknown",
@@ -865,22 +881,6 @@
               "cost_status": "unknown",
               "_score": 1,
               "label": "custom",
-              "free_status": "未知",
-              "evidence": "无核验记录"
-            },
-            {
-              "model": "glm-5.3",
-              "provider": "zai",
-              "base_url": "https://open.bigmodel.cn/api/coding/paas/v4",
-              "last_seen": 1790417231.7896235,
-              "input": 1194032,
-              "output": 261012,
-              "calls": 337,
-              "first_seen": 1786770072.0913477,
-              "estimated_cost_usd": 0.0,
-              "cost_status": "unknown",
-              "_score": 1,
-              "label": "zai",
               "free_status": "未知",
               "evidence": "无核验记录"
             },
@@ -1313,9 +1313,9 @@
           "work": {
             "state": "在线·空闲",
             "reasons": [
-              "无待执行任务；最近活动 581135s 前"
+              "无待执行任务；最近活动 582936s 前"
             ],
-            "progress_age_s": 581135
+            "progress_age_s": 582936
           },
           "tokens": {
             "totals": [
@@ -1729,9 +1729,9 @@
       "host_id": "win-station",
       "short": ".67",
       "transport": "ssh",
-      "observed_at": "2026-10-15T06:29:51Z",
-      "observed_at_epoch": 1792045791.1547046,
-      "last_success_at": "2026-10-15T06:29:51Z",
+      "observed_at": "2026-10-15T06:59:52Z",
+      "observed_at_epoch": 1792047592.2285821,
+      "last_success_at": "2026-10-15T06:59:52Z",
       "error": null,
       "bots": [
         {
@@ -1743,10 +1743,10 @@
           "work": {
             "state": "在线·空闲",
             "reasons": [
-              "无待执行任务；最近活动 52696s 前",
+              "无待执行任务；最近活动 54497s 前",
               "近 7 天有效结局 normal=0 failed=2 timeout=0 empty_shell=0"
             ],
-            "progress_age_s": 52696
+            "progress_age_s": 54497
           },
           "tokens": {
             "totals": [
@@ -3123,10 +3123,10 @@
           "work": {
             "state": "在线·空闲",
             "reasons": [
-              "无待执行任务；最近活动 62382s 前",
+              "无待执行任务；最近活动 64184s 前",
               "近 7 天有效结局 normal=0 failed=1 timeout=0 empty_shell=0"
             ],
-            "progress_age_s": 62382
+            "progress_age_s": 64184
           },
           "tokens": {
             "totals": [
@@ -3725,9 +3725,9 @@
           "work": {
             "state": "在线·空闲",
             "reasons": [
-              "无待执行任务；最近活动 581202s 前"
+              "无待执行任务；最近活动 583003s 前"
             ],
-            "progress_age_s": 581202
+            "progress_age_s": 583003
           },
           "tokens": {
             "totals": [
@@ -4530,10 +4530,10 @@
           "work": {
             "state": "在线·空闲",
             "reasons": [
-              "无待执行任务；最近活动 66638s 前",
+              "无待执行任务；最近活动 68439s 前",
               "近 7 天有效结局 normal=1 failed=1 timeout=0 empty_shell=0"
             ],
-            "progress_age_s": 66638
+            "progress_age_s": 68439
           },
           "tokens": {
             "totals": [
@@ -5423,9 +5423,9 @@
       "host_id": "ming-ai-station",
       "short": ".69",
       "transport": "ssh-wsl",
-      "observed_at": "2026-10-15T06:29:52Z",
-      "observed_at_epoch": 1792045791.1547046,
-      "last_success_at": "2026-10-15T06:29:52Z",
+      "observed_at": "2026-10-15T06:59:53Z",
+      "observed_at_epoch": 1792047592.2285821,
+      "last_success_at": "2026-10-15T06:59:53Z",
       "error": null,
       "bots": [
         {
@@ -6179,8 +6179,8 @@
     "collector_note": "static-copied from /tmp/snap_final2.json (probe not implemented in collect_lite)"
   },
   "self_check": {
-    "checked_at": "2026-10-15T06:29:52Z",
-    "snapshot_id": "c2df90dcde8a",
+    "checked_at": "2026-10-15T06:59:53Z",
+    "snapshot_id": "122367437248",
     "status": "error",
     "error_count": 2,
     "warning_count": 2,
