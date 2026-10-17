@@ -1,16 +1,16 @@
 {
   "schema_version": 1,
-  "snapshot_id": "4e4dbb9b966f",
-  "generated_at": "2026-10-17T00:29:53Z",
+  "snapshot_id": "786f74e760a7",
+  "generated_at": "2026-10-17T00:59:57Z",
   "collect_interval_s": 15,
   "web_refresh_hint_s": 5,
   "stale_after_s": 60,
   "unknown_after_s": 125,
   "collector": {
     "pid": 1240438,
-    "cycle": 44096,
-    "last_success_at": "2026-10-17T00:29:53Z",
-    "round_seconds": 0.909,
+    "cycle": 44196,
+    "last_success_at": "2026-10-17T00:59:57Z",
+    "round_seconds": 0.901,
     "name": "collect_lite",
     "version": 1
   },
@@ -19,9 +19,9 @@
       "host_id": "ming-server",
       "short": ".65",
       "transport": "local",
-      "observed_at": "2026-10-17T00:29:52Z",
-      "observed_at_epoch": 1792196992.7712939,
-      "last_success_at": "2026-10-17T00:29:52Z",
+      "observed_at": "2026-10-17T00:59:56Z",
+      "observed_at_epoch": 1792198796.7448123,
+      "last_success_at": "2026-10-17T00:59:56Z",
       "error": null,
       "bots": [
         {
@@ -33,10 +33,10 @@
           "work": {
             "state": "在线·空闲",
             "reasons": [
-              "无待执行任务；最近活动 76988s 前",
+              "无待执行任务；最近活动 78792s 前",
               "近 7 天有效结局 normal=0 failed=2 timeout=0 empty_shell=0"
             ],
-            "progress_age_s": 76988
+            "progress_age_s": 78792
           },
           "tokens": {
             "totals": [
@@ -1313,9 +1313,9 @@
           "work": {
             "state": "在线·空闲",
             "reasons": [
-              "无待执行任务；最近活动 732337s 前"
+              "无待执行任务；最近活动 734141s 前"
             ],
-            "progress_age_s": 732337
+            "progress_age_s": 734141
           },
           "tokens": {
             "totals": [
@@ -1729,9 +1729,9 @@
       "host_id": "win-station",
       "short": ".67",
       "transport": "ssh",
-      "observed_at": "2026-10-17T00:29:53Z",
-      "observed_at_epoch": 1792196992.7712939,
-      "last_success_at": "2026-10-17T00:29:53Z",
+      "observed_at": "2026-10-17T00:59:57Z",
+      "observed_at_epoch": 1792198796.7448123,
+      "last_success_at": "2026-10-17T00:59:57Z",
       "error": null,
       "bots": [
         {
@@ -1743,10 +1743,10 @@
           "work": {
             "state": "在线·空闲",
             "reasons": [
-              "无待执行任务；最近活动 83501s 前",
+              "无待执行任务；最近活动 85305s 前",
               "近 7 天有效结局 normal=0 failed=1 timeout=0 empty_shell=0"
             ],
-            "progress_age_s": 83501
+            "progress_age_s": 85305
           },
           "tokens": {
             "totals": [
@@ -2024,6 +2024,19 @@
                 "last_seen": 1787375874.1175244
               },
               {
+                "model": "glm-5.3-flash",
+                "provider": "zai",
+                "base_url": "https://api.z.ai/api/coding/paas/v4",
+                "billing_mode": "chat_completions",
+                "input": 186479,
+                "output": 90816,
+                "cache_read": 48512448,
+                "cache_write": 0,
+                "calls": 260,
+                "first_seen": 1792191205.2145157,
+                "last_seen": 1792198786.501664
+              },
+              {
                 "model": "deepseek-v4-pro-ga-260813",
                 "provider": "custom",
                 "base_url": "https://ark.cn-beijing.volces.com/api/coding/v3",
@@ -2074,19 +2087,6 @@
                 "calls": 18,
                 "first_seen": 1787905378.957042,
                 "last_seen": 1789001005.9737973
-              },
-              {
-                "model": "glm-5.3-flash",
-                "provider": "zai",
-                "base_url": "https://api.z.ai/api/coding/paas/v4",
-                "billing_mode": "chat_completions",
-                "input": 142071,
-                "output": 70522,
-                "cache_read": 27177600,
-                "cache_write": 0,
-                "calls": 169,
-                "first_seen": 1792191205.2145157,
-                "last_seen": 1792196229.0208235
               },
               {
                 "model": "deepseek-v4-flash",
@@ -2628,11 +2628,11 @@
               "model": "glm-5.3-flash",
               "provider": "zai",
               "base_url": "https://api.z.ai/api/coding/paas/v4",
-              "last_seen": 1792196468.1956775,
-              "input": 17169407,
-              "output": 1918747,
-              "calls": 4000,
-              "first_seen": 1790214769.7126176,
+              "last_seen": 1792198786.501664,
+              "input": 186479,
+              "output": 90816,
+              "calls": 260,
+              "first_seen": 1792191205.2145157,
               "estimated_cost_usd": 0.0,
               "cost_status": "unknown",
               "_score": 1,
@@ -3149,10 +3149,10 @@
           "work": {
             "state": "在线·空闲",
             "reasons": [
-              "无待执行任务；最近活动 213584s 前",
+              "无待执行任务；最近活动 215388s 前",
               "近 7 天有效结局 normal=0 failed=1 timeout=0 empty_shell=0"
             ],
-            "progress_age_s": 213584
+            "progress_age_s": 215388
           },
           "tokens": {
             "totals": [
@@ -3751,9 +3751,9 @@
           "work": {
             "state": "在线·空闲",
             "reasons": [
-              "无待执行任务；最近活动 732404s 前"
+              "无待执行任务；最近活动 734208s 前"
             ],
-            "progress_age_s": 732404
+            "progress_age_s": 734208
           },
           "tokens": {
             "totals": [
@@ -4556,10 +4556,10 @@
           "work": {
             "state": "在线·空闲",
             "reasons": [
-              "无待执行任务；最近活动 217839s 前",
+              "无待执行任务；最近活动 219643s 前",
               "近 7 天有效结局 normal=1 failed=1 timeout=0 empty_shell=0"
             ],
-            "progress_age_s": 217839
+            "progress_age_s": 219643
           },
           "tokens": {
             "totals": [
@@ -5449,9 +5449,9 @@
       "host_id": "ming-ai-station",
       "short": ".69",
       "transport": "ssh-wsl",
-      "observed_at": "2026-10-17T00:29:53Z",
-      "observed_at_epoch": 1792196992.7712939,
-      "last_success_at": "2026-10-17T00:29:53Z",
+      "observed_at": "2026-10-17T00:59:57Z",
+      "observed_at_epoch": 1792198796.7448123,
+      "last_success_at": "2026-10-17T00:59:57Z",
       "error": null,
       "bots": [
         {
@@ -6205,8 +6205,8 @@
     "collector_note": "static-copied from /tmp/snap_final2.json (probe not implemented in collect_lite)"
   },
   "self_check": {
-    "checked_at": "2026-10-17T00:29:53Z",
-    "snapshot_id": "4e4dbb9b966f",
+    "checked_at": "2026-10-17T00:59:57Z",
+    "snapshot_id": "786f74e760a7",
     "status": "error",
     "error_count": 2,
     "warning_count": 2,
