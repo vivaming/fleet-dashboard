@@ -1,16 +1,16 @@
 {
   "schema_version": 1,
-  "snapshot_id": "e6ddbc1cfacc",
-  "generated_at": "2026-10-20T23:29:42Z",
+  "snapshot_id": "eed407249e67",
+  "generated_at": "2026-10-20T23:59:53Z",
   "collect_interval_s": 15,
   "web_refresh_hint_s": 5,
   "stale_after_s": 60,
   "unknown_after_s": 125,
   "collector": {
     "pid": 1240438,
-    "cycle": 65234,
-    "last_success_at": "2026-10-20T23:29:42Z",
-    "round_seconds": 10.483,
+    "cycle": 65305,
+    "last_success_at": "2026-10-20T23:59:53Z",
+    "round_seconds": 10.451,
     "name": "collect_lite",
     "version": 1
   },
@@ -19,9 +19,9 @@
       "host_id": "ming-server",
       "short": ".65",
       "transport": "local",
-      "observed_at": "2026-10-20T23:29:31Z",
-      "observed_at_epoch": 1792538971.8938448,
-      "last_success_at": "2026-10-20T23:29:31Z",
+      "observed_at": "2026-10-20T23:59:42Z",
+      "observed_at_epoch": 1792540782.8726544,
+      "last_success_at": "2026-10-20T23:59:42Z",
       "error": null,
       "bots": [
         {
@@ -33,10 +33,10 @@
           "work": {
             "state": "近期有工作进展",
             "reasons": [
-              "最近活动 2270s 前",
+              "最近活动 4081s 前",
               "近 7 天有效结局 normal=0 failed=3 timeout=0 empty_shell=0"
             ],
-            "progress_age_s": 2270
+            "progress_age_s": 4081
           },
           "tokens": {
             "totals": [
@@ -1313,9 +1313,9 @@
           "work": {
             "state": "在线·空闲",
             "reasons": [
-              "无待执行任务；最近活动 1074316s 前"
+              "无待执行任务；最近活动 1076127s 前"
             ],
-            "progress_age_s": 1074316
+            "progress_age_s": 1076127
           },
           "tokens": {
             "totals": [
@@ -1729,9 +1729,9 @@
       "host_id": "win-station",
       "short": ".67",
       "transport": "ssh",
-      "observed_at": "2026-10-20T23:29:32Z",
-      "observed_at_epoch": 1792538971.8938448,
-      "last_success_at": "2026-10-20T23:29:32Z",
+      "observed_at": "2026-10-20T23:59:43Z",
+      "observed_at_epoch": 1792540782.8726544,
+      "last_success_at": "2026-10-20T23:59:43Z",
       "error": null,
       "bots": [
         {
@@ -1743,10 +1743,10 @@
           "work": {
             "state": "在线·空闲",
             "reasons": [
-              "无待执行任务；最近活动 253531s 前",
+              "无待执行任务；最近活动 255342s 前",
               "近 7 天有效结局 normal=0 failed=1 timeout=0 empty_shell=0"
             ],
-            "progress_age_s": 253531
+            "progress_age_s": 255342
           },
           "tokens": {
             "totals": [
@@ -3149,10 +3149,10 @@
           "work": {
             "state": "在线·空闲",
             "reasons": [
-              "无待执行任务；最近活动 555563s 前",
+              "无待执行任务；最近活动 557374s 前",
               "近 7 天有效结局 normal=0 failed=1 timeout=0 empty_shell=0"
             ],
-            "progress_age_s": 555563
+            "progress_age_s": 557374
           },
           "tokens": {
             "totals": [
@@ -3751,9 +3751,9 @@
           "work": {
             "state": "在线·空闲",
             "reasons": [
-              "无待执行任务；最近活动 1074383s 前"
+              "无待执行任务；最近活动 1076194s 前"
             ],
-            "progress_age_s": 1074383
+            "progress_age_s": 1076194
           },
           "tokens": {
             "totals": [
@@ -4556,10 +4556,10 @@
           "work": {
             "state": "在线·空闲",
             "reasons": [
-              "无待执行任务；最近活动 217234s 前",
+              "无待执行任务；最近活动 219045s 前",
               "近 7 天有效结局 normal=1 failed=4 timeout=0 empty_shell=0"
             ],
-            "progress_age_s": 217234
+            "progress_age_s": 219045
           },
           "tokens": {
             "totals": [
@@ -5449,9 +5449,9 @@
       "host_id": "ming-ai-station",
       "short": ".69",
       "transport": "ssh-wsl",
-      "observed_at": "2026-10-20T23:29:42Z",
-      "observed_at_epoch": 1792538971.8938448,
-      "last_success_at": "2026-10-20T23:29:42Z",
+      "observed_at": "2026-10-20T23:59:53Z",
+      "observed_at_epoch": 1792540782.8726544,
+      "last_success_at": "2026-10-20T23:59:53Z",
       "error": null,
       "bots": [
         {
@@ -5463,7 +5463,7 @@
           "work": {
             "state": "error",
             "reasons": [
-              "远端 wsl 采集失败: no marker in output (rc=255): Connection timed out during banner exchange\nConnection to x.x.x.x port 22 timed out\n || stdout: "
+              "远端 wsl 采集失败: no marker in output (rc=255): ssh: connect to host x.x.x.x port 22: Connection timed out\n || stdout: "
             ],
             "progress_age_s": null
           },
@@ -5526,7 +5526,7 @@
           "work": {
             "state": "error",
             "reasons": [
-              "远端 wsl 采集失败: no marker in output (rc=255): Connection timed out during banner exchange\nConnection to x.x.x.x port 22 timed out\n || stdout: "
+              "远端 wsl 采集失败: no marker in output (rc=255): ssh: connect to host x.x.x.x port 22: Connection timed out\n || stdout: "
             ],
             "progress_age_s": null
           },
@@ -6205,14 +6205,14 @@
     "collector_note": "static-copied from /tmp/snap_final2.json (probe not implemented in collect_lite)"
   },
   "self_check": {
-    "checked_at": "2026-10-20T23:29:42Z",
-    "snapshot_id": "e6ddbc1cfacc",
+    "checked_at": "2026-10-20T23:59:53Z",
+    "snapshot_id": "eed407249e67",
     "status": "error",
     "error_count": 2,
     "warning_count": 2,
     "warnings": [
-      "ming-ai-station:nova: remote wsl failed: no marker in output (rc=255): Connection timed out during banner exchange\nConnection to x.x.x.x port 22 timed out",
-      "ming-ai-station:nyx: remote wsl failed: no marker in output (rc=255): Connection timed out during banner exchange\nConnection to x.x.x.x port 22 timed out"
+      "ming-ai-station:nova: remote wsl failed: no marker in output (rc=255): ssh: connect to host x.x.x.x port 22: Connection timed out\n || stdout: ",
+      "ming-ai-station:nyx: remote wsl failed: no marker in output (rc=255): ssh: connect to host x.x.x.x port 22: Connection timed out\n || stdout: "
     ],
     "issues": [
       "ming-ai-station:nova: work=error",
