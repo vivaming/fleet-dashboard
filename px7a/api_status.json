@@ -1,16 +1,16 @@
 {
   "schema_version": 1,
-  "snapshot_id": "305def97ad4c",
-  "generated_at": "2026-10-28T02:29:50Z",
+  "snapshot_id": "cfd6b65bbb79",
+  "generated_at": "2026-10-28T03:00:00Z",
   "collect_interval_s": 15,
   "web_refresh_hint_s": 5,
   "stale_after_s": 60,
   "unknown_after_s": 125,
   "collector": {
     "pid": 1240438,
-    "cycle": 103776,
-    "last_success_at": "2026-10-28T02:29:50Z",
-    "round_seconds": 0.811,
+    "cycle": 103888,
+    "last_success_at": "2026-10-28T03:00:00Z",
+    "round_seconds": 0.807,
     "name": "collect_lite",
     "version": 1
   },
@@ -19,9 +19,9 @@
       "host_id": "ming-server",
       "short": ".65",
       "transport": "local",
-      "observed_at": "2026-10-28T02:29:49Z",
-      "observed_at_epoch": 1793154589.5343103,
-      "last_success_at": "2026-10-28T02:29:49Z",
+      "observed_at": "2026-10-28T02:59:59Z",
+      "observed_at_epoch": 1793156399.3998013,
+      "last_success_at": "2026-10-28T02:59:59Z",
       "error": null,
       "bots": [
         {
@@ -33,9 +33,9 @@
           "work": {
             "state": "在线·空闲",
             "reasons": [
-              "无待执行任务；最近活动 84526s 前"
+              "无待执行任务；最近活动 86336s 前"
             ],
-            "progress_age_s": 84526
+            "progress_age_s": 86336
           },
           "tokens": {
             "totals": [
@@ -1312,9 +1312,9 @@
           "work": {
             "state": "在线·空闲",
             "reasons": [
-              "无待执行任务；最近活动 1689934s 前"
+              "无待执行任务；最近活动 1691744s 前"
             ],
-            "progress_age_s": 1689934
+            "progress_age_s": 1691744
           },
           "tokens": {
             "totals": [
@@ -1728,9 +1728,9 @@
       "host_id": "win-station",
       "short": ".67",
       "transport": "ssh",
-      "observed_at": "2026-10-28T02:29:49Z",
-      "observed_at_epoch": 1793154589.5343103,
-      "last_success_at": "2026-10-28T02:29:49Z",
+      "observed_at": "2026-10-28T02:59:59Z",
+      "observed_at_epoch": 1793156399.3998013,
+      "last_success_at": "2026-10-28T02:59:59Z",
       "error": null,
       "bots": [
         {
@@ -1742,10 +1742,10 @@
           "work": {
             "state": "在线·空闲",
             "reasons": [
-              "无待执行任务；最近活动 426952s 前",
+              "无待执行任务；最近活动 428762s 前",
               "近 7 天有效结局 normal=0 failed=3 timeout=0 empty_shell=0"
             ],
-            "progress_age_s": 426952
+            "progress_age_s": 428762
           },
           "tokens": {
             "totals": [
@@ -3161,9 +3161,9 @@
           "work": {
             "state": "在线·空闲",
             "reasons": [
-              "无待执行任务；最近活动 1171181s 前"
+              "无待执行任务；最近活动 1172991s 前"
             ],
-            "progress_age_s": 1171181
+            "progress_age_s": 1172991
           },
           "tokens": {
             "totals": [
@@ -3762,9 +3762,9 @@
           "work": {
             "state": "在线·空闲",
             "reasons": [
-              "无待执行任务；最近活动 1690000s 前"
+              "无待执行任务；最近活动 1691810s 前"
             ],
-            "progress_age_s": 1690000
+            "progress_age_s": 1691810
           },
           "tokens": {
             "totals": [
@@ -4567,9 +4567,9 @@
           "work": {
             "state": "在线·空闲",
             "reasons": [
-              "无待执行任务；最近活动 832852s 前"
+              "无待执行任务；最近活动 834661s 前"
             ],
-            "progress_age_s": 832852
+            "progress_age_s": 834661
           },
           "tokens": {
             "totals": [
@@ -4851,13 +4851,13 @@
                 "provider": "deepseek",
                 "base_url": "https://api.deepseek.com/v1",
                 "billing_mode": "chat_completions",
-                "input": 224336,
-                "output": 6422,
-                "cache_read": 4428544,
+                "input": 224744,
+                "output": 6791,
+                "cache_read": 4878976,
                 "cache_write": 0,
-                "calls": 21,
+                "calls": 23,
                 "first_seen": 1792740908.29133,
-                "last_seen": 1793134121.343918
+                "last_seen": 1793154684.5685947
               },
               {
                 "model": "deepseek-v4-flash",
@@ -5178,11 +5178,11 @@
               "model": "deepseek-v4-flash",
               "provider": "deepseek",
               "base_url": "https://api.deepseek.com/v1",
-              "last_seen": 1793134134.4753947,
-              "input": 2009813,
-              "output": 594420,
-              "calls": 749,
-              "first_seen": 1789438759.0767448,
+              "last_seen": 1793154684.5685947,
+              "input": 224744,
+              "output": 6791,
+              "calls": 23,
+              "first_seen": 1792740908.29133,
               "estimated_cost_usd": 0.0,
               "cost_status": "unknown",
               "_score": 1,
@@ -5472,9 +5472,9 @@
       "host_id": "ming-ai-station",
       "short": ".69",
       "transport": "ssh-wsl",
-      "observed_at": "2026-10-28T02:29:50Z",
-      "observed_at_epoch": 1793154589.5343103,
-      "last_success_at": "2026-10-28T02:29:50Z",
+      "observed_at": "2026-10-28T03:00:00Z",
+      "observed_at_epoch": 1793156399.3998013,
+      "last_success_at": "2026-10-28T03:00:00Z",
       "error": null,
       "bots": [
         {
@@ -5486,9 +5486,9 @@
           "work": {
             "state": "在线·空闲",
             "reasons": [
-              "无待执行任务；最近活动 1136881s 前"
+              "无待执行任务；最近活动 1138691s 前"
             ],
-            "progress_age_s": 1136881
+            "progress_age_s": 1138691
           },
           "tokens": {
             "totals": [
@@ -5679,9 +5679,9 @@
           "work": {
             "state": "在线·空闲",
             "reasons": [
-              "无待执行任务；最近活动 1778149s 前"
+              "无待执行任务；最近活动 1779958s 前"
             ],
-            "progress_age_s": 1778149
+            "progress_age_s": 1779958
           },
           "tokens": {
             "totals": [
@@ -6407,8 +6407,8 @@
     "collector_note": "static-copied from /tmp/snap_final2.json (probe not implemented in collect_lite)"
   },
   "self_check": {
-    "checked_at": "2026-10-28T02:29:50Z",
-    "snapshot_id": "305def97ad4c",
+    "checked_at": "2026-10-28T03:00:00Z",
+    "snapshot_id": "cfd6b65bbb79",
     "status": "ok",
     "error_count": 0,
     "warning_count": 0,
