@@ -1,16 +1,16 @@
 {
   "schema_version": 1,
-  "snapshot_id": "f7426f2c26a7",
-  "generated_at": "2026-11-09T11:59:46Z",
+  "snapshot_id": "1cc68ebc3dcb",
+  "generated_at": "2026-11-09T12:29:45Z",
   "collect_interval_s": 15,
   "web_refresh_hint_s": 5,
   "stale_after_s": 60,
   "unknown_after_s": 125,
   "collector": {
     "pid": 1240438,
-    "cycle": 170897,
-    "last_success_at": "2026-11-09T11:59:46Z",
-    "round_seconds": 0.955,
+    "cycle": 171010,
+    "last_success_at": "2026-11-09T12:29:45Z",
+    "round_seconds": 0.883,
     "name": "collect_lite",
     "version": 1
   },
@@ -19,9 +19,9 @@
       "host_id": "ming-server",
       "short": ".65",
       "transport": "local",
-      "observed_at": "2026-11-09T11:59:45Z",
-      "observed_at_epoch": 1794225585.0640547,
-      "last_success_at": "2026-11-09T11:59:45Z",
+      "observed_at": "2026-11-09T12:29:44Z",
+      "observed_at_epoch": 1794227384.7835958,
+      "last_success_at": "2026-11-09T12:29:44Z",
       "error": null,
       "bots": [
         {
@@ -31,11 +31,11 @@
           "profile": "default",
           "transport": "local",
           "work": {
-            "state": "近期有工作进展",
+            "state": "工作中",
             "reasons": [
-              "最近活动 14365s 前"
+              "主会话最近活动 333s 前"
             ],
-            "progress_age_s": 14365
+            "progress_age_s": 333
           },
           "tokens": {
             "totals": [
@@ -378,6 +378,32 @@
                 "last_seen": 1786055984.153475
               },
               {
+                "model": "glm-5.3-flash",
+                "provider": "openrouter",
+                "base_url": "https://openrouter.ai/api/v1",
+                "billing_mode": "",
+                "input": 143766,
+                "output": 11372,
+                "cache_read": 85120,
+                "cache_write": 0,
+                "calls": 7,
+                "first_seen": 1794226576.039737,
+                "last_seen": 1794226682.4995134
+              },
+              {
+                "model": "nvidia/nemotron-3.5-lightning:free",
+                "provider": "openrouter",
+                "base_url": "https://openrouter.ai/api/v1",
+                "billing_mode": "",
+                "input": 144446,
+                "output": 8848,
+                "cache_read": 939008,
+                "cache_write": 0,
+                "calls": 24,
+                "first_seen": 1794226875.194816,
+                "last_seen": 1794227051.15836
+              },
+              {
                 "model": "deepseek-v4-flash-ga-260731",
                 "provider": "",
                 "base_url": "",
@@ -428,6 +454,19 @@
                 "calls": 16,
                 "first_seen": 1787949249.590371,
                 "last_seen": 1787950454.2466238
+              },
+              {
+                "model": "gemini-3.5-flash",
+                "provider": "gemini",
+                "base_url": "https://generativelanguage.googleapis.com/v1beta",
+                "billing_mode": "",
+                "input": 70758,
+                "output": 678,
+                "cache_read": 137229,
+                "cache_write": 0,
+                "calls": 7,
+                "first_seen": 1794226391.0038803,
+                "last_seen": 1794226412.651617
               },
               {
                 "model": "deepseek-v4-flash-ga-260731",
@@ -836,18 +875,50 @@
           },
           "models": [
             {
-              "model": "glm-5.3-flash",
-              "provider": "zai",
-              "base_url": "https://open.bigmodel.cn/api/coding/paas/v4",
-              "last_seen": 1794118203.980271,
-              "input": 18289904,
-              "output": 2668838,
-              "calls": 3963,
-              "first_seen": 1787898520.8342748,
+              "model": "nvidia/nemotron-3.5-lightning:free",
+              "provider": "openrouter",
+              "base_url": "https://openrouter.ai/api/v1",
+              "last_seen": 1794227051.15836,
+              "input": 144446,
+              "output": 8848,
+              "calls": 24,
+              "first_seen": 1794226875.194816,
               "estimated_cost_usd": 0.0,
               "cost_status": "unknown",
               "_score": 1,
-              "label": "zai",
+              "label": "openrouter",
+              "free_status": "未知",
+              "evidence": "无核验记录"
+            },
+            {
+              "model": "glm-5.3-flash",
+              "provider": "openrouter",
+              "base_url": "https://openrouter.ai/api/v1",
+              "last_seen": 1794226682.4995134,
+              "input": 143766,
+              "output": 11372,
+              "calls": 7,
+              "first_seen": 1794226576.039737,
+              "estimated_cost_usd": 0.0,
+              "cost_status": "unknown",
+              "_score": 1,
+              "label": "openrouter",
+              "free_status": "未知",
+              "evidence": "无核验记录"
+            },
+            {
+              "model": "gemini-3.5-flash",
+              "provider": "gemini",
+              "base_url": "https://generativelanguage.googleapis.com/v1beta",
+              "last_seen": 1794226412.651617,
+              "input": 70758,
+              "output": 678,
+              "calls": 7,
+              "first_seen": 1794226391.0038803,
+              "estimated_cost_usd": 0.0,
+              "cost_status": "unknown",
+              "_score": 1,
+              "label": "gemini",
               "free_status": "未知",
               "evidence": "无核验记录"
             },
@@ -880,22 +951,6 @@
               "cost_status": "unknown",
               "_score": 1,
               "label": "custom",
-              "free_status": "未知",
-              "evidence": "无核验记录"
-            },
-            {
-              "model": "nvidia/nemotron-3.5-lightning:free",
-              "provider": "openrouter",
-              "base_url": "https://openrouter.ai/api/v1/",
-              "last_seen": 1789527789.0394676,
-              "input": 408015,
-              "output": 43960,
-              "calls": 49,
-              "first_seen": 1787784450.8302324,
-              "estimated_cost_usd": 0.0,
-              "cost_status": "unknown",
-              "_score": 1,
-              "label": "openrouter",
               "free_status": "未知",
               "evidence": "无核验记录"
             },
@@ -1312,9 +1367,9 @@
           "work": {
             "state": "在线·空闲",
             "reasons": [
-              "无待执行任务；最近活动 2760929s 前"
+              "无待执行任务；最近活动 2762729s 前"
             ],
-            "progress_age_s": 2760929
+            "progress_age_s": 2762729
           },
           "tokens": {
             "totals": [
@@ -1728,9 +1783,9 @@
       "host_id": "win-station",
       "short": ".67",
       "transport": "ssh",
-      "observed_at": "2026-11-09T11:59:45Z",
-      "observed_at_epoch": 1794225585.0640547,
-      "last_success_at": "2026-11-09T11:59:45Z",
+      "observed_at": "2026-11-09T12:29:45Z",
+      "observed_at_epoch": 1794227384.7835958,
+      "last_success_at": "2026-11-09T12:29:45Z",
       "error": null,
       "bots": [
         {
@@ -1742,9 +1797,9 @@
           "work": {
             "state": "在线·空闲",
             "reasons": [
-              "无待执行任务；最近活动 870417s 前"
+              "无待执行任务；最近活动 872217s 前"
             ],
-            "progress_age_s": 870417
+            "progress_age_s": 872217
           },
           "tokens": {
             "totals": [
@@ -3160,9 +3215,9 @@
           "work": {
             "state": "在线·空闲",
             "reasons": [
-              "无待执行任务；最近活动 2242176s 前"
+              "无待执行任务；最近活动 2243976s 前"
             ],
-            "progress_age_s": 2242176
+            "progress_age_s": 2243976
           },
           "tokens": {
             "totals": [
@@ -3761,9 +3816,9 @@
           "work": {
             "state": "在线·空闲",
             "reasons": [
-              "无待执行任务；最近活动 2760996s 前"
+              "无待执行任务；最近活动 2762796s 前"
             ],
-            "progress_age_s": 2760996
+            "progress_age_s": 2762796
           },
           "tokens": {
             "totals": [
@@ -4566,9 +4621,9 @@
           "work": {
             "state": "在线·空闲",
             "reasons": [
-              "无待执行任务；最近活动 1903847s 前"
+              "无待执行任务；最近活动 1905647s 前"
             ],
-            "progress_age_s": 1903847
+            "progress_age_s": 1905647
           },
           "tokens": {
             "totals": [
@@ -5471,9 +5526,9 @@
       "host_id": "ming-ai-station",
       "short": ".69",
       "transport": "ssh-wsl",
-      "observed_at": "2026-11-09T11:59:46Z",
-      "observed_at_epoch": 1794225585.0640547,
-      "last_success_at": "2026-11-09T11:59:46Z",
+      "observed_at": "2026-11-09T12:29:45Z",
+      "observed_at_epoch": 1794227384.7835958,
+      "last_success_at": "2026-11-09T12:29:45Z",
       "error": null,
       "bots": [
         {
@@ -5485,9 +5540,9 @@
           "work": {
             "state": "在线·空闲",
             "reasons": [
-              "无待执行任务；最近活动 2207876s 前"
+              "无待执行任务；最近活动 2209676s 前"
             ],
-            "progress_age_s": 2207876
+            "progress_age_s": 2209676
           },
           "tokens": {
             "totals": [
@@ -5678,9 +5733,9 @@
           "work": {
             "state": "在线·空闲",
             "reasons": [
-              "无待执行任务；最近活动 2849144s 前"
+              "无待执行任务；最近活动 2850944s 前"
             ],
-            "progress_age_s": 2849144
+            "progress_age_s": 2850944
           },
           "tokens": {
             "totals": [
@@ -6406,8 +6461,8 @@
     "collector_note": "static-copied from /tmp/snap_final2.json (probe not implemented in collect_lite)"
   },
   "self_check": {
-    "checked_at": "2026-11-09T11:59:46Z",
-    "snapshot_id": "f7426f2c26a7",
+    "checked_at": "2026-11-09T12:29:45Z",
+    "snapshot_id": "1cc68ebc3dcb",
     "status": "ok",
     "error_count": 0,
     "warning_count": 0,
