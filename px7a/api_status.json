@@ -1,16 +1,16 @@
 {
   "schema_version": 1,
-  "snapshot_id": "69d1f1690060",
-  "generated_at": "2026-11-25T19:59:57Z",
+  "snapshot_id": "0e56bd99b056",
+  "generated_at": "2026-11-25T20:30:01Z",
   "collect_interval_s": 15,
   "web_refresh_hint_s": 5,
   "stale_after_s": 60,
   "unknown_after_s": 125,
   "collector": {
     "pid": 1240438,
-    "cycle": 257824,
-    "last_success_at": "2026-11-25T19:59:57Z",
-    "round_seconds": 0.97,
+    "cycle": 257937,
+    "last_success_at": "2026-11-25T20:30:01Z",
+    "round_seconds": 0.952,
     "name": "collect_lite",
     "version": 1
   },
@@ -19,9 +19,9 @@
       "host_id": "ming-server",
       "short": ".65",
       "transport": "local",
-      "observed_at": "2026-11-25T19:59:56Z",
-      "observed_at_epoch": 1795636796.69863,
-      "last_success_at": "2026-11-25T19:59:56Z",
+      "observed_at": "2026-11-25T20:30:00Z",
+      "observed_at_epoch": 1795638600.4033237,
+      "last_success_at": "2026-11-25T20:30:00Z",
       "error": null,
       "bots": [
         {
@@ -33,9 +33,9 @@
           "work": {
             "state": "在线·空闲",
             "reasons": [
-              "无待执行任务；最近活动 215946s 前"
+              "无待执行任务；最近活动 217750s 前"
             ],
-            "progress_age_s": 215946
+            "progress_age_s": 217750
           },
           "tokens": {
             "totals": [
@@ -1367,9 +1367,9 @@
           "work": {
             "state": "在线·空闲",
             "reasons": [
-              "无待执行任务；最近活动 4172141s 前"
+              "无待执行任务；最近活动 4173945s 前"
             ],
-            "progress_age_s": 4172141
+            "progress_age_s": 4173945
           },
           "tokens": {
             "totals": [
@@ -1783,9 +1783,9 @@
       "host_id": "win-station",
       "short": ".67",
       "transport": "ssh",
-      "observed_at": "2026-11-25T19:59:57Z",
-      "observed_at_epoch": 1795636796.69863,
-      "last_success_at": "2026-11-25T19:59:57Z",
+      "observed_at": "2026-11-25T20:30:00Z",
+      "observed_at_epoch": 1795638600.4033237,
+      "last_success_at": "2026-11-25T20:30:00Z",
       "error": null,
       "bots": [
         {
@@ -1797,9 +1797,9 @@
           "work": {
             "state": "在线·空闲",
             "reasons": [
-              "无待执行任务；最近活动 2281629s 前"
+              "无待执行任务；最近活动 2283433s 前"
             ],
-            "progress_age_s": 2281629
+            "progress_age_s": 2283433
           },
           "tokens": {
             "totals": [
@@ -3215,9 +3215,9 @@
           "work": {
             "state": "在线·空闲",
             "reasons": [
-              "无待执行任务；最近活动 3653388s 前"
+              "无待执行任务；最近活动 3655192s 前"
             ],
-            "progress_age_s": 3653388
+            "progress_age_s": 3655192
           },
           "tokens": {
             "totals": [
@@ -3816,9 +3816,9 @@
           "work": {
             "state": "在线·空闲",
             "reasons": [
-              "无待执行任务；最近活动 4172208s 前"
+              "无待执行任务；最近活动 4174011s 前"
             ],
-            "progress_age_s": 4172208
+            "progress_age_s": 4174011
           },
           "tokens": {
             "totals": [
@@ -4621,9 +4621,9 @@
           "work": {
             "state": "在线·空闲",
             "reasons": [
-              "无待执行任务；最近活动 3315059s 前"
+              "无待执行任务；最近活动 3316862s 前"
             ],
-            "progress_age_s": 3315059
+            "progress_age_s": 3316862
           },
           "tokens": {
             "totals": [
@@ -5526,9 +5526,9 @@
       "host_id": "ming-ai-station",
       "short": ".69",
       "transport": "ssh-wsl",
-      "observed_at": "2026-11-25T19:59:57Z",
-      "observed_at_epoch": 1795636796.69863,
-      "last_success_at": "2026-11-25T19:59:57Z",
+      "observed_at": "2026-11-25T20:30:01Z",
+      "observed_at_epoch": 1795638600.4033237,
+      "last_success_at": "2026-11-25T20:30:01Z",
       "error": null,
       "bots": [
         {
@@ -5540,9 +5540,9 @@
           "work": {
             "state": "在线·空闲",
             "reasons": [
-              "无待执行任务；最近活动 3619088s 前"
+              "无待执行任务；最近活动 3620892s 前"
             ],
-            "progress_age_s": 3619088
+            "progress_age_s": 3620892
           },
           "tokens": {
             "totals": [
@@ -5733,9 +5733,9 @@
           "work": {
             "state": "在线·空闲",
             "reasons": [
-              "无待执行任务；最近活动 4260356s 前"
+              "无待执行任务；最近活动 4262159s 前"
             ],
-            "progress_age_s": 4260356
+            "progress_age_s": 4262159
           },
           "tokens": {
             "totals": [
@@ -6461,8 +6461,8 @@
     "collector_note": "static-copied from /tmp/snap_final2.json (probe not implemented in collect_lite)"
   },
   "self_check": {
-    "checked_at": "2026-11-25T19:59:57Z",
-    "snapshot_id": "69d1f1690060",
+    "checked_at": "2026-11-25T20:30:01Z",
+    "snapshot_id": "0e56bd99b056",
     "status": "ok",
     "error_count": 0,
     "warning_count": 0,
